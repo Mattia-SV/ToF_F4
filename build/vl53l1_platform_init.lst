@@ -1,0 +1,452 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_platform_init.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.VL53L1_platform_init,"ax",%progbits
+  20              		.align	1
+  21              		.global	VL53L1_platform_init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	VL53L1_platform_init:
+  27              	.LVL0:
+  28              	.LFB3:
+  29              		.file 1 "Core/Src/vl53l1_platform_init.c"
+   1:Core/Src/vl53l1_platform_init.c **** /*******************************************************************************
+   2:Core/Src/vl53l1_platform_init.c ****  Copyright (C) 2016, STMicroelectronics International N.V.
+   3:Core/Src/vl53l1_platform_init.c ****  All rights reserved.
+   4:Core/Src/vl53l1_platform_init.c **** 
+   5:Core/Src/vl53l1_platform_init.c ****  Redistribution and use in source and binary forms, with or without
+   6:Core/Src/vl53l1_platform_init.c ****  modification, are permitted provided that the following conditions are met:
+   7:Core/Src/vl53l1_platform_init.c ****  * Redistributions of source code must retain the above copyright
+   8:Core/Src/vl53l1_platform_init.c ****  notice, this list of conditions and the following disclaimer.
+   9:Core/Src/vl53l1_platform_init.c ****  * Redistributions in binary form must reproduce the above copyright
+  10:Core/Src/vl53l1_platform_init.c ****  notice, this list of conditions and the following disclaimer in the
+  11:Core/Src/vl53l1_platform_init.c ****  documentation and/or other materials provided with the distribution.
+  12:Core/Src/vl53l1_platform_init.c ****  * Neither the name of STMicroelectronics nor the
+  13:Core/Src/vl53l1_platform_init.c ****  names of its contributors may be used to endorse or promote products
+  14:Core/Src/vl53l1_platform_init.c ****  derived from this software without specific prior written permission.
+  15:Core/Src/vl53l1_platform_init.c **** 
+  16:Core/Src/vl53l1_platform_init.c ****  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+  17:Core/Src/vl53l1_platform_init.c ****  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  18:Core/Src/vl53l1_platform_init.c ****  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+  19:Core/Src/vl53l1_platform_init.c ****  NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS ARE DISCLAIMED.
+  20:Core/Src/vl53l1_platform_init.c ****  IN NO EVENT SHALL STMICROELECTRONICS INTERNATIONAL N.V. BE LIABLE FOR ANY
+  21:Core/Src/vl53l1_platform_init.c ****  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  22:Core/Src/vl53l1_platform_init.c ****  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  23:Core/Src/vl53l1_platform_init.c ****  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  24:Core/Src/vl53l1_platform_init.c ****  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  25:Core/Src/vl53l1_platform_init.c ****  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  26:Core/Src/vl53l1_platform_init.c ****  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  27:Core/Src/vl53l1_platform_init.c ****  ******************************************************************************/
+  28:Core/Src/vl53l1_platform_init.c **** 
+  29:Core/Src/vl53l1_platform_init.c **** /**
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 2
+
+
+  30:Core/Src/vl53l1_platform_init.c ****  * @file   vl53l1_platform_init.c
+  31:Core/Src/vl53l1_platform_init.c ****  * @brief  EwokPlus25 comms and GPIO init
+  32:Core/Src/vl53l1_platform_init.c ****  *
+  33:Core/Src/vl53l1_platform_init.c ****  */
+  34:Core/Src/vl53l1_platform_init.c **** 
+  35:Core/Src/vl53l1_platform_init.c **** 
+  36:Core/Src/vl53l1_platform_init.c **** #include "vl53l1_ll_def.h"
+  37:Core/Src/vl53l1_platform_init.c **** #include "vl53l1_platform.h"
+  38:Core/Src/vl53l1_platform_init.c **** #include "vl53l1_platform_init.h"
+  39:Core/Src/vl53l1_platform_init.c **** 
+  40:Core/Src/vl53l1_platform_init.c **** 
+  41:Core/Src/vl53l1_platform_init.c **** VL53L1_Error VL53L1_platform_init(
+  42:Core/Src/vl53l1_platform_init.c **** 	VL53L1_Dev_t *pdev,
+  43:Core/Src/vl53l1_platform_init.c **** 	uint8_t       i2c_slave_address,
+  44:Core/Src/vl53l1_platform_init.c **** 	uint8_t       comms_type,
+  45:Core/Src/vl53l1_platform_init.c **** 	uint16_t      comms_speed_khz)
+  46:Core/Src/vl53l1_platform_init.c **** {
+  30              		.loc 1 46 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 46 1 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0446     		mov	r4, r0
+  41 0004 8C46     		mov	ip, r1
+  42 0006 1146     		mov	r1, r2
+  43              	.LVL1:
+  44              		.loc 1 46 1 view .LVU2
+  45 0008 1A46     		mov	r2, r3
+  46              	.LVL2:
+  47:Core/Src/vl53l1_platform_init.c **** 	/*
+  48:Core/Src/vl53l1_platform_init.c **** 	 * Initialise comms, GPIOs (xshutdown, ncs, EVK power regulator enable)
+  49:Core/Src/vl53l1_platform_init.c **** 	 * and reset Device
+  50:Core/Src/vl53l1_platform_init.c **** 	 */
+  51:Core/Src/vl53l1_platform_init.c **** 
+  52:Core/Src/vl53l1_platform_init.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+  47              		.loc 1 52 2 is_stmt 1 view .LVU3
+  53:Core/Src/vl53l1_platform_init.c **** 
+  54:Core/Src/vl53l1_platform_init.c **** 	/* remember comms settings */
+  55:Core/Src/vl53l1_platform_init.c **** 
+  56:Core/Src/vl53l1_platform_init.c **** 	pdev->i2c_slave_address = i2c_slave_address;
+  48              		.loc 1 56 2 view .LVU4
+  49              		.loc 1 56 26 is_stmt 0 view .LVU5
+  50 000a 80F898C3 		strb	ip, [r0, #920]
+  57:Core/Src/vl53l1_platform_init.c **** 	pdev->comms_type        = comms_type;
+  51              		.loc 1 57 2 is_stmt 1 view .LVU6
+  52              		.loc 1 57 26 is_stmt 0 view .LVU7
+  53 000e 80F89913 		strb	r1, [r0, #921]
+  58:Core/Src/vl53l1_platform_init.c **** 	pdev->comms_speed_khz   = comms_speed_khz;
+  54              		.loc 1 58 2 is_stmt 1 view .LVU8
+  55              		.loc 1 58 26 is_stmt 0 view .LVU9
+  56 0012 A0F89A33 		strh	r3, [r0, #922]	@ movhi
+  59:Core/Src/vl53l1_platform_init.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 3
+
+
+  60:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE) /*lint !e774 always true*/
+  57              		.loc 1 60 2 is_stmt 1 view .LVU10
+  61:Core/Src/vl53l1_platform_init.c **** 		status =
+  58              		.loc 1 61 3 view .LVU11
+  62:Core/Src/vl53l1_platform_init.c **** 			VL53L1_CommsInitialise(
+  59              		.loc 1 62 4 is_stmt 0 view .LVU12
+  60 0016 FFF7FEFF 		bl	VL53L1_CommsInitialise
+  61              	.LVL3:
+  63:Core/Src/vl53l1_platform_init.c **** 				pdev,
+  64:Core/Src/vl53l1_platform_init.c **** 				pdev->comms_type,
+  65:Core/Src/vl53l1_platform_init.c **** 				pdev->comms_speed_khz);
+  66:Core/Src/vl53l1_platform_init.c **** 
+  67:Core/Src/vl53l1_platform_init.c **** 	/* Ensure device is in reset */
+  68:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+  62              		.loc 1 68 2 is_stmt 1 view .LVU13
+  63              		.loc 1 68 5 is_stmt 0 view .LVU14
+  64 001a 38B1     		cbz	r0, .L11
+  65              	.LVL4:
+  66              	.L2:
+  69:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioXshutdown(0);
+  70:Core/Src/vl53l1_platform_init.c **** 
+  71:Core/Src/vl53l1_platform_init.c **** 	/* disable the platform regulators */
+  72:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+  67              		.loc 1 72 2 is_stmt 1 view .LVU15
+  68              		.loc 1 72 5 is_stmt 0 view .LVU16
+  69 001c 50B1     		cbz	r0, .L12
+  70              	.L3:
+  73:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioPowerEnable(0);
+  74:Core/Src/vl53l1_platform_init.c **** 
+  75:Core/Src/vl53l1_platform_init.c **** 	/* set the NCS pin for I2C mode */
+  76:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+  71              		.loc 1 76 2 is_stmt 1 view .LVU17
+  72              		.loc 1 76 5 is_stmt 0 view .LVU18
+  73 001e 60B1     		cbz	r0, .L13
+  74              	.L4:
+  77:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioCommsSelect(0);
+  78:Core/Src/vl53l1_platform_init.c **** 
+  79:Core/Src/vl53l1_platform_init.c **** 	/* 1ms Wait to ensure XSHUTD / NCS are in the right state */
+  80:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+  75              		.loc 1 80 2 is_stmt 1 view .LVU19
+  76              		.loc 1 80 5 is_stmt 0 view .LVU20
+  77 0020 70B1     		cbz	r0, .L14
+  78              	.L5:
+  81:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_WaitUs(pdev, 1000);
+  82:Core/Src/vl53l1_platform_init.c **** 
+  83:Core/Src/vl53l1_platform_init.c **** 	/* enable the platform regulators */
+  84:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+  79              		.loc 1 84 2 is_stmt 1 view .LVU21
+  80              		.loc 1 84 5 is_stmt 0 view .LVU22
+  81 0022 98B1     		cbz	r0, .L15
+  82              	.L6:
+  85:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioPowerEnable(1);
+  86:Core/Src/vl53l1_platform_init.c **** 
+  87:Core/Src/vl53l1_platform_init.c **** 	/* 1ms Wait for power regs to settle */
+  88:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+  83              		.loc 1 88 2 is_stmt 1 view .LVU23
+  84              		.loc 1 88 5 is_stmt 0 view .LVU24
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 4
+
+
+  85 0024 B0B1     		cbz	r0, .L16
+  86              	.L7:
+  89:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_WaitUs(pdev, 1000);
+  90:Core/Src/vl53l1_platform_init.c **** 
+  91:Core/Src/vl53l1_platform_init.c **** 	/* finally, bring the device out of reset */
+  92:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+  87              		.loc 1 92 2 is_stmt 1 view .LVU25
+  88              		.loc 1 92 5 is_stmt 0 view .LVU26
+  89 0026 D8B1     		cbz	r0, .L17
+  90              	.L8:
+  93:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioXshutdown(1);
+  94:Core/Src/vl53l1_platform_init.c **** 
+  95:Core/Src/vl53l1_platform_init.c **** 	/*  Wait 100us for device to exit reset */
+  96:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+  91              		.loc 1 96 2 is_stmt 1 view .LVU27
+  92              		.loc 1 96 5 is_stmt 0 view .LVU28
+  93 0028 F0B1     		cbz	r0, .L18
+  94              	.L9:
+  97:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_WaitUs(pdev, 100);
+  98:Core/Src/vl53l1_platform_init.c **** 
+  99:Core/Src/vl53l1_platform_init.c **** 	return status;
+  95              		.loc 1 99 2 is_stmt 1 view .LVU29
+ 100:Core/Src/vl53l1_platform_init.c **** }
+  96              		.loc 1 100 1 is_stmt 0 view .LVU30
+  97 002a 10BD     		pop	{r4, pc}
+  98              	.LVL5:
+  99              	.L11:
+  69:Core/Src/vl53l1_platform_init.c **** 
+ 100              		.loc 1 69 3 is_stmt 1 view .LVU31
+  69:Core/Src/vl53l1_platform_init.c **** 
+ 101              		.loc 1 69 12 is_stmt 0 view .LVU32
+ 102 002c 0020     		movs	r0, #0
+ 103 002e FFF7FEFF 		bl	VL53L1_GpioXshutdown
+ 104              	.LVL6:
+  69:Core/Src/vl53l1_platform_init.c **** 
+ 105              		.loc 1 69 12 view .LVU33
+ 106 0032 F3E7     		b	.L2
+ 107              	.L12:
+  73:Core/Src/vl53l1_platform_init.c **** 
+ 108              		.loc 1 73 3 is_stmt 1 view .LVU34
+  73:Core/Src/vl53l1_platform_init.c **** 
+ 109              		.loc 1 73 12 is_stmt 0 view .LVU35
+ 110 0034 FFF7FEFF 		bl	VL53L1_GpioPowerEnable
+ 111              	.LVL7:
+  73:Core/Src/vl53l1_platform_init.c **** 
+ 112              		.loc 1 73 12 view .LVU36
+ 113 0038 F1E7     		b	.L3
+ 114              	.L13:
+  77:Core/Src/vl53l1_platform_init.c **** 
+ 115              		.loc 1 77 3 is_stmt 1 view .LVU37
+  77:Core/Src/vl53l1_platform_init.c **** 
+ 116              		.loc 1 77 12 is_stmt 0 view .LVU38
+ 117 003a FFF7FEFF 		bl	VL53L1_GpioCommsSelect
+ 118              	.LVL8:
+  77:Core/Src/vl53l1_platform_init.c **** 
+ 119              		.loc 1 77 12 view .LVU39
+ 120 003e EFE7     		b	.L4
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 5
+
+
+ 121              	.L14:
+  81:Core/Src/vl53l1_platform_init.c **** 
+ 122              		.loc 1 81 3 is_stmt 1 view .LVU40
+  81:Core/Src/vl53l1_platform_init.c **** 
+ 123              		.loc 1 81 12 is_stmt 0 view .LVU41
+ 124 0040 4FF47A71 		mov	r1, #1000
+ 125 0044 2046     		mov	r0, r4
+ 126              	.LVL9:
+  81:Core/Src/vl53l1_platform_init.c **** 
+ 127              		.loc 1 81 12 view .LVU42
+ 128 0046 FFF7FEFF 		bl	VL53L1_WaitUs
+ 129              	.LVL10:
+  81:Core/Src/vl53l1_platform_init.c **** 
+ 130              		.loc 1 81 12 view .LVU43
+ 131 004a EAE7     		b	.L5
+ 132              	.L15:
+  85:Core/Src/vl53l1_platform_init.c **** 
+ 133              		.loc 1 85 3 is_stmt 1 view .LVU44
+  85:Core/Src/vl53l1_platform_init.c **** 
+ 134              		.loc 1 85 12 is_stmt 0 view .LVU45
+ 135 004c 0120     		movs	r0, #1
+ 136              	.LVL11:
+  85:Core/Src/vl53l1_platform_init.c **** 
+ 137              		.loc 1 85 12 view .LVU46
+ 138 004e FFF7FEFF 		bl	VL53L1_GpioPowerEnable
+ 139              	.LVL12:
+  85:Core/Src/vl53l1_platform_init.c **** 
+ 140              		.loc 1 85 12 view .LVU47
+ 141 0052 E7E7     		b	.L6
+ 142              	.L16:
+  89:Core/Src/vl53l1_platform_init.c **** 
+ 143              		.loc 1 89 3 is_stmt 1 view .LVU48
+  89:Core/Src/vl53l1_platform_init.c **** 
+ 144              		.loc 1 89 12 is_stmt 0 view .LVU49
+ 145 0054 4FF47A71 		mov	r1, #1000
+ 146 0058 2046     		mov	r0, r4
+ 147              	.LVL13:
+  89:Core/Src/vl53l1_platform_init.c **** 
+ 148              		.loc 1 89 12 view .LVU50
+ 149 005a FFF7FEFF 		bl	VL53L1_WaitUs
+ 150              	.LVL14:
+  89:Core/Src/vl53l1_platform_init.c **** 
+ 151              		.loc 1 89 12 view .LVU51
+ 152 005e E2E7     		b	.L7
+ 153              	.L17:
+  93:Core/Src/vl53l1_platform_init.c **** 
+ 154              		.loc 1 93 3 is_stmt 1 view .LVU52
+  93:Core/Src/vl53l1_platform_init.c **** 
+ 155              		.loc 1 93 12 is_stmt 0 view .LVU53
+ 156 0060 0120     		movs	r0, #1
+ 157              	.LVL15:
+  93:Core/Src/vl53l1_platform_init.c **** 
+ 158              		.loc 1 93 12 view .LVU54
+ 159 0062 FFF7FEFF 		bl	VL53L1_GpioXshutdown
+ 160              	.LVL16:
+  93:Core/Src/vl53l1_platform_init.c **** 
+ 161              		.loc 1 93 12 view .LVU55
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 6
+
+
+ 162 0066 DFE7     		b	.L8
+ 163              	.L18:
+  97:Core/Src/vl53l1_platform_init.c **** 
+ 164              		.loc 1 97 3 is_stmt 1 view .LVU56
+  97:Core/Src/vl53l1_platform_init.c **** 
+ 165              		.loc 1 97 12 is_stmt 0 view .LVU57
+ 166 0068 6421     		movs	r1, #100
+ 167 006a 2046     		mov	r0, r4
+ 168              	.LVL17:
+  97:Core/Src/vl53l1_platform_init.c **** 
+ 169              		.loc 1 97 12 view .LVU58
+ 170 006c FFF7FEFF 		bl	VL53L1_WaitUs
+ 171              	.LVL18:
+  97:Core/Src/vl53l1_platform_init.c **** 
+ 172              		.loc 1 97 12 view .LVU59
+ 173 0070 DBE7     		b	.L9
+ 174              		.cfi_endproc
+ 175              	.LFE3:
+ 177              		.section	.text.VL53L1_platform_terminate,"ax",%progbits
+ 178              		.align	1
+ 179              		.global	VL53L1_platform_terminate
+ 180              		.syntax unified
+ 181              		.thumb
+ 182              		.thumb_func
+ 184              	VL53L1_platform_terminate:
+ 185              	.LVL19:
+ 186              	.LFB4:
+ 101:Core/Src/vl53l1_platform_init.c **** 
+ 102:Core/Src/vl53l1_platform_init.c **** 
+ 103:Core/Src/vl53l1_platform_init.c **** VL53L1_Error VL53L1_platform_terminate(
+ 104:Core/Src/vl53l1_platform_init.c **** 		VL53L1_Dev_t *pdev)
+ 105:Core/Src/vl53l1_platform_init.c **** {
+ 187              		.loc 1 105 1 is_stmt 1 view -0
+ 188              		.cfi_startproc
+ 189              		@ args = 0, pretend = 0, frame = 0
+ 190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191              		.loc 1 105 1 is_stmt 0 view .LVU61
+ 192 0000 10B5     		push	{r4, lr}
+ 193              	.LCFI1:
+ 194              		.cfi_def_cfa_offset 8
+ 195              		.cfi_offset 4, -8
+ 196              		.cfi_offset 14, -4
+ 197 0002 0446     		mov	r4, r0
+ 106:Core/Src/vl53l1_platform_init.c **** 	/*
+ 107:Core/Src/vl53l1_platform_init.c **** 	 * Puts the device into reset, disables EVK power regulator
+ 108:Core/Src/vl53l1_platform_init.c **** 	 * and closes comms
+ 109:Core/Src/vl53l1_platform_init.c **** 	 */
+ 110:Core/Src/vl53l1_platform_init.c **** 
+ 111:Core/Src/vl53l1_platform_init.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 198              		.loc 1 111 2 is_stmt 1 view .LVU62
+ 199              	.LVL20:
+ 112:Core/Src/vl53l1_platform_init.c **** 
+ 113:Core/Src/vl53l1_platform_init.c **** 	/* put device in reset */
+ 114:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE) /*lint !e774 always true*/
+ 200              		.loc 1 114 2 view .LVU63
+ 115:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioXshutdown(0);
+ 201              		.loc 1 115 3 view .LVU64
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 7
+
+
+ 202              		.loc 1 115 12 is_stmt 0 view .LVU65
+ 203 0004 0020     		movs	r0, #0
+ 204              	.LVL21:
+ 205              		.loc 1 115 12 view .LVU66
+ 206 0006 FFF7FEFF 		bl	VL53L1_GpioXshutdown
+ 207              	.LVL22:
+ 116:Core/Src/vl53l1_platform_init.c **** 
+ 117:Core/Src/vl53l1_platform_init.c **** 	/* disable the platform regulators */
+ 118:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+ 208              		.loc 1 118 2 is_stmt 1 view .LVU67
+ 209              		.loc 1 118 5 is_stmt 0 view .LVU68
+ 210 000a 08B1     		cbz	r0, .L23
+ 211              	.L20:
+ 212              	.LVL23:
+ 119:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioPowerEnable(0);
+ 120:Core/Src/vl53l1_platform_init.c **** 
+ 121:Core/Src/vl53l1_platform_init.c **** 	/* close the comms interfaces */
+ 122:Core/Src/vl53l1_platform_init.c **** 	if (status == VL53L1_ERROR_NONE)
+ 213              		.loc 1 122 2 is_stmt 1 view .LVU69
+ 214              		.loc 1 122 5 is_stmt 0 view .LVU70
+ 215 000c 20B1     		cbz	r0, .L24
+ 216              	.L21:
+ 123:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_CommsClose(pdev);
+ 124:Core/Src/vl53l1_platform_init.c **** 
+ 125:Core/Src/vl53l1_platform_init.c **** 	return status;
+ 217              		.loc 1 125 2 is_stmt 1 view .LVU71
+ 126:Core/Src/vl53l1_platform_init.c **** }
+ 218              		.loc 1 126 1 is_stmt 0 view .LVU72
+ 219 000e 10BD     		pop	{r4, pc}
+ 220              	.LVL24:
+ 221              	.L23:
+ 119:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioPowerEnable(0);
+ 222              		.loc 1 119 3 is_stmt 1 view .LVU73
+ 119:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioPowerEnable(0);
+ 223              		.loc 1 119 12 is_stmt 0 view .LVU74
+ 224 0010 0020     		movs	r0, #0
+ 225 0012 FFF7FEFF 		bl	VL53L1_GpioPowerEnable
+ 226              	.LVL25:
+ 119:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_GpioPowerEnable(0);
+ 227              		.loc 1 119 12 view .LVU75
+ 228 0016 F9E7     		b	.L20
+ 229              	.L24:
+ 123:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_CommsClose(pdev);
+ 230              		.loc 1 123 3 is_stmt 1 view .LVU76
+ 123:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_CommsClose(pdev);
+ 231              		.loc 1 123 12 is_stmt 0 view .LVU77
+ 232 0018 2046     		mov	r0, r4
+ 233              	.LVL26:
+ 123:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_CommsClose(pdev);
+ 234              		.loc 1 123 12 view .LVU78
+ 235 001a FFF7FEFF 		bl	VL53L1_CommsClose
+ 236              	.LVL27:
+ 123:Core/Src/vl53l1_platform_init.c **** 		status = VL53L1_CommsClose(pdev);
+ 237              		.loc 1 123 12 view .LVU79
+ 238 001e F6E7     		b	.L21
+ 239              		.cfi_endproc
+ 240              	.LFE4:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 8
+
+
+ 242              		.text
+ 243              	.Letext0:
+ 244              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 245              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 246              		.file 4 "Core/Inc/vl53l1_types.h"
+ 247              		.file 5 "Core/Inc/vl53l1_ll_device.h"
+ 248              		.file 6 "Core/Inc/vl53l1_error_codes.h"
+ 249              		.file 7 "Core/Inc/vl53l1_register_structs.h"
+ 250              		.file 8 "Core/Inc/vl53l1_ll_def.h"
+ 251              		.file 9 "Core/Inc/vl53l1_def.h"
+ 252              		.file 10 "Core/Inc/vl53l1_platform_user_data.h"
+ 253              		.file 11 "Core/Inc/vl53l1_platform.h"
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_platform_init.c
+C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s:20     .text.VL53L1_platform_init:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s:26     .text.VL53L1_platform_init:00000000 VL53L1_platform_init
+C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s:178    .text.VL53L1_platform_terminate:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccgGPZCr.s:184    .text.VL53L1_platform_terminate:00000000 VL53L1_platform_terminate
+
+UNDEFINED SYMBOLS
+VL53L1_CommsInitialise
+VL53L1_GpioXshutdown
+VL53L1_GpioPowerEnable
+VL53L1_GpioCommsSelect
+VL53L1_WaitUs
+VL53L1_CommsClose

@@ -1,0 +1,2667 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_api_calibration.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.VL53L1_run_offset_calibration,"ax",%progbits
+  20              		.align	1
+  21              		.global	VL53L1_run_offset_calibration
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	VL53L1_run_offset_calibration:
+  27              	.LVL0:
+  28              	.LFB4:
+  29              		.file 1 "Core/Src/vl53l1_api_calibration.c"
+   1:Core/Src/vl53l1_api_calibration.c **** /*
+   2:Core/Src/vl53l1_api_calibration.c **** * Copyright (c) 2017, STMicroelectronics - All Rights Reserved
+   3:Core/Src/vl53l1_api_calibration.c **** *
+   4:Core/Src/vl53l1_api_calibration.c **** * This file is part of VL53L1 Core and is dual licensed,
+   5:Core/Src/vl53l1_api_calibration.c **** * either 'STMicroelectronics
+   6:Core/Src/vl53l1_api_calibration.c **** * Proprietary license'
+   7:Core/Src/vl53l1_api_calibration.c **** * or 'BSD 3-clause "New" or "Revised" License' , at your option.
+   8:Core/Src/vl53l1_api_calibration.c **** *
+   9:Core/Src/vl53l1_api_calibration.c **** ********************************************************************************
+  10:Core/Src/vl53l1_api_calibration.c **** *
+  11:Core/Src/vl53l1_api_calibration.c **** * 'STMicroelectronics Proprietary license'
+  12:Core/Src/vl53l1_api_calibration.c **** *
+  13:Core/Src/vl53l1_api_calibration.c **** ********************************************************************************
+  14:Core/Src/vl53l1_api_calibration.c **** *
+  15:Core/Src/vl53l1_api_calibration.c **** * License terms: STMicroelectronics Proprietary in accordance with licensing
+  16:Core/Src/vl53l1_api_calibration.c **** * terms at www.st.com/sla0081
+  17:Core/Src/vl53l1_api_calibration.c **** *
+  18:Core/Src/vl53l1_api_calibration.c **** * STMicroelectronics confidential
+  19:Core/Src/vl53l1_api_calibration.c **** * Reproduction and Communication of this document is strictly prohibited unless
+  20:Core/Src/vl53l1_api_calibration.c **** * specifically authorized in writing by STMicroelectronics.
+  21:Core/Src/vl53l1_api_calibration.c **** *
+  22:Core/Src/vl53l1_api_calibration.c **** *
+  23:Core/Src/vl53l1_api_calibration.c **** ********************************************************************************
+  24:Core/Src/vl53l1_api_calibration.c **** *
+  25:Core/Src/vl53l1_api_calibration.c **** * Alternatively, VL53L1 Core may be distributed under the terms of
+  26:Core/Src/vl53l1_api_calibration.c **** * 'BSD 3-clause "New" or "Revised" License', in which case the following
+  27:Core/Src/vl53l1_api_calibration.c **** * provisions apply instead of the ones mentioned above :
+  28:Core/Src/vl53l1_api_calibration.c **** *
+  29:Core/Src/vl53l1_api_calibration.c **** ********************************************************************************
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 2
+
+
+  30:Core/Src/vl53l1_api_calibration.c **** *
+  31:Core/Src/vl53l1_api_calibration.c **** * License terms: BSD 3-clause "New" or "Revised" License.
+  32:Core/Src/vl53l1_api_calibration.c **** *
+  33:Core/Src/vl53l1_api_calibration.c **** * Redistribution and use in source and binary forms, with or without
+  34:Core/Src/vl53l1_api_calibration.c **** * modification, are permitted provided that the following conditions are met:
+  35:Core/Src/vl53l1_api_calibration.c **** *
+  36:Core/Src/vl53l1_api_calibration.c **** * 1. Redistributions of source code must retain the above copyright notice, this
+  37:Core/Src/vl53l1_api_calibration.c **** * list of conditions and the following disclaimer.
+  38:Core/Src/vl53l1_api_calibration.c **** *
+  39:Core/Src/vl53l1_api_calibration.c **** * 2. Redistributions in binary form must reproduce the above copyright notice,
+  40:Core/Src/vl53l1_api_calibration.c **** * this list of conditions and the following disclaimer in the documentation
+  41:Core/Src/vl53l1_api_calibration.c **** * and/or other materials provided with the distribution.
+  42:Core/Src/vl53l1_api_calibration.c **** *
+  43:Core/Src/vl53l1_api_calibration.c **** * 3. Neither the name of the copyright holder nor the names of its contributors
+  44:Core/Src/vl53l1_api_calibration.c **** * may be used to endorse or promote products derived from this software
+  45:Core/Src/vl53l1_api_calibration.c **** * without specific prior written permission.
+  46:Core/Src/vl53l1_api_calibration.c **** *
+  47:Core/Src/vl53l1_api_calibration.c **** * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  48:Core/Src/vl53l1_api_calibration.c **** * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  49:Core/Src/vl53l1_api_calibration.c **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  50:Core/Src/vl53l1_api_calibration.c **** * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  51:Core/Src/vl53l1_api_calibration.c **** * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  52:Core/Src/vl53l1_api_calibration.c **** * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  53:Core/Src/vl53l1_api_calibration.c **** * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  54:Core/Src/vl53l1_api_calibration.c **** * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  55:Core/Src/vl53l1_api_calibration.c **** * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  56:Core/Src/vl53l1_api_calibration.c **** * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  57:Core/Src/vl53l1_api_calibration.c **** *
+  58:Core/Src/vl53l1_api_calibration.c **** *
+  59:Core/Src/vl53l1_api_calibration.c **** ********************************************************************************
+  60:Core/Src/vl53l1_api_calibration.c **** *
+  61:Core/Src/vl53l1_api_calibration.c **** */
+  62:Core/Src/vl53l1_api_calibration.c **** 
+  63:Core/Src/vl53l1_api_calibration.c **** /**
+  64:Core/Src/vl53l1_api_calibration.c ****  * @file  vl53l1_api_core.c
+  65:Core/Src/vl53l1_api_calibration.c ****  *
+  66:Core/Src/vl53l1_api_calibration.c ****  * @brief EwokPlus25 low level API function definition
+  67:Core/Src/vl53l1_api_calibration.c ****  */
+  68:Core/Src/vl53l1_api_calibration.c **** 
+  69:Core/Src/vl53l1_api_calibration.c **** 
+  70:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_ll_def.h"
+  71:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_ll_device.h"
+  72:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_platform.h"
+  73:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_register_map.h"
+  74:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_register_funcs.h"
+  75:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_register_settings.h"
+  76:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_core.h"
+  77:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_wait.h"
+  78:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_api_preset_modes.h"
+  79:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_silicon_core.h"
+  80:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_api_core.h"
+  81:Core/Src/vl53l1_api_calibration.c **** #include "vl53l1_api_calibration.h"
+  82:Core/Src/vl53l1_api_calibration.c **** 
+  83:Core/Src/vl53l1_api_calibration.c **** #ifdef VL53L1_LOG_ENABLE
+  84:Core/Src/vl53l1_api_calibration.c ****   #include "vl53l1_api_debug.h"
+  85:Core/Src/vl53l1_api_calibration.c **** #endif
+  86:Core/Src/vl53l1_api_calibration.c **** #ifdef VL53L1_LOGGING
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 3
+
+
+  87:Core/Src/vl53l1_api_calibration.c ****   #include "vl53l1_debug.h"
+  88:Core/Src/vl53l1_api_calibration.c **** #endif
+  89:Core/Src/vl53l1_api_calibration.c **** 
+  90:Core/Src/vl53l1_api_calibration.c **** #define LOG_FUNCTION_START(fmt, ...) \
+  91:Core/Src/vl53l1_api_calibration.c **** 	_LOG_FUNCTION_START(VL53L1_TRACE_MODULE_CORE, fmt, ##__VA_ARGS__)
+  92:Core/Src/vl53l1_api_calibration.c **** #define LOG_FUNCTION_END(status, ...) \
+  93:Core/Src/vl53l1_api_calibration.c **** 	_LOG_FUNCTION_END(VL53L1_TRACE_MODULE_CORE, status, ##__VA_ARGS__)
+  94:Core/Src/vl53l1_api_calibration.c **** #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+  95:Core/Src/vl53l1_api_calibration.c **** 	_LOG_FUNCTION_END_FMT(VL53L1_TRACE_MODULE_CORE, status, \
+  96:Core/Src/vl53l1_api_calibration.c **** 		fmt, ##__VA_ARGS__)
+  97:Core/Src/vl53l1_api_calibration.c **** 
+  98:Core/Src/vl53l1_api_calibration.c **** #define trace_print(level, ...) \
+  99:Core/Src/vl53l1_api_calibration.c **** 	_LOG_TRACE_PRINT(VL53L1_TRACE_MODULE_CORE, \
+ 100:Core/Src/vl53l1_api_calibration.c **** 	level, VL53L1_TRACE_FUNCTION_NONE, ##__VA_ARGS__)
+ 101:Core/Src/vl53l1_api_calibration.c **** 
+ 102:Core/Src/vl53l1_api_calibration.c **** 
+ 103:Core/Src/vl53l1_api_calibration.c **** #ifndef VL53L1_NOCALIB
+ 104:Core/Src/vl53l1_api_calibration.c **** VL53L1_Error VL53L1_run_ref_spad_char(
+ 105:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_DEV        Dev,
+ 106:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_Error     *pcal_status)
+ 107:Core/Src/vl53l1_api_calibration.c **** {
+ 108:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 109:Core/Src/vl53l1_api_calibration.c **** 	 *  Runs Reference SPAD Characterisation
+ 110:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 111:Core/Src/vl53l1_api_calibration.c **** 
+ 112:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 113:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 114:Core/Src/vl53l1_api_calibration.c **** 
+ 115:Core/Src/vl53l1_api_calibration.c **** 	uint8_t comms_buffer[6];
+ 116:Core/Src/vl53l1_api_calibration.c **** 
+ 117:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_refspadchar_config_t *prefspadchar  = &(pdev->refspadchar);
+ 118:Core/Src/vl53l1_api_calibration.c **** 
+ 119:Core/Src/vl53l1_api_calibration.c **** 	LOG_FUNCTION_START("");
+ 120:Core/Src/vl53l1_api_calibration.c **** 
+ 121:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 122:Core/Src/vl53l1_api_calibration.c **** 	 * Ensure power force is enabled
+ 123:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 124:Core/Src/vl53l1_api_calibration.c **** 
+ 125:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) /*lint !e774 always true*/
+ 126:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_enable_powerforce(Dev);
+ 127:Core/Src/vl53l1_api_calibration.c **** 
+ 128:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 129:Core/Src/vl53l1_api_calibration.c **** 	 * Configure device
+ 130:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 131:Core/Src/vl53l1_api_calibration.c **** 
+ 132:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 133:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 134:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_set_ref_spad_char_config(
+ 135:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 136:Core/Src/vl53l1_api_calibration.c **** 				prefspadchar->vcsel_period,
+ 137:Core/Src/vl53l1_api_calibration.c **** 				prefspadchar->timeout_us,
+ 138:Core/Src/vl53l1_api_calibration.c **** 				prefspadchar->target_count_rate_mcps,
+ 139:Core/Src/vl53l1_api_calibration.c **** 				prefspadchar->max_count_rate_limit_mcps,
+ 140:Core/Src/vl53l1_api_calibration.c **** 				prefspadchar->min_count_rate_limit_mcps,
+ 141:Core/Src/vl53l1_api_calibration.c **** 				pdev->stat_nvm.osc_measured__fast_osc__frequency);
+ 142:Core/Src/vl53l1_api_calibration.c **** 
+ 143:Core/Src/vl53l1_api_calibration.c **** 	/*
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 4
+
+
+ 144:Core/Src/vl53l1_api_calibration.c **** 	 * Run device test
+ 145:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 146:Core/Src/vl53l1_api_calibration.c **** 
+ 147:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 148:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_run_device_test(
+ 149:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 150:Core/Src/vl53l1_api_calibration.c **** 					prefspadchar->device_test_mode);
+ 151:Core/Src/vl53l1_api_calibration.c **** 
+ 152:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 153:Core/Src/vl53l1_api_calibration.c **** 	 * Read results
+ 154:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 155:Core/Src/vl53l1_api_calibration.c **** 
+ 156:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 157:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 158:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_ReadMulti(
+ 159:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 160:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_REF_SPAD_CHAR_RESULT__NUM_ACTUAL_REF_SPADS,
+ 161:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer,
+ 162:Core/Src/vl53l1_api_calibration.c **** 				2);
+ 163:Core/Src/vl53l1_api_calibration.c **** 
+ 164:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) {
+ 165:Core/Src/vl53l1_api_calibration.c **** 		pdev->dbg_results.ref_spad_char_result__num_actual_ref_spads =
+ 166:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ 167:Core/Src/vl53l1_api_calibration.c **** 		pdev->dbg_results.ref_spad_char_result__ref_location =
+ 168:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 169:Core/Src/vl53l1_api_calibration.c **** 	}
+ 170:Core/Src/vl53l1_api_calibration.c **** 
+ 171:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 172:Core/Src/vl53l1_api_calibration.c **** 	 * copy results to customer nvm managed G02 registers
+ 173:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 174:Core/Src/vl53l1_api_calibration.c **** 
+ 175:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 176:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 177:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_WriteMulti(
+ 178:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 179:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_REF_SPAD_MAN__NUM_REQUESTED_REF_SPADS,
+ 180:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer,
+ 181:Core/Src/vl53l1_api_calibration.c **** 				2);
+ 182:Core/Src/vl53l1_api_calibration.c **** 
+ 183:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) {
+ 184:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.ref_spad_man__num_requested_ref_spads =
+ 185:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ 186:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.ref_spad_man__ref_location =
+ 187:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 188:Core/Src/vl53l1_api_calibration.c **** 	}
+ 189:Core/Src/vl53l1_api_calibration.c **** 
+ 190:Core/Src/vl53l1_api_calibration.c **** 	/* After Ref Spad Char the final set of good SPAD enables
+ 191:Core/Src/vl53l1_api_calibration.c **** 	 * are stored in the NCY results registers below
+ 192:Core/Src/vl53l1_api_calibration.c **** 	 *
+ 193:Core/Src/vl53l1_api_calibration.c **** 	 *  - RESULT__SPARE_0_SD_1
+ 194:Core/Src/vl53l1_api_calibration.c **** 	 *  - RESULT__SPARE_1_SD_1
+ 195:Core/Src/vl53l1_api_calibration.c **** 	 *  - RESULT__SPARE_2_SD_1
+ 196:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 197:Core/Src/vl53l1_api_calibration.c **** 
+ 198:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 199:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 200:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_ReadMulti(
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 5
+
+
+ 201:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 202:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_RESULT__SPARE_0_SD1,
+ 203:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer,
+ 204:Core/Src/vl53l1_api_calibration.c **** 				6);
+ 205:Core/Src/vl53l1_api_calibration.c **** 
+ 206:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 207:Core/Src/vl53l1_api_calibration.c **** 	 * copy reference SPAD enables to customer nvm managed
+ 208:Core/Src/vl53l1_api_calibration.c **** 	 * G02 registers
+ 209:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 210:Core/Src/vl53l1_api_calibration.c **** 
+ 211:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 212:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 213:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_WriteMulti(
+ 214:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 215:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_GLOBAL_CONFIG__SPAD_ENABLES_REF_0,
+ 216:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer,
+ 217:Core/Src/vl53l1_api_calibration.c **** 				6);
+ 218:Core/Src/vl53l1_api_calibration.c **** 
+ 219:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) {
+ 220:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_0 =
+ 221:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ 222:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_1 =
+ 223:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 224:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_2 =
+ 225:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[2];
+ 226:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_3 =
+ 227:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[3];
+ 228:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_4 =
+ 229:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[4];
+ 230:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_5 =
+ 231:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[5];
+ 232:Core/Src/vl53l1_api_calibration.c **** 	}
+ 233:Core/Src/vl53l1_api_calibration.c **** 
+ 234:Core/Src/vl53l1_api_calibration.c **** #ifdef VL53L1_LOG_ENABLE
+ 235:Core/Src/vl53l1_api_calibration.c **** 	/* Print customer nvm managed data */
+ 236:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 237:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_print_customer_nvm_managed(
+ 238:Core/Src/vl53l1_api_calibration.c **** 			&(pdev->customer),
+ 239:Core/Src/vl53l1_api_calibration.c **** 			"run_ref_spad_char():pdev->lldata.customer.",
+ 240:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_TRACE_MODULE_REF_SPAD_CHAR);
+ 241:Core/Src/vl53l1_api_calibration.c **** #endif
+ 242:Core/Src/vl53l1_api_calibration.c **** 
+ 243:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) {
+ 244:Core/Src/vl53l1_api_calibration.c **** 
+ 245:Core/Src/vl53l1_api_calibration.c **** 		switch (pdev->sys_results.result__range_status) {
+ 246:Core/Src/vl53l1_api_calibration.c **** 
+ 247:Core/Src/vl53l1_api_calibration.c **** 		case VL53L1_DEVICEERROR_REFSPADCHARNOTENOUGHDPADS:
+ 248:Core/Src/vl53l1_api_calibration.c **** 			status = VL53L1_WARNING_REF_SPAD_CHAR_NOT_ENOUGH_SPADS;
+ 249:Core/Src/vl53l1_api_calibration.c **** 			break;
+ 250:Core/Src/vl53l1_api_calibration.c **** 
+ 251:Core/Src/vl53l1_api_calibration.c **** 		case VL53L1_DEVICEERROR_REFSPADCHARMORETHANTARGET:
+ 252:Core/Src/vl53l1_api_calibration.c **** 			status = VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_HIGH;
+ 253:Core/Src/vl53l1_api_calibration.c **** 			break;
+ 254:Core/Src/vl53l1_api_calibration.c **** 
+ 255:Core/Src/vl53l1_api_calibration.c **** 		case VL53L1_DEVICEERROR_REFSPADCHARLESSTHANTARGET:
+ 256:Core/Src/vl53l1_api_calibration.c **** 			status = VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_LOW;
+ 257:Core/Src/vl53l1_api_calibration.c **** 			break;
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 6
+
+
+ 258:Core/Src/vl53l1_api_calibration.c **** 		}
+ 259:Core/Src/vl53l1_api_calibration.c **** 	}
+ 260:Core/Src/vl53l1_api_calibration.c **** 
+ 261:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 262:Core/Src/vl53l1_api_calibration.c **** 	 * Save unfiltered status
+ 263:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 264:Core/Src/vl53l1_api_calibration.c **** 
+ 265:Core/Src/vl53l1_api_calibration.c **** 	*pcal_status = status;
+ 266:Core/Src/vl53l1_api_calibration.c **** 
+ 267:Core/Src/vl53l1_api_calibration.c **** 	/* Status exception code */
+ 268:Core/Src/vl53l1_api_calibration.c **** 
+ 269:Core/Src/vl53l1_api_calibration.c **** 	IGNORE_STATUS(
+ 270:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 271:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_WARNING_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 272:Core/Src/vl53l1_api_calibration.c **** 		status);
+ 273:Core/Src/vl53l1_api_calibration.c **** 
+ 274:Core/Src/vl53l1_api_calibration.c **** 	IGNORE_STATUS(
+ 275:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 276:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 277:Core/Src/vl53l1_api_calibration.c **** 		status);
+ 278:Core/Src/vl53l1_api_calibration.c **** 
+ 279:Core/Src/vl53l1_api_calibration.c **** 	IGNORE_STATUS(
+ 280:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 281:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 282:Core/Src/vl53l1_api_calibration.c **** 		status);
+ 283:Core/Src/vl53l1_api_calibration.c **** 
+ 284:Core/Src/vl53l1_api_calibration.c **** 
+ 285:Core/Src/vl53l1_api_calibration.c **** 	LOG_FUNCTION_END(status);
+ 286:Core/Src/vl53l1_api_calibration.c **** 
+ 287:Core/Src/vl53l1_api_calibration.c **** 	return status;
+ 288:Core/Src/vl53l1_api_calibration.c **** }
+ 289:Core/Src/vl53l1_api_calibration.c **** 
+ 290:Core/Src/vl53l1_api_calibration.c **** VL53L1_Error VL53L1_run_offset_calibration(
+ 291:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_DEV	                  Dev,
+ 292:Core/Src/vl53l1_api_calibration.c **** 	int16_t                       cal_distance_mm,
+ 293:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_Error                 *pcal_status)
+ 294:Core/Src/vl53l1_api_calibration.c **** {
+  30              		.loc 1 294 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 144
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 294 1 is_stmt 0 view .LVU1
+  35 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 32
+  38              		.cfi_offset 4, -32
+  39              		.cfi_offset 5, -28
+  40              		.cfi_offset 6, -24
+  41              		.cfi_offset 7, -20
+  42              		.cfi_offset 8, -16
+  43              		.cfi_offset 9, -12
+  44              		.cfi_offset 10, -8
+  45              		.cfi_offset 14, -4
+  46 0004 A8B0     		sub	sp, sp, #160
+  47              	.LCFI1:
+  48              		.cfi_def_cfa_offset 192
+  49 0006 0546     		mov	r5, r0
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 7
+
+
+  50 0008 8846     		mov	r8, r1
+  51 000a 9246     		mov	r10, r2
+ 295:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 296:Core/Src/vl53l1_api_calibration.c **** 	 * Runs offset calibration
+ 297:Core/Src/vl53l1_api_calibration.c **** 	 *
+ 298:Core/Src/vl53l1_api_calibration.c **** 	 * Recommended tuning parm settings:
+ 299:Core/Src/vl53l1_api_calibration.c **** 	 *
+ 300:Core/Src/vl53l1_api_calibration.c **** 	 *  - pre_num_of_samples    =    32
+ 301:Core/Src/vl53l1_api_calibration.c **** 	 *  - mm1_num_of_samples    =   100
+ 302:Core/Src/vl53l1_api_calibration.c **** 	 *  - mm2_num_of_samples    =    64
+ 303:Core/Src/vl53l1_api_calibration.c **** 	 *  - target_distance_mm    =   140mm
+ 304:Core/Src/vl53l1_api_calibration.c **** 	 *  - target reflectance    =     5%
+ 305:Core/Src/vl53l1_api_calibration.c **** 	 *
+ 306:Core/Src/vl53l1_api_calibration.c **** 	 * Standard Ranging (sigma delta mode):
+ 307:Core/Src/vl53l1_api_calibration.c **** 	 *  - dss_config__target_total_rate_mcps = 20.0 -40.0 Mcps
+ 308:Core/Src/vl53l1_api_calibration.c **** 	 *  - phasecal_config_timeout_us        =  1000
+ 309:Core/Src/vl53l1_api_calibration.c **** 	 *  - range_config_timeout_us           = 13000
+ 310:Core/Src/vl53l1_api_calibration.c **** 	 *  - mm_config_timeout_us              = 13000
+ 311:Core/Src/vl53l1_api_calibration.c **** 	 *
+ 312:Core/Src/vl53l1_api_calibration.c **** 	 *
+ 313:Core/Src/vl53l1_api_calibration.c **** 	 * Note: function parms simplified as part of
+ 314:Core/Src/vl53l1_api_calibration.c **** 	 * Patch_CalFunctionSimplification_11791
+ 315:Core/Src/vl53l1_api_calibration.c **** 	 *
+ 316:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 317:Core/Src/vl53l1_api_calibration.c **** 
+ 318:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_Error status        = VL53L1_ERROR_NONE;
+  52              		.loc 1 318 2 is_stmt 1 view .LVU2
+  53              	.LVL1:
+ 319:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_LLDriverData_t *pdev =
+  54              		.loc 1 319 2 view .LVU3
+ 320:Core/Src/vl53l1_api_calibration.c **** 		VL53L1DevStructGetLLDriverHandle(Dev);
+ 321:Core/Src/vl53l1_api_calibration.c **** 
+ 322:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_DevicePresetModes device_preset_modes[VL53L1_MAX_OFFSET_RANGE_RESULTS];
+  55              		.loc 1 322 2 view .LVU4
+ 323:Core/Src/vl53l1_api_calibration.c **** 
+ 324:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_range_results_t      range_results;
+  56              		.loc 1 324 2 view .LVU5
+ 325:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_range_results_t     *prange_results = &range_results;
+  57              		.loc 1 325 2 view .LVU6
+ 326:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_range_data_t        *prange_data = NULL;
+  58              		.loc 1 326 2 view .LVU7
+ 327:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_offset_range_data_t *poffset     = NULL;
+  59              		.loc 1 327 2 view .LVU8
+ 328:Core/Src/vl53l1_api_calibration.c **** 
+ 329:Core/Src/vl53l1_api_calibration.c **** 	uint8_t  i                      = 0;
+  60              		.loc 1 329 2 view .LVU9
+ 330:Core/Src/vl53l1_api_calibration.c **** 	uint8_t  m                      = 0;
+  61              		.loc 1 330 2 view .LVU10
+ 331:Core/Src/vl53l1_api_calibration.c **** 	uint8_t  measurement_mode       =
+  62              		.loc 1 331 2 view .LVU11
+ 332:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_DEVICEMEASUREMENTMODE_BACKTOBACK;
+ 333:Core/Src/vl53l1_api_calibration.c **** 	uint16_t manual_effective_spads =
+  63              		.loc 1 333 2 view .LVU12
+  64              		.loc 1 333 11 is_stmt 0 view .LVU13
+  65 000c B0F89491 		ldrh	r9, [r0, #404]
+  66              	.LVL2:
+ 334:Core/Src/vl53l1_api_calibration.c **** 		pdev->gen_cfg.dss_config__manual_effective_spads_select;
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 8
+
+
+ 335:Core/Src/vl53l1_api_calibration.c **** 
+ 336:Core/Src/vl53l1_api_calibration.c **** 	uint8_t num_of_samples[VL53L1_MAX_OFFSET_RANGE_RESULTS];
+  67              		.loc 1 336 2 is_stmt 1 view .LVU14
+ 337:Core/Src/vl53l1_api_calibration.c **** 
+ 338:Core/Src/vl53l1_api_calibration.c **** 	LOG_FUNCTION_START("");
+  68              		.loc 1 338 24 view .LVU15
+ 339:Core/Src/vl53l1_api_calibration.c **** 
+ 340:Core/Src/vl53l1_api_calibration.c **** 	/* select requested offset calibration mode */
+ 341:Core/Src/vl53l1_api_calibration.c **** 
+ 342:Core/Src/vl53l1_api_calibration.c **** 	switch (pdev->offset_calibration_mode) {
+  69              		.loc 1 342 2 view .LVU16
+  70              		.loc 1 342 14 is_stmt 0 view .LVU17
+  71 0010 C378     		ldrb	r3, [r0, #3]	@ zero_extendqisi2
+ 343:Core/Src/vl53l1_api_calibration.c **** 
+ 344:Core/Src/vl53l1_api_calibration.c **** 	default:
+ 345:Core/Src/vl53l1_api_calibration.c **** 		device_preset_modes[0] =
+  72              		.loc 1 345 3 is_stmt 1 view .LVU18
+  73              		.loc 1 345 26 is_stmt 0 view .LVU19
+  74 0012 0122     		movs	r2, #1
+  75              	.LVL3:
+  76              		.loc 1 345 26 view .LVU20
+  77 0014 8DF89C20 		strb	r2, [sp, #156]
+ 346:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_DEVICEPRESETMODE_STANDARD_RANGING;
+ 347:Core/Src/vl53l1_api_calibration.c **** 		device_preset_modes[1] =
+  78              		.loc 1 347 3 is_stmt 1 view .LVU21
+  79              		.loc 1 347 26 is_stmt 0 view .LVU22
+  80 0018 0422     		movs	r2, #4
+  81 001a 8DF89D20 		strb	r2, [sp, #157]
+ 348:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_DEVICEPRESETMODE_STANDARD_RANGING_MM1_CAL;
+ 349:Core/Src/vl53l1_api_calibration.c **** 		device_preset_modes[2] =
+  82              		.loc 1 349 3 is_stmt 1 view .LVU23
+  83              		.loc 1 349 26 is_stmt 0 view .LVU24
+  84 001e 0522     		movs	r2, #5
+  85 0020 8DF89E20 		strb	r2, [sp, #158]
+ 350:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_DEVICEPRESETMODE_STANDARD_RANGING_MM2_CAL;
+ 351:Core/Src/vl53l1_api_calibration.c **** 	break;
+  86              		.loc 1 351 2 is_stmt 1 view .LVU25
+ 352:Core/Src/vl53l1_api_calibration.c **** 	}
+ 353:Core/Src/vl53l1_api_calibration.c **** 
+ 354:Core/Src/vl53l1_api_calibration.c **** 	/* initialise num_of_samples */
+ 355:Core/Src/vl53l1_api_calibration.c **** 	/* Start Patch_CalFunctionSimplification_11791 */
+ 356:Core/Src/vl53l1_api_calibration.c **** 	num_of_samples[0] = pdev->offsetcal_cfg.pre_num_of_samples;
+  87              		.loc 1 356 2 view .LVU26
+  88              		.loc 1 356 41 is_stmt 0 view .LVU27
+  89 0024 90F85421 		ldrb	r2, [r0, #340]	@ zero_extendqisi2
+  90              		.loc 1 356 20 view .LVU28
+  91 0028 8DF81420 		strb	r2, [sp, #20]
+ 357:Core/Src/vl53l1_api_calibration.c **** 	num_of_samples[1] = pdev->offsetcal_cfg.mm1_num_of_samples;
+  92              		.loc 1 357 2 is_stmt 1 view .LVU29
+  93              		.loc 1 357 41 is_stmt 0 view .LVU30
+  94 002c 90F85521 		ldrb	r2, [r0, #341]	@ zero_extendqisi2
+  95              		.loc 1 357 20 view .LVU31
+  96 0030 8DF81520 		strb	r2, [sp, #21]
+ 358:Core/Src/vl53l1_api_calibration.c **** 	num_of_samples[2] = pdev->offsetcal_cfg.mm2_num_of_samples;
+  97              		.loc 1 358 2 is_stmt 1 view .LVU32
+  98              		.loc 1 358 41 is_stmt 0 view .LVU33
+  99 0034 90F85621 		ldrb	r2, [r0, #342]	@ zero_extendqisi2
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 9
+
+
+ 100              		.loc 1 358 20 view .LVU34
+ 101 0038 8DF81620 		strb	r2, [sp, #22]
+ 359:Core/Src/vl53l1_api_calibration.c **** 	/* End Patch_CalFunctionSimplification_11791 */
+ 360:Core/Src/vl53l1_api_calibration.c **** 
+ 361:Core/Src/vl53l1_api_calibration.c **** 	/* force all offsets to zero */
+ 362:Core/Src/vl53l1_api_calibration.c **** 
+ 363:Core/Src/vl53l1_api_calibration.c **** 	switch (pdev->offset_calibration_mode) {
+ 102              		.loc 1 363 2 is_stmt 1 view .LVU35
+ 103 003c 032B     		cmp	r3, #3
+ 104 003e 10D0     		beq	.L38
+ 364:Core/Src/vl53l1_api_calibration.c **** 
+ 365:Core/Src/vl53l1_api_calibration.c **** 	case VL53L1_OFFSETCALIBRATIONMODE__MM1_MM2__STANDARD_PRE_RANGE_ONLY:
+ 366:Core/Src/vl53l1_api_calibration.c **** 		/* only run pre range */
+ 367:Core/Src/vl53l1_api_calibration.c **** 		pdev->offset_results.active_results  = 1;
+ 368:Core/Src/vl53l1_api_calibration.c **** 
+ 369:Core/Src/vl53l1_api_calibration.c **** 	break;
+ 370:Core/Src/vl53l1_api_calibration.c **** 
+ 371:Core/Src/vl53l1_api_calibration.c **** 	default:
+ 372:Core/Src/vl53l1_api_calibration.c **** 
+ 373:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.mm_config__inner_offset_mm  = 0;
+ 105              		.loc 1 373 3 view .LVU36
+ 106              		.loc 1 373 46 is_stmt 0 view .LVU37
+ 107 0040 0023     		movs	r3, #0
+ 108 0042 A0F85630 		strh	r3, [r0, #86]	@ movhi
+ 374:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.mm_config__outer_offset_mm  = 0;
+ 109              		.loc 1 374 3 is_stmt 1 view .LVU38
+ 110              		.loc 1 374 46 is_stmt 0 view .LVU39
+ 111 0046 A0F85830 		strh	r3, [r0, #88]	@ movhi
+ 375:Core/Src/vl53l1_api_calibration.c **** 		pdev->offset_results.active_results  =
+ 112              		.loc 1 375 3 is_stmt 1 view .LVU40
+ 113              		.loc 1 375 40 is_stmt 0 view .LVU41
+ 114 004a 0323     		movs	r3, #3
+ 115 004c 80F83132 		strb	r3, [r0, #561]
+ 376:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_MAX_OFFSET_RANGE_RESULTS;
+ 377:Core/Src/vl53l1_api_calibration.c **** 
+ 378:Core/Src/vl53l1_api_calibration.c **** 	break;
+ 116              		.loc 1 378 2 is_stmt 1 view .LVU42
+ 117              	.L3:
+ 379:Core/Src/vl53l1_api_calibration.c **** 	}
+ 380:Core/Src/vl53l1_api_calibration.c **** 
+ 381:Core/Src/vl53l1_api_calibration.c **** 	pdev->customer.algo__part_to_part_range_offset_mm = 0;
+ 118              		.loc 1 381 2 view .LVU43
+ 119              		.loc 1 381 52 is_stmt 0 view .LVU44
+ 120 0050 0023     		movs	r3, #0
+ 121 0052 A5F85430 		strh	r3, [r5, #84]	@ movhi
+ 382:Core/Src/vl53l1_api_calibration.c **** 
+ 383:Core/Src/vl53l1_api_calibration.c **** 	/* initialise offset range results */
+ 384:Core/Src/vl53l1_api_calibration.c **** 
+ 385:Core/Src/vl53l1_api_calibration.c **** 	pdev->offset_results.max_results           = VL53L1_MAX_OFFSET_RANGE_RESULTS;
+ 122              		.loc 1 385 2 is_stmt 1 view .LVU45
+ 123              		.loc 1 385 45 is_stmt 0 view .LVU46
+ 124 0056 0322     		movs	r2, #3
+ 125 0058 85F83022 		strb	r2, [r5, #560]
+ 386:Core/Src/vl53l1_api_calibration.c **** 	pdev->offset_results.cal_distance_mm       = cal_distance_mm;
+ 126              		.loc 1 386 2 is_stmt 1 view .LVU47
+ 127              		.loc 1 386 45 is_stmt 0 view .LVU48
+ 128 005c A5F82C82 		strh	r8, [r5, #556]	@ movhi
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 10
+
+
+ 387:Core/Src/vl53l1_api_calibration.c **** 
+ 388:Core/Src/vl53l1_api_calibration.c **** 	for (m = 0 ; m <  VL53L1_MAX_OFFSET_RANGE_RESULTS; m++) {
+ 129              		.loc 1 388 2 is_stmt 1 view .LVU49
+ 130              		.loc 1 388 2 is_stmt 0 view .LVU50
+ 131 0060 1AE0     		b	.L4
+ 132              	.L38:
+ 367:Core/Src/vl53l1_api_calibration.c **** 
+ 133              		.loc 1 367 3 is_stmt 1 view .LVU51
+ 367:Core/Src/vl53l1_api_calibration.c **** 
+ 134              		.loc 1 367 40 is_stmt 0 view .LVU52
+ 135 0062 0123     		movs	r3, #1
+ 136 0064 80F83132 		strb	r3, [r0, #561]
+ 369:Core/Src/vl53l1_api_calibration.c **** 
+ 137              		.loc 1 369 2 is_stmt 1 view .LVU53
+ 138 0068 F2E7     		b	.L3
+ 139              	.LVL4:
+ 140              	.L5:
+ 389:Core/Src/vl53l1_api_calibration.c **** 
+ 390:Core/Src/vl53l1_api_calibration.c **** 		poffset = &(pdev->offset_results.data[m]);
+ 141              		.loc 1 390 3 discriminator 3 view .LVU54
+ 391:Core/Src/vl53l1_api_calibration.c **** 		poffset->preset_mode         = 0;
+ 142              		.loc 1 391 3 discriminator 3 view .LVU55
+ 143              		.loc 1 391 32 is_stmt 0 discriminator 3 view .LVU56
+ 144 006a C3EBC302 		rsb	r2, r3, r3, lsl #3
+ 145 006e 05EB8202 		add	r2, r5, r2, lsl #2
+ 146 0072 0021     		movs	r1, #0
+ 147 0074 82F83412 		strb	r1, [r2, #564]
+ 392:Core/Src/vl53l1_api_calibration.c **** 		poffset->no_of_samples       = 0;
+ 148              		.loc 1 392 3 is_stmt 1 discriminator 3 view .LVU57
+ 149              		.loc 1 392 32 is_stmt 0 discriminator 3 view .LVU58
+ 150 0078 82F83812 		strb	r1, [r2, #568]
+ 393:Core/Src/vl53l1_api_calibration.c **** 		poffset->effective_spads     = 0;
+ 151              		.loc 1 393 3 is_stmt 1 discriminator 3 view .LVU59
+ 152              		.loc 1 393 32 is_stmt 0 discriminator 3 view .LVU60
+ 153 007c C2F83C12 		str	r1, [r2, #572]
+ 394:Core/Src/vl53l1_api_calibration.c **** 		poffset->peak_rate_mcps      = 0;
+ 154              		.loc 1 394 3 is_stmt 1 discriminator 3 view .LVU61
+ 155              		.loc 1 394 32 is_stmt 0 discriminator 3 view .LVU62
+ 156 0080 C2F84012 		str	r1, [r2, #576]
+ 395:Core/Src/vl53l1_api_calibration.c **** 		poffset->sigma_mm            = 0;
+ 157              		.loc 1 395 3 is_stmt 1 discriminator 3 view .LVU63
+ 158              		.loc 1 395 32 is_stmt 0 discriminator 3 view .LVU64
+ 159 0084 C2F84412 		str	r1, [r2, #580]
+ 396:Core/Src/vl53l1_api_calibration.c **** 		poffset->median_range_mm     = 0;
+ 160              		.loc 1 396 3 is_stmt 1 discriminator 3 view .LVU65
+ 161              		.loc 1 396 32 is_stmt 0 discriminator 3 view .LVU66
+ 162 0088 C3EBC302 		rsb	r2, r3, r3, lsl #3
+ 163 008c 05EB8202 		add	r2, r5, r2, lsl #2
+ 164 0090 C2F84812 		str	r1, [r2, #584]
+ 388:Core/Src/vl53l1_api_calibration.c **** 
+ 165              		.loc 1 388 53 is_stmt 1 discriminator 3 view .LVU67
+ 388:Core/Src/vl53l1_api_calibration.c **** 
+ 166              		.loc 1 388 54 is_stmt 0 discriminator 3 view .LVU68
+ 167 0094 0133     		adds	r3, r3, #1
+ 168              	.LVL5:
+ 388:Core/Src/vl53l1_api_calibration.c **** 
+ 169              		.loc 1 388 54 discriminator 3 view .LVU69
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 11
+
+
+ 170 0096 DBB2     		uxtb	r3, r3
+ 171              	.LVL6:
+ 172              	.L4:
+ 388:Core/Src/vl53l1_api_calibration.c **** 
+ 173              		.loc 1 388 15 is_stmt 1 discriminator 1 view .LVU70
+ 388:Core/Src/vl53l1_api_calibration.c **** 
+ 174              		.loc 1 388 2 is_stmt 0 discriminator 1 view .LVU71
+ 175 0098 022B     		cmp	r3, #2
+ 176 009a E6D9     		bls	.L5
+ 397:Core/Src/vl53l1_api_calibration.c **** 	}
+ 398:Core/Src/vl53l1_api_calibration.c **** 
+ 399:Core/Src/vl53l1_api_calibration.c **** 	for (m = 0 ; m < pdev->offset_results.active_results ; m++) {
+ 177              		.loc 1 399 9 view .LVU72
+ 178 009c 0027     		movs	r7, #0
+ 318:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_LLDriverData_t *pdev =
+ 179              		.loc 1 318 15 view .LVU73
+ 180 009e 3846     		mov	r0, r7
+ 181              	.LVL7:
+ 318:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_LLDriverData_t *pdev =
+ 182              		.loc 1 318 15 view .LVU74
+ 183 00a0 B3E0     		b	.L6
+ 184              	.LVL8:
+ 185              	.L48:
+ 400:Core/Src/vl53l1_api_calibration.c **** 
+ 401:Core/Src/vl53l1_api_calibration.c **** 		poffset = &(pdev->offset_results.data[m]);
+ 402:Core/Src/vl53l1_api_calibration.c **** 
+ 403:Core/Src/vl53l1_api_calibration.c **** 		poffset->preset_mode         = device_preset_modes[m];
+ 404:Core/Src/vl53l1_api_calibration.c **** 
+ 405:Core/Src/vl53l1_api_calibration.c **** 		/* Apply preset mode */
+ 406:Core/Src/vl53l1_api_calibration.c **** 
+ 407:Core/Src/vl53l1_api_calibration.c **** 		if (status == VL53L1_ERROR_NONE)
+ 408:Core/Src/vl53l1_api_calibration.c **** 			status =
+ 186              		.loc 1 408 4 is_stmt 1 view .LVU75
+ 409:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_set_preset_mode(
+ 187              		.loc 1 409 5 is_stmt 0 view .LVU76
+ 188 00a2 6423     		movs	r3, #100
+ 189 00a4 0293     		str	r3, [sp, #8]
+ 190 00a6 D5F84C31 		ldr	r3, [r5, #332]
+ 191 00aa 0193     		str	r3, [sp, #4]
+ 192 00ac D5F85031 		ldr	r3, [r5, #336]
+ 193 00b0 0093     		str	r3, [sp]
+ 194 00b2 D5F84831 		ldr	r3, [r5, #328]
+ 195 00b6 B5F84421 		ldrh	r2, [r5, #324]
+ 196 00ba 2846     		mov	r0, r5
+ 197              	.LVL9:
+ 198              		.loc 1 409 5 view .LVU77
+ 199 00bc FFF7FEFF 		bl	VL53L1_set_preset_mode
+ 200              	.LVL10:
+ 201              		.loc 1 409 5 view .LVU78
+ 202 00c0 B6E0     		b	.L7
+ 203              	.L49:
+ 410:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 411:Core/Src/vl53l1_api_calibration.c **** 					device_preset_modes[m],
+ 412:Core/Src/vl53l1_api_calibration.c **** 					/* Start Patch_CalFunctionSimplification_11791 */
+ 413:Core/Src/vl53l1_api_calibration.c **** 					pdev->offsetcal_cfg.dss_config__target_total_rate_mcps,
+ 414:Core/Src/vl53l1_api_calibration.c **** 					pdev->offsetcal_cfg.phasecal_config_timeout_us,
+ 415:Core/Src/vl53l1_api_calibration.c **** 					pdev->offsetcal_cfg.mm_config_timeout_us,
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 12
+
+
+ 416:Core/Src/vl53l1_api_calibration.c **** 					pdev->offsetcal_cfg.range_config_timeout_us,
+ 417:Core/Src/vl53l1_api_calibration.c **** 					/* End Patch_CalFunctionSimplification_11791 */
+ 418:Core/Src/vl53l1_api_calibration.c **** 					100);
+ 419:Core/Src/vl53l1_api_calibration.c **** 
+ 420:Core/Src/vl53l1_api_calibration.c **** 		pdev->gen_cfg.dss_config__manual_effective_spads_select =
+ 421:Core/Src/vl53l1_api_calibration.c **** 				manual_effective_spads;
+ 422:Core/Src/vl53l1_api_calibration.c **** 
+ 423:Core/Src/vl53l1_api_calibration.c **** 		/* Initialise device and start range */
+ 424:Core/Src/vl53l1_api_calibration.c **** 
+ 425:Core/Src/vl53l1_api_calibration.c **** 		if (status == VL53L1_ERROR_NONE)
+ 426:Core/Src/vl53l1_api_calibration.c **** 			status =
+ 204              		.loc 1 426 4 is_stmt 1 view .LVU79
+ 427:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_init_and_start_range(
+ 205              		.loc 1 427 5 is_stmt 0 view .LVU80
+ 206 00c2 0522     		movs	r2, #5
+ 207 00c4 2021     		movs	r1, #32
+ 208 00c6 2846     		mov	r0, r5
+ 209              	.LVL11:
+ 210              		.loc 1 427 5 view .LVU81
+ 211 00c8 FFF7FEFF 		bl	VL53L1_init_and_start_range
+ 212              	.LVL12:
+ 213              		.loc 1 427 5 view .LVU82
+ 214 00cc B5E0     		b	.L8
+ 215              	.LVL13:
+ 216              	.L42:
+ 428:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 429:Core/Src/vl53l1_api_calibration.c **** 					measurement_mode,
+ 430:Core/Src/vl53l1_api_calibration.c **** 					VL53L1_DEVICECONFIGLEVEL_CUSTOMER_ONWARDS);
+ 431:Core/Src/vl53l1_api_calibration.c **** 
+ 432:Core/Src/vl53l1_api_calibration.c **** 		for (i = 0 ; i <= (num_of_samples[m]+2) ; i++) {
+ 433:Core/Src/vl53l1_api_calibration.c **** 
+ 434:Core/Src/vl53l1_api_calibration.c **** 			/* Wait for range completion */
+ 435:Core/Src/vl53l1_api_calibration.c **** 
+ 436:Core/Src/vl53l1_api_calibration.c **** 			if (status == VL53L1_ERROR_NONE)
+ 437:Core/Src/vl53l1_api_calibration.c **** 				status =
+ 217              		.loc 1 437 5 is_stmt 1 view .LVU83
+ 438:Core/Src/vl53l1_api_calibration.c **** 					VL53L1_wait_for_range_completion(Dev);
+ 218              		.loc 1 438 6 is_stmt 0 view .LVU84
+ 219 00ce 2846     		mov	r0, r5
+ 220              	.LVL14:
+ 221              		.loc 1 438 6 view .LVU85
+ 222 00d0 FFF7FEFF 		bl	VL53L1_wait_for_range_completion
+ 223              	.LVL15:
+ 224              		.loc 1 438 6 view .LVU86
+ 225 00d4 15E0     		b	.L9
+ 226              	.L43:
+ 439:Core/Src/vl53l1_api_calibration.c **** 
+ 440:Core/Src/vl53l1_api_calibration.c **** 			/*
+ 441:Core/Src/vl53l1_api_calibration.c **** 			 *  Get Device Results
+ 442:Core/Src/vl53l1_api_calibration.c **** 			 *  - Checks the stream count is the expected one
+ 443:Core/Src/vl53l1_api_calibration.c **** 			 *  - Read device system results
+ 444:Core/Src/vl53l1_api_calibration.c **** 			 */
+ 445:Core/Src/vl53l1_api_calibration.c **** 
+ 446:Core/Src/vl53l1_api_calibration.c **** 			if (status == VL53L1_ERROR_NONE)
+ 447:Core/Src/vl53l1_api_calibration.c **** 				status =
+ 227              		.loc 1 447 5 is_stmt 1 view .LVU87
+ 448:Core/Src/vl53l1_api_calibration.c **** 					VL53L1_get_device_results(
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 13
+
+
+ 228              		.loc 1 448 6 is_stmt 0 view .LVU88
+ 229 00d6 06AA     		add	r2, sp, #24
+ 230              	.LVL16:
+ 231              		.loc 1 448 6 view .LVU89
+ 232 00d8 0221     		movs	r1, #2
+ 233 00da 2846     		mov	r0, r5
+ 234              	.LVL17:
+ 235              		.loc 1 448 6 view .LVU90
+ 236 00dc FFF7FEFF 		bl	VL53L1_get_device_results
+ 237              	.LVL18:
+ 238              		.loc 1 448 6 view .LVU91
+ 239 00e0 11E0     		b	.L10
+ 240              	.LVL19:
+ 241              	.L11:
+ 449:Core/Src/vl53l1_api_calibration.c **** 						Dev,
+ 450:Core/Src/vl53l1_api_calibration.c **** 						VL53L1_DEVICERESULTSLEVEL_FULL,
+ 451:Core/Src/vl53l1_api_calibration.c **** 						prange_results);
+ 452:Core/Src/vl53l1_api_calibration.c **** 
+ 453:Core/Src/vl53l1_api_calibration.c **** 			/*
+ 454:Core/Src/vl53l1_api_calibration.c **** 			 * Ignore 1st two ranges to give the sigma delta initial
+ 455:Core/Src/vl53l1_api_calibration.c **** 			 * phase time to settle
+ 456:Core/Src/vl53l1_api_calibration.c **** 			 *
+ 457:Core/Src/vl53l1_api_calibration.c **** 			 * accummulate range results if range is successful
+ 458:Core/Src/vl53l1_api_calibration.c **** 			 */
+ 459:Core/Src/vl53l1_api_calibration.c **** 
+ 460:Core/Src/vl53l1_api_calibration.c **** 			prange_data  = &(prange_results->data[0]);
+ 461:Core/Src/vl53l1_api_calibration.c **** 
+ 462:Core/Src/vl53l1_api_calibration.c **** 			if (prange_results->stream_count   > 1) {
+ 463:Core/Src/vl53l1_api_calibration.c **** 
+ 464:Core/Src/vl53l1_api_calibration.c **** 				if (prange_data->range_status ==
+ 465:Core/Src/vl53l1_api_calibration.c **** 						VL53L1_DEVICEERROR_RANGECOMPLETE) {
+ 466:Core/Src/vl53l1_api_calibration.c **** 
+ 467:Core/Src/vl53l1_api_calibration.c **** 					poffset->no_of_samples++;
+ 468:Core/Src/vl53l1_api_calibration.c **** 					poffset->effective_spads +=
+ 469:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->actual_effective_spads;
+ 470:Core/Src/vl53l1_api_calibration.c **** 					poffset->peak_rate_mcps  +=
+ 471:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->peak_signal_count_rate_mcps;
+ 472:Core/Src/vl53l1_api_calibration.c **** 					poffset->sigma_mm        +=
+ 473:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->sigma_mm;
+ 474:Core/Src/vl53l1_api_calibration.c **** 					poffset->median_range_mm +=
+ 475:Core/Src/vl53l1_api_calibration.c **** 						(int32_t)prange_data->median_range_mm;
+ 476:Core/Src/vl53l1_api_calibration.c **** 
+ 477:Core/Src/vl53l1_api_calibration.c **** 					poffset->dss_config__roi_mode_control =
+ 478:Core/Src/vl53l1_api_calibration.c **** 						pdev->gen_cfg.dss_config__roi_mode_control;
+ 479:Core/Src/vl53l1_api_calibration.c **** 					poffset->dss_config__manual_effective_spads_select =
+ 480:Core/Src/vl53l1_api_calibration.c **** 						pdev->gen_cfg.dss_config__manual_effective_spads_select;
+ 481:Core/Src/vl53l1_api_calibration.c **** 				}
+ 482:Core/Src/vl53l1_api_calibration.c **** 			}
+ 483:Core/Src/vl53l1_api_calibration.c **** 
+ 484:Core/Src/vl53l1_api_calibration.c **** 			/*
+ 485:Core/Src/vl53l1_api_calibration.c **** 			 * Conditional wait for firmware ready. Only waits for timed
+ 486:Core/Src/vl53l1_api_calibration.c **** 			 * and single shot modes. Mode check is performed inside the
+ 487:Core/Src/vl53l1_api_calibration.c **** 			 * wait function
+ 488:Core/Src/vl53l1_api_calibration.c **** 			 */
+ 489:Core/Src/vl53l1_api_calibration.c **** 
+ 490:Core/Src/vl53l1_api_calibration.c **** 			if (status == VL53L1_ERROR_NONE)
+ 242              		.loc 1 490 4 is_stmt 1 view .LVU92
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 14
+
+
+ 243              		.loc 1 490 7 is_stmt 0 view .LVU93
+ 244 00e2 0028     		cmp	r0, #0
+ 245 00e4 45D0     		beq	.L39
+ 246              	.L12:
+ 491:Core/Src/vl53l1_api_calibration.c **** 				status =
+ 492:Core/Src/vl53l1_api_calibration.c **** 					VL53L1_wait_for_firmware_ready(Dev);
+ 493:Core/Src/vl53l1_api_calibration.c **** 
+ 494:Core/Src/vl53l1_api_calibration.c **** 			/*
+ 495:Core/Src/vl53l1_api_calibration.c **** 			 * Send ranging handshake
+ 496:Core/Src/vl53l1_api_calibration.c **** 			 *
+ 497:Core/Src/vl53l1_api_calibration.c **** 			 *  - Update Zone management
+ 498:Core/Src/vl53l1_api_calibration.c **** 			 *  - Update GPH registers
+ 499:Core/Src/vl53l1_api_calibration.c **** 			 *  - Clear current interrupt
+ 500:Core/Src/vl53l1_api_calibration.c **** 			 *  - Initialise SYSTEM__MODE_START for next range (if there is one!)
+ 501:Core/Src/vl53l1_api_calibration.c **** 			 */
+ 502:Core/Src/vl53l1_api_calibration.c **** 
+ 503:Core/Src/vl53l1_api_calibration.c **** 			if (status == VL53L1_ERROR_NONE)
+ 247              		.loc 1 503 4 is_stmt 1 view .LVU94
+ 248              		.loc 1 503 7 is_stmt 0 view .LVU95
+ 249 00e6 0028     		cmp	r0, #0
+ 250 00e8 47D0     		beq	.L40
+ 251              	.L13:
+ 432:Core/Src/vl53l1_api_calibration.c **** 
+ 252              		.loc 1 432 45 is_stmt 1 discriminator 2 view .LVU96
+ 432:Core/Src/vl53l1_api_calibration.c **** 
+ 253              		.loc 1 432 46 is_stmt 0 discriminator 2 view .LVU97
+ 254 00ea 0134     		adds	r4, r4, #1
+ 255              	.LVL20:
+ 432:Core/Src/vl53l1_api_calibration.c **** 
+ 256              		.loc 1 432 46 discriminator 2 view .LVU98
+ 257 00ec E4B2     		uxtb	r4, r4
+ 258              	.LVL21:
+ 259              	.L14:
+ 432:Core/Src/vl53l1_api_calibration.c **** 
+ 260              		.loc 1 432 16 is_stmt 1 discriminator 1 view .LVU99
+ 432:Core/Src/vl53l1_api_calibration.c **** 
+ 261              		.loc 1 432 36 is_stmt 0 discriminator 1 view .LVU100
+ 262 00ee 06F1A003 		add	r3, r6, #160
+ 263 00f2 6B44     		add	r3, sp, r3
+ 264 00f4 13F88C3C 		ldrb	r3, [r3, #-140]	@ zero_extendqisi2
+ 432:Core/Src/vl53l1_api_calibration.c **** 
+ 265              		.loc 1 432 39 discriminator 1 view .LVU101
+ 266 00f8 0233     		adds	r3, r3, #2
+ 432:Core/Src/vl53l1_api_calibration.c **** 
+ 267              		.loc 1 432 3 discriminator 1 view .LVU102
+ 268 00fa 9C42     		cmp	r4, r3
+ 269 00fc 42DC     		bgt	.L41
+ 436:Core/Src/vl53l1_api_calibration.c **** 				status =
+ 270              		.loc 1 436 4 is_stmt 1 view .LVU103
+ 436:Core/Src/vl53l1_api_calibration.c **** 				status =
+ 271              		.loc 1 436 7 is_stmt 0 view .LVU104
+ 272 00fe 0028     		cmp	r0, #0
+ 273 0100 E5D0     		beq	.L42
+ 274              	.L9:
+ 446:Core/Src/vl53l1_api_calibration.c **** 				status =
+ 275              		.loc 1 446 4 is_stmt 1 view .LVU105
+ 446:Core/Src/vl53l1_api_calibration.c **** 				status =
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 15
+
+
+ 276              		.loc 1 446 7 is_stmt 0 view .LVU106
+ 277 0102 0028     		cmp	r0, #0
+ 278 0104 E7D0     		beq	.L43
+ 279              	.L10:
+ 460:Core/Src/vl53l1_api_calibration.c **** 
+ 280              		.loc 1 460 4 is_stmt 1 view .LVU107
+ 281              	.LVL22:
+ 462:Core/Src/vl53l1_api_calibration.c **** 
+ 282              		.loc 1 462 4 view .LVU108
+ 462:Core/Src/vl53l1_api_calibration.c **** 
+ 283              		.loc 1 462 22 is_stmt 0 view .LVU109
+ 284 0106 9DF81A30 		ldrb	r3, [sp, #26]	@ zero_extendqisi2
+ 462:Core/Src/vl53l1_api_calibration.c **** 
+ 285              		.loc 1 462 7 view .LVU110
+ 286 010a 012B     		cmp	r3, #1
+ 287 010c E9D9     		bls	.L11
+ 464:Core/Src/vl53l1_api_calibration.c **** 						VL53L1_DEVICEERROR_RANGECOMPLETE) {
+ 288              		.loc 1 464 5 is_stmt 1 view .LVU111
+ 464:Core/Src/vl53l1_api_calibration.c **** 						VL53L1_DEVICEERROR_RANGECOMPLETE) {
+ 289              		.loc 1 464 20 is_stmt 0 view .LVU112
+ 290 010e 9DF85A30 		ldrb	r3, [sp, #90]	@ zero_extendqisi2
+ 464:Core/Src/vl53l1_api_calibration.c **** 						VL53L1_DEVICEERROR_RANGECOMPLETE) {
+ 291              		.loc 1 464 8 view .LVU113
+ 292 0112 092B     		cmp	r3, #9
+ 293 0114 E5D1     		bne	.L11
+ 467:Core/Src/vl53l1_api_calibration.c **** 					poffset->effective_spads +=
+ 294              		.loc 1 467 6 is_stmt 1 view .LVU114
+ 467:Core/Src/vl53l1_api_calibration.c **** 					poffset->effective_spads +=
+ 295              		.loc 1 467 13 is_stmt 0 view .LVU115
+ 296 0116 C6EBC603 		rsb	r3, r6, r6, lsl #3
+ 297 011a 05EB8303 		add	r3, r5, r3, lsl #2
+ 298 011e 93F83822 		ldrb	r2, [r3, #568]	@ zero_extendqisi2
+ 467:Core/Src/vl53l1_api_calibration.c **** 					poffset->effective_spads +=
+ 299              		.loc 1 467 28 view .LVU116
+ 300 0122 0132     		adds	r2, r2, #1
+ 301 0124 83F83822 		strb	r2, [r3, #568]
+ 468:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->actual_effective_spads;
+ 302              		.loc 1 468 6 is_stmt 1 view .LVU117
+ 469:Core/Src/vl53l1_api_calibration.c **** 					poffset->peak_rate_mcps  +=
+ 303              		.loc 1 469 28 is_stmt 0 view .LVU118
+ 304 0128 BDF82C10 		ldrh	r1, [sp, #44]
+ 468:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->actual_effective_spads;
+ 305              		.loc 1 468 31 view .LVU119
+ 306 012c D3F83C22 		ldr	r2, [r3, #572]
+ 307 0130 0A44     		add	r2, r2, r1
+ 308 0132 C3F83C22 		str	r2, [r3, #572]
+ 470:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->peak_signal_count_rate_mcps;
+ 309              		.loc 1 470 6 is_stmt 1 view .LVU120
+ 471:Core/Src/vl53l1_api_calibration.c **** 					poffset->sigma_mm        +=
+ 310              		.loc 1 471 28 is_stmt 0 view .LVU121
+ 311 0136 BDF84810 		ldrh	r1, [sp, #72]
+ 470:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->peak_signal_count_rate_mcps;
+ 312              		.loc 1 470 31 view .LVU122
+ 313 013a D3F84022 		ldr	r2, [r3, #576]
+ 314 013e 0A44     		add	r2, r2, r1
+ 315 0140 C3F84022 		str	r2, [r3, #576]
+ 472:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->sigma_mm;
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 16
+
+
+ 316              		.loc 1 472 6 is_stmt 1 view .LVU123
+ 473:Core/Src/vl53l1_api_calibration.c **** 					poffset->median_range_mm +=
+ 317              		.loc 1 473 28 is_stmt 0 view .LVU124
+ 318 0144 BDF85410 		ldrh	r1, [sp, #84]
+ 472:Core/Src/vl53l1_api_calibration.c **** 						(uint32_t)prange_data->sigma_mm;
+ 319              		.loc 1 472 31 view .LVU125
+ 320 0148 D3F84422 		ldr	r2, [r3, #580]
+ 321 014c 0A44     		add	r2, r2, r1
+ 322 014e C3F84422 		str	r2, [r3, #580]
+ 474:Core/Src/vl53l1_api_calibration.c **** 						(int32_t)prange_data->median_range_mm;
+ 323              		.loc 1 474 6 is_stmt 1 view .LVU126
+ 475:Core/Src/vl53l1_api_calibration.c **** 
+ 324              		.loc 1 475 27 is_stmt 0 view .LVU127
+ 325 0152 BDF95810 		ldrsh	r1, [sp, #88]
+ 474:Core/Src/vl53l1_api_calibration.c **** 						(int32_t)prange_data->median_range_mm;
+ 326              		.loc 1 474 31 view .LVU128
+ 327 0156 D3F84822 		ldr	r2, [r3, #584]
+ 328 015a 0A44     		add	r2, r2, r1
+ 329 015c C3F84822 		str	r2, [r3, #584]
+ 477:Core/Src/vl53l1_api_calibration.c **** 						pdev->gen_cfg.dss_config__roi_mode_control;
+ 330              		.loc 1 477 6 is_stmt 1 view .LVU129
+ 478:Core/Src/vl53l1_api_calibration.c **** 					poffset->dss_config__manual_effective_spads_select =
+ 331              		.loc 1 478 20 is_stmt 0 view .LVU130
+ 332 0160 95F88E21 		ldrb	r2, [r5, #398]	@ zero_extendqisi2
+ 477:Core/Src/vl53l1_api_calibration.c **** 						pdev->gen_cfg.dss_config__roi_mode_control;
+ 333              		.loc 1 477 44 view .LVU131
+ 334 0164 83F83522 		strb	r2, [r3, #565]
+ 479:Core/Src/vl53l1_api_calibration.c **** 						pdev->gen_cfg.dss_config__manual_effective_spads_select;
+ 335              		.loc 1 479 6 is_stmt 1 view .LVU132
+ 480:Core/Src/vl53l1_api_calibration.c **** 				}
+ 336              		.loc 1 480 20 is_stmt 0 view .LVU133
+ 337 0168 B5F89421 		ldrh	r2, [r5, #404]
+ 479:Core/Src/vl53l1_api_calibration.c **** 						pdev->gen_cfg.dss_config__manual_effective_spads_select;
+ 338              		.loc 1 479 57 view .LVU134
+ 339 016c A3F83622 		strh	r2, [r3, #566]	@ movhi
+ 340 0170 B7E7     		b	.L11
+ 341              	.L39:
+ 491:Core/Src/vl53l1_api_calibration.c **** 					VL53L1_wait_for_firmware_ready(Dev);
+ 342              		.loc 1 491 5 is_stmt 1 view .LVU135
+ 492:Core/Src/vl53l1_api_calibration.c **** 
+ 343              		.loc 1 492 6 is_stmt 0 view .LVU136
+ 344 0172 2846     		mov	r0, r5
+ 345              	.LVL23:
+ 492:Core/Src/vl53l1_api_calibration.c **** 
+ 346              		.loc 1 492 6 view .LVU137
+ 347 0174 FFF7FEFF 		bl	VL53L1_wait_for_firmware_ready
+ 348              	.LVL24:
+ 492:Core/Src/vl53l1_api_calibration.c **** 
+ 349              		.loc 1 492 6 view .LVU138
+ 350 0178 B5E7     		b	.L12
+ 351              	.L40:
+ 504:Core/Src/vl53l1_api_calibration.c **** 				status =
+ 352              		.loc 1 504 5 is_stmt 1 view .LVU139
+ 505:Core/Src/vl53l1_api_calibration.c **** 					VL53L1_clear_interrupt_and_enable_next_range(
+ 353              		.loc 1 505 6 is_stmt 0 view .LVU140
+ 354 017a 2021     		movs	r1, #32
+ 355 017c 2846     		mov	r0, r5
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 17
+
+
+ 356              	.LVL25:
+ 357              		.loc 1 505 6 view .LVU141
+ 358 017e FFF7FEFF 		bl	VL53L1_clear_interrupt_and_enable_next_range
+ 359              	.LVL26:
+ 360              		.loc 1 505 6 view .LVU142
+ 361 0182 B2E7     		b	.L13
+ 362              	.LVL27:
+ 363              	.L41:
+ 506:Core/Src/vl53l1_api_calibration.c **** 						Dev,
+ 507:Core/Src/vl53l1_api_calibration.c **** 						measurement_mode);
+ 508:Core/Src/vl53l1_api_calibration.c **** 		}
+ 509:Core/Src/vl53l1_api_calibration.c **** 
+ 510:Core/Src/vl53l1_api_calibration.c **** 		/* Stop range */
+ 511:Core/Src/vl53l1_api_calibration.c **** 
+ 512:Core/Src/vl53l1_api_calibration.c **** 		if (status == VL53L1_ERROR_NONE)
+ 364              		.loc 1 512 3 is_stmt 1 view .LVU143
+ 365              		.loc 1 512 6 is_stmt 0 view .LVU144
+ 366 0184 0028     		cmp	r0, #0
+ 367 0186 5AD0     		beq	.L44
+ 368              	.L16:
+ 513:Core/Src/vl53l1_api_calibration.c **** 			status = VL53L1_stop_range(Dev);
+ 514:Core/Src/vl53l1_api_calibration.c **** 
+ 515:Core/Src/vl53l1_api_calibration.c **** 		/* Wait for Stop (abort) range to complete */
+ 516:Core/Src/vl53l1_api_calibration.c **** 
+ 517:Core/Src/vl53l1_api_calibration.c **** 		if (status == VL53L1_ERROR_NONE)
+ 369              		.loc 1 517 3 is_stmt 1 view .LVU145
+ 370              		.loc 1 517 6 is_stmt 0 view .LVU146
+ 371 0188 0028     		cmp	r0, #0
+ 372 018a 5CD0     		beq	.L45
+ 373              	.L17:
+ 518:Core/Src/vl53l1_api_calibration.c **** 			status = VL53L1_WaitUs(Dev, 1000);
+ 519:Core/Src/vl53l1_api_calibration.c **** 
+ 520:Core/Src/vl53l1_api_calibration.c **** 		/* generate average values */
+ 521:Core/Src/vl53l1_api_calibration.c **** 		if (poffset->no_of_samples > 0) {
+ 374              		.loc 1 521 3 is_stmt 1 view .LVU147
+ 375              		.loc 1 521 14 is_stmt 0 view .LVU148
+ 376 018c C6EBC603 		rsb	r3, r6, r6, lsl #3
+ 377 0190 05EB8303 		add	r3, r5, r3, lsl #2
+ 378 0194 93F83842 		ldrb	r4, [r3, #568]	@ zero_extendqisi2
+ 379              	.LVL28:
+ 380              		.loc 1 521 6 view .LVU149
+ 381 0198 ACB3     		cbz	r4, .L18
+ 522:Core/Src/vl53l1_api_calibration.c **** 
+ 523:Core/Src/vl53l1_api_calibration.c **** 			poffset->effective_spads += (poffset->no_of_samples/2);
+ 382              		.loc 1 523 4 is_stmt 1 view .LVU150
+ 383              		.loc 1 523 29 is_stmt 0 view .LVU151
+ 384 019a C6EBC603 		rsb	r3, r6, r6, lsl #3
+ 385 019e 05EB8303 		add	r3, r5, r3, lsl #2
+ 386 01a2 D3F83C12 		ldr	r1, [r3, #572]
+ 387 01a6 01EB5401 		add	r1, r1, r4, lsr #1
+ 388 01aa C3F83C12 		str	r1, [r3, #572]
+ 524:Core/Src/vl53l1_api_calibration.c **** 			poffset->effective_spads /= poffset->no_of_samples;
+ 389              		.loc 1 524 4 is_stmt 1 view .LVU152
+ 390              		.loc 1 524 29 is_stmt 0 view .LVU153
+ 391 01ae B1FBF4F1 		udiv	r1, r1, r4
+ 392 01b2 C3F83C12 		str	r1, [r3, #572]
+ 525:Core/Src/vl53l1_api_calibration.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 18
+
+
+ 526:Core/Src/vl53l1_api_calibration.c **** 			poffset->peak_rate_mcps  += (poffset->no_of_samples/2);
+ 393              		.loc 1 526 4 is_stmt 1 view .LVU154
+ 394              		.loc 1 526 29 is_stmt 0 view .LVU155
+ 395 01b6 D3F84022 		ldr	r2, [r3, #576]
+ 396 01ba 02EB5402 		add	r2, r2, r4, lsr #1
+ 397 01be C3F84022 		str	r2, [r3, #576]
+ 527:Core/Src/vl53l1_api_calibration.c **** 			poffset->peak_rate_mcps  /= poffset->no_of_samples;
+ 398              		.loc 1 527 4 is_stmt 1 view .LVU156
+ 399              		.loc 1 527 29 is_stmt 0 view .LVU157
+ 400 01c2 B2FBF4F2 		udiv	r2, r2, r4
+ 401 01c6 C3F84022 		str	r2, [r3, #576]
+ 528:Core/Src/vl53l1_api_calibration.c **** 
+ 529:Core/Src/vl53l1_api_calibration.c **** 			poffset->sigma_mm        += (poffset->no_of_samples/2);
+ 402              		.loc 1 529 4 is_stmt 1 view .LVU158
+ 403              		.loc 1 529 29 is_stmt 0 view .LVU159
+ 404 01ca D3F84422 		ldr	r2, [r3, #580]
+ 405 01ce 02EB5402 		add	r2, r2, r4, lsr #1
+ 406 01d2 C3F84422 		str	r2, [r3, #580]
+ 530:Core/Src/vl53l1_api_calibration.c **** 			poffset->sigma_mm        /= poffset->no_of_samples;
+ 407              		.loc 1 530 4 is_stmt 1 view .LVU160
+ 408              		.loc 1 530 29 is_stmt 0 view .LVU161
+ 409 01d6 B2FBF4F2 		udiv	r2, r2, r4
+ 410 01da C3F84422 		str	r2, [r3, #580]
+ 531:Core/Src/vl53l1_api_calibration.c **** 
+ 532:Core/Src/vl53l1_api_calibration.c **** 			poffset->median_range_mm += (poffset->no_of_samples/2);
+ 411              		.loc 1 532 4 is_stmt 1 view .LVU162
+ 412              		.loc 1 532 29 is_stmt 0 view .LVU163
+ 413 01de D3F84822 		ldr	r2, [r3, #584]
+ 414 01e2 02EB5402 		add	r2, r2, r4, lsr #1
+ 415 01e6 C3F84822 		str	r2, [r3, #584]
+ 533:Core/Src/vl53l1_api_calibration.c **** 			poffset->median_range_mm /= poffset->no_of_samples;
+ 416              		.loc 1 533 4 is_stmt 1 view .LVU164
+ 417              		.loc 1 533 29 is_stmt 0 view .LVU165
+ 418 01ea 92FBF4F4 		sdiv	r4, r2, r4
+ 419 01ee C3F84842 		str	r4, [r3, #584]
+ 534:Core/Src/vl53l1_api_calibration.c **** 
+ 535:Core/Src/vl53l1_api_calibration.c **** 			poffset->range_mm_offset  =  (int32_t)cal_distance_mm;
+ 420              		.loc 1 535 4 is_stmt 1 view .LVU166
+ 421              		.loc 1 535 30 is_stmt 0 view .LVU167
+ 422 01f2 C3F84C82 		str	r8, [r3, #588]
+ 536:Core/Src/vl53l1_api_calibration.c **** 			poffset->range_mm_offset -= poffset->median_range_mm;
+ 423              		.loc 1 536 4 is_stmt 1 view .LVU168
+ 424              		.loc 1 536 29 is_stmt 0 view .LVU169
+ 425 01f6 A8EB0404 		sub	r4, r8, r4
+ 426 01fa C3F84C42 		str	r4, [r3, #588]
+ 537:Core/Src/vl53l1_api_calibration.c **** 
+ 538:Core/Src/vl53l1_api_calibration.c **** 			/* remember the number of SPADs for standard ranging */
+ 539:Core/Src/vl53l1_api_calibration.c **** 			if (poffset->preset_mode ==
+ 427              		.loc 1 539 4 is_stmt 1 view .LVU170
+ 428              		.loc 1 539 15 is_stmt 0 view .LVU171
+ 429 01fe 93F83432 		ldrb	r3, [r3, #564]	@ zero_extendqisi2
+ 430              		.loc 1 539 7 view .LVU172
+ 431 0202 012B     		cmp	r3, #1
+ 432 0204 25D0     		beq	.L46
+ 433              	.L18:
+ 399:Core/Src/vl53l1_api_calibration.c **** 
+ 434              		.loc 1 399 57 is_stmt 1 discriminator 2 view .LVU173
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 19
+
+
+ 399:Core/Src/vl53l1_api_calibration.c **** 
+ 435              		.loc 1 399 58 is_stmt 0 discriminator 2 view .LVU174
+ 436 0206 0137     		adds	r7, r7, #1
+ 437              	.LVL29:
+ 399:Core/Src/vl53l1_api_calibration.c **** 
+ 438              		.loc 1 399 58 discriminator 2 view .LVU175
+ 439 0208 FFB2     		uxtb	r7, r7
+ 440              	.LVL30:
+ 441              	.L6:
+ 399:Core/Src/vl53l1_api_calibration.c **** 
+ 442              		.loc 1 399 15 is_stmt 1 discriminator 1 view .LVU176
+ 399:Core/Src/vl53l1_api_calibration.c **** 
+ 443              		.loc 1 399 39 is_stmt 0 discriminator 1 view .LVU177
+ 444 020a 95F83132 		ldrb	r3, [r5, #561]	@ zero_extendqisi2
+ 399:Core/Src/vl53l1_api_calibration.c **** 
+ 445              		.loc 1 399 2 discriminator 1 view .LVU178
+ 446 020e BB42     		cmp	r3, r7
+ 447 0210 22D9     		bls	.L47
+ 401:Core/Src/vl53l1_api_calibration.c **** 
+ 448              		.loc 1 401 3 is_stmt 1 view .LVU179
+ 401:Core/Src/vl53l1_api_calibration.c **** 
+ 449              		.loc 1 401 40 is_stmt 0 view .LVU180
+ 450 0212 3E46     		mov	r6, r7
+ 451              	.LVL31:
+ 403:Core/Src/vl53l1_api_calibration.c **** 
+ 452              		.loc 1 403 3 is_stmt 1 view .LVU181
+ 403:Core/Src/vl53l1_api_calibration.c **** 
+ 453              		.loc 1 403 53 is_stmt 0 view .LVU182
+ 454 0214 07F1A003 		add	r3, r7, #160
+ 455 0218 6B44     		add	r3, sp, r3
+ 456 021a 13F8041C 		ldrb	r1, [r3, #-4]	@ zero_extendqisi2
+ 403:Core/Src/vl53l1_api_calibration.c **** 
+ 457              		.loc 1 403 32 view .LVU183
+ 458 021e C7EBC703 		rsb	r3, r7, r7, lsl #3
+ 459 0222 05EB8303 		add	r3, r5, r3, lsl #2
+ 460 0226 83F83412 		strb	r1, [r3, #564]
+ 407:Core/Src/vl53l1_api_calibration.c **** 			status =
+ 461              		.loc 1 407 3 is_stmt 1 view .LVU184
+ 407:Core/Src/vl53l1_api_calibration.c **** 			status =
+ 462              		.loc 1 407 6 is_stmt 0 view .LVU185
+ 463 022a 0028     		cmp	r0, #0
+ 464 022c 3FF439AF 		beq	.L48
+ 465              	.L7:
+ 420:Core/Src/vl53l1_api_calibration.c **** 				manual_effective_spads;
+ 466              		.loc 1 420 3 is_stmt 1 view .LVU186
+ 420:Core/Src/vl53l1_api_calibration.c **** 				manual_effective_spads;
+ 467              		.loc 1 420 59 is_stmt 0 view .LVU187
+ 468 0230 A5F89491 		strh	r9, [r5, #404]	@ movhi
+ 425:Core/Src/vl53l1_api_calibration.c **** 			status =
+ 469              		.loc 1 425 3 is_stmt 1 view .LVU188
+ 425:Core/Src/vl53l1_api_calibration.c **** 			status =
+ 470              		.loc 1 425 6 is_stmt 0 view .LVU189
+ 471 0234 0028     		cmp	r0, #0
+ 472 0236 3FF444AF 		beq	.L49
+ 473              	.L8:
+ 388:Core/Src/vl53l1_api_calibration.c **** 
+ 474              		.loc 1 388 9 discriminator 1 view .LVU190
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 20
+
+
+ 475 023a 0024     		movs	r4, #0
+ 476 023c 57E7     		b	.L14
+ 477              	.LVL32:
+ 478              	.L44:
+ 513:Core/Src/vl53l1_api_calibration.c **** 
+ 479              		.loc 1 513 4 is_stmt 1 view .LVU191
+ 513:Core/Src/vl53l1_api_calibration.c **** 
+ 480              		.loc 1 513 13 is_stmt 0 view .LVU192
+ 481 023e 2846     		mov	r0, r5
+ 482              	.LVL33:
+ 513:Core/Src/vl53l1_api_calibration.c **** 
+ 483              		.loc 1 513 13 view .LVU193
+ 484 0240 FFF7FEFF 		bl	VL53L1_stop_range
+ 485              	.LVL34:
+ 513:Core/Src/vl53l1_api_calibration.c **** 
+ 486              		.loc 1 513 13 view .LVU194
+ 487 0244 A0E7     		b	.L16
+ 488              	.L45:
+ 518:Core/Src/vl53l1_api_calibration.c **** 
+ 489              		.loc 1 518 4 is_stmt 1 view .LVU195
+ 518:Core/Src/vl53l1_api_calibration.c **** 
+ 490              		.loc 1 518 13 is_stmt 0 view .LVU196
+ 491 0246 4FF47A71 		mov	r1, #1000
+ 492 024a 2846     		mov	r0, r5
+ 493              	.LVL35:
+ 518:Core/Src/vl53l1_api_calibration.c **** 
+ 494              		.loc 1 518 13 view .LVU197
+ 495 024c FFF7FEFF 		bl	VL53L1_WaitUs
+ 496              	.LVL36:
+ 518:Core/Src/vl53l1_api_calibration.c **** 
+ 497              		.loc 1 518 13 view .LVU198
+ 498 0250 9CE7     		b	.L17
+ 499              	.LVL37:
+ 500              	.L46:
+ 540:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_DEVICEPRESETMODE_STANDARD_RANGING)
+ 541:Core/Src/vl53l1_api_calibration.c **** 				manual_effective_spads =
+ 501              		.loc 1 541 5 is_stmt 1 view .LVU199
+ 502              		.loc 1 541 28 is_stmt 0 view .LVU200
+ 503 0252 1FFA81F9 		uxth	r9, r1
+ 504              	.LVL38:
+ 505              		.loc 1 541 28 view .LVU201
+ 506 0256 D6E7     		b	.L18
+ 507              	.LVL39:
+ 508              	.L47:
+ 542:Core/Src/vl53l1_api_calibration.c **** 					(uint16_t)poffset->effective_spads;
+ 543:Core/Src/vl53l1_api_calibration.c **** 		}
+ 544:Core/Src/vl53l1_api_calibration.c **** 	}
+ 545:Core/Src/vl53l1_api_calibration.c **** 
+ 546:Core/Src/vl53l1_api_calibration.c **** 	/* Calculate offsets */
+ 547:Core/Src/vl53l1_api_calibration.c **** 
+ 548:Core/Src/vl53l1_api_calibration.c **** 	switch (pdev->offset_calibration_mode) {
+ 509              		.loc 1 548 2 is_stmt 1 view .LVU202
+ 510              		.loc 1 548 14 is_stmt 0 view .LVU203
+ 511 0258 EB78     		ldrb	r3, [r5, #3]	@ zero_extendqisi2
+ 512              		.loc 1 548 2 view .LVU204
+ 513 025a 032B     		cmp	r3, #3
+ 514 025c 1DD0     		beq	.L50
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 21
+
+
+ 549:Core/Src/vl53l1_api_calibration.c **** 
+ 550:Core/Src/vl53l1_api_calibration.c **** 	case VL53L1_OFFSETCALIBRATIONMODE__MM1_MM2__STANDARD_PRE_RANGE_ONLY:
+ 551:Core/Src/vl53l1_api_calibration.c **** 
+ 552:Core/Src/vl53l1_api_calibration.c **** 		/* copy offsets to customer data structure */
+ 553:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.mm_config__inner_offset_mm +=
+ 554:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[0].range_mm_offset;
+ 555:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.mm_config__outer_offset_mm +=
+ 556:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[0].range_mm_offset;
+ 557:Core/Src/vl53l1_api_calibration.c **** 	break;
+ 558:Core/Src/vl53l1_api_calibration.c **** 
+ 559:Core/Src/vl53l1_api_calibration.c **** 	default:
+ 560:Core/Src/vl53l1_api_calibration.c **** 		/* copy offsets to customer data structure */
+ 561:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.mm_config__inner_offset_mm =
+ 515              		.loc 1 561 3 is_stmt 1 view .LVU205
+ 562:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[1].range_mm_offset;
+ 516              		.loc 1 562 4 is_stmt 0 view .LVU206
+ 517 025e B5F96832 		ldrsh	r3, [r5, #616]
+ 561:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[1].range_mm_offset;
+ 518              		.loc 1 561 45 view .LVU207
+ 519 0262 A5F85630 		strh	r3, [r5, #86]	@ movhi
+ 563:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.mm_config__outer_offset_mm =
+ 520              		.loc 1 563 3 is_stmt 1 view .LVU208
+ 564:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[2].range_mm_offset;
+ 521              		.loc 1 564 4 is_stmt 0 view .LVU209
+ 522 0266 B5F98432 		ldrsh	r3, [r5, #644]
+ 563:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.mm_config__outer_offset_mm =
+ 523              		.loc 1 563 45 view .LVU210
+ 524 026a A5F85830 		strh	r3, [r5, #88]	@ movhi
+ 565:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.algo__part_to_part_range_offset_mm = 0;
+ 525              		.loc 1 565 3 is_stmt 1 view .LVU211
+ 526              		.loc 1 565 53 is_stmt 0 view .LVU212
+ 527 026e 0023     		movs	r3, #0
+ 528 0270 A5F85430 		strh	r3, [r5, #84]	@ movhi
+ 566:Core/Src/vl53l1_api_calibration.c **** 
+ 567:Core/Src/vl53l1_api_calibration.c **** 		/* copy average rate and effective SPAD count to
+ 568:Core/Src/vl53l1_api_calibration.c **** 		   additional offset calibration data structure */
+ 569:Core/Src/vl53l1_api_calibration.c **** 
+ 570:Core/Src/vl53l1_api_calibration.c **** 		pdev->add_off_cal_data.result__mm_inner_actual_effective_spads =
+ 529              		.loc 1 570 3 is_stmt 1 view .LVU213
+ 571:Core/Src/vl53l1_api_calibration.c **** 			(uint16_t)pdev->offset_results.data[1].effective_spads;
+ 530              		.loc 1 571 4 is_stmt 0 view .LVU214
+ 531 0274 B5F85832 		ldrh	r3, [r5, #600]
+ 570:Core/Src/vl53l1_api_calibration.c **** 			(uint16_t)pdev->offset_results.data[1].effective_spads;
+ 532              		.loc 1 570 66 view .LVU215
+ 533 0278 A5F89430 		strh	r3, [r5, #148]	@ movhi
+ 572:Core/Src/vl53l1_api_calibration.c **** 		pdev->add_off_cal_data.result__mm_outer_actual_effective_spads =
+ 534              		.loc 1 572 3 is_stmt 1 view .LVU216
+ 573:Core/Src/vl53l1_api_calibration.c **** 			(uint16_t)pdev->offset_results.data[2].effective_spads;
+ 535              		.loc 1 573 4 is_stmt 0 view .LVU217
+ 536 027c B5F87432 		ldrh	r3, [r5, #628]
+ 572:Core/Src/vl53l1_api_calibration.c **** 		pdev->add_off_cal_data.result__mm_outer_actual_effective_spads =
+ 537              		.loc 1 572 66 view .LVU218
+ 538 0280 A5F89630 		strh	r3, [r5, #150]	@ movhi
+ 574:Core/Src/vl53l1_api_calibration.c **** 
+ 575:Core/Src/vl53l1_api_calibration.c **** 		pdev->add_off_cal_data.result__mm_inner_peak_signal_count_rtn_mcps =
+ 539              		.loc 1 575 3 is_stmt 1 view .LVU219
+ 576:Core/Src/vl53l1_api_calibration.c **** 			(uint16_t)pdev->offset_results.data[1].peak_rate_mcps;
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 22
+
+
+ 540              		.loc 1 576 4 is_stmt 0 view .LVU220
+ 541 0284 B5F85C32 		ldrh	r3, [r5, #604]
+ 575:Core/Src/vl53l1_api_calibration.c **** 			(uint16_t)pdev->offset_results.data[1].peak_rate_mcps;
+ 542              		.loc 1 575 70 view .LVU221
+ 543 0288 A5F89830 		strh	r3, [r5, #152]	@ movhi
+ 577:Core/Src/vl53l1_api_calibration.c **** 		pdev->add_off_cal_data.result__mm_outer_peak_signal_count_rtn_mcps =
+ 544              		.loc 1 577 3 is_stmt 1 view .LVU222
+ 578:Core/Src/vl53l1_api_calibration.c **** 			(uint16_t)pdev->offset_results.data[2].peak_rate_mcps;
+ 545              		.loc 1 578 4 is_stmt 0 view .LVU223
+ 546 028c B5F87832 		ldrh	r3, [r5, #632]
+ 577:Core/Src/vl53l1_api_calibration.c **** 		pdev->add_off_cal_data.result__mm_outer_peak_signal_count_rtn_mcps =
+ 547              		.loc 1 577 70 view .LVU224
+ 548 0290 A5F89A30 		strh	r3, [r5, #154]	@ movhi
+ 579:Core/Src/vl53l1_api_calibration.c **** 
+ 580:Core/Src/vl53l1_api_calibration.c **** 		break;
+ 549              		.loc 1 580 3 is_stmt 1 view .LVU225
+ 550              	.L21:
+ 581:Core/Src/vl53l1_api_calibration.c **** 	}
+ 582:Core/Src/vl53l1_api_calibration.c **** 
+ 583:Core/Src/vl53l1_api_calibration.c **** 
+ 584:Core/Src/vl53l1_api_calibration.c **** 	/* apply to device */
+ 585:Core/Src/vl53l1_api_calibration.c **** 
+ 586:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 551              		.loc 1 586 2 view .LVU226
+ 552              		.loc 1 586 5 is_stmt 0 view .LVU227
+ 553 0294 70B1     		cbz	r0, .L51
+ 554              	.L22:
+ 587:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 588:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_set_customer_nvm_managed(
+ 589:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 590:Core/Src/vl53l1_api_calibration.c **** 				&(pdev->customer));
+ 591:Core/Src/vl53l1_api_calibration.c **** 
+ 592:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 593:Core/Src/vl53l1_api_calibration.c **** 	 *  Check the peak rates, sigma, min spads for each stage
+ 594:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 595:Core/Src/vl53l1_api_calibration.c **** 
+ 596:Core/Src/vl53l1_api_calibration.c **** 	for (m = 0 ; m < pdev->offset_results.active_results ; m++) {
+ 597:Core/Src/vl53l1_api_calibration.c **** 
+ 598:Core/Src/vl53l1_api_calibration.c **** 		poffset = &(pdev->offset_results.data[m]);
+ 599:Core/Src/vl53l1_api_calibration.c **** 
+ 600:Core/Src/vl53l1_api_calibration.c **** 		if (status == VL53L1_ERROR_NONE) {
+ 601:Core/Src/vl53l1_api_calibration.c **** 
+ 602:Core/Src/vl53l1_api_calibration.c **** 			pdev->offset_results.cal_report = m;
+ 603:Core/Src/vl53l1_api_calibration.c **** 
+ 604:Core/Src/vl53l1_api_calibration.c **** 			if (poffset->no_of_samples < num_of_samples[m])
+ 605:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES;
+ 606:Core/Src/vl53l1_api_calibration.c **** 
+ 607:Core/Src/vl53l1_api_calibration.c **** 			/* only check sigma for the pre-range as
+ 608:Core/Src/vl53l1_api_calibration.c **** 			 * the it is not calculated by the device
+ 609:Core/Src/vl53l1_api_calibration.c **** 			 * for the MM1 and MM2 stages
+ 610:Core/Src/vl53l1_api_calibration.c **** 			 */
+ 611:Core/Src/vl53l1_api_calibration.c **** 			if (m == 0 && poffset->sigma_mm >
+ 612:Core/Src/vl53l1_api_calibration.c **** 				((uint32_t)VL53L1_OFFSET_CAL_MAX_SIGMA_MM<<5))
+ 613:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_WARNING_OFFSET_CAL_SIGMA_TOO_HIGH;
+ 614:Core/Src/vl53l1_api_calibration.c **** 
+ 615:Core/Src/vl53l1_api_calibration.c **** 			if (poffset->peak_rate_mcps >
+ 616:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MAX_PRE_PEAK_RATE_MCPS)
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 23
+
+
+ 617:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_WARNING_OFFSET_CAL_RATE_TOO_HIGH;
+ 618:Core/Src/vl53l1_api_calibration.c **** 
+ 619:Core/Src/vl53l1_api_calibration.c **** 			if (poffset->dss_config__manual_effective_spads_select <
+ 620:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MIN_EFFECTIVE_SPADS)
+ 621:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_WARNING_OFFSET_CAL_SPAD_COUNT_TOO_LOW;
+ 622:Core/Src/vl53l1_api_calibration.c **** 
+ 623:Core/Src/vl53l1_api_calibration.c **** 			if (poffset->dss_config__manual_effective_spads_select == 0)
+ 624:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_ERROR_OFFSET_CAL_NO_SPADS_ENABLED_FAIL;
+ 625:Core/Src/vl53l1_api_calibration.c **** 
+ 626:Core/Src/vl53l1_api_calibration.c **** 			if (poffset->no_of_samples == 0)
+ 627:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_ERROR_OFFSET_CAL_NO_SAMPLE_FAIL;
+ 555              		.loc 1 627 12 discriminator 1 view .LVU228
+ 556 0296 0023     		movs	r3, #0
+ 557 0298 30E0     		b	.L29
+ 558              	.L50:
+ 553:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[0].range_mm_offset;
+ 559              		.loc 1 553 3 is_stmt 1 view .LVU229
+ 554:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.mm_config__outer_offset_mm +=
+ 560              		.loc 1 554 4 is_stmt 0 view .LVU230
+ 561 029a B5F84C32 		ldrh	r3, [r5, #588]
+ 553:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[0].range_mm_offset;
+ 562              		.loc 1 553 45 view .LVU231
+ 563 029e B5F85620 		ldrh	r2, [r5, #86]
+ 564 02a2 1A44     		add	r2, r2, r3
+ 565 02a4 A5F85620 		strh	r2, [r5, #86]	@ movhi
+ 555:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[0].range_mm_offset;
+ 566              		.loc 1 555 3 is_stmt 1 view .LVU232
+ 555:Core/Src/vl53l1_api_calibration.c **** 			(int16_t)pdev->offset_results.data[0].range_mm_offset;
+ 567              		.loc 1 555 45 is_stmt 0 view .LVU233
+ 568 02a8 B5F85820 		ldrh	r2, [r5, #88]
+ 569 02ac 1344     		add	r3, r3, r2
+ 570 02ae A5F85830 		strh	r3, [r5, #88]	@ movhi
+ 557:Core/Src/vl53l1_api_calibration.c **** 
+ 571              		.loc 1 557 2 is_stmt 1 view .LVU234
+ 572 02b2 EFE7     		b	.L21
+ 573              	.L51:
+ 587:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_set_customer_nvm_managed(
+ 574              		.loc 1 587 3 view .LVU235
+ 588:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 575              		.loc 1 588 4 is_stmt 0 view .LVU236
+ 576 02b4 05F14201 		add	r1, r5, #66
+ 577 02b8 2846     		mov	r0, r5
+ 578              	.LVL40:
+ 588:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 579              		.loc 1 588 4 view .LVU237
+ 580 02ba FFF7FEFF 		bl	VL53L1_set_customer_nvm_managed
+ 581              	.LVL41:
+ 588:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 582              		.loc 1 588 4 view .LVU238
+ 583 02be EAE7     		b	.L22
+ 584              	.LVL42:
+ 585              	.L25:
+ 615:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MAX_PRE_PEAK_RATE_MCPS)
+ 586              		.loc 1 615 4 is_stmt 1 view .LVU239
+ 615:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MAX_PRE_PEAK_RATE_MCPS)
+ 587              		.loc 1 615 15 is_stmt 0 view .LVU240
+ 588 02c0 C2EBC201 		rsb	r1, r2, r2, lsl #3
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 24
+
+
+ 589 02c4 05EB8101 		add	r1, r5, r1, lsl #2
+ 590 02c8 D1F84012 		ldr	r1, [r1, #576]
+ 615:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MAX_PRE_PEAK_RATE_MCPS)
+ 591              		.loc 1 615 7 view .LVU241
+ 592 02cc B1F5C85F 		cmp	r1, #6400
+ 593 02d0 01D9     		bls	.L26
+ 617:Core/Src/vl53l1_api_calibration.c **** 
+ 594              		.loc 1 617 12 view .LVU242
+ 595 02d2 6FF02000 		mvn	r0, #32
+ 596              	.LVL43:
+ 597              	.L26:
+ 619:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MIN_EFFECTIVE_SPADS)
+ 598              		.loc 1 619 4 is_stmt 1 view .LVU243
+ 619:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MIN_EFFECTIVE_SPADS)
+ 599              		.loc 1 619 15 is_stmt 0 view .LVU244
+ 600 02d6 C2EBC202 		rsb	r2, r2, r2, lsl #3
+ 601              	.LVL44:
+ 619:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MIN_EFFECTIVE_SPADS)
+ 602              		.loc 1 619 15 view .LVU245
+ 603 02da 05EB8202 		add	r2, r5, r2, lsl #2
+ 604 02de B2F83622 		ldrh	r2, [r2, #566]
+ 619:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_OFFSET_CAL_MIN_EFFECTIVE_SPADS)
+ 605              		.loc 1 619 7 view .LVU246
+ 606 02e2 B2F5A06F 		cmp	r2, #1280
+ 607 02e6 01D2     		bcs	.L27
+ 621:Core/Src/vl53l1_api_calibration.c **** 
+ 608              		.loc 1 621 12 view .LVU247
+ 609 02e8 6FF02100 		mvn	r0, #33
+ 610              	.LVL45:
+ 611              	.L27:
+ 623:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_ERROR_OFFSET_CAL_NO_SPADS_ENABLED_FAIL;
+ 612              		.loc 1 623 4 is_stmt 1 view .LVU248
+ 623:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_ERROR_OFFSET_CAL_NO_SPADS_ENABLED_FAIL;
+ 613              		.loc 1 623 7 is_stmt 0 view .LVU249
+ 614 02ec 0AB9     		cbnz	r2, .L28
+ 624:Core/Src/vl53l1_api_calibration.c **** 
+ 615              		.loc 1 624 12 view .LVU250
+ 616 02ee 6FF01800 		mvn	r0, #24
+ 617              	.LVL46:
+ 618              	.L28:
+ 626:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_ERROR_OFFSET_CAL_NO_SAMPLE_FAIL;
+ 619              		.loc 1 626 4 is_stmt 1 view .LVU251
+ 626:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_ERROR_OFFSET_CAL_NO_SAMPLE_FAIL;
+ 620              		.loc 1 626 7 is_stmt 0 view .LVU252
+ 621 02f2 0CB9     		cbnz	r4, .L23
+ 622              		.loc 1 627 12 view .LVU253
+ 623 02f4 6FF01700 		mvn	r0, #23
+ 624              	.LVL47:
+ 625              	.L23:
+ 596:Core/Src/vl53l1_api_calibration.c **** 
+ 626              		.loc 1 596 57 is_stmt 1 discriminator 2 view .LVU254
+ 596:Core/Src/vl53l1_api_calibration.c **** 
+ 627              		.loc 1 596 58 is_stmt 0 discriminator 2 view .LVU255
+ 628 02f8 0133     		adds	r3, r3, #1
+ 629              	.LVL48:
+ 596:Core/Src/vl53l1_api_calibration.c **** 
+ 630              		.loc 1 596 58 discriminator 2 view .LVU256
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 25
+
+
+ 631 02fa DBB2     		uxtb	r3, r3
+ 632              	.LVL49:
+ 633              	.L29:
+ 596:Core/Src/vl53l1_api_calibration.c **** 
+ 634              		.loc 1 596 15 is_stmt 1 discriminator 1 view .LVU257
+ 596:Core/Src/vl53l1_api_calibration.c **** 
+ 635              		.loc 1 596 39 is_stmt 0 discriminator 1 view .LVU258
+ 636 02fc 95F83122 		ldrb	r2, [r5, #561]	@ zero_extendqisi2
+ 596:Core/Src/vl53l1_api_calibration.c **** 
+ 637              		.loc 1 596 2 discriminator 1 view .LVU259
+ 638 0300 9A42     		cmp	r2, r3
+ 639 0302 21D9     		bls	.L52
+ 598:Core/Src/vl53l1_api_calibration.c **** 
+ 640              		.loc 1 598 3 is_stmt 1 view .LVU260
+ 598:Core/Src/vl53l1_api_calibration.c **** 
+ 641              		.loc 1 598 40 is_stmt 0 view .LVU261
+ 642 0304 1A46     		mov	r2, r3
+ 643              	.LVL50:
+ 600:Core/Src/vl53l1_api_calibration.c **** 
+ 644              		.loc 1 600 3 is_stmt 1 view .LVU262
+ 600:Core/Src/vl53l1_api_calibration.c **** 
+ 645              		.loc 1 600 6 is_stmt 0 view .LVU263
+ 646 0306 0028     		cmp	r0, #0
+ 647 0308 F6D1     		bne	.L23
+ 602:Core/Src/vl53l1_api_calibration.c **** 
+ 648              		.loc 1 602 4 is_stmt 1 view .LVU264
+ 602:Core/Src/vl53l1_api_calibration.c **** 
+ 649              		.loc 1 602 36 is_stmt 0 view .LVU265
+ 650 030a 85F82F32 		strb	r3, [r5, #559]
+ 604:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES;
+ 651              		.loc 1 604 4 is_stmt 1 view .LVU266
+ 604:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES;
+ 652              		.loc 1 604 15 is_stmt 0 view .LVU267
+ 653 030e C3EBC301 		rsb	r1, r3, r3, lsl #3
+ 654 0312 05EB8101 		add	r1, r5, r1, lsl #2
+ 655 0316 91F83842 		ldrb	r4, [r1, #568]	@ zero_extendqisi2
+ 604:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES;
+ 656              		.loc 1 604 47 view .LVU268
+ 657 031a 03F1A001 		add	r1, r3, #160
+ 658 031e 6944     		add	r1, sp, r1
+ 659 0320 11F88C1C 		ldrb	r1, [r1, #-140]	@ zero_extendqisi2
+ 604:Core/Src/vl53l1_api_calibration.c **** 				status = VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES;
+ 660              		.loc 1 604 7 view .LVU269
+ 661 0324 8C42     		cmp	r4, r1
+ 662 0326 01D2     		bcs	.L24
+ 605:Core/Src/vl53l1_api_calibration.c **** 
+ 663              		.loc 1 605 12 view .LVU270
+ 664 0328 6FF01E00 		mvn	r0, #30
+ 665              	.LVL51:
+ 666              	.L24:
+ 611:Core/Src/vl53l1_api_calibration.c **** 				((uint32_t)VL53L1_OFFSET_CAL_MAX_SIGMA_MM<<5))
+ 667              		.loc 1 611 4 is_stmt 1 view .LVU271
+ 611:Core/Src/vl53l1_api_calibration.c **** 				((uint32_t)VL53L1_OFFSET_CAL_MAX_SIGMA_MM<<5))
+ 668              		.loc 1 611 7 is_stmt 0 view .LVU272
+ 669 032c 002B     		cmp	r3, #0
+ 670 032e C7D1     		bne	.L25
+ 611:Core/Src/vl53l1_api_calibration.c **** 				((uint32_t)VL53L1_OFFSET_CAL_MAX_SIGMA_MM<<5))
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 26
+
+
+ 671              		.loc 1 611 25 discriminator 1 view .LVU273
+ 672 0330 C2EBC201 		rsb	r1, r2, r2, lsl #3
+ 673 0334 05EB8101 		add	r1, r5, r1, lsl #2
+ 674 0338 D1F84412 		ldr	r1, [r1, #580]
+ 611:Core/Src/vl53l1_api_calibration.c **** 				((uint32_t)VL53L1_OFFSET_CAL_MAX_SIGMA_MM<<5))
+ 675              		.loc 1 611 15 discriminator 1 view .LVU274
+ 676 033c B1F5006F 		cmp	r1, #2048
+ 677 0340 BED9     		bls	.L25
+ 613:Core/Src/vl53l1_api_calibration.c **** 
+ 678              		.loc 1 613 12 view .LVU275
+ 679 0342 6FF01F00 		mvn	r0, #31
+ 680              	.LVL52:
+ 613:Core/Src/vl53l1_api_calibration.c **** 
+ 681              		.loc 1 613 12 view .LVU276
+ 682 0346 BBE7     		b	.L25
+ 683              	.LVL53:
+ 684              	.L52:
+ 628:Core/Src/vl53l1_api_calibration.c **** 		}
+ 629:Core/Src/vl53l1_api_calibration.c **** 	}
+ 630:Core/Src/vl53l1_api_calibration.c **** 
+ 631:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 632:Core/Src/vl53l1_api_calibration.c **** 	 * Save unfiltered status
+ 633:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 634:Core/Src/vl53l1_api_calibration.c **** 
+ 635:Core/Src/vl53l1_api_calibration.c **** 	pdev->offset_results.cal_status = status;
+ 685              		.loc 1 635 2 is_stmt 1 view .LVU277
+ 686              		.loc 1 635 34 is_stmt 0 view .LVU278
+ 687 0348 85F82E02 		strb	r0, [r5, #558]
+ 636:Core/Src/vl53l1_api_calibration.c **** 	*pcal_status = pdev->offset_results.cal_status;
+ 688              		.loc 1 636 2 is_stmt 1 view .LVU279
+ 689              		.loc 1 636 15 is_stmt 0 view .LVU280
+ 690 034c 8AF80000 		strb	r0, [r10]
+ 637:Core/Src/vl53l1_api_calibration.c **** 
+ 638:Core/Src/vl53l1_api_calibration.c **** 	/* Status exception codes */
+ 639:Core/Src/vl53l1_api_calibration.c **** 
+ 640:Core/Src/vl53l1_api_calibration.c **** 	IGNORE_STATUS(
+ 691              		.loc 1 640 2 is_stmt 1 view .LVU281
+ 692              		.loc 1 640 2 view .LVU282
+ 693              		.loc 1 640 2 view .LVU283
+ 694              		.loc 1 640 2 view .LVU284
+ 695              		.loc 1 640 2 view .LVU285
+ 696              		.loc 1 640 2 view .LVU286
+ 697              		.loc 1 640 2 view .LVU287
+ 641:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_OFFSET_CAL_MISSING_SAMPLES,
+ 642:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES,
+ 643:Core/Src/vl53l1_api_calibration.c **** 		status);
+ 644:Core/Src/vl53l1_api_calibration.c **** 
+ 645:Core/Src/vl53l1_api_calibration.c **** 	IGNORE_STATUS(
+ 698              		.loc 1 645 2 view .LVU288
+ 699              		.loc 1 645 2 view .LVU289
+ 700              		.loc 1 645 2 view .LVU290
+ 701              		.loc 1 645 2 view .LVU291
+ 702              		.loc 1 645 2 view .LVU292
+ 703              		.loc 1 645 2 view .LVU293
+ 704              		.loc 1 645 2 view .LVU294
+ 646:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_OFFSET_CAL_SIGMA_TOO_HIGH,
+ 647:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_WARNING_OFFSET_CAL_SIGMA_TOO_HIGH,
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 27
+
+
+ 648:Core/Src/vl53l1_api_calibration.c **** 		status);
+ 649:Core/Src/vl53l1_api_calibration.c **** 
+ 650:Core/Src/vl53l1_api_calibration.c **** 	IGNORE_STATUS(
+ 705              		.loc 1 650 2 view .LVU295
+ 706              		.loc 1 650 2 view .LVU296
+ 707              		.loc 1 650 2 view .LVU297
+ 708              		.loc 1 650 2 view .LVU298
+ 709              		.loc 1 650 2 view .LVU299
+ 710              		.loc 1 650 2 view .LVU300
+ 711              		.loc 1 650 2 view .LVU301
+ 651:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_OFFSET_CAL_RATE_TOO_HIGH,
+ 652:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_WARNING_OFFSET_CAL_RATE_TOO_HIGH,
+ 653:Core/Src/vl53l1_api_calibration.c **** 		status);
+ 654:Core/Src/vl53l1_api_calibration.c **** 
+ 655:Core/Src/vl53l1_api_calibration.c **** 	IGNORE_STATUS(
+ 712              		.loc 1 655 2 view .LVU302
+ 713              		.loc 1 655 2 view .LVU303
+ 714              		.loc 1 655 2 view .LVU304
+ 715              		.loc 1 655 2 view .LVU305
+ 716              		.loc 1 655 2 view .LVU306
+ 717              		.loc 1 655 2 view .LVU307
+ 718              		.loc 1 655 2 view .LVU308
+ 656:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_OFFSET_CAL_SPAD_COUNT_TOO_LOW,
+ 657:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_WARNING_OFFSET_CAL_SPAD_COUNT_TOO_LOW,
+ 658:Core/Src/vl53l1_api_calibration.c **** 		status);
+ 659:Core/Src/vl53l1_api_calibration.c **** 
+ 660:Core/Src/vl53l1_api_calibration.c **** #ifdef VL53L1_LOG_ENABLE
+ 661:Core/Src/vl53l1_api_calibration.c **** 
+ 662:Core/Src/vl53l1_api_calibration.c **** 	/* Prints out the offset calibration data for debug */
+ 663:Core/Src/vl53l1_api_calibration.c **** 
+ 664:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_print_customer_nvm_managed(
+ 665:Core/Src/vl53l1_api_calibration.c **** 		&(pdev->customer),
+ 666:Core/Src/vl53l1_api_calibration.c **** 		"run_offset_calibration():pdev->lldata.customer.",
+ 667:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_TRACE_MODULE_OFFSET_DATA);
+ 668:Core/Src/vl53l1_api_calibration.c **** 
+ 669:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_print_additional_offset_cal_data(
+ 670:Core/Src/vl53l1_api_calibration.c **** 		&(pdev->add_off_cal_data),
+ 671:Core/Src/vl53l1_api_calibration.c **** 		"run_offset_calibration():pdev->lldata.add_off_cal_data.",
+ 672:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_TRACE_MODULE_OFFSET_DATA);
+ 673:Core/Src/vl53l1_api_calibration.c **** 
+ 674:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_print_offset_range_results(
+ 675:Core/Src/vl53l1_api_calibration.c **** 		&(pdev->offset_results),
+ 676:Core/Src/vl53l1_api_calibration.c **** 		"run_offset_calibration():pdev->lldata.offset_results.",
+ 677:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_TRACE_MODULE_OFFSET_DATA);
+ 678:Core/Src/vl53l1_api_calibration.c **** #endif
+ 679:Core/Src/vl53l1_api_calibration.c **** 
+ 680:Core/Src/vl53l1_api_calibration.c **** 	LOG_FUNCTION_END(status);
+ 719              		.loc 1 680 26 view .LVU309
+ 681:Core/Src/vl53l1_api_calibration.c **** 
+ 682:Core/Src/vl53l1_api_calibration.c **** 	return status;
+ 720              		.loc 1 682 2 view .LVU310
+ 683:Core/Src/vl53l1_api_calibration.c **** }
+ 721              		.loc 1 683 1 is_stmt 0 view .LVU311
+ 722 0350 28B0     		add	sp, sp, #160
+ 723              	.LCFI2:
+ 724              		.cfi_def_cfa_offset 32
+ 725              		@ sp needed
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 28
+
+
+ 726 0352 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 727              		.loc 1 683 1 view .LVU312
+ 728              		.cfi_endproc
+ 729              	.LFE4:
+ 731              		.section	.text.VL53L1_run_device_test,"ax",%progbits
+ 732              		.align	1
+ 733              		.global	VL53L1_run_device_test
+ 734              		.syntax unified
+ 735              		.thumb
+ 736              		.thumb_func
+ 738              	VL53L1_run_device_test:
+ 739              	.LVL54:
+ 740              	.LFB6:
+ 684:Core/Src/vl53l1_api_calibration.c **** #endif
+ 685:Core/Src/vl53l1_api_calibration.c **** 
+ 686:Core/Src/vl53l1_api_calibration.c **** #ifndef VL53L1_NOCALIB
+ 687:Core/Src/vl53l1_api_calibration.c **** VL53L1_Error VL53L1_run_spad_rate_map(
+ 688:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_DEV                 Dev,
+ 689:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_DeviceTestMode      device_test_mode,
+ 690:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_DeviceSscArray      array_select,
+ 691:Core/Src/vl53l1_api_calibration.c **** 	uint32_t                   ssc_config_timeout_us,
+ 692:Core/Src/vl53l1_api_calibration.c ****     VL53L1_spad_rate_data_t   *pspad_rate_data)
+ 693:Core/Src/vl53l1_api_calibration.c **** {
+ 694:Core/Src/vl53l1_api_calibration.c **** 
+ 695:Core/Src/vl53l1_api_calibration.c ****     /**
+ 696:Core/Src/vl53l1_api_calibration.c ****      *  Runs SPAD Rate Map
+ 697:Core/Src/vl53l1_api_calibration.c ****      */
+ 698:Core/Src/vl53l1_api_calibration.c **** 
+ 699:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 700:Core/Src/vl53l1_api_calibration.c **** 
+ 701:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_LLDriverData_t *pdev =
+ 702:Core/Src/vl53l1_api_calibration.c **** 		VL53L1DevStructGetLLDriverHandle(Dev);
+ 703:Core/Src/vl53l1_api_calibration.c **** 
+ 704:Core/Src/vl53l1_api_calibration.c **** 	LOG_FUNCTION_START("");
+ 705:Core/Src/vl53l1_api_calibration.c **** 
+ 706:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 707:Core/Src/vl53l1_api_calibration.c **** 	 * Ensure power force is enabled
+ 708:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 709:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 710:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_enable_powerforce(Dev);
+ 711:Core/Src/vl53l1_api_calibration.c **** 
+ 712:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 713:Core/Src/vl53l1_api_calibration.c **** 	 * Configure the test
+ 714:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 715:Core/Src/vl53l1_api_calibration.c **** 
+ 716:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) {
+ 717:Core/Src/vl53l1_api_calibration.c **** 		pdev->ssc_cfg.array_select = array_select;
+ 718:Core/Src/vl53l1_api_calibration.c **** 		pdev->ssc_cfg.timeout_us   = ssc_config_timeout_us;
+ 719:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 720:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_set_ssc_config(
+ 721:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 722:Core/Src/vl53l1_api_calibration.c **** 				&(pdev->ssc_cfg),
+ 723:Core/Src/vl53l1_api_calibration.c **** 				pdev->stat_nvm.osc_measured__fast_osc__frequency);
+ 724:Core/Src/vl53l1_api_calibration.c **** 	}
+ 725:Core/Src/vl53l1_api_calibration.c **** 
+ 726:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 727:Core/Src/vl53l1_api_calibration.c **** 	 * Run device test
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 29
+
+
+ 728:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 729:Core/Src/vl53l1_api_calibration.c **** 
+ 730:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 731:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 732:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_run_device_test(
+ 733:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 734:Core/Src/vl53l1_api_calibration.c **** 				device_test_mode);
+ 735:Core/Src/vl53l1_api_calibration.c **** 
+ 736:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 737:Core/Src/vl53l1_api_calibration.c **** 	 * Read Rate Data from Patch Ram
+ 738:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 739:Core/Src/vl53l1_api_calibration.c **** 
+ 740:Core/Src/vl53l1_api_calibration.c ****     if (status == VL53L1_ERROR_NONE)
+ 741:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 742:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_get_spad_rate_data(
+ 743:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 744:Core/Src/vl53l1_api_calibration.c **** 				pspad_rate_data);
+ 745:Core/Src/vl53l1_api_calibration.c **** 
+ 746:Core/Src/vl53l1_api_calibration.c **** 	if (device_test_mode == VL53L1_DEVICETESTMODE_LCR_VCSEL_ON)
+ 747:Core/Src/vl53l1_api_calibration.c **** 		pspad_rate_data->fractional_bits =  7;
+ 748:Core/Src/vl53l1_api_calibration.c **** 	else
+ 749:Core/Src/vl53l1_api_calibration.c **** 		pspad_rate_data->fractional_bits = 15;
+ 750:Core/Src/vl53l1_api_calibration.c **** 
+ 751:Core/Src/vl53l1_api_calibration.c **** 	/* Ensure power force is disabled */
+ 752:Core/Src/vl53l1_api_calibration.c **** 
+ 753:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 754:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_disable_powerforce(Dev);
+ 755:Core/Src/vl53l1_api_calibration.c **** 
+ 756:Core/Src/vl53l1_api_calibration.c **** #ifdef VL53L1_LOG_ENABLE
+ 757:Core/Src/vl53l1_api_calibration.c ****     /* Print return rate data and map */
+ 758:Core/Src/vl53l1_api_calibration.c **** 
+ 759:Core/Src/vl53l1_api_calibration.c ****     if (status == VL53L1_ERROR_NONE) {
+ 760:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_print_spad_rate_data(
+ 761:Core/Src/vl53l1_api_calibration.c **** 			pspad_rate_data,
+ 762:Core/Src/vl53l1_api_calibration.c **** 			"run_spad_rate_map():",
+ 763:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_TRACE_MODULE_SPAD_RATE_MAP);
+ 764:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_print_spad_rate_map(
+ 765:Core/Src/vl53l1_api_calibration.c **** 			pspad_rate_data,
+ 766:Core/Src/vl53l1_api_calibration.c **** 			"run_spad_rate_map():",
+ 767:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_TRACE_MODULE_SPAD_RATE_MAP);
+ 768:Core/Src/vl53l1_api_calibration.c ****     }
+ 769:Core/Src/vl53l1_api_calibration.c **** #endif
+ 770:Core/Src/vl53l1_api_calibration.c **** 
+ 771:Core/Src/vl53l1_api_calibration.c **** 	LOG_FUNCTION_END(status);
+ 772:Core/Src/vl53l1_api_calibration.c **** 
+ 773:Core/Src/vl53l1_api_calibration.c **** 	return status;
+ 774:Core/Src/vl53l1_api_calibration.c **** }
+ 775:Core/Src/vl53l1_api_calibration.c **** #endif
+ 776:Core/Src/vl53l1_api_calibration.c **** 
+ 777:Core/Src/vl53l1_api_calibration.c **** 
+ 778:Core/Src/vl53l1_api_calibration.c **** #ifndef VL53L1_NOCALIB
+ 779:Core/Src/vl53l1_api_calibration.c **** VL53L1_Error VL53L1_run_device_test(
+ 780:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_DEV             Dev,
+ 781:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_DeviceTestMode  device_test_mode)
+ 782:Core/Src/vl53l1_api_calibration.c **** {
+ 741              		.loc 1 782 1 is_stmt 1 view -0
+ 742              		.cfi_startproc
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 30
+
+
+ 743              		@ args = 0, pretend = 0, frame = 8
+ 744              		@ frame_needed = 0, uses_anonymous_args = 0
+ 745              		.loc 1 782 1 is_stmt 0 view .LVU314
+ 746 0000 30B5     		push	{r4, r5, lr}
+ 747              	.LCFI3:
+ 748              		.cfi_def_cfa_offset 12
+ 749              		.cfi_offset 4, -12
+ 750              		.cfi_offset 5, -8
+ 751              		.cfi_offset 14, -4
+ 752 0002 83B0     		sub	sp, sp, #12
+ 753              	.LCFI4:
+ 754              		.cfi_def_cfa_offset 24
+ 755 0004 0446     		mov	r4, r0
+ 756 0006 0D46     		mov	r5, r1
+ 783:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 784:Core/Src/vl53l1_api_calibration.c **** 	 *  Runs the selected Device Test Mode
+ 785:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 786:Core/Src/vl53l1_api_calibration.c **** 
+ 787:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 757              		.loc 1 787 2 is_stmt 1 view .LVU315
+ 758              	.LVL55:
+ 788:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 759              		.loc 1 788 2 view .LVU316
+ 789:Core/Src/vl53l1_api_calibration.c **** 
+ 790:Core/Src/vl53l1_api_calibration.c **** 	uint8_t      comms_buffer[2];
+ 760              		.loc 1 790 2 view .LVU317
+ 791:Core/Src/vl53l1_api_calibration.c **** 	uint8_t      gpio_hv_mux__ctrl = 0;
+ 761              		.loc 1 791 2 view .LVU318
+ 762              		.loc 1 791 15 is_stmt 0 view .LVU319
+ 763 0008 0023     		movs	r3, #0
+ 764 000a 8DF80330 		strb	r3, [sp, #3]
+ 792:Core/Src/vl53l1_api_calibration.c **** 
+ 793:Core/Src/vl53l1_api_calibration.c **** 	LOG_FUNCTION_START("");
+ 765              		.loc 1 793 24 is_stmt 1 view .LVU320
+ 794:Core/Src/vl53l1_api_calibration.c **** 
+ 795:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 796:Core/Src/vl53l1_api_calibration.c **** 	 * Get current interrupt config
+ 797:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 798:Core/Src/vl53l1_api_calibration.c **** 
+ 799:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) /*lint !e774 always true*/
+ 766              		.loc 1 799 2 view .LVU321
+ 800:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 767              		.loc 1 800 3 view .LVU322
+ 801:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_RdByte(
+ 768              		.loc 1 801 4 is_stmt 0 view .LVU323
+ 769 000e 0DF10302 		add	r2, sp, #3
+ 770 0012 3021     		movs	r1, #48
+ 771              	.LVL56:
+ 772              		.loc 1 801 4 view .LVU324
+ 773 0014 FFF7FEFF 		bl	VL53L1_RdByte
+ 774              	.LVL57:
+ 802:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 803:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_GPIO_HV_MUX__CTRL,
+ 804:Core/Src/vl53l1_api_calibration.c **** 				&gpio_hv_mux__ctrl);
+ 805:Core/Src/vl53l1_api_calibration.c **** 
+ 806:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 775              		.loc 1 806 2 is_stmt 1 view .LVU325
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 31
+
+
+ 776              		.loc 1 806 5 is_stmt 0 view .LVU326
+ 777 0018 18B9     		cbnz	r0, .L54
+ 807:Core/Src/vl53l1_api_calibration.c **** 		pdev->stat_cfg.gpio_hv_mux__ctrl = gpio_hv_mux__ctrl;
+ 778              		.loc 1 807 3 is_stmt 1 view .LVU327
+ 779              		.loc 1 807 36 is_stmt 0 view .LVU328
+ 780 001a 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 781 001e 84F87031 		strb	r3, [r4, #368]
+ 782              	.L54:
+ 808:Core/Src/vl53l1_api_calibration.c **** 
+ 809:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 810:Core/Src/vl53l1_api_calibration.c **** 	 * Trigger the test
+ 811:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 812:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 783              		.loc 1 812 2 is_stmt 1 view .LVU329
+ 784              		.loc 1 812 5 is_stmt 0 view .LVU330
+ 785 0022 A0B1     		cbz	r0, .L62
+ 786              	.LVL58:
+ 787              	.L55:
+ 813:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_start_test(
+ 814:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 815:Core/Src/vl53l1_api_calibration.c **** 					device_test_mode);
+ 816:Core/Src/vl53l1_api_calibration.c **** 
+ 817:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 818:Core/Src/vl53l1_api_calibration.c **** 	 * Wait for test completion
+ 819:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 820:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 788              		.loc 1 820 2 is_stmt 1 view .LVU331
+ 789              		.loc 1 820 5 is_stmt 0 view .LVU332
+ 790 0024 C0B1     		cbz	r0, .L63
+ 791              	.L56:
+ 821:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_wait_for_test_completion(Dev);
+ 822:Core/Src/vl53l1_api_calibration.c **** 
+ 823:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 824:Core/Src/vl53l1_api_calibration.c **** 	 * Read range and report status
+ 825:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 826:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 792              		.loc 1 826 2 is_stmt 1 view .LVU333
+ 793              		.loc 1 826 5 is_stmt 0 view .LVU334
+ 794 0026 D8B1     		cbz	r0, .L64
+ 795              	.L57:
+ 827:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 828:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_ReadMulti(
+ 829:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 830:Core/Src/vl53l1_api_calibration.c **** 				VL53L1_RESULT__RANGE_STATUS,
+ 831:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer,
+ 832:Core/Src/vl53l1_api_calibration.c **** 				2);
+ 833:Core/Src/vl53l1_api_calibration.c **** 
+ 834:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) {
+ 796              		.loc 1 834 2 is_stmt 1 view .LVU335
+ 797              		.loc 1 834 5 is_stmt 0 view .LVU336
+ 798 0028 38B9     		cbnz	r0, .L58
+ 835:Core/Src/vl53l1_api_calibration.c **** 		pdev->sys_results.result__range_status  = comms_buffer[0];
+ 799              		.loc 1 835 3 is_stmt 1 view .LVU337
+ 800              		.loc 1 835 57 is_stmt 0 view .LVU338
+ 801 002a 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 802              		.loc 1 835 43 view .LVU339
+ 803 002e 84F8CF31 		strb	r3, [r4, #463]
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 32
+
+
+ 836:Core/Src/vl53l1_api_calibration.c **** 		pdev->sys_results.result__report_status = comms_buffer[1];
+ 804              		.loc 1 836 3 is_stmt 1 view .LVU340
+ 805              		.loc 1 836 57 is_stmt 0 view .LVU341
+ 806 0032 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 807              		.loc 1 836 43 view .LVU342
+ 808 0036 84F8D031 		strb	r3, [r4, #464]
+ 809              	.L58:
+ 837:Core/Src/vl53l1_api_calibration.c **** 	}
+ 838:Core/Src/vl53l1_api_calibration.c **** 
+ 839:Core/Src/vl53l1_api_calibration.c **** 	/* mask range status bits */
+ 840:Core/Src/vl53l1_api_calibration.c **** 
+ 841:Core/Src/vl53l1_api_calibration.c **** 	pdev->sys_results.result__range_status &=
+ 810              		.loc 1 841 2 is_stmt 1 view .LVU343
+ 811              		.loc 1 841 41 is_stmt 0 view .LVU344
+ 812 003a 94F8CF31 		ldrb	r3, [r4, #463]	@ zero_extendqisi2
+ 813 003e 03F01F03 		and	r3, r3, #31
+ 814 0042 84F8CF31 		strb	r3, [r4, #463]
+ 842:Core/Src/vl53l1_api_calibration.c **** 		VL53L1_RANGE_STATUS__RANGE_STATUS_MASK;
+ 843:Core/Src/vl53l1_api_calibration.c **** 
+ 844:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE) {
+ 815              		.loc 1 844 2 is_stmt 1 view .LVU345
+ 816              		.loc 1 844 5 is_stmt 0 view .LVU346
+ 817 0046 90B1     		cbz	r0, .L65
+ 818              	.L59:
+ 845:Core/Src/vl53l1_api_calibration.c **** 		trace_print(
+ 846:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_TRACE_LEVEL_INFO,
+ 847:Core/Src/vl53l1_api_calibration.c **** 			"    Device Test Complete:\n\t%-32s = %3u\n\t%-32s = %3u\n",
+ 848:Core/Src/vl53l1_api_calibration.c **** 			"result__range_status",
+ 849:Core/Src/vl53l1_api_calibration.c **** 			pdev->sys_results.result__range_status,
+ 850:Core/Src/vl53l1_api_calibration.c **** 			"result__report_status",
+ 851:Core/Src/vl53l1_api_calibration.c **** 			pdev->sys_results.result__report_status);
+ 852:Core/Src/vl53l1_api_calibration.c **** 
+ 853:Core/Src/vl53l1_api_calibration.c **** 		/*
+ 854:Core/Src/vl53l1_api_calibration.c **** 		 * Clear interrupt
+ 855:Core/Src/vl53l1_api_calibration.c **** 		 */
+ 856:Core/Src/vl53l1_api_calibration.c **** 		if (status == VL53L1_ERROR_NONE)
+ 857:Core/Src/vl53l1_api_calibration.c **** 			status = VL53L1_clear_interrupt(Dev);
+ 858:Core/Src/vl53l1_api_calibration.c **** 	}
+ 859:Core/Src/vl53l1_api_calibration.c **** 
+ 860:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 861:Core/Src/vl53l1_api_calibration.c **** 	 * Clear test mode register
+ 862:Core/Src/vl53l1_api_calibration.c **** 	 *  - required so that next test command will trigger
+ 863:Core/Src/vl53l1_api_calibration.c **** 	 *    internal MCU interrupt
+ 864:Core/Src/vl53l1_api_calibration.c **** 	 */
+ 865:Core/Src/vl53l1_api_calibration.c **** 
+ 866:Core/Src/vl53l1_api_calibration.c **** 	if (status == VL53L1_ERROR_NONE)
+ 819              		.loc 1 866 2 is_stmt 1 view .LVU347
+ 820              		.loc 1 866 5 is_stmt 0 view .LVU348
+ 821 0048 A8B1     		cbz	r0, .L66
+ 822              	.L60:
+ 867:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 868:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_start_test(
+ 869:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 870:Core/Src/vl53l1_api_calibration.c **** 				0x00);
+ 871:Core/Src/vl53l1_api_calibration.c **** 
+ 872:Core/Src/vl53l1_api_calibration.c **** 	LOG_FUNCTION_END(status);
+ 823              		.loc 1 872 26 is_stmt 1 view .LVU349
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 33
+
+
+ 873:Core/Src/vl53l1_api_calibration.c **** 
+ 874:Core/Src/vl53l1_api_calibration.c **** 	return status;
+ 824              		.loc 1 874 2 view .LVU350
+ 875:Core/Src/vl53l1_api_calibration.c **** }
+ 825              		.loc 1 875 1 is_stmt 0 view .LVU351
+ 826 004a 03B0     		add	sp, sp, #12
+ 827              	.LCFI5:
+ 828              		.cfi_remember_state
+ 829              		.cfi_def_cfa_offset 12
+ 830              		@ sp needed
+ 831 004c 30BD     		pop	{r4, r5, pc}
+ 832              	.LVL59:
+ 833              	.L62:
+ 834              	.LCFI6:
+ 835              		.cfi_restore_state
+ 813:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 836              		.loc 1 813 3 is_stmt 1 view .LVU352
+ 813:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 837              		.loc 1 813 12 is_stmt 0 view .LVU353
+ 838 004e 2946     		mov	r1, r5
+ 839 0050 2046     		mov	r0, r4
+ 840 0052 FFF7FEFF 		bl	VL53L1_start_test
+ 841              	.LVL60:
+ 813:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 842              		.loc 1 813 12 view .LVU354
+ 843 0056 E5E7     		b	.L55
+ 844              	.L63:
+ 821:Core/Src/vl53l1_api_calibration.c **** 
+ 845              		.loc 1 821 3 is_stmt 1 view .LVU355
+ 821:Core/Src/vl53l1_api_calibration.c **** 
+ 846              		.loc 1 821 12 is_stmt 0 view .LVU356
+ 847 0058 2046     		mov	r0, r4
+ 848              	.LVL61:
+ 821:Core/Src/vl53l1_api_calibration.c **** 
+ 849              		.loc 1 821 12 view .LVU357
+ 850 005a FFF7FEFF 		bl	VL53L1_wait_for_test_completion
+ 851              	.LVL62:
+ 821:Core/Src/vl53l1_api_calibration.c **** 
+ 852              		.loc 1 821 12 view .LVU358
+ 853 005e E2E7     		b	.L56
+ 854              	.L64:
+ 827:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_ReadMulti(
+ 855              		.loc 1 827 3 is_stmt 1 view .LVU359
+ 828:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 856              		.loc 1 828 4 is_stmt 0 view .LVU360
+ 857 0060 0223     		movs	r3, #2
+ 858 0062 01AA     		add	r2, sp, #4
+ 859 0064 8921     		movs	r1, #137
+ 860 0066 2046     		mov	r0, r4
+ 861              	.LVL63:
+ 828:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 862              		.loc 1 828 4 view .LVU361
+ 863 0068 FFF7FEFF 		bl	VL53L1_ReadMulti
+ 864              	.LVL64:
+ 828:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 865              		.loc 1 828 4 view .LVU362
+ 866 006c DCE7     		b	.L57
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 34
+
+
+ 867              	.L65:
+ 851:Core/Src/vl53l1_api_calibration.c **** 
+ 868              		.loc 1 851 44 is_stmt 1 view .LVU363
+ 856:Core/Src/vl53l1_api_calibration.c **** 			status = VL53L1_clear_interrupt(Dev);
+ 869              		.loc 1 856 3 view .LVU364
+ 857:Core/Src/vl53l1_api_calibration.c **** 	}
+ 870              		.loc 1 857 4 view .LVU365
+ 857:Core/Src/vl53l1_api_calibration.c **** 	}
+ 871              		.loc 1 857 13 is_stmt 0 view .LVU366
+ 872 006e 2046     		mov	r0, r4
+ 873              	.LVL65:
+ 857:Core/Src/vl53l1_api_calibration.c **** 	}
+ 874              		.loc 1 857 13 view .LVU367
+ 875 0070 FFF7FEFF 		bl	VL53L1_clear_interrupt
+ 876              	.LVL66:
+ 857:Core/Src/vl53l1_api_calibration.c **** 	}
+ 877              		.loc 1 857 13 view .LVU368
+ 878 0074 E8E7     		b	.L59
+ 879              	.L66:
+ 867:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_start_test(
+ 880              		.loc 1 867 3 is_stmt 1 view .LVU369
+ 868:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 881              		.loc 1 868 4 is_stmt 0 view .LVU370
+ 882 0076 0021     		movs	r1, #0
+ 883 0078 2046     		mov	r0, r4
+ 884              	.LVL67:
+ 868:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 885              		.loc 1 868 4 view .LVU371
+ 886 007a FFF7FEFF 		bl	VL53L1_start_test
+ 887              	.LVL68:
+ 868:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 888              		.loc 1 868 4 view .LVU372
+ 889 007e E4E7     		b	.L60
+ 890              		.cfi_endproc
+ 891              	.LFE6:
+ 893              		.section	.text.VL53L1_run_ref_spad_char,"ax",%progbits
+ 894              		.align	1
+ 895              		.global	VL53L1_run_ref_spad_char
+ 896              		.syntax unified
+ 897              		.thumb
+ 898              		.thumb_func
+ 900              	VL53L1_run_ref_spad_char:
+ 901              	.LVL69:
+ 902              	.LFB3:
+ 107:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 903              		.loc 1 107 1 is_stmt 1 view -0
+ 904              		.cfi_startproc
+ 905              		@ args = 0, pretend = 0, frame = 8
+ 906              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107:Core/Src/vl53l1_api_calibration.c **** 	/*
+ 907              		.loc 1 107 1 is_stmt 0 view .LVU374
+ 908 0000 30B5     		push	{r4, r5, lr}
+ 909              	.LCFI7:
+ 910              		.cfi_def_cfa_offset 12
+ 911              		.cfi_offset 4, -12
+ 912              		.cfi_offset 5, -8
+ 913              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 35
+
+
+ 914 0002 87B0     		sub	sp, sp, #28
+ 915              	.LCFI8:
+ 916              		.cfi_def_cfa_offset 40
+ 917 0004 0446     		mov	r4, r0
+ 918 0006 0D46     		mov	r5, r1
+ 112:Core/Src/vl53l1_api_calibration.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 919              		.loc 1 112 2 is_stmt 1 view .LVU375
+ 920              	.LVL70:
+ 113:Core/Src/vl53l1_api_calibration.c **** 
+ 921              		.loc 1 113 2 view .LVU376
+ 115:Core/Src/vl53l1_api_calibration.c **** 
+ 922              		.loc 1 115 2 view .LVU377
+ 117:Core/Src/vl53l1_api_calibration.c **** 
+ 923              		.loc 1 117 2 view .LVU378
+ 119:Core/Src/vl53l1_api_calibration.c **** 
+ 924              		.loc 1 119 24 view .LVU379
+ 125:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_enable_powerforce(Dev);
+ 925              		.loc 1 125 2 view .LVU380
+ 126:Core/Src/vl53l1_api_calibration.c **** 
+ 926              		.loc 1 126 3 view .LVU381
+ 126:Core/Src/vl53l1_api_calibration.c **** 
+ 927              		.loc 1 126 12 is_stmt 0 view .LVU382
+ 928 0008 FFF7FEFF 		bl	VL53L1_enable_powerforce
+ 929              	.LVL71:
+ 132:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 930              		.loc 1 132 2 is_stmt 1 view .LVU383
+ 132:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 931              		.loc 1 132 5 is_stmt 0 view .LVU384
+ 932 000c 0028     		cmp	r0, #0
+ 933 000e 40D0     		beq	.L81
+ 934              	.L68:
+ 935              	.LVL72:
+ 147:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_run_device_test(
+ 936              		.loc 1 147 2 is_stmt 1 view .LVU385
+ 147:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_run_device_test(
+ 937              		.loc 1 147 5 is_stmt 0 view .LVU386
+ 938 0010 0028     		cmp	r0, #0
+ 939 0012 51D0     		beq	.L82
+ 940              	.L69:
+ 156:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 941              		.loc 1 156 2 is_stmt 1 view .LVU387
+ 156:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 942              		.loc 1 156 5 is_stmt 0 view .LVU388
+ 943 0014 0028     		cmp	r0, #0
+ 944 0016 55D0     		beq	.L83
+ 945              	.L70:
+ 164:Core/Src/vl53l1_api_calibration.c **** 		pdev->dbg_results.ref_spad_char_result__num_actual_ref_spads =
+ 946              		.loc 1 164 2 is_stmt 1 view .LVU389
+ 164:Core/Src/vl53l1_api_calibration.c **** 		pdev->dbg_results.ref_spad_char_result__num_actual_ref_spads =
+ 947              		.loc 1 164 5 is_stmt 0 view .LVU390
+ 948 0018 38B9     		cbnz	r0, .L71
+ 165:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ 949              		.loc 1 165 3 is_stmt 1 view .LVU391
+ 166:Core/Src/vl53l1_api_calibration.c **** 		pdev->dbg_results.ref_spad_char_result__ref_location =
+ 950              		.loc 1 166 17 is_stmt 0 view .LVU392
+ 951 001a 9DF81030 		ldrb	r3, [sp, #16]	@ zero_extendqisi2
+ 165:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 36
+
+
+ 952              		.loc 1 165 64 view .LVU393
+ 953 001e 84F8AF32 		strb	r3, [r4, #687]
+ 167:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 954              		.loc 1 167 3 is_stmt 1 view .LVU394
+ 168:Core/Src/vl53l1_api_calibration.c **** 	}
+ 955              		.loc 1 168 17 is_stmt 0 view .LVU395
+ 956 0022 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+ 167:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 957              		.loc 1 167 56 view .LVU396
+ 958 0026 84F8B032 		strb	r3, [r4, #688]
+ 959              	.L71:
+ 175:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 960              		.loc 1 175 2 is_stmt 1 view .LVU397
+ 175:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 961              		.loc 1 175 5 is_stmt 0 view .LVU398
+ 962 002a 0028     		cmp	r0, #0
+ 963 002c 51D0     		beq	.L84
+ 964              	.L72:
+ 183:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.ref_spad_man__num_requested_ref_spads =
+ 965              		.loc 1 183 2 is_stmt 1 view .LVU399
+ 183:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.ref_spad_man__num_requested_ref_spads =
+ 966              		.loc 1 183 5 is_stmt 0 view .LVU400
+ 967 002e 38B9     		cbnz	r0, .L73
+ 184:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ 968              		.loc 1 184 3 is_stmt 1 view .LVU401
+ 185:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.ref_spad_man__ref_location =
+ 969              		.loc 1 185 17 is_stmt 0 view .LVU402
+ 970 0030 9DF81030 		ldrb	r3, [sp, #16]	@ zero_extendqisi2
+ 184:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ 971              		.loc 1 184 56 view .LVU403
+ 972 0034 84F84930 		strb	r3, [r4, #73]
+ 186:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 973              		.loc 1 186 3 is_stmt 1 view .LVU404
+ 187:Core/Src/vl53l1_api_calibration.c **** 	}
+ 974              		.loc 1 187 17 is_stmt 0 view .LVU405
+ 975 0038 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+ 186:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 976              		.loc 1 186 45 view .LVU406
+ 977 003c 84F84A30 		strb	r3, [r4, #74]
+ 978              	.L73:
+ 198:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 979              		.loc 1 198 2 is_stmt 1 view .LVU407
+ 198:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 980              		.loc 1 198 5 is_stmt 0 view .LVU408
+ 981 0040 0028     		cmp	r0, #0
+ 982 0042 4DD0     		beq	.L85
+ 983              	.L74:
+ 211:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 984              		.loc 1 211 2 is_stmt 1 view .LVU409
+ 211:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 985              		.loc 1 211 5 is_stmt 0 view .LVU410
+ 986 0044 0028     		cmp	r0, #0
+ 987 0046 52D0     		beq	.L86
+ 988              	.L75:
+ 219:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_0 =
+ 989              		.loc 1 219 2 is_stmt 1 view .LVU411
+ 219:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_0 =
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 37
+
+
+ 990              		.loc 1 219 5 is_stmt 0 view .LVU412
+ 991 0048 B8B9     		cbnz	r0, .L76
+ 220:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ 992              		.loc 1 220 3 is_stmt 1 view .LVU413
+ 221:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_1 =
+ 993              		.loc 1 221 17 is_stmt 0 view .LVU414
+ 994 004a 9DF81030 		ldrb	r3, [sp, #16]	@ zero_extendqisi2
+ 220:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[0];
+ 995              		.loc 1 220 52 view .LVU415
+ 996 004e 84F84230 		strb	r3, [r4, #66]
+ 222:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 997              		.loc 1 222 3 is_stmt 1 view .LVU416
+ 223:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_2 =
+ 998              		.loc 1 223 17 is_stmt 0 view .LVU417
+ 999 0052 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+ 222:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[1];
+ 1000              		.loc 1 222 52 view .LVU418
+ 1001 0056 84F84330 		strb	r3, [r4, #67]
+ 224:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[2];
+ 1002              		.loc 1 224 3 is_stmt 1 view .LVU419
+ 225:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_3 =
+ 1003              		.loc 1 225 17 is_stmt 0 view .LVU420
+ 1004 005a 9DF81230 		ldrb	r3, [sp, #18]	@ zero_extendqisi2
+ 224:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[2];
+ 1005              		.loc 1 224 52 view .LVU421
+ 1006 005e 84F84430 		strb	r3, [r4, #68]
+ 226:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[3];
+ 1007              		.loc 1 226 3 is_stmt 1 view .LVU422
+ 227:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_4 =
+ 1008              		.loc 1 227 17 is_stmt 0 view .LVU423
+ 1009 0062 9DF81330 		ldrb	r3, [sp, #19]	@ zero_extendqisi2
+ 226:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[3];
+ 1010              		.loc 1 226 52 view .LVU424
+ 1011 0066 84F84530 		strb	r3, [r4, #69]
+ 228:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[4];
+ 1012              		.loc 1 228 3 is_stmt 1 view .LVU425
+ 229:Core/Src/vl53l1_api_calibration.c **** 		pdev->customer.global_config__spad_enables_ref_5 =
+ 1013              		.loc 1 229 17 is_stmt 0 view .LVU426
+ 1014 006a 9DF81430 		ldrb	r3, [sp, #20]	@ zero_extendqisi2
+ 228:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[4];
+ 1015              		.loc 1 228 52 view .LVU427
+ 1016 006e 84F84630 		strb	r3, [r4, #70]
+ 230:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[5];
+ 1017              		.loc 1 230 3 is_stmt 1 view .LVU428
+ 231:Core/Src/vl53l1_api_calibration.c **** 	}
+ 1018              		.loc 1 231 17 is_stmt 0 view .LVU429
+ 1019 0072 9DF81530 		ldrb	r3, [sp, #21]	@ zero_extendqisi2
+ 230:Core/Src/vl53l1_api_calibration.c **** 				comms_buffer[5];
+ 1020              		.loc 1 230 52 view .LVU430
+ 1021 0076 84F84730 		strb	r3, [r4, #71]
+ 1022              	.L76:
+ 243:Core/Src/vl53l1_api_calibration.c **** 
+ 1023              		.loc 1 243 2 is_stmt 1 view .LVU431
+ 243:Core/Src/vl53l1_api_calibration.c **** 
+ 1024              		.loc 1 243 5 is_stmt 0 view .LVU432
+ 1025 007a 38B9     		cbnz	r0, .L77
+ 245:Core/Src/vl53l1_api_calibration.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 38
+
+
+ 1026              		.loc 1 245 3 is_stmt 1 view .LVU433
+ 245:Core/Src/vl53l1_api_calibration.c **** 
+ 1027              		.loc 1 245 28 is_stmt 0 view .LVU434
+ 1028 007c 94F8CF31 		ldrb	r3, [r4, #463]	@ zero_extendqisi2
+ 245:Core/Src/vl53l1_api_calibration.c **** 
+ 1029              		.loc 1 245 3 view .LVU435
+ 1030 0080 0F2B     		cmp	r3, #15
+ 1031 0082 3ED0     		beq	.L78
+ 1032 0084 102B     		cmp	r3, #16
+ 1033 0086 3FD0     		beq	.L79
+ 1034 0088 0E2B     		cmp	r3, #14
+ 1035 008a 37D0     		beq	.L87
+ 1036              	.LVL73:
+ 1037              	.L77:
+ 265:Core/Src/vl53l1_api_calibration.c **** 
+ 1038              		.loc 1 265 2 is_stmt 1 view .LVU436
+ 265:Core/Src/vl53l1_api_calibration.c **** 
+ 1039              		.loc 1 265 15 is_stmt 0 view .LVU437
+ 1040 008c 2870     		strb	r0, [r5]
+ 269:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 1041              		.loc 1 269 2 is_stmt 1 view .LVU438
+ 269:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 1042              		.loc 1 269 2 view .LVU439
+ 269:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 1043              		.loc 1 269 2 view .LVU440
+ 269:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 1044              		.loc 1 269 2 view .LVU441
+ 269:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 1045              		.loc 1 269 2 view .LVU442
+ 269:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 1046              		.loc 1 269 2 view .LVU443
+ 269:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_NOT_ENOUGH_SPADS,
+ 1047              		.loc 1 269 2 view .LVU444
+ 274:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 1048              		.loc 1 274 2 view .LVU445
+ 274:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 1049              		.loc 1 274 2 view .LVU446
+ 274:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 1050              		.loc 1 274 2 view .LVU447
+ 274:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 1051              		.loc 1 274 2 view .LVU448
+ 274:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 1052              		.loc 1 274 2 view .LVU449
+ 274:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 1053              		.loc 1 274 2 view .LVU450
+ 274:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_HIGH,
+ 1054              		.loc 1 274 2 view .LVU451
+ 279:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 1055              		.loc 1 279 2 view .LVU452
+ 279:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 1056              		.loc 1 279 2 view .LVU453
+ 279:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 1057              		.loc 1 279 2 view .LVU454
+ 279:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 1058              		.loc 1 279 2 view .LVU455
+ 279:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 1059              		.loc 1 279 2 view .LVU456
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 39
+
+
+ 279:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 1060              		.loc 1 279 2 view .LVU457
+ 279:Core/Src/vl53l1_api_calibration.c **** 		IGNORE_REF_SPAD_CHAR_RATE_TOO_LOW,
+ 1061              		.loc 1 279 2 view .LVU458
+ 285:Core/Src/vl53l1_api_calibration.c **** 
+ 1062              		.loc 1 285 26 view .LVU459
+ 287:Core/Src/vl53l1_api_calibration.c **** }
+ 1063              		.loc 1 287 2 view .LVU460
+ 288:Core/Src/vl53l1_api_calibration.c **** 
+ 1064              		.loc 1 288 1 is_stmt 0 view .LVU461
+ 1065 008e 07B0     		add	sp, sp, #28
+ 1066              	.LCFI9:
+ 1067              		.cfi_remember_state
+ 1068              		.cfi_def_cfa_offset 12
+ 1069              		@ sp needed
+ 1070 0090 30BD     		pop	{r4, r5, pc}
+ 1071              	.LVL74:
+ 1072              	.L81:
+ 1073              	.LCFI10:
+ 1074              		.cfi_restore_state
+ 133:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_set_ref_spad_char_config(
+ 1075              		.loc 1 133 3 is_stmt 1 view .LVU462
+ 134:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1076              		.loc 1 134 4 is_stmt 0 view .LVU463
+ 1077 0092 B4F85E31 		ldrh	r3, [r4, #350]
+ 1078 0096 0293     		str	r3, [sp, #8]
+ 1079 0098 B4F81A31 		ldrh	r3, [r4, #282]
+ 1080 009c 0193     		str	r3, [sp, #4]
+ 1081 009e B4F81C31 		ldrh	r3, [r4, #284]
+ 1082 00a2 0093     		str	r3, [sp]
+ 1083 00a4 B4F81831 		ldrh	r3, [r4, #280]
+ 1084 00a8 D4F81421 		ldr	r2, [r4, #276]
+ 1085 00ac 94F81111 		ldrb	r1, [r4, #273]	@ zero_extendqisi2
+ 1086 00b0 2046     		mov	r0, r4
+ 1087 00b2 FFF7FEFF 		bl	VL53L1_set_ref_spad_char_config
+ 1088              	.LVL75:
+ 134:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1089              		.loc 1 134 4 view .LVU464
+ 1090 00b6 ABE7     		b	.L68
+ 1091              	.L82:
+ 148:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 1092              		.loc 1 148 3 is_stmt 1 view .LVU465
+ 148:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 1093              		.loc 1 148 12 is_stmt 0 view .LVU466
+ 1094 00b8 94F81011 		ldrb	r1, [r4, #272]	@ zero_extendqisi2
+ 1095 00bc 2046     		mov	r0, r4
+ 1096              	.LVL76:
+ 148:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 1097              		.loc 1 148 12 view .LVU467
+ 1098 00be FFF7FEFF 		bl	VL53L1_run_device_test
+ 1099              	.LVL77:
+ 148:Core/Src/vl53l1_api_calibration.c **** 					Dev,
+ 1100              		.loc 1 148 12 view .LVU468
+ 1101 00c2 A7E7     		b	.L69
+ 1102              	.L83:
+ 157:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_ReadMulti(
+ 1103              		.loc 1 157 3 is_stmt 1 view .LVU469
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 40
+
+
+ 158:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1104              		.loc 1 158 4 is_stmt 0 view .LVU470
+ 1105 00c4 0223     		movs	r3, #2
+ 1106 00c6 04AA     		add	r2, sp, #16
+ 1107 00c8 D921     		movs	r1, #217
+ 1108 00ca 2046     		mov	r0, r4
+ 1109              	.LVL78:
+ 158:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1110              		.loc 1 158 4 view .LVU471
+ 1111 00cc FFF7FEFF 		bl	VL53L1_ReadMulti
+ 1112              	.LVL79:
+ 158:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1113              		.loc 1 158 4 view .LVU472
+ 1114 00d0 A2E7     		b	.L70
+ 1115              	.L84:
+ 176:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_WriteMulti(
+ 1116              		.loc 1 176 3 is_stmt 1 view .LVU473
+ 177:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1117              		.loc 1 177 4 is_stmt 0 view .LVU474
+ 1118 00d2 0223     		movs	r3, #2
+ 1119 00d4 04AA     		add	r2, sp, #16
+ 1120 00d6 1421     		movs	r1, #20
+ 1121 00d8 2046     		mov	r0, r4
+ 1122              	.LVL80:
+ 177:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1123              		.loc 1 177 4 view .LVU475
+ 1124 00da FFF7FEFF 		bl	VL53L1_WriteMulti
+ 1125              	.LVL81:
+ 177:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1126              		.loc 1 177 4 view .LVU476
+ 1127 00de A6E7     		b	.L72
+ 1128              	.L85:
+ 199:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_ReadMulti(
+ 1129              		.loc 1 199 3 is_stmt 1 view .LVU477
+ 200:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1130              		.loc 1 200 4 is_stmt 0 view .LVU478
+ 1131 00e0 0623     		movs	r3, #6
+ 1132 00e2 04AA     		add	r2, sp, #16
+ 1133 00e4 AC21     		movs	r1, #172
+ 1134 00e6 2046     		mov	r0, r4
+ 1135              	.LVL82:
+ 200:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1136              		.loc 1 200 4 view .LVU479
+ 1137 00e8 FFF7FEFF 		bl	VL53L1_ReadMulti
+ 1138              	.LVL83:
+ 200:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1139              		.loc 1 200 4 view .LVU480
+ 1140 00ec AAE7     		b	.L74
+ 1141              	.L86:
+ 212:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_WriteMulti(
+ 1142              		.loc 1 212 3 is_stmt 1 view .LVU481
+ 213:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1143              		.loc 1 213 4 is_stmt 0 view .LVU482
+ 1144 00ee 0623     		movs	r3, #6
+ 1145 00f0 04AA     		add	r2, sp, #16
+ 1146 00f2 0D21     		movs	r1, #13
+ 1147 00f4 2046     		mov	r0, r4
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 41
+
+
+ 1148              	.LVL84:
+ 213:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1149              		.loc 1 213 4 view .LVU483
+ 1150 00f6 FFF7FEFF 		bl	VL53L1_WriteMulti
+ 1151              	.LVL85:
+ 213:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1152              		.loc 1 213 4 view .LVU484
+ 1153 00fa A5E7     		b	.L75
+ 1154              	.L87:
+ 248:Core/Src/vl53l1_api_calibration.c **** 			break;
+ 1155              		.loc 1 248 11 view .LVU485
+ 1156 00fc 6FF01B00 		mvn	r0, #27
+ 1157              	.LVL86:
+ 248:Core/Src/vl53l1_api_calibration.c **** 			break;
+ 1158              		.loc 1 248 11 view .LVU486
+ 1159 0100 C4E7     		b	.L77
+ 1160              	.LVL87:
+ 1161              	.L78:
+ 252:Core/Src/vl53l1_api_calibration.c **** 			break;
+ 1162              		.loc 1 252 11 view .LVU487
+ 1163 0102 6FF01C00 		mvn	r0, #28
+ 1164              	.LVL88:
+ 252:Core/Src/vl53l1_api_calibration.c **** 			break;
+ 1165              		.loc 1 252 11 view .LVU488
+ 1166 0106 C1E7     		b	.L77
+ 1167              	.LVL89:
+ 1168              	.L79:
+ 256:Core/Src/vl53l1_api_calibration.c **** 			break;
+ 1169              		.loc 1 256 11 view .LVU489
+ 1170 0108 6FF01D00 		mvn	r0, #29
+ 1171              	.LVL90:
+ 256:Core/Src/vl53l1_api_calibration.c **** 			break;
+ 1172              		.loc 1 256 11 view .LVU490
+ 1173 010c BEE7     		b	.L77
+ 1174              		.cfi_endproc
+ 1175              	.LFE3:
+ 1177              		.section	.text.VL53L1_run_spad_rate_map,"ax",%progbits
+ 1178              		.align	1
+ 1179              		.global	VL53L1_run_spad_rate_map
+ 1180              		.syntax unified
+ 1181              		.thumb
+ 1182              		.thumb_func
+ 1184              	VL53L1_run_spad_rate_map:
+ 1185              	.LVL91:
+ 1186              	.LFB5:
+ 693:Core/Src/vl53l1_api_calibration.c **** 
+ 1187              		.loc 1 693 1 is_stmt 1 view -0
+ 1188              		.cfi_startproc
+ 1189              		@ args = 4, pretend = 0, frame = 0
+ 1190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 693:Core/Src/vl53l1_api_calibration.c **** 
+ 1191              		.loc 1 693 1 is_stmt 0 view .LVU492
+ 1192 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1193              	.LCFI11:
+ 1194              		.cfi_def_cfa_offset 24
+ 1195              		.cfi_offset 4, -24
+ 1196              		.cfi_offset 5, -20
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 42
+
+
+ 1197              		.cfi_offset 6, -16
+ 1198              		.cfi_offset 7, -12
+ 1199              		.cfi_offset 8, -8
+ 1200              		.cfi_offset 14, -4
+ 1201 0004 0446     		mov	r4, r0
+ 1202 0006 0D46     		mov	r5, r1
+ 1203 0008 9046     		mov	r8, r2
+ 1204 000a 1E46     		mov	r6, r3
+ 1205 000c 069F     		ldr	r7, [sp, #24]
+ 699:Core/Src/vl53l1_api_calibration.c **** 
+ 1206              		.loc 1 699 2 is_stmt 1 view .LVU493
+ 1207              	.LVL92:
+ 701:Core/Src/vl53l1_api_calibration.c **** 		VL53L1DevStructGetLLDriverHandle(Dev);
+ 1208              		.loc 1 701 2 view .LVU494
+ 704:Core/Src/vl53l1_api_calibration.c **** 
+ 1209              		.loc 1 704 24 view .LVU495
+ 709:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_enable_powerforce(Dev);
+ 1210              		.loc 1 709 2 view .LVU496
+ 710:Core/Src/vl53l1_api_calibration.c **** 
+ 1211              		.loc 1 710 3 view .LVU497
+ 710:Core/Src/vl53l1_api_calibration.c **** 
+ 1212              		.loc 1 710 12 is_stmt 0 view .LVU498
+ 1213 000e FFF7FEFF 		bl	VL53L1_enable_powerforce
+ 1214              	.LVL93:
+ 716:Core/Src/vl53l1_api_calibration.c **** 		pdev->ssc_cfg.array_select = array_select;
+ 1215              		.loc 1 716 2 is_stmt 1 view .LVU499
+ 716:Core/Src/vl53l1_api_calibration.c **** 		pdev->ssc_cfg.array_select = array_select;
+ 1216              		.loc 1 716 5 is_stmt 0 view .LVU500
+ 1217 0012 48B1     		cbz	r0, .L96
+ 1218              	.LVL94:
+ 1219              	.L89:
+ 730:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 1220              		.loc 1 730 2 is_stmt 1 view .LVU501
+ 730:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 1221              		.loc 1 730 5 is_stmt 0 view .LVU502
+ 1222 0014 A0B1     		cbz	r0, .L97
+ 1223              	.L90:
+ 740:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 1224              		.loc 1 740 5 is_stmt 1 view .LVU503
+ 740:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 1225              		.loc 1 740 8 is_stmt 0 view .LVU504
+ 1226 0016 C0B1     		cbz	r0, .L98
+ 1227              	.L91:
+ 746:Core/Src/vl53l1_api_calibration.c **** 		pspad_rate_data->fractional_bits =  7;
+ 1228              		.loc 1 746 2 is_stmt 1 view .LVU505
+ 746:Core/Src/vl53l1_api_calibration.c **** 		pspad_rate_data->fractional_bits =  7;
+ 1229              		.loc 1 746 5 is_stmt 0 view .LVU506
+ 1230 0018 062D     		cmp	r5, #6
+ 1231 001a 1BD0     		beq	.L99
+ 749:Core/Src/vl53l1_api_calibration.c **** 
+ 1232              		.loc 1 749 3 is_stmt 1 view .LVU507
+ 749:Core/Src/vl53l1_api_calibration.c **** 
+ 1233              		.loc 1 749 36 is_stmt 0 view .LVU508
+ 1234 001c 0F23     		movs	r3, #15
+ 1235 001e 87F80632 		strb	r3, [r7, #518]
+ 1236              	.L93:
+ 753:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_disable_powerforce(Dev);
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 43
+
+
+ 1237              		.loc 1 753 2 is_stmt 1 view .LVU509
+ 753:Core/Src/vl53l1_api_calibration.c **** 		status = VL53L1_disable_powerforce(Dev);
+ 1238              		.loc 1 753 5 is_stmt 0 view .LVU510
+ 1239 0022 D8B1     		cbz	r0, .L100
+ 1240              	.L94:
+ 771:Core/Src/vl53l1_api_calibration.c **** 
+ 1241              		.loc 1 771 26 is_stmt 1 view .LVU511
+ 773:Core/Src/vl53l1_api_calibration.c **** }
+ 1242              		.loc 1 773 2 view .LVU512
+ 774:Core/Src/vl53l1_api_calibration.c **** #endif
+ 1243              		.loc 1 774 1 is_stmt 0 view .LVU513
+ 1244 0024 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1245              	.LVL95:
+ 1246              	.L96:
+ 717:Core/Src/vl53l1_api_calibration.c **** 		pdev->ssc_cfg.timeout_us   = ssc_config_timeout_us;
+ 1247              		.loc 1 717 3 is_stmt 1 view .LVU514
+ 717:Core/Src/vl53l1_api_calibration.c **** 		pdev->ssc_cfg.timeout_us   = ssc_config_timeout_us;
+ 1248              		.loc 1 717 30 is_stmt 0 view .LVU515
+ 1249 0028 84F82081 		strb	r8, [r4, #288]
+ 718:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 1250              		.loc 1 718 3 is_stmt 1 view .LVU516
+ 718:Core/Src/vl53l1_api_calibration.c **** 		status =
+ 1251              		.loc 1 718 30 is_stmt 0 view .LVU517
+ 1252 002c C4F82461 		str	r6, [r4, #292]
+ 719:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_set_ssc_config(
+ 1253              		.loc 1 719 3 is_stmt 1 view .LVU518
+ 720:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1254              		.loc 1 720 4 is_stmt 0 view .LVU519
+ 1255 0030 B4F85E21 		ldrh	r2, [r4, #350]
+ 1256 0034 04F59071 		add	r1, r4, #288
+ 1257 0038 2046     		mov	r0, r4
+ 1258 003a FFF7FEFF 		bl	VL53L1_set_ssc_config
+ 1259              	.LVL96:
+ 720:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1260              		.loc 1 720 4 view .LVU520
+ 1261 003e E9E7     		b	.L89
+ 1262              	.L97:
+ 731:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_run_device_test(
+ 1263              		.loc 1 731 3 is_stmt 1 view .LVU521
+ 732:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1264              		.loc 1 732 4 is_stmt 0 view .LVU522
+ 1265 0040 2946     		mov	r1, r5
+ 1266 0042 2046     		mov	r0, r4
+ 1267              	.LVL97:
+ 732:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1268              		.loc 1 732 4 view .LVU523
+ 1269 0044 FFF7FEFF 		bl	VL53L1_run_device_test
+ 1270              	.LVL98:
+ 732:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1271              		.loc 1 732 4 view .LVU524
+ 1272 0048 E5E7     		b	.L90
+ 1273              	.L98:
+ 741:Core/Src/vl53l1_api_calibration.c **** 			VL53L1_get_spad_rate_data(
+ 1274              		.loc 1 741 3 is_stmt 1 view .LVU525
+ 742:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1275              		.loc 1 742 4 is_stmt 0 view .LVU526
+ 1276 004a 3946     		mov	r1, r7
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 44
+
+
+ 1277 004c 2046     		mov	r0, r4
+ 1278              	.LVL99:
+ 742:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1279              		.loc 1 742 4 view .LVU527
+ 1280 004e FFF7FEFF 		bl	VL53L1_get_spad_rate_data
+ 1281              	.LVL100:
+ 742:Core/Src/vl53l1_api_calibration.c **** 				Dev,
+ 1282              		.loc 1 742 4 view .LVU528
+ 1283 0052 E1E7     		b	.L91
+ 1284              	.L99:
+ 747:Core/Src/vl53l1_api_calibration.c **** 	else
+ 1285              		.loc 1 747 3 is_stmt 1 view .LVU529
+ 747:Core/Src/vl53l1_api_calibration.c **** 	else
+ 1286              		.loc 1 747 36 is_stmt 0 view .LVU530
+ 1287 0054 0723     		movs	r3, #7
+ 1288 0056 87F80632 		strb	r3, [r7, #518]
+ 1289 005a E2E7     		b	.L93
+ 1290              	.L100:
+ 754:Core/Src/vl53l1_api_calibration.c **** 
+ 1291              		.loc 1 754 3 is_stmt 1 view .LVU531
+ 754:Core/Src/vl53l1_api_calibration.c **** 
+ 1292              		.loc 1 754 12 is_stmt 0 view .LVU532
+ 1293 005c 2046     		mov	r0, r4
+ 1294              	.LVL101:
+ 754:Core/Src/vl53l1_api_calibration.c **** 
+ 1295              		.loc 1 754 12 view .LVU533
+ 1296 005e FFF7FEFF 		bl	VL53L1_disable_powerforce
+ 1297              	.LVL102:
+ 754:Core/Src/vl53l1_api_calibration.c **** 
+ 1298              		.loc 1 754 12 view .LVU534
+ 1299 0062 DFE7     		b	.L94
+ 1300              		.cfi_endproc
+ 1301              	.LFE5:
+ 1303              		.text
+ 1304              	.Letext0:
+ 1305              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1306              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1307              		.file 4 "Core/Inc/vl53l1_types.h"
+ 1308              		.file 5 "Core/Inc/vl53l1_ll_device.h"
+ 1309              		.file 6 "Core/Inc/vl53l1_error_codes.h"
+ 1310              		.file 7 "Core/Inc/vl53l1_register_structs.h"
+ 1311              		.file 8 "Core/Inc/vl53l1_ll_def.h"
+ 1312              		.file 9 "Core/Inc/vl53l1_def.h"
+ 1313              		.file 10 "Core/Inc/vl53l1_platform_user_data.h"
+ 1314              		.file 11 "Core/Inc/vl53l1_platform.h"
+ 1315              		.file 12 "Core/Inc/vl53l1_core.h"
+ 1316              		.file 13 "Core/Inc/vl53l1_wait.h"
+ 1317              		.file 14 "Core/Inc/vl53l1_api_core.h"
+ 1318              		.file 15 "Core/Inc/vl53l1_register_funcs.h"
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s 			page 45
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_api_calibration.c
+C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s:20     .text.VL53L1_run_offset_calibration:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s:26     .text.VL53L1_run_offset_calibration:00000000 VL53L1_run_offset_calibration
+C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s:732    .text.VL53L1_run_device_test:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s:738    .text.VL53L1_run_device_test:00000000 VL53L1_run_device_test
+C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s:894    .text.VL53L1_run_ref_spad_char:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s:900    .text.VL53L1_run_ref_spad_char:00000000 VL53L1_run_ref_spad_char
+C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s:1178   .text.VL53L1_run_spad_rate_map:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccNQxNCK.s:1184   .text.VL53L1_run_spad_rate_map:00000000 VL53L1_run_spad_rate_map
+
+UNDEFINED SYMBOLS
+VL53L1_set_preset_mode
+VL53L1_init_and_start_range
+VL53L1_wait_for_range_completion
+VL53L1_get_device_results
+VL53L1_wait_for_firmware_ready
+VL53L1_clear_interrupt_and_enable_next_range
+VL53L1_stop_range
+VL53L1_WaitUs
+VL53L1_set_customer_nvm_managed
+VL53L1_RdByte
+VL53L1_start_test
+VL53L1_wait_for_test_completion
+VL53L1_ReadMulti
+VL53L1_clear_interrupt
+VL53L1_enable_powerforce
+VL53L1_set_ref_spad_char_config
+VL53L1_WriteMulti
+VL53L1_set_ssc_config
+VL53L1_get_spad_rate_data
+VL53L1_disable_powerforce

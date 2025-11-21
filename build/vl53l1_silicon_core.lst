@@ -1,0 +1,344 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_silicon_core.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.VL53L1_is_firmware_ready_silicon,"ax",%progbits
+  20              		.align	1
+  21              		.global	VL53L1_is_firmware_ready_silicon
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	VL53L1_is_firmware_ready_silicon:
+  27              	.LVL0:
+  28              	.LFB3:
+  29              		.file 1 "Core/Src/vl53l1_silicon_core.c"
+   1:Core/Src/vl53l1_silicon_core.c **** /*
+   2:Core/Src/vl53l1_silicon_core.c **** * Copyright (c) 2017, STMicroelectronics - All Rights Reserved
+   3:Core/Src/vl53l1_silicon_core.c **** *
+   4:Core/Src/vl53l1_silicon_core.c **** * This file is part of VL53L1 Core and is dual licensed,
+   5:Core/Src/vl53l1_silicon_core.c **** * either 'STMicroelectronics
+   6:Core/Src/vl53l1_silicon_core.c **** * Proprietary license'
+   7:Core/Src/vl53l1_silicon_core.c **** * or 'BSD 3-clause "New" or "Revised" License' , at your option.
+   8:Core/Src/vl53l1_silicon_core.c **** *
+   9:Core/Src/vl53l1_silicon_core.c **** ********************************************************************************
+  10:Core/Src/vl53l1_silicon_core.c **** *
+  11:Core/Src/vl53l1_silicon_core.c **** * 'STMicroelectronics Proprietary license'
+  12:Core/Src/vl53l1_silicon_core.c **** *
+  13:Core/Src/vl53l1_silicon_core.c **** ********************************************************************************
+  14:Core/Src/vl53l1_silicon_core.c **** *
+  15:Core/Src/vl53l1_silicon_core.c **** * License terms: STMicroelectronics Proprietary in accordance with licensing
+  16:Core/Src/vl53l1_silicon_core.c **** * terms at www.st.com/sla0081
+  17:Core/Src/vl53l1_silicon_core.c **** *
+  18:Core/Src/vl53l1_silicon_core.c **** * STMicroelectronics confidential
+  19:Core/Src/vl53l1_silicon_core.c **** * Reproduction and Communication of this document is strictly prohibited unless
+  20:Core/Src/vl53l1_silicon_core.c **** * specifically authorized in writing by STMicroelectronics.
+  21:Core/Src/vl53l1_silicon_core.c **** *
+  22:Core/Src/vl53l1_silicon_core.c **** *
+  23:Core/Src/vl53l1_silicon_core.c **** ********************************************************************************
+  24:Core/Src/vl53l1_silicon_core.c **** *
+  25:Core/Src/vl53l1_silicon_core.c **** * Alternatively, VL53L1 Core may be distributed under the terms of
+  26:Core/Src/vl53l1_silicon_core.c **** * 'BSD 3-clause "New" or "Revised" License', in which case the following
+  27:Core/Src/vl53l1_silicon_core.c **** * provisions apply instead of the ones mentioned above :
+  28:Core/Src/vl53l1_silicon_core.c **** *
+  29:Core/Src/vl53l1_silicon_core.c **** ********************************************************************************
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s 			page 2
+
+
+  30:Core/Src/vl53l1_silicon_core.c **** *
+  31:Core/Src/vl53l1_silicon_core.c **** * License terms: BSD 3-clause "New" or "Revised" License.
+  32:Core/Src/vl53l1_silicon_core.c **** *
+  33:Core/Src/vl53l1_silicon_core.c **** * Redistribution and use in source and binary forms, with or without
+  34:Core/Src/vl53l1_silicon_core.c **** * modification, are permitted provided that the following conditions are met:
+  35:Core/Src/vl53l1_silicon_core.c **** *
+  36:Core/Src/vl53l1_silicon_core.c **** * 1. Redistributions of source code must retain the above copyright notice, this
+  37:Core/Src/vl53l1_silicon_core.c **** * list of conditions and the following disclaimer.
+  38:Core/Src/vl53l1_silicon_core.c **** *
+  39:Core/Src/vl53l1_silicon_core.c **** * 2. Redistributions in binary form must reproduce the above copyright notice,
+  40:Core/Src/vl53l1_silicon_core.c **** * this list of conditions and the following disclaimer in the documentation
+  41:Core/Src/vl53l1_silicon_core.c **** * and/or other materials provided with the distribution.
+  42:Core/Src/vl53l1_silicon_core.c **** *
+  43:Core/Src/vl53l1_silicon_core.c **** * 3. Neither the name of the copyright holder nor the names of its contributors
+  44:Core/Src/vl53l1_silicon_core.c **** * may be used to endorse or promote products derived from this software
+  45:Core/Src/vl53l1_silicon_core.c **** * without specific prior written permission.
+  46:Core/Src/vl53l1_silicon_core.c **** *
+  47:Core/Src/vl53l1_silicon_core.c **** * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  48:Core/Src/vl53l1_silicon_core.c **** * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  49:Core/Src/vl53l1_silicon_core.c **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  50:Core/Src/vl53l1_silicon_core.c **** * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  51:Core/Src/vl53l1_silicon_core.c **** * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  52:Core/Src/vl53l1_silicon_core.c **** * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  53:Core/Src/vl53l1_silicon_core.c **** * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  54:Core/Src/vl53l1_silicon_core.c **** * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  55:Core/Src/vl53l1_silicon_core.c **** * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  56:Core/Src/vl53l1_silicon_core.c **** * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  57:Core/Src/vl53l1_silicon_core.c **** *
+  58:Core/Src/vl53l1_silicon_core.c **** *
+  59:Core/Src/vl53l1_silicon_core.c **** ********************************************************************************
+  60:Core/Src/vl53l1_silicon_core.c **** *
+  61:Core/Src/vl53l1_silicon_core.c **** */
+  62:Core/Src/vl53l1_silicon_core.c **** 
+  63:Core/Src/vl53l1_silicon_core.c **** /**
+  64:Core/Src/vl53l1_silicon_core.c ****  * @file  vl53l1_silicon_core.c
+  65:Core/Src/vl53l1_silicon_core.c ****  *
+  66:Core/Src/vl53l1_silicon_core.c ****  * @brief EwokPlus25 low level silicon LL Driver function definition
+  67:Core/Src/vl53l1_silicon_core.c ****  */
+  68:Core/Src/vl53l1_silicon_core.c **** 
+  69:Core/Src/vl53l1_silicon_core.c **** 
+  70:Core/Src/vl53l1_silicon_core.c **** #include "vl53l1_ll_def.h"
+  71:Core/Src/vl53l1_silicon_core.c **** #include "vl53l1_platform.h"
+  72:Core/Src/vl53l1_silicon_core.c **** #include "vl53l1_register_map.h"
+  73:Core/Src/vl53l1_silicon_core.c **** #include "vl53l1_core.h"
+  74:Core/Src/vl53l1_silicon_core.c **** #include "vl53l1_silicon_core.h"
+  75:Core/Src/vl53l1_silicon_core.c **** 
+  76:Core/Src/vl53l1_silicon_core.c **** 
+  77:Core/Src/vl53l1_silicon_core.c **** #define LOG_FUNCTION_START(fmt, ...) \
+  78:Core/Src/vl53l1_silicon_core.c **** 	_LOG_FUNCTION_START(VL53L1_TRACE_MODULE_CORE, fmt, ##__VA_ARGS__)
+  79:Core/Src/vl53l1_silicon_core.c **** #define LOG_FUNCTION_END(status, ...) \
+  80:Core/Src/vl53l1_silicon_core.c **** 	_LOG_FUNCTION_END(VL53L1_TRACE_MODULE_CORE, status, ##__VA_ARGS__)
+  81:Core/Src/vl53l1_silicon_core.c **** #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+  82:Core/Src/vl53l1_silicon_core.c **** 	_LOG_FUNCTION_END_FMT(VL53L1_TRACE_MODULE_CORE, status, fmt, ##__VA_ARGS__)
+  83:Core/Src/vl53l1_silicon_core.c **** 
+  84:Core/Src/vl53l1_silicon_core.c **** 
+  85:Core/Src/vl53l1_silicon_core.c **** VL53L1_Error VL53L1_is_firmware_ready_silicon(
+  86:Core/Src/vl53l1_silicon_core.c **** 	VL53L1_DEV     Dev,
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s 			page 3
+
+
+  87:Core/Src/vl53l1_silicon_core.c **** 	uint8_t       *pready)
+  88:Core/Src/vl53l1_silicon_core.c **** {
+  30              		.loc 1 88 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 88 1 is_stmt 0 view .LVU1
+  35 0000 30B5     		push	{r4, r5, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 12
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 83B0     		sub	sp, sp, #12
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 24
+  44 0004 0446     		mov	r4, r0
+  45 0006 0D46     		mov	r5, r1
+  89:Core/Src/vl53l1_silicon_core.c **** 	/**
+  90:Core/Src/vl53l1_silicon_core.c **** 	 * Determines if the firmware is ready to range
+  91:Core/Src/vl53l1_silicon_core.c **** 	 *
+  92:Core/Src/vl53l1_silicon_core.c **** 	 * There are 2 different behaviors depending on whether
+  93:Core/Src/vl53l1_silicon_core.c **** 	 * power force is enabled or not
+  94:Core/Src/vl53l1_silicon_core.c **** 	 */
+  95:Core/Src/vl53l1_silicon_core.c **** 
+  96:Core/Src/vl53l1_silicon_core.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+  46              		.loc 1 96 2 is_stmt 1 view .LVU2
+  47              	.LVL1:
+  97:Core/Src/vl53l1_silicon_core.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+  48              		.loc 1 97 2 view .LVU3
+  98:Core/Src/vl53l1_silicon_core.c **** 
+  99:Core/Src/vl53l1_silicon_core.c **** 	uint8_t  comms_buffer[5];
+  49              		.loc 1 99 2 view .LVU4
+ 100:Core/Src/vl53l1_silicon_core.c **** 
+ 101:Core/Src/vl53l1_silicon_core.c **** 	LOG_FUNCTION_START("");
+  50              		.loc 1 101 24 view .LVU5
+ 102:Core/Src/vl53l1_silicon_core.c **** 
+ 103:Core/Src/vl53l1_silicon_core.c **** 	/* read interrupt and power force reset status */
+ 104:Core/Src/vl53l1_silicon_core.c **** 
+ 105:Core/Src/vl53l1_silicon_core.c **** 	status = VL53L1_ReadMulti(
+  51              		.loc 1 105 2 view .LVU6
+  52              		.loc 1 105 11 is_stmt 0 view .LVU7
+  53 0008 0523     		movs	r3, #5
+  54 000a 6A46     		mov	r2, sp
+  55 000c FD21     		movs	r1, #253
+  56              	.LVL2:
+  57              		.loc 1 105 11 view .LVU8
+  58 000e FFF7FEFF 		bl	VL53L1_ReadMulti
+  59              	.LVL3:
+ 106:Core/Src/vl53l1_silicon_core.c **** 					Dev,
+ 107:Core/Src/vl53l1_silicon_core.c **** 					VL53L1_INTERRUPT_MANAGER__ENABLES,
+ 108:Core/Src/vl53l1_silicon_core.c **** 					comms_buffer,
+ 109:Core/Src/vl53l1_silicon_core.c **** 					5);
+ 110:Core/Src/vl53l1_silicon_core.c **** 
+ 111:Core/Src/vl53l1_silicon_core.c **** 	if (status == VL53L1_ERROR_NONE) {
+  60              		.loc 1 111 2 is_stmt 1 view .LVU9
+  61              		.loc 1 111 5 is_stmt 0 view .LVU10
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s 			page 4
+
+
+  62 0012 F0B9     		cbnz	r0, .L2
+ 112:Core/Src/vl53l1_silicon_core.c **** 
+ 113:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.interrupt_manager__enables =
+  63              		.loc 1 113 3 is_stmt 1 view .LVU11
+ 114:Core/Src/vl53l1_silicon_core.c **** 				comms_buffer[0];
+  64              		.loc 1 114 17 is_stmt 0 view .LVU12
+  65 0014 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
+ 113:Core/Src/vl53l1_silicon_core.c **** 				comms_buffer[0];
+  66              		.loc 1 113 48 view .LVU13
+  67 0018 84F8D132 		strb	r3, [r4, #721]
+ 115:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.interrupt_manager__clear =
+  68              		.loc 1 115 3 is_stmt 1 view .LVU14
+ 116:Core/Src/vl53l1_silicon_core.c **** 				comms_buffer[1];
+  69              		.loc 1 116 17 is_stmt 0 view .LVU15
+  70 001c 9DF80120 		ldrb	r2, [sp, #1]	@ zero_extendqisi2
+ 115:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.interrupt_manager__clear =
+  71              		.loc 1 115 46 view .LVU16
+  72 0020 84F8D222 		strb	r2, [r4, #722]
+ 117:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.interrupt_manager__status =
+  73              		.loc 1 117 3 is_stmt 1 view .LVU17
+ 118:Core/Src/vl53l1_silicon_core.c **** 				comms_buffer[2];
+  74              		.loc 1 118 17 is_stmt 0 view .LVU18
+  75 0024 9DF80210 		ldrb	r1, [sp, #2]	@ zero_extendqisi2
+ 117:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.interrupt_manager__status =
+  76              		.loc 1 117 47 view .LVU19
+  77 0028 84F8D312 		strb	r1, [r4, #723]
+ 119:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.mcu_to_host_bank__wr_access_en =
+  78              		.loc 1 119 3 is_stmt 1 view .LVU20
+ 120:Core/Src/vl53l1_silicon_core.c **** 				comms_buffer[3];
+  79              		.loc 1 120 17 is_stmt 0 view .LVU21
+  80 002c 9DF80310 		ldrb	r1, [sp, #3]	@ zero_extendqisi2
+ 119:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.mcu_to_host_bank__wr_access_en =
+  81              		.loc 1 119 52 view .LVU22
+  82 0030 84F8D412 		strb	r1, [r4, #724]
+ 121:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.power_management__go1_reset_status =
+  83              		.loc 1 121 3 is_stmt 1 view .LVU23
+ 122:Core/Src/vl53l1_silicon_core.c **** 				comms_buffer[4];
+  84              		.loc 1 122 17 is_stmt 0 view .LVU24
+  85 0034 9DF80410 		ldrb	r1, [sp, #4]	@ zero_extendqisi2
+ 121:Core/Src/vl53l1_silicon_core.c **** 		pdev->dbg_results.power_management__go1_reset_status =
+  86              		.loc 1 121 56 view .LVU25
+  87 0038 84F8D512 		strb	r1, [r4, #725]
+ 123:Core/Src/vl53l1_silicon_core.c **** 
+ 124:Core/Src/vl53l1_silicon_core.c **** 		if ((pdev->sys_ctrl.power_management__go1_power_force & 0x01) == 0x01) {
+  88              		.loc 1 124 3 is_stmt 1 view .LVU26
+  89              		.loc 1 124 22 is_stmt 0 view .LVU27
+  90 003c 94F8C841 		ldrb	r4, [r4, #456]	@ zero_extendqisi2
+  91              	.LVL4:
+  92              		.loc 1 124 6 view .LVU28
+  93 0040 14F0010F 		tst	r4, #1
+  94 0044 0ED0     		beq	.L3
+ 125:Core/Src/vl53l1_silicon_core.c **** 
+ 126:Core/Src/vl53l1_silicon_core.c **** 				if (((pdev->dbg_results.interrupt_manager__enables & 0x1F) == 0x1F) &&
+  95              		.loc 1 126 5 is_stmt 1 view .LVU29
+  96              		.loc 1 126 8 is_stmt 0 view .LVU30
+  97 0046 03F01F03 		and	r3, r3, #31
+  98 004a 1F2B     		cmp	r3, #31
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s 			page 5
+
+
+  99 004c 03D0     		beq	.L7
+ 100              	.L4:
+ 127:Core/Src/vl53l1_silicon_core.c **** 					((pdev->dbg_results.interrupt_manager__clear   & 0x1F) == 0x1F))
+ 128:Core/Src/vl53l1_silicon_core.c **** 					*pready = 0x01;
+ 129:Core/Src/vl53l1_silicon_core.c **** 				else
+ 130:Core/Src/vl53l1_silicon_core.c **** 					*pready = 0x00;
+ 101              		.loc 1 130 6 is_stmt 1 view .LVU31
+ 102              		.loc 1 130 14 is_stmt 0 view .LVU32
+ 103 004e 0023     		movs	r3, #0
+ 104 0050 2B70     		strb	r3, [r5]
+ 105              	.L2:
+ 131:Core/Src/vl53l1_silicon_core.c **** 
+ 132:Core/Src/vl53l1_silicon_core.c **** 		} else {
+ 133:Core/Src/vl53l1_silicon_core.c **** 
+ 134:Core/Src/vl53l1_silicon_core.c **** 			/* set ready flag if bit 0 is zero i.g G01 is in reset */
+ 135:Core/Src/vl53l1_silicon_core.c **** 			if ((pdev->dbg_results.power_management__go1_reset_status & 0x01) == 0x00)
+ 136:Core/Src/vl53l1_silicon_core.c **** 				*pready = 0x01;
+ 137:Core/Src/vl53l1_silicon_core.c **** 			else
+ 138:Core/Src/vl53l1_silicon_core.c **** 				*pready = 0x00;
+ 139:Core/Src/vl53l1_silicon_core.c **** 		}
+ 140:Core/Src/vl53l1_silicon_core.c **** 
+ 141:Core/Src/vl53l1_silicon_core.c **** 	}
+ 142:Core/Src/vl53l1_silicon_core.c **** 
+ 143:Core/Src/vl53l1_silicon_core.c **** 	LOG_FUNCTION_END(status);
+ 106              		.loc 1 143 26 is_stmt 1 view .LVU33
+ 144:Core/Src/vl53l1_silicon_core.c **** 
+ 145:Core/Src/vl53l1_silicon_core.c **** 	return status;
+ 107              		.loc 1 145 2 view .LVU34
+ 146:Core/Src/vl53l1_silicon_core.c **** }
+ 108              		.loc 1 146 1 is_stmt 0 view .LVU35
+ 109 0052 03B0     		add	sp, sp, #12
+ 110              	.LCFI2:
+ 111              		.cfi_remember_state
+ 112              		.cfi_def_cfa_offset 12
+ 113              		@ sp needed
+ 114 0054 30BD     		pop	{r4, r5, pc}
+ 115              	.LVL5:
+ 116              	.L7:
+ 117              	.LCFI3:
+ 118              		.cfi_restore_state
+ 126:Core/Src/vl53l1_silicon_core.c **** 					((pdev->dbg_results.interrupt_manager__clear   & 0x1F) == 0x1F))
+ 119              		.loc 1 126 73 discriminator 1 view .LVU36
+ 120 0056 02F01F02 		and	r2, r2, #31
+ 121 005a 1F2A     		cmp	r2, #31
+ 122 005c F7D1     		bne	.L4
+ 128:Core/Src/vl53l1_silicon_core.c **** 				else
+ 123              		.loc 1 128 6 is_stmt 1 view .LVU37
+ 128:Core/Src/vl53l1_silicon_core.c **** 				else
+ 124              		.loc 1 128 14 is_stmt 0 view .LVU38
+ 125 005e 0123     		movs	r3, #1
+ 126 0060 2B70     		strb	r3, [r5]
+ 127 0062 F6E7     		b	.L2
+ 128              	.L3:
+ 135:Core/Src/vl53l1_silicon_core.c **** 				*pready = 0x01;
+ 129              		.loc 1 135 4 is_stmt 1 view .LVU39
+ 135:Core/Src/vl53l1_silicon_core.c **** 				*pready = 0x01;
+ 130              		.loc 1 135 7 is_stmt 0 view .LVU40
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s 			page 6
+
+
+ 131 0064 11F0010F 		tst	r1, #1
+ 132 0068 02D1     		bne	.L5
+ 136:Core/Src/vl53l1_silicon_core.c **** 			else
+ 133              		.loc 1 136 5 is_stmt 1 view .LVU41
+ 136:Core/Src/vl53l1_silicon_core.c **** 			else
+ 134              		.loc 1 136 13 is_stmt 0 view .LVU42
+ 135 006a 0123     		movs	r3, #1
+ 136 006c 2B70     		strb	r3, [r5]
+ 137 006e F0E7     		b	.L2
+ 138              	.L5:
+ 138:Core/Src/vl53l1_silicon_core.c **** 		}
+ 139              		.loc 1 138 5 is_stmt 1 view .LVU43
+ 138:Core/Src/vl53l1_silicon_core.c **** 		}
+ 140              		.loc 1 138 13 is_stmt 0 view .LVU44
+ 141 0070 0023     		movs	r3, #0
+ 142 0072 2B70     		strb	r3, [r5]
+ 143 0074 EDE7     		b	.L2
+ 144              		.cfi_endproc
+ 145              	.LFE3:
+ 147              		.text
+ 148              	.Letext0:
+ 149              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 150              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 151              		.file 4 "Core/Inc/vl53l1_types.h"
+ 152              		.file 5 "Core/Inc/vl53l1_ll_device.h"
+ 153              		.file 6 "Core/Inc/vl53l1_error_codes.h"
+ 154              		.file 7 "Core/Inc/vl53l1_register_structs.h"
+ 155              		.file 8 "Core/Inc/vl53l1_ll_def.h"
+ 156              		.file 9 "Core/Inc/vl53l1_def.h"
+ 157              		.file 10 "Core/Inc/vl53l1_platform_user_data.h"
+ 158              		.file 11 "Core/Inc/vl53l1_platform.h"
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_silicon_core.c
+C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s:20     .text.VL53L1_is_firmware_ready_silicon:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccSqe5xO.s:26     .text.VL53L1_is_firmware_ready_silicon:00000000 VL53L1_is_firmware_ready_silicon
+
+UNDEFINED SYMBOLS
+VL53L1_ReadMulti

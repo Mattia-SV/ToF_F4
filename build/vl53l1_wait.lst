@@ -1,0 +1,1789 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_wait.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.VL53L1_is_boot_complete,"ax",%progbits
+  20              		.align	1
+  21              		.global	VL53L1_is_boot_complete
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	VL53L1_is_boot_complete:
+  27              	.LVL0:
+  28              	.LFB7:
+  29              		.file 1 "Core/Src/vl53l1_wait.c"
+   1:Core/Src/vl53l1_wait.c **** /*
+   2:Core/Src/vl53l1_wait.c **** * Copyright (c) 2017, STMicroelectronics - All Rights Reserved
+   3:Core/Src/vl53l1_wait.c **** *
+   4:Core/Src/vl53l1_wait.c **** * This file is part of VL53L1 Core and is dual licensed,
+   5:Core/Src/vl53l1_wait.c **** * either 'STMicroelectronics
+   6:Core/Src/vl53l1_wait.c **** * Proprietary license'
+   7:Core/Src/vl53l1_wait.c **** * or 'BSD 3-clause "New" or "Revised" License' , at your option.
+   8:Core/Src/vl53l1_wait.c **** *
+   9:Core/Src/vl53l1_wait.c **** ********************************************************************************
+  10:Core/Src/vl53l1_wait.c **** *
+  11:Core/Src/vl53l1_wait.c **** * 'STMicroelectronics Proprietary license'
+  12:Core/Src/vl53l1_wait.c **** *
+  13:Core/Src/vl53l1_wait.c **** ********************************************************************************
+  14:Core/Src/vl53l1_wait.c **** *
+  15:Core/Src/vl53l1_wait.c **** * License terms: STMicroelectronics Proprietary in accordance with licensing
+  16:Core/Src/vl53l1_wait.c **** * terms at www.st.com/sla0081
+  17:Core/Src/vl53l1_wait.c **** *
+  18:Core/Src/vl53l1_wait.c **** * STMicroelectronics confidential
+  19:Core/Src/vl53l1_wait.c **** * Reproduction and Communication of this document is strictly prohibited unless
+  20:Core/Src/vl53l1_wait.c **** * specifically authorized in writing by STMicroelectronics.
+  21:Core/Src/vl53l1_wait.c **** *
+  22:Core/Src/vl53l1_wait.c **** *
+  23:Core/Src/vl53l1_wait.c **** ********************************************************************************
+  24:Core/Src/vl53l1_wait.c **** *
+  25:Core/Src/vl53l1_wait.c **** * Alternatively, VL53L1 Core may be distributed under the terms of
+  26:Core/Src/vl53l1_wait.c **** * 'BSD 3-clause "New" or "Revised" License', in which case the following
+  27:Core/Src/vl53l1_wait.c **** * provisions apply instead of the ones mentioned above :
+  28:Core/Src/vl53l1_wait.c **** *
+  29:Core/Src/vl53l1_wait.c **** ********************************************************************************
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 2
+
+
+  30:Core/Src/vl53l1_wait.c **** *
+  31:Core/Src/vl53l1_wait.c **** * License terms: BSD 3-clause "New" or "Revised" License.
+  32:Core/Src/vl53l1_wait.c **** *
+  33:Core/Src/vl53l1_wait.c **** * Redistribution and use in source and binary forms, with or without
+  34:Core/Src/vl53l1_wait.c **** * modification, are permitted provided that the following conditions are met:
+  35:Core/Src/vl53l1_wait.c **** *
+  36:Core/Src/vl53l1_wait.c **** * 1. Redistributions of source code must retain the above copyright notice, this
+  37:Core/Src/vl53l1_wait.c **** * list of conditions and the following disclaimer.
+  38:Core/Src/vl53l1_wait.c **** *
+  39:Core/Src/vl53l1_wait.c **** * 2. Redistributions in binary form must reproduce the above copyright notice,
+  40:Core/Src/vl53l1_wait.c **** * this list of conditions and the following disclaimer in the documentation
+  41:Core/Src/vl53l1_wait.c **** * and/or other materials provided with the distribution.
+  42:Core/Src/vl53l1_wait.c **** *
+  43:Core/Src/vl53l1_wait.c **** * 3. Neither the name of the copyright holder nor the names of its contributors
+  44:Core/Src/vl53l1_wait.c **** * may be used to endorse or promote products derived from this software
+  45:Core/Src/vl53l1_wait.c **** * without specific prior written permission.
+  46:Core/Src/vl53l1_wait.c **** *
+  47:Core/Src/vl53l1_wait.c **** * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  48:Core/Src/vl53l1_wait.c **** * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  49:Core/Src/vl53l1_wait.c **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  50:Core/Src/vl53l1_wait.c **** * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  51:Core/Src/vl53l1_wait.c **** * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  52:Core/Src/vl53l1_wait.c **** * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  53:Core/Src/vl53l1_wait.c **** * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  54:Core/Src/vl53l1_wait.c **** * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  55:Core/Src/vl53l1_wait.c **** * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  56:Core/Src/vl53l1_wait.c **** * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  57:Core/Src/vl53l1_wait.c **** *
+  58:Core/Src/vl53l1_wait.c **** *
+  59:Core/Src/vl53l1_wait.c **** ********************************************************************************
+  60:Core/Src/vl53l1_wait.c **** *
+  61:Core/Src/vl53l1_wait.c **** */
+  62:Core/Src/vl53l1_wait.c **** 
+  63:Core/Src/vl53l1_wait.c **** /**
+  64:Core/Src/vl53l1_wait.c ****  * @file  vl53l1_wait.c
+  65:Core/Src/vl53l1_wait.c ****  *
+  66:Core/Src/vl53l1_wait.c ****  * @brief EwokPlus25 low level Driver wait function definition
+  67:Core/Src/vl53l1_wait.c ****  */
+  68:Core/Src/vl53l1_wait.c **** 
+  69:Core/Src/vl53l1_wait.c **** 
+  70:Core/Src/vl53l1_wait.c **** #include "vl53l1_ll_def.h"
+  71:Core/Src/vl53l1_wait.c **** #include "vl53l1_ll_device.h"
+  72:Core/Src/vl53l1_wait.c **** #include "vl53l1_platform.h"
+  73:Core/Src/vl53l1_wait.c **** #include "vl53l1_core.h"
+  74:Core/Src/vl53l1_wait.c **** #include "vl53l1_silicon_core.h"
+  75:Core/Src/vl53l1_wait.c **** #include "vl53l1_wait.h"
+  76:Core/Src/vl53l1_wait.c **** #include "vl53l1_register_settings.h"
+  77:Core/Src/vl53l1_wait.c **** 
+  78:Core/Src/vl53l1_wait.c **** 
+  79:Core/Src/vl53l1_wait.c **** #define LOG_FUNCTION_START(fmt, ...) \
+  80:Core/Src/vl53l1_wait.c **** 	_LOG_FUNCTION_START(VL53L1_TRACE_MODULE_CORE, fmt, ##__VA_ARGS__)
+  81:Core/Src/vl53l1_wait.c **** #define LOG_FUNCTION_END(status, ...) \
+  82:Core/Src/vl53l1_wait.c **** 	_LOG_FUNCTION_END(VL53L1_TRACE_MODULE_CORE, status, ##__VA_ARGS__)
+  83:Core/Src/vl53l1_wait.c **** #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+  84:Core/Src/vl53l1_wait.c **** 	_LOG_FUNCTION_END_FMT(VL53L1_TRACE_MODULE_CORE, status, \
+  85:Core/Src/vl53l1_wait.c **** 		fmt, ##__VA_ARGS__)
+  86:Core/Src/vl53l1_wait.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 3
+
+
+  87:Core/Src/vl53l1_wait.c **** 
+  88:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_wait_for_boot_completion(
+  89:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV     Dev)
+  90:Core/Src/vl53l1_wait.c **** {
+  91:Core/Src/vl53l1_wait.c **** 
+  92:Core/Src/vl53l1_wait.c **** 	/* Waits for firmware boot to finish
+  93:Core/Src/vl53l1_wait.c **** 	 */
+  94:Core/Src/vl53l1_wait.c **** 
+  95:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+  96:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+  97:Core/Src/vl53l1_wait.c **** 
+  98:Core/Src/vl53l1_wait.c **** 	uint8_t      fw_ready  = 0;
+  99:Core/Src/vl53l1_wait.c **** 
+ 100:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+ 101:Core/Src/vl53l1_wait.c **** 
+ 102:Core/Src/vl53l1_wait.c **** 	if (pdev->wait_method == VL53L1_WAIT_METHOD_BLOCKING) {
+ 103:Core/Src/vl53l1_wait.c **** 
+ 104:Core/Src/vl53l1_wait.c **** 		/* blocking version */
+ 105:Core/Src/vl53l1_wait.c **** 
+ 106:Core/Src/vl53l1_wait.c **** 		status =
+ 107:Core/Src/vl53l1_wait.c **** 			VL53L1_poll_for_boot_completion(
+ 108:Core/Src/vl53l1_wait.c **** 				Dev,
+ 109:Core/Src/vl53l1_wait.c **** 				VL53L1_BOOT_COMPLETION_POLLING_TIMEOUT_MS);
+ 110:Core/Src/vl53l1_wait.c **** 
+ 111:Core/Src/vl53l1_wait.c **** 	} else {
+ 112:Core/Src/vl53l1_wait.c **** 
+ 113:Core/Src/vl53l1_wait.c **** 		/* implement non blocking version below */
+ 114:Core/Src/vl53l1_wait.c **** 
+ 115:Core/Src/vl53l1_wait.c **** 		fw_ready = 0;
+ 116:Core/Src/vl53l1_wait.c **** 		while (fw_ready == 0x00 && status == VL53L1_ERROR_NONE) {
+ 117:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_boot_complete(
+ 118:Core/Src/vl53l1_wait.c **** 				Dev,
+ 119:Core/Src/vl53l1_wait.c **** 				&fw_ready);
+ 120:Core/Src/vl53l1_wait.c **** 
+ 121:Core/Src/vl53l1_wait.c **** 			if (status == VL53L1_ERROR_NONE) {
+ 122:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 123:Core/Src/vl53l1_wait.c **** 					Dev,
+ 124:Core/Src/vl53l1_wait.c **** 					VL53L1_POLLING_DELAY_MS);
+ 125:Core/Src/vl53l1_wait.c **** 			}
+ 126:Core/Src/vl53l1_wait.c **** 		}
+ 127:Core/Src/vl53l1_wait.c **** 	}
+ 128:Core/Src/vl53l1_wait.c **** 
+ 129:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 130:Core/Src/vl53l1_wait.c **** 
+ 131:Core/Src/vl53l1_wait.c **** 	return status;
+ 132:Core/Src/vl53l1_wait.c **** 
+ 133:Core/Src/vl53l1_wait.c **** }
+ 134:Core/Src/vl53l1_wait.c **** 
+ 135:Core/Src/vl53l1_wait.c **** 
+ 136:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_wait_for_firmware_ready(
+ 137:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV     Dev)
+ 138:Core/Src/vl53l1_wait.c **** {
+ 139:Core/Src/vl53l1_wait.c **** 
+ 140:Core/Src/vl53l1_wait.c **** 	/* If in timed mode or single shot then check firmware is ready
+ 141:Core/Src/vl53l1_wait.c **** 	 * before sending handshake
+ 142:Core/Src/vl53l1_wait.c **** 	 */
+ 143:Core/Src/vl53l1_wait.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 4
+
+
+ 144:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 145:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 146:Core/Src/vl53l1_wait.c **** 
+ 147:Core/Src/vl53l1_wait.c **** 	uint8_t      fw_ready  = 0;
+ 148:Core/Src/vl53l1_wait.c **** 	uint8_t      mode_start  = 0;
+ 149:Core/Src/vl53l1_wait.c **** 
+ 150:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+ 151:Core/Src/vl53l1_wait.c **** 
+ 152:Core/Src/vl53l1_wait.c **** 	/* Filter out tje measure mode part of the mode
+ 153:Core/Src/vl53l1_wait.c **** 	 * start register
+ 154:Core/Src/vl53l1_wait.c **** 	 */
+ 155:Core/Src/vl53l1_wait.c **** 	mode_start =
+ 156:Core/Src/vl53l1_wait.c **** 		pdev->sys_ctrl.system__mode_start &
+ 157:Core/Src/vl53l1_wait.c **** 		VL53L1_DEVICEMEASUREMENTMODE_MODE_MASK;
+ 158:Core/Src/vl53l1_wait.c **** 
+ 159:Core/Src/vl53l1_wait.c **** 	/*
+ 160:Core/Src/vl53l1_wait.c **** 	 * conditional wait for firmware ready
+ 161:Core/Src/vl53l1_wait.c **** 	 * only waits for timed and single shot modes
+ 162:Core/Src/vl53l1_wait.c **** 	 */
+ 163:Core/Src/vl53l1_wait.c **** 
+ 164:Core/Src/vl53l1_wait.c **** 	if ((mode_start == VL53L1_DEVICEMEASUREMENTMODE_TIMED) ||
+ 165:Core/Src/vl53l1_wait.c **** 		(mode_start == VL53L1_DEVICEMEASUREMENTMODE_SINGLESHOT)) {
+ 166:Core/Src/vl53l1_wait.c **** 
+ 167:Core/Src/vl53l1_wait.c **** 		if (pdev->wait_method == VL53L1_WAIT_METHOD_BLOCKING) {
+ 168:Core/Src/vl53l1_wait.c **** 
+ 169:Core/Src/vl53l1_wait.c **** 			/* blocking version */
+ 170:Core/Src/vl53l1_wait.c **** 
+ 171:Core/Src/vl53l1_wait.c **** 			status =
+ 172:Core/Src/vl53l1_wait.c **** 				VL53L1_poll_for_firmware_ready(
+ 173:Core/Src/vl53l1_wait.c **** 					Dev,
+ 174:Core/Src/vl53l1_wait.c **** 					VL53L1_RANGE_COMPLETION_POLLING_TIMEOUT_MS);
+ 175:Core/Src/vl53l1_wait.c **** 
+ 176:Core/Src/vl53l1_wait.c **** 		} else {
+ 177:Core/Src/vl53l1_wait.c **** 
+ 178:Core/Src/vl53l1_wait.c **** 			/* implement non blocking version below */
+ 179:Core/Src/vl53l1_wait.c **** 
+ 180:Core/Src/vl53l1_wait.c **** 			fw_ready = 0;
+ 181:Core/Src/vl53l1_wait.c **** 			while (fw_ready == 0x00 && status == VL53L1_ERROR_NONE) {
+ 182:Core/Src/vl53l1_wait.c **** 				status = VL53L1_is_firmware_ready(
+ 183:Core/Src/vl53l1_wait.c **** 					Dev,
+ 184:Core/Src/vl53l1_wait.c **** 					&fw_ready);
+ 185:Core/Src/vl53l1_wait.c **** 
+ 186:Core/Src/vl53l1_wait.c **** 				if (status == VL53L1_ERROR_NONE) {
+ 187:Core/Src/vl53l1_wait.c **** 					status = VL53L1_WaitMs(
+ 188:Core/Src/vl53l1_wait.c **** 						Dev,
+ 189:Core/Src/vl53l1_wait.c **** 						VL53L1_POLLING_DELAY_MS);
+ 190:Core/Src/vl53l1_wait.c **** 				}
+ 191:Core/Src/vl53l1_wait.c **** 			}
+ 192:Core/Src/vl53l1_wait.c **** 		}
+ 193:Core/Src/vl53l1_wait.c **** 	}
+ 194:Core/Src/vl53l1_wait.c **** 
+ 195:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 196:Core/Src/vl53l1_wait.c **** 
+ 197:Core/Src/vl53l1_wait.c **** 	return status;
+ 198:Core/Src/vl53l1_wait.c **** }
+ 199:Core/Src/vl53l1_wait.c **** 
+ 200:Core/Src/vl53l1_wait.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 5
+
+
+ 201:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_wait_for_range_completion(
+ 202:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV     Dev)
+ 203:Core/Src/vl53l1_wait.c **** {
+ 204:Core/Src/vl53l1_wait.c **** 
+ 205:Core/Src/vl53l1_wait.c **** 	/* Wrapper function for waiting for range completion
+ 206:Core/Src/vl53l1_wait.c **** 	 */
+ 207:Core/Src/vl53l1_wait.c **** 
+ 208:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 209:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 210:Core/Src/vl53l1_wait.c **** 
+ 211:Core/Src/vl53l1_wait.c **** 	uint8_t      data_ready  = 0;
+ 212:Core/Src/vl53l1_wait.c **** 
+ 213:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+ 214:Core/Src/vl53l1_wait.c **** 
+ 215:Core/Src/vl53l1_wait.c **** 	if (pdev->wait_method == VL53L1_WAIT_METHOD_BLOCKING) {
+ 216:Core/Src/vl53l1_wait.c **** 
+ 217:Core/Src/vl53l1_wait.c **** 		/* blocking version */
+ 218:Core/Src/vl53l1_wait.c **** 
+ 219:Core/Src/vl53l1_wait.c **** 		status =
+ 220:Core/Src/vl53l1_wait.c **** 			VL53L1_poll_for_range_completion(
+ 221:Core/Src/vl53l1_wait.c **** 				Dev,
+ 222:Core/Src/vl53l1_wait.c **** 				VL53L1_RANGE_COMPLETION_POLLING_TIMEOUT_MS);
+ 223:Core/Src/vl53l1_wait.c **** 
+ 224:Core/Src/vl53l1_wait.c **** 	} else {
+ 225:Core/Src/vl53l1_wait.c **** 
+ 226:Core/Src/vl53l1_wait.c **** 		/* implement non blocking version below */
+ 227:Core/Src/vl53l1_wait.c **** 
+ 228:Core/Src/vl53l1_wait.c **** 		data_ready = 0;
+ 229:Core/Src/vl53l1_wait.c **** 		while (data_ready == 0x00 && status == VL53L1_ERROR_NONE) {
+ 230:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 231:Core/Src/vl53l1_wait.c **** 				Dev,
+ 232:Core/Src/vl53l1_wait.c **** 				&data_ready);
+ 233:Core/Src/vl53l1_wait.c **** 
+ 234:Core/Src/vl53l1_wait.c **** 			if (status == VL53L1_ERROR_NONE) {
+ 235:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 236:Core/Src/vl53l1_wait.c **** 					Dev,
+ 237:Core/Src/vl53l1_wait.c **** 					VL53L1_POLLING_DELAY_MS);
+ 238:Core/Src/vl53l1_wait.c **** 			}
+ 239:Core/Src/vl53l1_wait.c **** 		}
+ 240:Core/Src/vl53l1_wait.c **** 	}
+ 241:Core/Src/vl53l1_wait.c **** 
+ 242:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 243:Core/Src/vl53l1_wait.c **** 
+ 244:Core/Src/vl53l1_wait.c **** 	return status;
+ 245:Core/Src/vl53l1_wait.c **** }
+ 246:Core/Src/vl53l1_wait.c **** 
+ 247:Core/Src/vl53l1_wait.c **** 
+ 248:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_wait_for_test_completion(
+ 249:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV     Dev)
+ 250:Core/Src/vl53l1_wait.c **** {
+ 251:Core/Src/vl53l1_wait.c **** 
+ 252:Core/Src/vl53l1_wait.c **** 	/* Wrapper function for waiting for test mode completion
+ 253:Core/Src/vl53l1_wait.c **** 	 */
+ 254:Core/Src/vl53l1_wait.c **** 
+ 255:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 256:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 257:Core/Src/vl53l1_wait.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 6
+
+
+ 258:Core/Src/vl53l1_wait.c **** 	uint8_t      data_ready  = 0;
+ 259:Core/Src/vl53l1_wait.c **** 
+ 260:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+ 261:Core/Src/vl53l1_wait.c **** 
+ 262:Core/Src/vl53l1_wait.c **** 	if (pdev->wait_method == VL53L1_WAIT_METHOD_BLOCKING) {
+ 263:Core/Src/vl53l1_wait.c **** 
+ 264:Core/Src/vl53l1_wait.c **** 		/* blocking version */
+ 265:Core/Src/vl53l1_wait.c **** 
+ 266:Core/Src/vl53l1_wait.c **** 		status =
+ 267:Core/Src/vl53l1_wait.c **** 			VL53L1_poll_for_range_completion(
+ 268:Core/Src/vl53l1_wait.c **** 				Dev,
+ 269:Core/Src/vl53l1_wait.c **** 				VL53L1_TEST_COMPLETION_POLLING_TIMEOUT_MS);
+ 270:Core/Src/vl53l1_wait.c **** 
+ 271:Core/Src/vl53l1_wait.c **** 	} else {
+ 272:Core/Src/vl53l1_wait.c **** 
+ 273:Core/Src/vl53l1_wait.c **** 		/* implement non blocking version below */
+ 274:Core/Src/vl53l1_wait.c **** 
+ 275:Core/Src/vl53l1_wait.c **** 		data_ready = 0;
+ 276:Core/Src/vl53l1_wait.c **** 		while (data_ready == 0x00 && status == VL53L1_ERROR_NONE) {
+ 277:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 278:Core/Src/vl53l1_wait.c **** 				Dev,
+ 279:Core/Src/vl53l1_wait.c **** 				&data_ready);
+ 280:Core/Src/vl53l1_wait.c **** 
+ 281:Core/Src/vl53l1_wait.c **** 			if (status == VL53L1_ERROR_NONE) {
+ 282:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 283:Core/Src/vl53l1_wait.c **** 					Dev,
+ 284:Core/Src/vl53l1_wait.c **** 					VL53L1_POLLING_DELAY_MS);
+ 285:Core/Src/vl53l1_wait.c **** 			}
+ 286:Core/Src/vl53l1_wait.c **** 		}
+ 287:Core/Src/vl53l1_wait.c **** 	}
+ 288:Core/Src/vl53l1_wait.c **** 
+ 289:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 290:Core/Src/vl53l1_wait.c **** 
+ 291:Core/Src/vl53l1_wait.c **** 	return status;
+ 292:Core/Src/vl53l1_wait.c **** }
+ 293:Core/Src/vl53l1_wait.c **** 
+ 294:Core/Src/vl53l1_wait.c **** 
+ 295:Core/Src/vl53l1_wait.c **** 
+ 296:Core/Src/vl53l1_wait.c **** 
+ 297:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_is_boot_complete(
+ 298:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV     Dev,
+ 299:Core/Src/vl53l1_wait.c **** 	uint8_t       *pready)
+ 300:Core/Src/vl53l1_wait.c **** {
+  30              		.loc 1 300 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 300 1 is_stmt 0 view .LVU1
+  35 0000 70B5     		push	{r4, r5, r6, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 4, -16
+  39              		.cfi_offset 5, -12
+  40              		.cfi_offset 6, -8
+  41              		.cfi_offset 14, -4
+  42 0002 82B0     		sub	sp, sp, #8
+  43              	.LCFI1:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 7
+
+
+  44              		.cfi_def_cfa_offset 24
+  45 0004 0546     		mov	r5, r0
+  46 0006 0E46     		mov	r6, r1
+ 301:Core/Src/vl53l1_wait.c **** 	/**
+ 302:Core/Src/vl53l1_wait.c **** 	 * Determines if the firmware finished booting by reading
+ 303:Core/Src/vl53l1_wait.c **** 	 * bit 0 of firmware__system_status register
+ 304:Core/Src/vl53l1_wait.c **** 	 */
+ 305:Core/Src/vl53l1_wait.c **** 
+ 306:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+  47              		.loc 1 306 2 is_stmt 1 view .LVU2
+  48              	.LVL1:
+ 307:Core/Src/vl53l1_wait.c **** 	uint8_t  firmware__system_status = 0;
+  49              		.loc 1 307 2 view .LVU3
+  50              		.loc 1 307 11 is_stmt 0 view .LVU4
+  51 0008 0023     		movs	r3, #0
+  52 000a 8DF80730 		strb	r3, [sp, #7]
+ 308:Core/Src/vl53l1_wait.c **** 
+ 309:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+  53              		.loc 1 309 24 is_stmt 1 view .LVU5
+ 310:Core/Src/vl53l1_wait.c **** 
+ 311:Core/Src/vl53l1_wait.c **** 	/* read current range interrupt state */
+ 312:Core/Src/vl53l1_wait.c **** 
+ 313:Core/Src/vl53l1_wait.c **** 	status =
+  54              		.loc 1 313 2 view .LVU6
+ 314:Core/Src/vl53l1_wait.c **** 		VL53L1_RdByte(
+  55              		.loc 1 314 3 is_stmt 0 view .LVU7
+  56 000e 0DF10702 		add	r2, sp, #7
+  57 0012 E521     		movs	r1, #229
+  58              	.LVL2:
+  59              		.loc 1 314 3 view .LVU8
+  60 0014 FFF7FEFF 		bl	VL53L1_RdByte
+  61              	.LVL3:
+  62              		.loc 1 314 3 view .LVU9
+  63 0018 0446     		mov	r4, r0
+  64              	.LVL4:
+ 315:Core/Src/vl53l1_wait.c **** 			Dev,
+ 316:Core/Src/vl53l1_wait.c **** 			VL53L1_FIRMWARE__SYSTEM_STATUS,
+ 317:Core/Src/vl53l1_wait.c **** 			&firmware__system_status);
+ 318:Core/Src/vl53l1_wait.c **** 
+ 319:Core/Src/vl53l1_wait.c **** 	/* set *pready = 1 if new range data ready complete
+ 320:Core/Src/vl53l1_wait.c **** 	 * zero otherwise
+ 321:Core/Src/vl53l1_wait.c **** 	 */
+ 322:Core/Src/vl53l1_wait.c **** 
+ 323:Core/Src/vl53l1_wait.c **** 	if ((firmware__system_status & 0x01) == 0x01) {
+  65              		.loc 1 323 2 is_stmt 1 view .LVU10
+  66              		.loc 1 323 31 is_stmt 0 view .LVU11
+  67 001a 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+  68              		.loc 1 323 5 view .LVU12
+  69 001e 13F0010F 		tst	r3, #1
+  70 0022 08D0     		beq	.L2
+ 324:Core/Src/vl53l1_wait.c **** 		*pready = 0x01;
+  71              		.loc 1 324 3 is_stmt 1 view .LVU13
+  72              		.loc 1 324 11 is_stmt 0 view .LVU14
+  73 0024 0123     		movs	r3, #1
+  74 0026 3370     		strb	r3, [r6]
+ 325:Core/Src/vl53l1_wait.c **** 		VL53L1_init_ll_driver_state(
+  75              		.loc 1 325 3 is_stmt 1 view .LVU15
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 8
+
+
+  76 0028 0321     		movs	r1, #3
+  77 002a 2846     		mov	r0, r5
+  78 002c FFF7FEFF 		bl	VL53L1_init_ll_driver_state
+  79              	.LVL5:
+  80              	.L3:
+ 326:Core/Src/vl53l1_wait.c **** 			Dev,
+ 327:Core/Src/vl53l1_wait.c **** 			VL53L1_DEVICESTATE_SW_STANDBY);
+ 328:Core/Src/vl53l1_wait.c **** 	} else {
+ 329:Core/Src/vl53l1_wait.c **** 		*pready = 0x00;
+ 330:Core/Src/vl53l1_wait.c **** 		VL53L1_init_ll_driver_state(
+ 331:Core/Src/vl53l1_wait.c **** 			Dev,
+ 332:Core/Src/vl53l1_wait.c **** 			VL53L1_DEVICESTATE_FW_COLDBOOT);
+ 333:Core/Src/vl53l1_wait.c **** 	}
+ 334:Core/Src/vl53l1_wait.c **** 
+ 335:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+  81              		.loc 1 335 26 view .LVU16
+ 336:Core/Src/vl53l1_wait.c **** 
+ 337:Core/Src/vl53l1_wait.c **** 	return status;
+  82              		.loc 1 337 2 view .LVU17
+ 338:Core/Src/vl53l1_wait.c **** }
+  83              		.loc 1 338 1 is_stmt 0 view .LVU18
+  84 0030 2046     		mov	r0, r4
+  85 0032 02B0     		add	sp, sp, #8
+  86              	.LCFI2:
+  87              		.cfi_remember_state
+  88              		.cfi_def_cfa_offset 16
+  89              		@ sp needed
+  90 0034 70BD     		pop	{r4, r5, r6, pc}
+  91              	.LVL6:
+  92              	.L2:
+  93              	.LCFI3:
+  94              		.cfi_restore_state
+ 329:Core/Src/vl53l1_wait.c **** 		VL53L1_init_ll_driver_state(
+  95              		.loc 1 329 3 is_stmt 1 view .LVU19
+ 329:Core/Src/vl53l1_wait.c **** 		VL53L1_init_ll_driver_state(
+  96              		.loc 1 329 11 is_stmt 0 view .LVU20
+  97 0036 0023     		movs	r3, #0
+  98 0038 3370     		strb	r3, [r6]
+ 330:Core/Src/vl53l1_wait.c **** 			Dev,
+  99              		.loc 1 330 3 is_stmt 1 view .LVU21
+ 100 003a 0221     		movs	r1, #2
+ 101 003c 2846     		mov	r0, r5
+ 102 003e FFF7FEFF 		bl	VL53L1_init_ll_driver_state
+ 103              	.LVL7:
+ 104 0042 F5E7     		b	.L3
+ 105              		.cfi_endproc
+ 106              	.LFE7:
+ 108              		.section	.text.VL53L1_is_firmware_ready,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	VL53L1_is_firmware_ready
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 115              	VL53L1_is_firmware_ready:
+ 116              	.LVL8:
+ 117              	.LFB8:
+ 339:Core/Src/vl53l1_wait.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 9
+
+
+ 340:Core/Src/vl53l1_wait.c **** 
+ 341:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_is_firmware_ready(
+ 342:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV     Dev,
+ 343:Core/Src/vl53l1_wait.c **** 	uint8_t       *pready)
+ 344:Core/Src/vl53l1_wait.c **** {
+ 118              		.loc 1 344 1 view -0
+ 119              		.cfi_startproc
+ 120              		@ args = 0, pretend = 0, frame = 0
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+ 122              		.loc 1 344 1 is_stmt 0 view .LVU23
+ 123 0000 38B5     		push	{r3, r4, r5, lr}
+ 124              	.LCFI4:
+ 125              		.cfi_def_cfa_offset 16
+ 126              		.cfi_offset 3, -16
+ 127              		.cfi_offset 4, -12
+ 128              		.cfi_offset 5, -8
+ 129              		.cfi_offset 14, -4
+ 130 0002 0446     		mov	r4, r0
+ 131 0004 0D46     		mov	r5, r1
+ 345:Core/Src/vl53l1_wait.c **** 	/**
+ 346:Core/Src/vl53l1_wait.c **** 	 * Determines if the firmware is ready to range
+ 347:Core/Src/vl53l1_wait.c **** 	 */
+ 348:Core/Src/vl53l1_wait.c **** 
+ 349:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 132              		.loc 1 349 2 is_stmt 1 view .LVU24
+ 133              	.LVL9:
+ 350:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 134              		.loc 1 350 2 view .LVU25
+ 351:Core/Src/vl53l1_wait.c **** 
+ 352:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+ 135              		.loc 1 352 24 view .LVU26
+ 353:Core/Src/vl53l1_wait.c **** 
+ 354:Core/Src/vl53l1_wait.c **** 	status = VL53L1_is_firmware_ready_silicon(
+ 136              		.loc 1 354 2 view .LVU27
+ 137              		.loc 1 354 11 is_stmt 0 view .LVU28
+ 138 0006 FFF7FEFF 		bl	VL53L1_is_firmware_ready_silicon
+ 139              	.LVL10:
+ 355:Core/Src/vl53l1_wait.c **** 					Dev,
+ 356:Core/Src/vl53l1_wait.c **** 					pready);
+ 357:Core/Src/vl53l1_wait.c **** 
+ 358:Core/Src/vl53l1_wait.c **** 	pdev->fw_ready = *pready;
+ 140              		.loc 1 358 2 is_stmt 1 view .LVU29
+ 141              		.loc 1 358 19 is_stmt 0 view .LVU30
+ 142 000a 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 143              		.loc 1 358 17 view .LVU31
+ 144 000c 84F82030 		strb	r3, [r4, #32]
+ 359:Core/Src/vl53l1_wait.c **** 
+ 360:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 145              		.loc 1 360 26 is_stmt 1 view .LVU32
+ 361:Core/Src/vl53l1_wait.c **** 
+ 362:Core/Src/vl53l1_wait.c **** 	return status;
+ 146              		.loc 1 362 2 view .LVU33
+ 363:Core/Src/vl53l1_wait.c **** }
+ 147              		.loc 1 363 1 is_stmt 0 view .LVU34
+ 148 0010 38BD     		pop	{r3, r4, r5, pc}
+ 149              		.loc 1 363 1 view .LVU35
+ 150              		.cfi_endproc
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 10
+
+
+ 151              	.LFE8:
+ 153              		.section	.text.VL53L1_is_new_data_ready,"ax",%progbits
+ 154              		.align	1
+ 155              		.global	VL53L1_is_new_data_ready
+ 156              		.syntax unified
+ 157              		.thumb
+ 158              		.thumb_func
+ 160              	VL53L1_is_new_data_ready:
+ 161              	.LVL11:
+ 162              	.LFB9:
+ 364:Core/Src/vl53l1_wait.c **** 
+ 365:Core/Src/vl53l1_wait.c **** 
+ 366:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_is_new_data_ready(
+ 367:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV     Dev,
+ 368:Core/Src/vl53l1_wait.c **** 	uint8_t       *pready)
+ 369:Core/Src/vl53l1_wait.c **** {
+ 163              		.loc 1 369 1 is_stmt 1 view -0
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 8
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167              		.loc 1 369 1 is_stmt 0 view .LVU37
+ 168 0000 30B5     		push	{r4, r5, lr}
+ 169              	.LCFI5:
+ 170              		.cfi_def_cfa_offset 12
+ 171              		.cfi_offset 4, -12
+ 172              		.cfi_offset 5, -8
+ 173              		.cfi_offset 14, -4
+ 174 0002 83B0     		sub	sp, sp, #12
+ 175              	.LCFI6:
+ 176              		.cfi_def_cfa_offset 24
+ 177 0004 0C46     		mov	r4, r1
+ 370:Core/Src/vl53l1_wait.c **** 	/**
+ 371:Core/Src/vl53l1_wait.c **** 	 * Determines if new range data is ready by reading bit 0 of
+ 372:Core/Src/vl53l1_wait.c **** 	 * VL53L1_GPIO__TIO_HV_STATUS to determine the current state
+ 373:Core/Src/vl53l1_wait.c **** 	 * of output interrupt pin
+ 374:Core/Src/vl53l1_wait.c **** 	 */
+ 375:Core/Src/vl53l1_wait.c **** 
+ 376:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 178              		.loc 1 376 2 is_stmt 1 view .LVU38
+ 179              	.LVL12:
+ 377:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 180              		.loc 1 377 2 view .LVU39
+ 378:Core/Src/vl53l1_wait.c **** 
+ 379:Core/Src/vl53l1_wait.c **** 	uint8_t  gpio__mux_active_high_hv = 0;
+ 181              		.loc 1 379 2 view .LVU40
+ 380:Core/Src/vl53l1_wait.c **** 	uint8_t  gpio__tio_hv_status      = 0;
+ 182              		.loc 1 380 2 view .LVU41
+ 183              		.loc 1 380 11 is_stmt 0 view .LVU42
+ 184 0006 0023     		movs	r3, #0
+ 185 0008 8DF80730 		strb	r3, [sp, #7]
+ 381:Core/Src/vl53l1_wait.c **** 	uint8_t  interrupt_ready          = 0;
+ 186              		.loc 1 381 2 is_stmt 1 view .LVU43
+ 187              	.LVL13:
+ 382:Core/Src/vl53l1_wait.c **** 
+ 383:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+ 188              		.loc 1 383 24 view .LVU44
+ 384:Core/Src/vl53l1_wait.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 11
+
+
+ 385:Core/Src/vl53l1_wait.c **** 	gpio__mux_active_high_hv =
+ 189              		.loc 1 385 2 view .LVU45
+ 386:Core/Src/vl53l1_wait.c **** 			pdev->stat_cfg.gpio_hv_mux__ctrl &
+ 190              		.loc 1 386 18 is_stmt 0 view .LVU46
+ 191 000c 90F87031 		ldrb	r3, [r0, #368]	@ zero_extendqisi2
+ 192              	.LVL14:
+ 387:Core/Src/vl53l1_wait.c **** 			VL53L1_DEVICEINTERRUPTLEVEL_ACTIVE_MASK;
+ 388:Core/Src/vl53l1_wait.c **** 
+ 389:Core/Src/vl53l1_wait.c **** 	if (gpio__mux_active_high_hv == VL53L1_DEVICEINTERRUPTLEVEL_ACTIVE_HIGH)
+ 193              		.loc 1 389 2 is_stmt 1 view .LVU47
+ 194              		.loc 1 389 5 is_stmt 0 view .LVU48
+ 195 0010 13F0100F 		tst	r3, #16
+ 196 0014 0FD1     		bne	.L11
+ 390:Core/Src/vl53l1_wait.c **** 		interrupt_ready = 0x01;
+ 197              		.loc 1 390 19 view .LVU49
+ 198 0016 0125     		movs	r5, #1
+ 199              	.L8:
+ 200              	.LVL15:
+ 391:Core/Src/vl53l1_wait.c **** 	else
+ 392:Core/Src/vl53l1_wait.c **** 		interrupt_ready = 0x00;
+ 393:Core/Src/vl53l1_wait.c **** 
+ 394:Core/Src/vl53l1_wait.c **** 	/* read current range interrupt state */
+ 395:Core/Src/vl53l1_wait.c **** 
+ 396:Core/Src/vl53l1_wait.c **** 	status = VL53L1_RdByte(
+ 201              		.loc 1 396 2 is_stmt 1 view .LVU50
+ 202              		.loc 1 396 11 is_stmt 0 view .LVU51
+ 203 0018 0DF10702 		add	r2, sp, #7
+ 204 001c 3121     		movs	r1, #49
+ 205              	.LVL16:
+ 206              		.loc 1 396 11 view .LVU52
+ 207 001e FFF7FEFF 		bl	VL53L1_RdByte
+ 208              	.LVL17:
+ 397:Core/Src/vl53l1_wait.c **** 					Dev,
+ 398:Core/Src/vl53l1_wait.c **** 					VL53L1_GPIO__TIO_HV_STATUS,
+ 399:Core/Src/vl53l1_wait.c **** 					&gpio__tio_hv_status);
+ 400:Core/Src/vl53l1_wait.c **** 
+ 401:Core/Src/vl53l1_wait.c **** 	/* set *pready = 1 if new range data ready complete zero otherwise */
+ 402:Core/Src/vl53l1_wait.c **** 
+ 403:Core/Src/vl53l1_wait.c **** 	if ((gpio__tio_hv_status & 0x01) == interrupt_ready)
+ 209              		.loc 1 403 2 is_stmt 1 view .LVU53
+ 210              		.loc 1 403 27 is_stmt 0 view .LVU54
+ 211 0022 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 212              		.loc 1 403 5 view .LVU55
+ 213 0026 03F00103 		and	r3, r3, #1
+ 214 002a 9D42     		cmp	r5, r3
+ 215 002c 05D0     		beq	.L13
+ 404:Core/Src/vl53l1_wait.c **** 		*pready = 0x01;
+ 405:Core/Src/vl53l1_wait.c **** 	else
+ 406:Core/Src/vl53l1_wait.c **** 		*pready = 0x00;
+ 216              		.loc 1 406 3 is_stmt 1 view .LVU56
+ 217              		.loc 1 406 11 is_stmt 0 view .LVU57
+ 218 002e 0023     		movs	r3, #0
+ 219 0030 2370     		strb	r3, [r4]
+ 220              	.L10:
+ 407:Core/Src/vl53l1_wait.c **** 
+ 408:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 221              		.loc 1 408 26 is_stmt 1 view .LVU58
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 12
+
+
+ 409:Core/Src/vl53l1_wait.c **** 
+ 410:Core/Src/vl53l1_wait.c **** 	return status;
+ 222              		.loc 1 410 2 view .LVU59
+ 411:Core/Src/vl53l1_wait.c **** }
+ 223              		.loc 1 411 1 is_stmt 0 view .LVU60
+ 224 0032 03B0     		add	sp, sp, #12
+ 225              	.LCFI7:
+ 226              		.cfi_remember_state
+ 227              		.cfi_def_cfa_offset 12
+ 228              		@ sp needed
+ 229 0034 30BD     		pop	{r4, r5, pc}
+ 230              	.LVL18:
+ 231              	.L11:
+ 232              	.LCFI8:
+ 233              		.cfi_restore_state
+ 392:Core/Src/vl53l1_wait.c **** 
+ 234              		.loc 1 392 19 view .LVU61
+ 235 0036 0025     		movs	r5, #0
+ 236 0038 EEE7     		b	.L8
+ 237              	.LVL19:
+ 238              	.L13:
+ 404:Core/Src/vl53l1_wait.c **** 	else
+ 239              		.loc 1 404 3 is_stmt 1 view .LVU62
+ 404:Core/Src/vl53l1_wait.c **** 	else
+ 240              		.loc 1 404 11 is_stmt 0 view .LVU63
+ 241 003a 0123     		movs	r3, #1
+ 242 003c 2370     		strb	r3, [r4]
+ 243 003e F8E7     		b	.L10
+ 244              		.cfi_endproc
+ 245              	.LFE9:
+ 247              		.section	.text.VL53L1_poll_for_boot_completion,"ax",%progbits
+ 248              		.align	1
+ 249              		.global	VL53L1_poll_for_boot_completion
+ 250              		.syntax unified
+ 251              		.thumb
+ 252              		.thumb_func
+ 254              	VL53L1_poll_for_boot_completion:
+ 255              	.LVL20:
+ 256              	.LFB10:
+ 412:Core/Src/vl53l1_wait.c **** 
+ 413:Core/Src/vl53l1_wait.c **** 
+ 414:Core/Src/vl53l1_wait.c **** 
+ 415:Core/Src/vl53l1_wait.c **** 
+ 416:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_poll_for_boot_completion(
+ 417:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV    Dev,
+ 418:Core/Src/vl53l1_wait.c **** 	uint32_t      timeout_ms)
+ 419:Core/Src/vl53l1_wait.c **** {
+ 257              		.loc 1 419 1 is_stmt 1 view -0
+ 258              		.cfi_startproc
+ 259              		@ args = 0, pretend = 0, frame = 0
+ 260              		@ frame_needed = 0, uses_anonymous_args = 0
+ 261              		.loc 1 419 1 is_stmt 0 view .LVU65
+ 262 0000 70B5     		push	{r4, r5, r6, lr}
+ 263              	.LCFI9:
+ 264              		.cfi_def_cfa_offset 16
+ 265              		.cfi_offset 4, -16
+ 266              		.cfi_offset 5, -12
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 13
+
+
+ 267              		.cfi_offset 6, -8
+ 268              		.cfi_offset 14, -4
+ 269 0002 82B0     		sub	sp, sp, #8
+ 270              	.LCFI10:
+ 271              		.cfi_def_cfa_offset 24
+ 272 0004 0546     		mov	r5, r0
+ 273 0006 0E46     		mov	r6, r1
+ 420:Core/Src/vl53l1_wait.c **** 	/**
+ 421:Core/Src/vl53l1_wait.c **** 	 * Polls the bit 0 of the FIRMWARE__SYSTEM_STATUS register to see if
+ 422:Core/Src/vl53l1_wait.c **** 	 * the firmware is ready.
+ 423:Core/Src/vl53l1_wait.c **** 	 */
+ 424:Core/Src/vl53l1_wait.c **** 
+ 425:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status       = VL53L1_ERROR_NONE;
+ 274              		.loc 1 425 2 is_stmt 1 view .LVU66
+ 275              	.LVL21:
+ 426:Core/Src/vl53l1_wait.c **** 
+ 427:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+ 276              		.loc 1 427 24 view .LVU67
+ 428:Core/Src/vl53l1_wait.c **** 
+ 429:Core/Src/vl53l1_wait.c **** 	/* after reset for the firmware blocks I2C access while
+ 430:Core/Src/vl53l1_wait.c **** 	 * it copies the NVM data into the G02 host register banks
+ 431:Core/Src/vl53l1_wait.c **** 	 * The host must wait the required time to allow the copy
+ 432:Core/Src/vl53l1_wait.c **** 	 * to complete before attempting to read the firmware status
+ 433:Core/Src/vl53l1_wait.c **** 	 */
+ 434:Core/Src/vl53l1_wait.c **** 
+ 435:Core/Src/vl53l1_wait.c **** 	status = VL53L1_WaitUs(
+ 277              		.loc 1 435 2 view .LVU68
+ 278              		.loc 1 435 11 is_stmt 0 view .LVU69
+ 279 0008 4FF49661 		mov	r1, #1200
+ 280              	.LVL22:
+ 281              		.loc 1 435 11 view .LVU70
+ 282 000c FFF7FEFF 		bl	VL53L1_WaitUs
+ 283              	.LVL23:
+ 436:Core/Src/vl53l1_wait.c **** 			Dev,
+ 437:Core/Src/vl53l1_wait.c **** 			VL53L1_FIRMWARE_BOOT_TIME_US);
+ 438:Core/Src/vl53l1_wait.c **** 
+ 439:Core/Src/vl53l1_wait.c **** 	if (status == VL53L1_ERROR_NONE)
+ 284              		.loc 1 439 2 is_stmt 1 view .LVU71
+ 285              		.loc 1 439 5 is_stmt 0 view .LVU72
+ 286 0010 0446     		mov	r4, r0
+ 287 0012 18B1     		cbz	r0, .L18
+ 288              	.LVL24:
+ 289              	.L15:
+ 440:Core/Src/vl53l1_wait.c **** 		status =
+ 441:Core/Src/vl53l1_wait.c **** 			VL53L1_WaitValueMaskEx(
+ 442:Core/Src/vl53l1_wait.c **** 				Dev,
+ 443:Core/Src/vl53l1_wait.c **** 				timeout_ms,
+ 444:Core/Src/vl53l1_wait.c **** 				VL53L1_FIRMWARE__SYSTEM_STATUS,
+ 445:Core/Src/vl53l1_wait.c **** 				0x01,
+ 446:Core/Src/vl53l1_wait.c **** 				0x01,
+ 447:Core/Src/vl53l1_wait.c **** 				VL53L1_POLLING_DELAY_MS);
+ 448:Core/Src/vl53l1_wait.c **** 
+ 449:Core/Src/vl53l1_wait.c **** 	if (status == VL53L1_ERROR_NONE)
+ 290              		.loc 1 449 2 is_stmt 1 view .LVU73
+ 291              		.loc 1 449 5 is_stmt 0 view .LVU74
+ 292 0014 64B1     		cbz	r4, .L19
+ 293              	.L16:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 14
+
+
+ 450:Core/Src/vl53l1_wait.c **** 		VL53L1_init_ll_driver_state(Dev, VL53L1_DEVICESTATE_SW_STANDBY);
+ 451:Core/Src/vl53l1_wait.c **** 
+ 452:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 294              		.loc 1 452 26 is_stmt 1 view .LVU75
+ 453:Core/Src/vl53l1_wait.c **** 
+ 454:Core/Src/vl53l1_wait.c **** 	return status;
+ 295              		.loc 1 454 2 view .LVU76
+ 455:Core/Src/vl53l1_wait.c **** }
+ 296              		.loc 1 455 1 is_stmt 0 view .LVU77
+ 297 0016 2046     		mov	r0, r4
+ 298 0018 02B0     		add	sp, sp, #8
+ 299              	.LCFI11:
+ 300              		.cfi_remember_state
+ 301              		.cfi_def_cfa_offset 16
+ 302              		@ sp needed
+ 303 001a 70BD     		pop	{r4, r5, r6, pc}
+ 304              	.LVL25:
+ 305              	.L18:
+ 306              	.LCFI12:
+ 307              		.cfi_restore_state
+ 440:Core/Src/vl53l1_wait.c **** 			VL53L1_WaitValueMaskEx(
+ 308              		.loc 1 440 3 is_stmt 1 view .LVU78
+ 441:Core/Src/vl53l1_wait.c **** 				Dev,
+ 309              		.loc 1 441 4 is_stmt 0 view .LVU79
+ 310 001c 0123     		movs	r3, #1
+ 311 001e 0193     		str	r3, [sp, #4]
+ 312 0020 0093     		str	r3, [sp]
+ 313 0022 E522     		movs	r2, #229
+ 314 0024 3146     		mov	r1, r6
+ 315 0026 2846     		mov	r0, r5
+ 316              	.LVL26:
+ 441:Core/Src/vl53l1_wait.c **** 				Dev,
+ 317              		.loc 1 441 4 view .LVU80
+ 318 0028 FFF7FEFF 		bl	VL53L1_WaitValueMaskEx
+ 319              	.LVL27:
+ 320 002c 0446     		mov	r4, r0
+ 321              	.LVL28:
+ 441:Core/Src/vl53l1_wait.c **** 				Dev,
+ 322              		.loc 1 441 4 view .LVU81
+ 323 002e F1E7     		b	.L15
+ 324              	.L19:
+ 450:Core/Src/vl53l1_wait.c **** 
+ 325              		.loc 1 450 3 is_stmt 1 view .LVU82
+ 326 0030 0321     		movs	r1, #3
+ 327 0032 2846     		mov	r0, r5
+ 328 0034 FFF7FEFF 		bl	VL53L1_init_ll_driver_state
+ 329              	.LVL29:
+ 330 0038 EDE7     		b	.L16
+ 331              		.cfi_endproc
+ 332              	.LFE10:
+ 334              		.section	.text.VL53L1_wait_for_boot_completion,"ax",%progbits
+ 335              		.align	1
+ 336              		.global	VL53L1_wait_for_boot_completion
+ 337              		.syntax unified
+ 338              		.thumb
+ 339              		.thumb_func
+ 341              	VL53L1_wait_for_boot_completion:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 15
+
+
+ 342              	.LVL30:
+ 343              	.LFB3:
+  90:Core/Src/vl53l1_wait.c **** 
+ 344              		.loc 1 90 1 view -0
+ 345              		.cfi_startproc
+ 346              		@ args = 0, pretend = 0, frame = 8
+ 347              		@ frame_needed = 0, uses_anonymous_args = 0
+  90:Core/Src/vl53l1_wait.c **** 
+ 348              		.loc 1 90 1 is_stmt 0 view .LVU84
+ 349 0000 10B5     		push	{r4, lr}
+ 350              	.LCFI13:
+ 351              		.cfi_def_cfa_offset 8
+ 352              		.cfi_offset 4, -8
+ 353              		.cfi_offset 14, -4
+ 354 0002 82B0     		sub	sp, sp, #8
+ 355              	.LCFI14:
+ 356              		.cfi_def_cfa_offset 16
+ 357 0004 0446     		mov	r4, r0
+  95:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 358              		.loc 1 95 2 is_stmt 1 view .LVU85
+ 359              	.LVL31:
+  96:Core/Src/vl53l1_wait.c **** 
+ 360              		.loc 1 96 2 view .LVU86
+  98:Core/Src/vl53l1_wait.c **** 
+ 361              		.loc 1 98 2 view .LVU87
+  98:Core/Src/vl53l1_wait.c **** 
+ 362              		.loc 1 98 15 is_stmt 0 view .LVU88
+ 363 0006 0023     		movs	r3, #0
+ 364 0008 8DF80730 		strb	r3, [sp, #7]
+ 100:Core/Src/vl53l1_wait.c **** 
+ 365              		.loc 1 100 24 is_stmt 1 view .LVU89
+ 102:Core/Src/vl53l1_wait.c **** 
+ 366              		.loc 1 102 2 view .LVU90
+ 102:Core/Src/vl53l1_wait.c **** 
+ 367              		.loc 1 102 10 is_stmt 0 view .LVU91
+ 368 000c 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 102:Core/Src/vl53l1_wait.c **** 
+ 369              		.loc 1 102 5 view .LVU92
+ 370 000e 93B1     		cbz	r3, .L27
+  95:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 371              		.loc 1 95 15 view .LVU93
+ 372 0010 0023     		movs	r3, #0
+ 373              	.LVL32:
+ 374              	.L23:
+ 116:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_boot_complete(
+ 375              		.loc 1 116 9 is_stmt 1 view .LVU94
+ 116:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_boot_complete(
+ 376              		.loc 1 116 19 is_stmt 0 view .LVU95
+ 377 0012 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 116:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_boot_complete(
+ 378              		.loc 1 116 9 view .LVU96
+ 379 0016 9AB9     		cbnz	r2, .L22
+ 116:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_boot_complete(
+ 380              		.loc 1 116 27 discriminator 1 view .LVU97
+ 381 0018 93B9     		cbnz	r3, .L22
+ 117:Core/Src/vl53l1_wait.c **** 				Dev,
+ 382              		.loc 1 117 4 is_stmt 1 view .LVU98
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 16
+
+
+ 117:Core/Src/vl53l1_wait.c **** 				Dev,
+ 383              		.loc 1 117 13 is_stmt 0 view .LVU99
+ 384 001a 0DF10701 		add	r1, sp, #7
+ 385 001e 2046     		mov	r0, r4
+ 386 0020 FFF7FEFF 		bl	VL53L1_is_boot_complete
+ 387              	.LVL33:
+ 121:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 388              		.loc 1 121 4 is_stmt 1 view .LVU100
+ 121:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 389              		.loc 1 121 7 is_stmt 0 view .LVU101
+ 390 0024 0346     		mov	r3, r0
+ 391 0026 0028     		cmp	r0, #0
+ 392 0028 F3D1     		bne	.L23
+ 122:Core/Src/vl53l1_wait.c **** 					Dev,
+ 393              		.loc 1 122 5 is_stmt 1 view .LVU102
+ 122:Core/Src/vl53l1_wait.c **** 					Dev,
+ 394              		.loc 1 122 14 is_stmt 0 view .LVU103
+ 395 002a 0121     		movs	r1, #1
+ 396 002c 2046     		mov	r0, r4
+ 397              	.LVL34:
+ 122:Core/Src/vl53l1_wait.c **** 					Dev,
+ 398              		.loc 1 122 14 view .LVU104
+ 399 002e FFF7FEFF 		bl	VL53L1_WaitMs
+ 400              	.LVL35:
+ 401 0032 0346     		mov	r3, r0
+ 402              	.LVL36:
+ 122:Core/Src/vl53l1_wait.c **** 					Dev,
+ 403              		.loc 1 122 14 view .LVU105
+ 404 0034 EDE7     		b	.L23
+ 405              	.LVL37:
+ 406              	.L27:
+ 106:Core/Src/vl53l1_wait.c **** 			VL53L1_poll_for_boot_completion(
+ 407              		.loc 1 106 3 is_stmt 1 view .LVU106
+ 107:Core/Src/vl53l1_wait.c **** 				Dev,
+ 408              		.loc 1 107 4 is_stmt 0 view .LVU107
+ 409 0036 4FF4FA71 		mov	r1, #500
+ 410 003a FFF7FEFF 		bl	VL53L1_poll_for_boot_completion
+ 411              	.LVL38:
+ 107:Core/Src/vl53l1_wait.c **** 				Dev,
+ 412              		.loc 1 107 4 view .LVU108
+ 413 003e 0346     		mov	r3, r0
+ 414              	.LVL39:
+ 415              	.L22:
+ 129:Core/Src/vl53l1_wait.c **** 
+ 416              		.loc 1 129 26 is_stmt 1 view .LVU109
+ 131:Core/Src/vl53l1_wait.c **** 
+ 417              		.loc 1 131 2 view .LVU110
+ 133:Core/Src/vl53l1_wait.c **** 
+ 418              		.loc 1 133 1 is_stmt 0 view .LVU111
+ 419 0040 1846     		mov	r0, r3
+ 420 0042 02B0     		add	sp, sp, #8
+ 421              	.LCFI15:
+ 422              		.cfi_def_cfa_offset 8
+ 423              		@ sp needed
+ 424 0044 10BD     		pop	{r4, pc}
+ 133:Core/Src/vl53l1_wait.c **** 
+ 425              		.loc 1 133 1 view .LVU112
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 17
+
+
+ 426              		.cfi_endproc
+ 427              	.LFE3:
+ 429              		.section	.text.VL53L1_poll_for_firmware_ready,"ax",%progbits
+ 430              		.align	1
+ 431              		.global	VL53L1_poll_for_firmware_ready
+ 432              		.syntax unified
+ 433              		.thumb
+ 434              		.thumb_func
+ 436              	VL53L1_poll_for_firmware_ready:
+ 437              	.LVL40:
+ 438              	.LFB11:
+ 456:Core/Src/vl53l1_wait.c **** 
+ 457:Core/Src/vl53l1_wait.c **** 
+ 458:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_poll_for_firmware_ready(
+ 459:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV    Dev,
+ 460:Core/Src/vl53l1_wait.c **** 	uint32_t      timeout_ms)
+ 461:Core/Src/vl53l1_wait.c **** {
+ 439              		.loc 1 461 1 is_stmt 1 view -0
+ 440              		.cfi_startproc
+ 441              		@ args = 0, pretend = 0, frame = 16
+ 442              		@ frame_needed = 0, uses_anonymous_args = 0
+ 443              		.loc 1 461 1 is_stmt 0 view .LVU114
+ 444 0000 70B5     		push	{r4, r5, r6, lr}
+ 445              	.LCFI16:
+ 446              		.cfi_def_cfa_offset 16
+ 447              		.cfi_offset 4, -16
+ 448              		.cfi_offset 5, -12
+ 449              		.cfi_offset 6, -8
+ 450              		.cfi_offset 14, -4
+ 451 0002 84B0     		sub	sp, sp, #16
+ 452              	.LCFI17:
+ 453              		.cfi_def_cfa_offset 32
+ 454 0004 0446     		mov	r4, r0
+ 455 0006 0E46     		mov	r6, r1
+ 462:Core/Src/vl53l1_wait.c **** 	/**
+ 463:Core/Src/vl53l1_wait.c **** 	 * Polls the bit 0 of the FIRMWARE__SYSTEM_STATUS register to see if
+ 464:Core/Src/vl53l1_wait.c **** 	 * the firmware is ready.
+ 465:Core/Src/vl53l1_wait.c **** 	 */
+ 466:Core/Src/vl53l1_wait.c **** 
+ 467:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status          = VL53L1_ERROR_NONE;
+ 456              		.loc 1 467 2 is_stmt 1 view .LVU115
+ 457              	.LVL41:
+ 468:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 458              		.loc 1 468 2 view .LVU116
+ 469:Core/Src/vl53l1_wait.c **** 
+ 470:Core/Src/vl53l1_wait.c **** 	uint32_t     start_time_ms   = 0;
+ 459              		.loc 1 470 2 view .LVU117
+ 460              		.loc 1 470 15 is_stmt 0 view .LVU118
+ 461 0008 0025     		movs	r5, #0
+ 462 000a 0395     		str	r5, [sp, #12]
+ 471:Core/Src/vl53l1_wait.c **** 	uint32_t     current_time_ms = 0;
+ 463              		.loc 1 471 2 is_stmt 1 view .LVU119
+ 464              		.loc 1 471 15 is_stmt 0 view .LVU120
+ 465 000c 0295     		str	r5, [sp, #8]
+ 472:Core/Src/vl53l1_wait.c **** 	int32_t      poll_delay_ms   = VL53L1_POLLING_DELAY_MS;
+ 466              		.loc 1 472 2 is_stmt 1 view .LVU121
+ 467              	.LVL42:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 18
+
+
+ 473:Core/Src/vl53l1_wait.c **** 	uint8_t      fw_ready        = 0;
+ 468              		.loc 1 473 2 view .LVU122
+ 469              		.loc 1 473 15 is_stmt 0 view .LVU123
+ 470 000e 8DF80750 		strb	r5, [sp, #7]
+ 474:Core/Src/vl53l1_wait.c **** 
+ 475:Core/Src/vl53l1_wait.c **** 	/* calculate time limit in absolute time */
+ 476:Core/Src/vl53l1_wait.c **** 
+ 477:Core/Src/vl53l1_wait.c **** 	VL53L1_GetTickCount(&start_time_ms); /*lint !e534 ignoring return*/
+ 471              		.loc 1 477 2 is_stmt 1 view .LVU124
+ 472 0012 03A8     		add	r0, sp, #12
+ 473              	.LVL43:
+ 474              		.loc 1 477 2 is_stmt 0 view .LVU125
+ 475 0014 FFF7FEFF 		bl	VL53L1_GetTickCount
+ 476              	.LVL44:
+ 478:Core/Src/vl53l1_wait.c **** 	pdev->fw_ready_poll_duration_ms = 0;
+ 477              		.loc 1 478 2 is_stmt 1 view .LVU126
+ 478              		.loc 1 478 34 is_stmt 0 view .LVU127
+ 479 0018 E561     		str	r5, [r4, #28]
+ 479:Core/Src/vl53l1_wait.c **** 
+ 480:Core/Src/vl53l1_wait.c **** 	/* wait until firmware is ready, timeout reached on error occurred */
+ 481:Core/Src/vl53l1_wait.c **** 
+ 482:Core/Src/vl53l1_wait.c **** 	while ((status == VL53L1_ERROR_NONE) &&
+ 480              		.loc 1 482 2 is_stmt 1 view .LVU128
+ 481              		.loc 1 482 8 is_stmt 0 view .LVU129
+ 482 001a 06E0     		b	.L29
+ 483              	.LVL45:
+ 484              	.L30:
+ 483:Core/Src/vl53l1_wait.c **** 		   (pdev->fw_ready_poll_duration_ms < timeout_ms) &&
+ 484:Core/Src/vl53l1_wait.c **** 		   (fw_ready == 0)) {
+ 485:Core/Src/vl53l1_wait.c **** 
+ 486:Core/Src/vl53l1_wait.c **** 		status = VL53L1_is_firmware_ready(
+ 487:Core/Src/vl53l1_wait.c **** 			Dev,
+ 488:Core/Src/vl53l1_wait.c **** 			&fw_ready);
+ 489:Core/Src/vl53l1_wait.c **** 
+ 490:Core/Src/vl53l1_wait.c **** 		if (status == VL53L1_ERROR_NONE &&
+ 491:Core/Src/vl53l1_wait.c **** 			fw_ready == 0 &&
+ 492:Core/Src/vl53l1_wait.c **** 			poll_delay_ms > 0) {
+ 493:Core/Src/vl53l1_wait.c **** 			status = VL53L1_WaitMs(
+ 494:Core/Src/vl53l1_wait.c **** 				Dev,
+ 495:Core/Src/vl53l1_wait.c **** 				poll_delay_ms);
+ 496:Core/Src/vl53l1_wait.c **** 		}
+ 497:Core/Src/vl53l1_wait.c **** 
+ 498:Core/Src/vl53l1_wait.c **** 		/*
+ 499:Core/Src/vl53l1_wait.c **** 		 * Update polling time (Compare difference rather than
+ 500:Core/Src/vl53l1_wait.c **** 		 * absolute to negate 32bit wrap around issue)
+ 501:Core/Src/vl53l1_wait.c **** 		 */
+ 502:Core/Src/vl53l1_wait.c **** 		VL53L1_GetTickCount(&current_time_ms);  /*lint !e534 ignoring return*/
+ 485              		.loc 1 502 3 is_stmt 1 view .LVU130
+ 486 001c 02A8     		add	r0, sp, #8
+ 487 001e FFF7FEFF 		bl	VL53L1_GetTickCount
+ 488              	.LVL46:
+ 503:Core/Src/vl53l1_wait.c **** 		pdev->fw_ready_poll_duration_ms =
+ 489              		.loc 1 503 3 view .LVU131
+ 504:Core/Src/vl53l1_wait.c **** 				current_time_ms - start_time_ms;
+ 490              		.loc 1 504 21 is_stmt 0 view .LVU132
+ 491 0022 029B     		ldr	r3, [sp, #8]
+ 492 0024 039A     		ldr	r2, [sp, #12]
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 19
+
+
+ 493 0026 9B1A     		subs	r3, r3, r2
+ 503:Core/Src/vl53l1_wait.c **** 		pdev->fw_ready_poll_duration_ms =
+ 494              		.loc 1 503 35 view .LVU133
+ 495 0028 E361     		str	r3, [r4, #28]
+ 496              	.LVL47:
+ 497              	.L29:
+ 482:Core/Src/vl53l1_wait.c **** 		   (pdev->fw_ready_poll_duration_ms < timeout_ms) &&
+ 498              		.loc 1 482 8 is_stmt 1 view .LVU134
+ 499 002a BDB9     		cbnz	r5, .L31
+ 483:Core/Src/vl53l1_wait.c **** 		   (fw_ready == 0)) {
+ 500              		.loc 1 483 11 is_stmt 0 discriminator 1 view .LVU135
+ 501 002c E369     		ldr	r3, [r4, #28]
+ 482:Core/Src/vl53l1_wait.c **** 		   (pdev->fw_ready_poll_duration_ms < timeout_ms) &&
+ 502              		.loc 1 482 39 discriminator 1 view .LVU136
+ 503 002e B342     		cmp	r3, r6
+ 504 0030 14D2     		bcs	.L31
+ 484:Core/Src/vl53l1_wait.c **** 
+ 505              		.loc 1 484 16 view .LVU137
+ 506 0032 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 483:Core/Src/vl53l1_wait.c **** 		   (fw_ready == 0)) {
+ 507              		.loc 1 483 53 view .LVU138
+ 508 0036 8BB9     		cbnz	r3, .L31
+ 486:Core/Src/vl53l1_wait.c **** 			Dev,
+ 509              		.loc 1 486 3 is_stmt 1 view .LVU139
+ 486:Core/Src/vl53l1_wait.c **** 			Dev,
+ 510              		.loc 1 486 12 is_stmt 0 view .LVU140
+ 511 0038 0DF10701 		add	r1, sp, #7
+ 512 003c 2046     		mov	r0, r4
+ 513 003e FFF7FEFF 		bl	VL53L1_is_firmware_ready
+ 514              	.LVL48:
+ 490:Core/Src/vl53l1_wait.c **** 			fw_ready == 0 &&
+ 515              		.loc 1 490 3 is_stmt 1 view .LVU141
+ 490:Core/Src/vl53l1_wait.c **** 			fw_ready == 0 &&
+ 516              		.loc 1 490 6 is_stmt 0 view .LVU142
+ 517 0042 0546     		mov	r5, r0
+ 518 0044 0028     		cmp	r0, #0
+ 519 0046 E9D1     		bne	.L30
+ 491:Core/Src/vl53l1_wait.c **** 			poll_delay_ms > 0) {
+ 520              		.loc 1 491 13 discriminator 1 view .LVU143
+ 521 0048 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 490:Core/Src/vl53l1_wait.c **** 			fw_ready == 0 &&
+ 522              		.loc 1 490 35 discriminator 1 view .LVU144
+ 523 004c 002B     		cmp	r3, #0
+ 524 004e E5D1     		bne	.L30
+ 493:Core/Src/vl53l1_wait.c **** 				Dev,
+ 525              		.loc 1 493 4 is_stmt 1 view .LVU145
+ 493:Core/Src/vl53l1_wait.c **** 				Dev,
+ 526              		.loc 1 493 13 is_stmt 0 view .LVU146
+ 527 0050 0121     		movs	r1, #1
+ 528 0052 2046     		mov	r0, r4
+ 529              	.LVL49:
+ 493:Core/Src/vl53l1_wait.c **** 				Dev,
+ 530              		.loc 1 493 13 view .LVU147
+ 531 0054 FFF7FEFF 		bl	VL53L1_WaitMs
+ 532              	.LVL50:
+ 533 0058 0546     		mov	r5, r0
+ 534              	.LVL51:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 20
+
+
+ 493:Core/Src/vl53l1_wait.c **** 				Dev,
+ 535              		.loc 1 493 13 view .LVU148
+ 536 005a DFE7     		b	.L30
+ 537              	.L31:
+ 505:Core/Src/vl53l1_wait.c **** 	}
+ 506:Core/Src/vl53l1_wait.c **** 
+ 507:Core/Src/vl53l1_wait.c **** 	if (fw_ready == 0 && status == VL53L1_ERROR_NONE)
+ 538              		.loc 1 507 2 is_stmt 1 view .LVU149
+ 539              		.loc 1 507 15 is_stmt 0 view .LVU150
+ 540 005c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 541              		.loc 1 507 5 view .LVU151
+ 542 0060 03B9     		cbnz	r3, .L33
+ 543              		.loc 1 507 20 discriminator 1 view .LVU152
+ 544 0062 15B1     		cbz	r5, .L36
+ 545              	.LVL52:
+ 546              	.L33:
+ 508:Core/Src/vl53l1_wait.c **** 		status = VL53L1_ERROR_TIME_OUT;
+ 509:Core/Src/vl53l1_wait.c **** 
+ 510:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 547              		.loc 1 510 26 is_stmt 1 view .LVU153
+ 511:Core/Src/vl53l1_wait.c **** 
+ 512:Core/Src/vl53l1_wait.c **** 	return status;
+ 548              		.loc 1 512 2 view .LVU154
+ 513:Core/Src/vl53l1_wait.c **** }
+ 549              		.loc 1 513 1 is_stmt 0 view .LVU155
+ 550 0064 2846     		mov	r0, r5
+ 551 0066 04B0     		add	sp, sp, #16
+ 552              	.LCFI18:
+ 553              		.cfi_remember_state
+ 554              		.cfi_def_cfa_offset 16
+ 555              		@ sp needed
+ 556 0068 70BD     		pop	{r4, r5, r6, pc}
+ 557              	.LVL53:
+ 558              	.L36:
+ 559              	.LCFI19:
+ 560              		.cfi_restore_state
+ 508:Core/Src/vl53l1_wait.c **** 		status = VL53L1_ERROR_TIME_OUT;
+ 561              		.loc 1 508 10 view .LVU156
+ 562 006a 6FF00605 		mvn	r5, #6
+ 563              	.LVL54:
+ 508:Core/Src/vl53l1_wait.c **** 		status = VL53L1_ERROR_TIME_OUT;
+ 564              		.loc 1 508 10 view .LVU157
+ 565 006e F9E7     		b	.L33
+ 566              		.cfi_endproc
+ 567              	.LFE11:
+ 569              		.section	.text.VL53L1_wait_for_firmware_ready,"ax",%progbits
+ 570              		.align	1
+ 571              		.global	VL53L1_wait_for_firmware_ready
+ 572              		.syntax unified
+ 573              		.thumb
+ 574              		.thumb_func
+ 576              	VL53L1_wait_for_firmware_ready:
+ 577              	.LVL55:
+ 578              	.LFB4:
+ 138:Core/Src/vl53l1_wait.c **** 
+ 579              		.loc 1 138 1 is_stmt 1 view -0
+ 580              		.cfi_startproc
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 21
+
+
+ 581              		@ args = 0, pretend = 0, frame = 8
+ 582              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138:Core/Src/vl53l1_wait.c **** 
+ 583              		.loc 1 138 1 is_stmt 0 view .LVU159
+ 584 0000 10B5     		push	{r4, lr}
+ 585              	.LCFI20:
+ 586              		.cfi_def_cfa_offset 8
+ 587              		.cfi_offset 4, -8
+ 588              		.cfi_offset 14, -4
+ 589 0002 82B0     		sub	sp, sp, #8
+ 590              	.LCFI21:
+ 591              		.cfi_def_cfa_offset 16
+ 592 0004 0446     		mov	r4, r0
+ 144:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 593              		.loc 1 144 2 is_stmt 1 view .LVU160
+ 594              	.LVL56:
+ 145:Core/Src/vl53l1_wait.c **** 
+ 595              		.loc 1 145 2 view .LVU161
+ 147:Core/Src/vl53l1_wait.c **** 	uint8_t      mode_start  = 0;
+ 596              		.loc 1 147 2 view .LVU162
+ 147:Core/Src/vl53l1_wait.c **** 	uint8_t      mode_start  = 0;
+ 597              		.loc 1 147 15 is_stmt 0 view .LVU163
+ 598 0006 0023     		movs	r3, #0
+ 599 0008 8DF80730 		strb	r3, [sp, #7]
+ 148:Core/Src/vl53l1_wait.c **** 
+ 600              		.loc 1 148 2 is_stmt 1 view .LVU164
+ 601              	.LVL57:
+ 150:Core/Src/vl53l1_wait.c **** 
+ 602              		.loc 1 150 24 view .LVU165
+ 155:Core/Src/vl53l1_wait.c **** 		pdev->sys_ctrl.system__mode_start &
+ 603              		.loc 1 155 2 view .LVU166
+ 156:Core/Src/vl53l1_wait.c **** 		VL53L1_DEVICEMEASUREMENTMODE_MODE_MASK;
+ 604              		.loc 1 156 17 is_stmt 0 view .LVU167
+ 605 000c 90F8CC31 		ldrb	r3, [r0, #460]	@ zero_extendqisi2
+ 155:Core/Src/vl53l1_wait.c **** 		pdev->sys_ctrl.system__mode_start &
+ 606              		.loc 1 155 13 view .LVU168
+ 607 0010 03F0F003 		and	r3, r3, #240
+ 608              	.LVL58:
+ 164:Core/Src/vl53l1_wait.c **** 		(mode_start == VL53L1_DEVICEMEASUREMENTMODE_SINGLESHOT)) {
+ 609              		.loc 1 164 2 is_stmt 1 view .LVU169
+ 164:Core/Src/vl53l1_wait.c **** 		(mode_start == VL53L1_DEVICEMEASUREMENTMODE_SINGLESHOT)) {
+ 610              		.loc 1 164 5 is_stmt 0 view .LVU170
+ 611 0014 402B     		cmp	r3, #64
+ 612 0016 05D0     		beq	.L38
+ 164:Core/Src/vl53l1_wait.c **** 		(mode_start == VL53L1_DEVICEMEASUREMENTMODE_SINGLESHOT)) {
+ 613              		.loc 1 164 57 discriminator 1 view .LVU171
+ 614 0018 102B     		cmp	r3, #16
+ 615 001a 03D0     		beq	.L38
+ 144:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 616              		.loc 1 144 15 view .LVU172
+ 617 001c 0023     		movs	r3, #0
+ 618              	.LVL59:
+ 619              	.L39:
+ 195:Core/Src/vl53l1_wait.c **** 
+ 620              		.loc 1 195 26 is_stmt 1 view .LVU173
+ 197:Core/Src/vl53l1_wait.c **** }
+ 621              		.loc 1 197 2 view .LVU174
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 22
+
+
+ 198:Core/Src/vl53l1_wait.c **** 
+ 622              		.loc 1 198 1 is_stmt 0 view .LVU175
+ 623 001e 1846     		mov	r0, r3
+ 624 0020 02B0     		add	sp, sp, #8
+ 625              	.LCFI22:
+ 626              		.cfi_remember_state
+ 627              		.cfi_def_cfa_offset 8
+ 628              		@ sp needed
+ 629 0022 10BD     		pop	{r4, pc}
+ 630              	.LVL60:
+ 631              	.L38:
+ 632              	.LCFI23:
+ 633              		.cfi_restore_state
+ 167:Core/Src/vl53l1_wait.c **** 
+ 634              		.loc 1 167 3 is_stmt 1 view .LVU176
+ 167:Core/Src/vl53l1_wait.c **** 
+ 635              		.loc 1 167 11 is_stmt 0 view .LVU177
+ 636 0024 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 637              	.LVL61:
+ 167:Core/Src/vl53l1_wait.c **** 
+ 638              		.loc 1 167 6 view .LVU178
+ 639 0026 A3B1     		cbz	r3, .L46
+ 144:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 640              		.loc 1 144 15 view .LVU179
+ 641 0028 0023     		movs	r3, #0
+ 642              	.LVL62:
+ 643              	.L41:
+ 181:Core/Src/vl53l1_wait.c **** 				status = VL53L1_is_firmware_ready(
+ 644              		.loc 1 181 10 is_stmt 1 view .LVU180
+ 181:Core/Src/vl53l1_wait.c **** 				status = VL53L1_is_firmware_ready(
+ 645              		.loc 1 181 20 is_stmt 0 view .LVU181
+ 646 002a 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 181:Core/Src/vl53l1_wait.c **** 				status = VL53L1_is_firmware_ready(
+ 647              		.loc 1 181 10 view .LVU182
+ 648 002e 002A     		cmp	r2, #0
+ 649 0030 F5D1     		bne	.L39
+ 181:Core/Src/vl53l1_wait.c **** 				status = VL53L1_is_firmware_ready(
+ 650              		.loc 1 181 28 discriminator 1 view .LVU183
+ 651 0032 002B     		cmp	r3, #0
+ 652 0034 F3D1     		bne	.L39
+ 182:Core/Src/vl53l1_wait.c **** 					Dev,
+ 653              		.loc 1 182 5 is_stmt 1 view .LVU184
+ 182:Core/Src/vl53l1_wait.c **** 					Dev,
+ 654              		.loc 1 182 14 is_stmt 0 view .LVU185
+ 655 0036 0DF10701 		add	r1, sp, #7
+ 656 003a 2046     		mov	r0, r4
+ 657 003c FFF7FEFF 		bl	VL53L1_is_firmware_ready
+ 658              	.LVL63:
+ 186:Core/Src/vl53l1_wait.c **** 					status = VL53L1_WaitMs(
+ 659              		.loc 1 186 5 is_stmt 1 view .LVU186
+ 186:Core/Src/vl53l1_wait.c **** 					status = VL53L1_WaitMs(
+ 660              		.loc 1 186 8 is_stmt 0 view .LVU187
+ 661 0040 0346     		mov	r3, r0
+ 662 0042 0028     		cmp	r0, #0
+ 663 0044 F1D1     		bne	.L41
+ 187:Core/Src/vl53l1_wait.c **** 						Dev,
+ 664              		.loc 1 187 6 is_stmt 1 view .LVU188
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 23
+
+
+ 187:Core/Src/vl53l1_wait.c **** 						Dev,
+ 665              		.loc 1 187 15 is_stmt 0 view .LVU189
+ 666 0046 0121     		movs	r1, #1
+ 667 0048 2046     		mov	r0, r4
+ 668              	.LVL64:
+ 187:Core/Src/vl53l1_wait.c **** 						Dev,
+ 669              		.loc 1 187 15 view .LVU190
+ 670 004a FFF7FEFF 		bl	VL53L1_WaitMs
+ 671              	.LVL65:
+ 672 004e 0346     		mov	r3, r0
+ 673              	.LVL66:
+ 187:Core/Src/vl53l1_wait.c **** 						Dev,
+ 674              		.loc 1 187 15 view .LVU191
+ 675 0050 EBE7     		b	.L41
+ 676              	.LVL67:
+ 677              	.L46:
+ 171:Core/Src/vl53l1_wait.c **** 				VL53L1_poll_for_firmware_ready(
+ 678              		.loc 1 171 4 is_stmt 1 view .LVU192
+ 172:Core/Src/vl53l1_wait.c **** 					Dev,
+ 679              		.loc 1 172 5 is_stmt 0 view .LVU193
+ 680 0052 4FF4FA61 		mov	r1, #2000
+ 681 0056 2046     		mov	r0, r4
+ 682              	.LVL68:
+ 172:Core/Src/vl53l1_wait.c **** 					Dev,
+ 683              		.loc 1 172 5 view .LVU194
+ 684 0058 FFF7FEFF 		bl	VL53L1_poll_for_firmware_ready
+ 685              	.LVL69:
+ 172:Core/Src/vl53l1_wait.c **** 					Dev,
+ 686              		.loc 1 172 5 view .LVU195
+ 687 005c 0346     		mov	r3, r0
+ 688              	.LVL70:
+ 172:Core/Src/vl53l1_wait.c **** 					Dev,
+ 689              		.loc 1 172 5 view .LVU196
+ 690 005e DEE7     		b	.L39
+ 691              		.cfi_endproc
+ 692              	.LFE4:
+ 694              		.section	.text.VL53L1_poll_for_range_completion,"ax",%progbits
+ 695              		.align	1
+ 696              		.global	VL53L1_poll_for_range_completion
+ 697              		.syntax unified
+ 698              		.thumb
+ 699              		.thumb_func
+ 701              	VL53L1_poll_for_range_completion:
+ 702              	.LVL71:
+ 703              	.LFB12:
+ 514:Core/Src/vl53l1_wait.c **** 
+ 515:Core/Src/vl53l1_wait.c **** 
+ 516:Core/Src/vl53l1_wait.c **** VL53L1_Error VL53L1_poll_for_range_completion(
+ 517:Core/Src/vl53l1_wait.c **** 	VL53L1_DEV     Dev,
+ 518:Core/Src/vl53l1_wait.c **** 	uint32_t       timeout_ms)
+ 519:Core/Src/vl53l1_wait.c **** {
+ 704              		.loc 1 519 1 is_stmt 1 view -0
+ 705              		.cfi_startproc
+ 706              		@ args = 0, pretend = 0, frame = 0
+ 707              		@ frame_needed = 0, uses_anonymous_args = 0
+ 708              		.loc 1 519 1 is_stmt 0 view .LVU198
+ 709 0000 00B5     		push	{lr}
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 24
+
+
+ 710              	.LCFI24:
+ 711              		.cfi_def_cfa_offset 4
+ 712              		.cfi_offset 14, -4
+ 713 0002 83B0     		sub	sp, sp, #12
+ 714              	.LCFI25:
+ 715              		.cfi_def_cfa_offset 16
+ 520:Core/Src/vl53l1_wait.c **** 	/**
+ 521:Core/Src/vl53l1_wait.c **** 	 * Polls bit 0 of VL53L1_GPIO__TIO_HV_STATUS to determine
+ 522:Core/Src/vl53l1_wait.c **** 	 * the state of output interrupt pin
+ 523:Core/Src/vl53l1_wait.c **** 	 *
+ 524:Core/Src/vl53l1_wait.c **** 	 * Interrupt may be either active high or active low. Use active_high to
+ 525:Core/Src/vl53l1_wait.c **** 	 * select the required level check
+ 526:Core/Src/vl53l1_wait.c **** 	 */
+ 527:Core/Src/vl53l1_wait.c **** 
+ 528:Core/Src/vl53l1_wait.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 716              		.loc 1 528 2 is_stmt 1 view .LVU199
+ 717              	.LVL72:
+ 529:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 718              		.loc 1 529 2 view .LVU200
+ 530:Core/Src/vl53l1_wait.c **** 
+ 531:Core/Src/vl53l1_wait.c **** 	uint8_t  gpio__mux_active_high_hv = 0;
+ 719              		.loc 1 531 2 view .LVU201
+ 532:Core/Src/vl53l1_wait.c **** 	uint8_t  interrupt_ready          = 0;
+ 720              		.loc 1 532 2 view .LVU202
+ 533:Core/Src/vl53l1_wait.c **** 
+ 534:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_START("");
+ 721              		.loc 1 534 24 view .LVU203
+ 535:Core/Src/vl53l1_wait.c **** 
+ 536:Core/Src/vl53l1_wait.c **** 	gpio__mux_active_high_hv =
+ 722              		.loc 1 536 2 view .LVU204
+ 537:Core/Src/vl53l1_wait.c **** 			pdev->stat_cfg.gpio_hv_mux__ctrl &
+ 723              		.loc 1 537 18 is_stmt 0 view .LVU205
+ 724 0004 90F87031 		ldrb	r3, [r0, #368]	@ zero_extendqisi2
+ 725              	.LVL73:
+ 538:Core/Src/vl53l1_wait.c **** 			VL53L1_DEVICEINTERRUPTLEVEL_ACTIVE_MASK;
+ 539:Core/Src/vl53l1_wait.c **** 
+ 540:Core/Src/vl53l1_wait.c **** 	if (gpio__mux_active_high_hv == VL53L1_DEVICEINTERRUPTLEVEL_ACTIVE_HIGH)
+ 726              		.loc 1 540 2 is_stmt 1 view .LVU206
+ 727              		.loc 1 540 5 is_stmt 0 view .LVU207
+ 728 0008 13F0100F 		tst	r3, #16
+ 729 000c 09D1     		bne	.L49
+ 541:Core/Src/vl53l1_wait.c **** 		interrupt_ready = 0x01;
+ 730              		.loc 1 541 19 view .LVU208
+ 731 000e 0123     		movs	r3, #1
+ 732              	.LVL74:
+ 733              	.L48:
+ 542:Core/Src/vl53l1_wait.c **** 	else
+ 543:Core/Src/vl53l1_wait.c **** 		interrupt_ready = 0x00;
+ 544:Core/Src/vl53l1_wait.c **** 
+ 545:Core/Src/vl53l1_wait.c **** 	status =
+ 734              		.loc 1 545 2 is_stmt 1 view .LVU209
+ 546:Core/Src/vl53l1_wait.c **** 		VL53L1_WaitValueMaskEx(
+ 735              		.loc 1 546 3 is_stmt 0 view .LVU210
+ 736 0010 0122     		movs	r2, #1
+ 737 0012 0192     		str	r2, [sp, #4]
+ 738              	.LVL75:
+ 739              		.loc 1 546 3 view .LVU211
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 25
+
+
+ 740 0014 0092     		str	r2, [sp]
+ 741 0016 3122     		movs	r2, #49
+ 742 0018 FFF7FEFF 		bl	VL53L1_WaitValueMaskEx
+ 743              	.LVL76:
+ 547:Core/Src/vl53l1_wait.c **** 			Dev,
+ 548:Core/Src/vl53l1_wait.c **** 			timeout_ms,
+ 549:Core/Src/vl53l1_wait.c **** 			VL53L1_GPIO__TIO_HV_STATUS,
+ 550:Core/Src/vl53l1_wait.c **** 			interrupt_ready,
+ 551:Core/Src/vl53l1_wait.c **** 			0x01,
+ 552:Core/Src/vl53l1_wait.c **** 			VL53L1_POLLING_DELAY_MS);
+ 553:Core/Src/vl53l1_wait.c **** 
+ 554:Core/Src/vl53l1_wait.c **** 	LOG_FUNCTION_END(status);
+ 744              		.loc 1 554 26 is_stmt 1 view .LVU212
+ 555:Core/Src/vl53l1_wait.c **** 
+ 556:Core/Src/vl53l1_wait.c **** 	return status;
+ 745              		.loc 1 556 2 view .LVU213
+ 557:Core/Src/vl53l1_wait.c **** }
+ 746              		.loc 1 557 1 is_stmt 0 view .LVU214
+ 747 001c 03B0     		add	sp, sp, #12
+ 748              	.LCFI26:
+ 749              		.cfi_remember_state
+ 750              		.cfi_def_cfa_offset 4
+ 751              		@ sp needed
+ 752 001e 5DF804FB 		ldr	pc, [sp], #4
+ 753              	.LVL77:
+ 754              	.L49:
+ 755              	.LCFI27:
+ 756              		.cfi_restore_state
+ 543:Core/Src/vl53l1_wait.c **** 
+ 757              		.loc 1 543 19 view .LVU215
+ 758 0022 0023     		movs	r3, #0
+ 759              	.LVL78:
+ 543:Core/Src/vl53l1_wait.c **** 
+ 760              		.loc 1 543 19 view .LVU216
+ 761 0024 F4E7     		b	.L48
+ 762              		.cfi_endproc
+ 763              	.LFE12:
+ 765              		.section	.text.VL53L1_wait_for_range_completion,"ax",%progbits
+ 766              		.align	1
+ 767              		.global	VL53L1_wait_for_range_completion
+ 768              		.syntax unified
+ 769              		.thumb
+ 770              		.thumb_func
+ 772              	VL53L1_wait_for_range_completion:
+ 773              	.LVL79:
+ 774              	.LFB5:
+ 203:Core/Src/vl53l1_wait.c **** 
+ 775              		.loc 1 203 1 is_stmt 1 view -0
+ 776              		.cfi_startproc
+ 777              		@ args = 0, pretend = 0, frame = 8
+ 778              		@ frame_needed = 0, uses_anonymous_args = 0
+ 203:Core/Src/vl53l1_wait.c **** 
+ 779              		.loc 1 203 1 is_stmt 0 view .LVU218
+ 780 0000 10B5     		push	{r4, lr}
+ 781              	.LCFI28:
+ 782              		.cfi_def_cfa_offset 8
+ 783              		.cfi_offset 4, -8
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 26
+
+
+ 784              		.cfi_offset 14, -4
+ 785 0002 82B0     		sub	sp, sp, #8
+ 786              	.LCFI29:
+ 787              		.cfi_def_cfa_offset 16
+ 788 0004 0446     		mov	r4, r0
+ 208:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 789              		.loc 1 208 2 is_stmt 1 view .LVU219
+ 790              	.LVL80:
+ 209:Core/Src/vl53l1_wait.c **** 
+ 791              		.loc 1 209 2 view .LVU220
+ 211:Core/Src/vl53l1_wait.c **** 
+ 792              		.loc 1 211 2 view .LVU221
+ 211:Core/Src/vl53l1_wait.c **** 
+ 793              		.loc 1 211 15 is_stmt 0 view .LVU222
+ 794 0006 0023     		movs	r3, #0
+ 795 0008 8DF80730 		strb	r3, [sp, #7]
+ 213:Core/Src/vl53l1_wait.c **** 
+ 796              		.loc 1 213 24 is_stmt 1 view .LVU223
+ 215:Core/Src/vl53l1_wait.c **** 
+ 797              		.loc 1 215 2 view .LVU224
+ 215:Core/Src/vl53l1_wait.c **** 
+ 798              		.loc 1 215 10 is_stmt 0 view .LVU225
+ 799 000c 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 215:Core/Src/vl53l1_wait.c **** 
+ 800              		.loc 1 215 5 view .LVU226
+ 801 000e 93B1     		cbz	r3, .L58
+ 208:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 802              		.loc 1 208 15 view .LVU227
+ 803 0010 0023     		movs	r3, #0
+ 804              	.LVL81:
+ 805              	.L54:
+ 229:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 806              		.loc 1 229 9 is_stmt 1 view .LVU228
+ 229:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 807              		.loc 1 229 21 is_stmt 0 view .LVU229
+ 808 0012 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 229:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 809              		.loc 1 229 9 view .LVU230
+ 810 0016 9AB9     		cbnz	r2, .L53
+ 229:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 811              		.loc 1 229 29 discriminator 1 view .LVU231
+ 812 0018 93B9     		cbnz	r3, .L53
+ 230:Core/Src/vl53l1_wait.c **** 				Dev,
+ 813              		.loc 1 230 4 is_stmt 1 view .LVU232
+ 230:Core/Src/vl53l1_wait.c **** 				Dev,
+ 814              		.loc 1 230 13 is_stmt 0 view .LVU233
+ 815 001a 0DF10701 		add	r1, sp, #7
+ 816 001e 2046     		mov	r0, r4
+ 817 0020 FFF7FEFF 		bl	VL53L1_is_new_data_ready
+ 818              	.LVL82:
+ 234:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 819              		.loc 1 234 4 is_stmt 1 view .LVU234
+ 234:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 820              		.loc 1 234 7 is_stmt 0 view .LVU235
+ 821 0024 0346     		mov	r3, r0
+ 822 0026 0028     		cmp	r0, #0
+ 823 0028 F3D1     		bne	.L54
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 27
+
+
+ 235:Core/Src/vl53l1_wait.c **** 					Dev,
+ 824              		.loc 1 235 5 is_stmt 1 view .LVU236
+ 235:Core/Src/vl53l1_wait.c **** 					Dev,
+ 825              		.loc 1 235 14 is_stmt 0 view .LVU237
+ 826 002a 0121     		movs	r1, #1
+ 827 002c 2046     		mov	r0, r4
+ 828              	.LVL83:
+ 235:Core/Src/vl53l1_wait.c **** 					Dev,
+ 829              		.loc 1 235 14 view .LVU238
+ 830 002e FFF7FEFF 		bl	VL53L1_WaitMs
+ 831              	.LVL84:
+ 832 0032 0346     		mov	r3, r0
+ 833              	.LVL85:
+ 235:Core/Src/vl53l1_wait.c **** 					Dev,
+ 834              		.loc 1 235 14 view .LVU239
+ 835 0034 EDE7     		b	.L54
+ 836              	.LVL86:
+ 837              	.L58:
+ 219:Core/Src/vl53l1_wait.c **** 			VL53L1_poll_for_range_completion(
+ 838              		.loc 1 219 3 is_stmt 1 view .LVU240
+ 220:Core/Src/vl53l1_wait.c **** 				Dev,
+ 839              		.loc 1 220 4 is_stmt 0 view .LVU241
+ 840 0036 4FF4FA61 		mov	r1, #2000
+ 841 003a FFF7FEFF 		bl	VL53L1_poll_for_range_completion
+ 842              	.LVL87:
+ 220:Core/Src/vl53l1_wait.c **** 				Dev,
+ 843              		.loc 1 220 4 view .LVU242
+ 844 003e 0346     		mov	r3, r0
+ 845              	.LVL88:
+ 846              	.L53:
+ 242:Core/Src/vl53l1_wait.c **** 
+ 847              		.loc 1 242 26 is_stmt 1 view .LVU243
+ 244:Core/Src/vl53l1_wait.c **** }
+ 848              		.loc 1 244 2 view .LVU244
+ 245:Core/Src/vl53l1_wait.c **** 
+ 849              		.loc 1 245 1 is_stmt 0 view .LVU245
+ 850 0040 1846     		mov	r0, r3
+ 851 0042 02B0     		add	sp, sp, #8
+ 852              	.LCFI30:
+ 853              		.cfi_def_cfa_offset 8
+ 854              		@ sp needed
+ 855 0044 10BD     		pop	{r4, pc}
+ 245:Core/Src/vl53l1_wait.c **** 
+ 856              		.loc 1 245 1 view .LVU246
+ 857              		.cfi_endproc
+ 858              	.LFE5:
+ 860              		.section	.text.VL53L1_wait_for_test_completion,"ax",%progbits
+ 861              		.align	1
+ 862              		.global	VL53L1_wait_for_test_completion
+ 863              		.syntax unified
+ 864              		.thumb
+ 865              		.thumb_func
+ 867              	VL53L1_wait_for_test_completion:
+ 868              	.LVL89:
+ 869              	.LFB6:
+ 250:Core/Src/vl53l1_wait.c **** 
+ 870              		.loc 1 250 1 is_stmt 1 view -0
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 28
+
+
+ 871              		.cfi_startproc
+ 872              		@ args = 0, pretend = 0, frame = 8
+ 873              		@ frame_needed = 0, uses_anonymous_args = 0
+ 250:Core/Src/vl53l1_wait.c **** 
+ 874              		.loc 1 250 1 is_stmt 0 view .LVU248
+ 875 0000 10B5     		push	{r4, lr}
+ 876              	.LCFI31:
+ 877              		.cfi_def_cfa_offset 8
+ 878              		.cfi_offset 4, -8
+ 879              		.cfi_offset 14, -4
+ 880 0002 82B0     		sub	sp, sp, #8
+ 881              	.LCFI32:
+ 882              		.cfi_def_cfa_offset 16
+ 883 0004 0446     		mov	r4, r0
+ 255:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 884              		.loc 1 255 2 is_stmt 1 view .LVU249
+ 885              	.LVL90:
+ 256:Core/Src/vl53l1_wait.c **** 
+ 886              		.loc 1 256 2 view .LVU250
+ 258:Core/Src/vl53l1_wait.c **** 
+ 887              		.loc 1 258 2 view .LVU251
+ 258:Core/Src/vl53l1_wait.c **** 
+ 888              		.loc 1 258 15 is_stmt 0 view .LVU252
+ 889 0006 0023     		movs	r3, #0
+ 890 0008 8DF80730 		strb	r3, [sp, #7]
+ 260:Core/Src/vl53l1_wait.c **** 
+ 891              		.loc 1 260 24 is_stmt 1 view .LVU253
+ 262:Core/Src/vl53l1_wait.c **** 
+ 892              		.loc 1 262 2 view .LVU254
+ 262:Core/Src/vl53l1_wait.c **** 
+ 893              		.loc 1 262 10 is_stmt 0 view .LVU255
+ 894 000c 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 262:Core/Src/vl53l1_wait.c **** 
+ 895              		.loc 1 262 5 view .LVU256
+ 896 000e 93B1     		cbz	r3, .L66
+ 255:Core/Src/vl53l1_wait.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+ 897              		.loc 1 255 15 view .LVU257
+ 898 0010 0023     		movs	r3, #0
+ 899              	.LVL91:
+ 900              	.L62:
+ 276:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 901              		.loc 1 276 9 is_stmt 1 view .LVU258
+ 276:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 902              		.loc 1 276 21 is_stmt 0 view .LVU259
+ 903 0012 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 276:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 904              		.loc 1 276 9 view .LVU260
+ 905 0016 9AB9     		cbnz	r2, .L61
+ 276:Core/Src/vl53l1_wait.c **** 			status = VL53L1_is_new_data_ready(
+ 906              		.loc 1 276 29 discriminator 1 view .LVU261
+ 907 0018 93B9     		cbnz	r3, .L61
+ 277:Core/Src/vl53l1_wait.c **** 				Dev,
+ 908              		.loc 1 277 4 is_stmt 1 view .LVU262
+ 277:Core/Src/vl53l1_wait.c **** 				Dev,
+ 909              		.loc 1 277 13 is_stmt 0 view .LVU263
+ 910 001a 0DF10701 		add	r1, sp, #7
+ 911 001e 2046     		mov	r0, r4
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 29
+
+
+ 912 0020 FFF7FEFF 		bl	VL53L1_is_new_data_ready
+ 913              	.LVL92:
+ 281:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 914              		.loc 1 281 4 is_stmt 1 view .LVU264
+ 281:Core/Src/vl53l1_wait.c **** 				status = VL53L1_WaitMs(
+ 915              		.loc 1 281 7 is_stmt 0 view .LVU265
+ 916 0024 0346     		mov	r3, r0
+ 917 0026 0028     		cmp	r0, #0
+ 918 0028 F3D1     		bne	.L62
+ 282:Core/Src/vl53l1_wait.c **** 					Dev,
+ 919              		.loc 1 282 5 is_stmt 1 view .LVU266
+ 282:Core/Src/vl53l1_wait.c **** 					Dev,
+ 920              		.loc 1 282 14 is_stmt 0 view .LVU267
+ 921 002a 0121     		movs	r1, #1
+ 922 002c 2046     		mov	r0, r4
+ 923              	.LVL93:
+ 282:Core/Src/vl53l1_wait.c **** 					Dev,
+ 924              		.loc 1 282 14 view .LVU268
+ 925 002e FFF7FEFF 		bl	VL53L1_WaitMs
+ 926              	.LVL94:
+ 927 0032 0346     		mov	r3, r0
+ 928              	.LVL95:
+ 282:Core/Src/vl53l1_wait.c **** 					Dev,
+ 929              		.loc 1 282 14 view .LVU269
+ 930 0034 EDE7     		b	.L62
+ 931              	.LVL96:
+ 932              	.L66:
+ 266:Core/Src/vl53l1_wait.c **** 			VL53L1_poll_for_range_completion(
+ 933              		.loc 1 266 3 is_stmt 1 view .LVU270
+ 267:Core/Src/vl53l1_wait.c **** 				Dev,
+ 934              		.loc 1 267 4 is_stmt 0 view .LVU271
+ 935 0036 4EF66021 		movw	r1, #60000
+ 936 003a FFF7FEFF 		bl	VL53L1_poll_for_range_completion
+ 937              	.LVL97:
+ 267:Core/Src/vl53l1_wait.c **** 				Dev,
+ 938              		.loc 1 267 4 view .LVU272
+ 939 003e 0346     		mov	r3, r0
+ 940              	.LVL98:
+ 941              	.L61:
+ 289:Core/Src/vl53l1_wait.c **** 
+ 942              		.loc 1 289 26 is_stmt 1 view .LVU273
+ 291:Core/Src/vl53l1_wait.c **** }
+ 943              		.loc 1 291 2 view .LVU274
+ 292:Core/Src/vl53l1_wait.c **** 
+ 944              		.loc 1 292 1 is_stmt 0 view .LVU275
+ 945 0040 1846     		mov	r0, r3
+ 946 0042 02B0     		add	sp, sp, #8
+ 947              	.LCFI33:
+ 948              		.cfi_def_cfa_offset 8
+ 949              		@ sp needed
+ 950 0044 10BD     		pop	{r4, pc}
+ 292:Core/Src/vl53l1_wait.c **** 
+ 951              		.loc 1 292 1 view .LVU276
+ 952              		.cfi_endproc
+ 953              	.LFE6:
+ 955              		.text
+ 956              	.Letext0:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 30
+
+
+ 957              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 958              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 959              		.file 4 "Core/Inc/vl53l1_types.h"
+ 960              		.file 5 "Core/Inc/vl53l1_ll_device.h"
+ 961              		.file 6 "Core/Inc/vl53l1_error_codes.h"
+ 962              		.file 7 "Core/Inc/vl53l1_register_structs.h"
+ 963              		.file 8 "Core/Inc/vl53l1_ll_def.h"
+ 964              		.file 9 "Core/Inc/vl53l1_def.h"
+ 965              		.file 10 "Core/Inc/vl53l1_platform_user_data.h"
+ 966              		.file 11 "Core/Inc/vl53l1_platform.h"
+ 967              		.file 12 "Core/Inc/vl53l1_core.h"
+ 968              		.file 13 "Core/Inc/vl53l1_silicon_core.h"
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_wait.c
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:20     .text.VL53L1_is_boot_complete:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:26     .text.VL53L1_is_boot_complete:00000000 VL53L1_is_boot_complete
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:109    .text.VL53L1_is_firmware_ready:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:115    .text.VL53L1_is_firmware_ready:00000000 VL53L1_is_firmware_ready
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:154    .text.VL53L1_is_new_data_ready:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:160    .text.VL53L1_is_new_data_ready:00000000 VL53L1_is_new_data_ready
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:248    .text.VL53L1_poll_for_boot_completion:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:254    .text.VL53L1_poll_for_boot_completion:00000000 VL53L1_poll_for_boot_completion
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:335    .text.VL53L1_wait_for_boot_completion:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:341    .text.VL53L1_wait_for_boot_completion:00000000 VL53L1_wait_for_boot_completion
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:430    .text.VL53L1_poll_for_firmware_ready:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:436    .text.VL53L1_poll_for_firmware_ready:00000000 VL53L1_poll_for_firmware_ready
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:570    .text.VL53L1_wait_for_firmware_ready:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:576    .text.VL53L1_wait_for_firmware_ready:00000000 VL53L1_wait_for_firmware_ready
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:695    .text.VL53L1_poll_for_range_completion:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:701    .text.VL53L1_poll_for_range_completion:00000000 VL53L1_poll_for_range_completion
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:766    .text.VL53L1_wait_for_range_completion:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:772    .text.VL53L1_wait_for_range_completion:00000000 VL53L1_wait_for_range_completion
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:861    .text.VL53L1_wait_for_test_completion:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cchrMlZA.s:867    .text.VL53L1_wait_for_test_completion:00000000 VL53L1_wait_for_test_completion
+
+UNDEFINED SYMBOLS
+VL53L1_RdByte
+VL53L1_init_ll_driver_state
+VL53L1_is_firmware_ready_silicon
+VL53L1_WaitUs
+VL53L1_WaitValueMaskEx
+VL53L1_WaitMs
+VL53L1_GetTickCount

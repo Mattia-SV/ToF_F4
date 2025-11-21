@@ -1,0 +1,633 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_platform.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.VL53L1_WriteMulti,"ax",%progbits
+  20              		.align	1
+  21              		.global	VL53L1_WriteMulti
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	VL53L1_WriteMulti:
+  27              	.LVL0:
+  28              	.LFB135:
+  29              		.file 1 "Core/Src/vl53l1_platform.c"
+   1:Core/Src/vl53l1_platform.c **** #include "vl53l1_platform.h"
+   2:Core/Src/vl53l1_platform.c **** #include "vl53l1_api.h"
+   3:Core/Src/vl53l1_platform.c **** #include "stm32l4xx_hal.h"
+   4:Core/Src/vl53l1_platform.c **** #include <string.h>
+   5:Core/Src/vl53l1_platform.c **** 
+   6:Core/Src/vl53l1_platform.c **** extern I2C_HandleTypeDef hi2c1;
+   7:Core/Src/vl53l1_platform.c **** 
+   8:Core/Src/vl53l1_platform.c **** #define I2C_TIME_OUT_BASE   10
+   9:Core/Src/vl53l1_platform.c **** #define I2C_TIME_OUT_BYTE   1
+  10:Core/Src/vl53l1_platform.c **** 
+  11:Core/Src/vl53l1_platform.c **** VL53L1_Error VL53L1_WriteMulti(VL53L1_DEV Dev, uint16_t index, uint8_t *pdata, uint32_t count)
+  12:Core/Src/vl53l1_platform.c **** {
+  30              		.loc 1 12 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 12 1 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 84B0     		sub	sp, sp, #16
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 24
+  43 0004 8C46     		mov	ip, r1
+  13:Core/Src/vl53l1_platform.c ****     VL53L1_Error Status = VL53L1_ERROR_NONE;
+  44              		.loc 1 13 5 is_stmt 1 view .LVU2
+  45              	.LVL1:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 2
+
+
+  14:Core/Src/vl53l1_platform.c ****     uint32_t timeout = I2C_TIME_OUT_BASE + count * I2C_TIME_OUT_BYTE;
+  46              		.loc 1 14 5 view .LVU3
+  47              		.loc 1 14 14 is_stmt 0 view .LVU4
+  48 0006 03F10A04 		add	r4, r3, #10
+  49              	.LVL2:
+  15:Core/Src/vl53l1_platform.c **** 
+  16:Core/Src/vl53l1_platform.c ****     if (HAL_I2C_Mem_Write(&hi2c1,
+  50              		.loc 1 16 5 is_stmt 1 view .LVU5
+  51              		.loc 1 16 9 is_stmt 0 view .LVU6
+  52 000a 90F89813 		ldrb	r1, [r0, #920]	@ zero_extendqisi2
+  53              	.LVL3:
+  54              		.loc 1 16 9 view .LVU7
+  55 000e 0294     		str	r4, [sp, #8]
+  56 0010 9BB2     		uxth	r3, r3
+  57              	.LVL4:
+  58              		.loc 1 16 9 view .LVU8
+  59 0012 0193     		str	r3, [sp, #4]
+  60 0014 0092     		str	r2, [sp]
+  61 0016 0223     		movs	r3, #2
+  62 0018 6246     		mov	r2, ip
+  63              	.LVL5:
+  64              		.loc 1 16 9 view .LVU9
+  65 001a 0448     		ldr	r0, .L6
+  66              	.LVL6:
+  67              		.loc 1 16 9 view .LVU10
+  68 001c FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  69              	.LVL7:
+  70              		.loc 1 16 8 view .LVU11
+  71 0020 08B9     		cbnz	r0, .L5
+  72              	.L2:
+  73              	.LVL8:
+  17:Core/Src/vl53l1_platform.c ****                           Dev->i2c_slave_address,   // 0x52
+  18:Core/Src/vl53l1_platform.c ****                           index,
+  19:Core/Src/vl53l1_platform.c ****                           I2C_MEMADD_SIZE_16BIT,   // indirizzo registro = 16 bit
+  20:Core/Src/vl53l1_platform.c ****                           pdata,
+  21:Core/Src/vl53l1_platform.c ****                           count,
+  22:Core/Src/vl53l1_platform.c ****                           timeout) != HAL_OK) {
+  23:Core/Src/vl53l1_platform.c ****         Status = VL53L1_ERROR_CONTROL_INTERFACE;
+  24:Core/Src/vl53l1_platform.c ****     }
+  25:Core/Src/vl53l1_platform.c **** 
+  26:Core/Src/vl53l1_platform.c ****     return Status;
+  74              		.loc 1 26 5 is_stmt 1 view .LVU12
+  27:Core/Src/vl53l1_platform.c **** }
+  75              		.loc 1 27 1 is_stmt 0 view .LVU13
+  76 0022 04B0     		add	sp, sp, #16
+  77              	.LCFI2:
+  78              		.cfi_remember_state
+  79              		.cfi_def_cfa_offset 8
+  80              		@ sp needed
+  81 0024 10BD     		pop	{r4, pc}
+  82              	.LVL9:
+  83              	.L5:
+  84              	.LCFI3:
+  85              		.cfi_restore_state
+  23:Core/Src/vl53l1_platform.c ****     }
+  86              		.loc 1 23 16 view .LVU14
+  87 0026 6FF00C00 		mvn	r0, #12
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 3
+
+
+  88 002a FAE7     		b	.L2
+  89              	.L7:
+  90              		.align	2
+  91              	.L6:
+  92 002c 00000000 		.word	hi2c1
+  93              		.cfi_endproc
+  94              	.LFE135:
+  96              		.section	.text.VL53L1_ReadMulti,"ax",%progbits
+  97              		.align	1
+  98              		.global	VL53L1_ReadMulti
+  99              		.syntax unified
+ 100              		.thumb
+ 101              		.thumb_func
+ 103              	VL53L1_ReadMulti:
+ 104              	.LVL10:
+ 105              	.LFB136:
+  28:Core/Src/vl53l1_platform.c **** 
+  29:Core/Src/vl53l1_platform.c **** VL53L1_Error VL53L1_ReadMulti(VL53L1_DEV Dev, uint16_t index, uint8_t *pdata, uint32_t count)
+  30:Core/Src/vl53l1_platform.c **** {
+ 106              		.loc 1 30 1 is_stmt 1 view -0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              		.loc 1 30 1 is_stmt 0 view .LVU16
+ 111 0000 10B5     		push	{r4, lr}
+ 112              	.LCFI4:
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 4, -8
+ 115              		.cfi_offset 14, -4
+ 116 0002 84B0     		sub	sp, sp, #16
+ 117              	.LCFI5:
+ 118              		.cfi_def_cfa_offset 24
+ 119 0004 8C46     		mov	ip, r1
+  31:Core/Src/vl53l1_platform.c ****     VL53L1_Error Status = VL53L1_ERROR_NONE;
+ 120              		.loc 1 31 5 is_stmt 1 view .LVU17
+ 121              	.LVL11:
+  32:Core/Src/vl53l1_platform.c ****     uint32_t timeout = I2C_TIME_OUT_BASE + count * I2C_TIME_OUT_BYTE;
+ 122              		.loc 1 32 5 view .LVU18
+ 123              		.loc 1 32 14 is_stmt 0 view .LVU19
+ 124 0006 03F10A04 		add	r4, r3, #10
+ 125              	.LVL12:
+  33:Core/Src/vl53l1_platform.c **** 
+  34:Core/Src/vl53l1_platform.c ****     if (HAL_I2C_Mem_Read(&hi2c1,
+ 126              		.loc 1 34 5 is_stmt 1 view .LVU20
+ 127              		.loc 1 34 9 is_stmt 0 view .LVU21
+ 128 000a 90F89813 		ldrb	r1, [r0, #920]	@ zero_extendqisi2
+ 129              	.LVL13:
+ 130              		.loc 1 34 9 view .LVU22
+ 131 000e 0294     		str	r4, [sp, #8]
+ 132 0010 9BB2     		uxth	r3, r3
+ 133              	.LVL14:
+ 134              		.loc 1 34 9 view .LVU23
+ 135 0012 0193     		str	r3, [sp, #4]
+ 136 0014 0092     		str	r2, [sp]
+ 137 0016 0223     		movs	r3, #2
+ 138 0018 6246     		mov	r2, ip
+ 139              	.LVL15:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 4
+
+
+ 140              		.loc 1 34 9 view .LVU24
+ 141 001a 0448     		ldr	r0, .L13
+ 142              	.LVL16:
+ 143              		.loc 1 34 9 view .LVU25
+ 144 001c FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 145              	.LVL17:
+ 146              		.loc 1 34 8 view .LVU26
+ 147 0020 08B9     		cbnz	r0, .L12
+ 148              	.L9:
+ 149              	.LVL18:
+  35:Core/Src/vl53l1_platform.c ****                          Dev->i2c_slave_address,
+  36:Core/Src/vl53l1_platform.c ****                          index,
+  37:Core/Src/vl53l1_platform.c ****                          I2C_MEMADD_SIZE_16BIT,
+  38:Core/Src/vl53l1_platform.c ****                          pdata,
+  39:Core/Src/vl53l1_platform.c ****                          count,
+  40:Core/Src/vl53l1_platform.c ****                          timeout) != HAL_OK) {
+  41:Core/Src/vl53l1_platform.c ****         Status = VL53L1_ERROR_CONTROL_INTERFACE;
+  42:Core/Src/vl53l1_platform.c ****     }
+  43:Core/Src/vl53l1_platform.c **** 
+  44:Core/Src/vl53l1_platform.c ****     return Status;
+ 150              		.loc 1 44 5 is_stmt 1 view .LVU27
+  45:Core/Src/vl53l1_platform.c **** }
+ 151              		.loc 1 45 1 is_stmt 0 view .LVU28
+ 152 0022 04B0     		add	sp, sp, #16
+ 153              	.LCFI6:
+ 154              		.cfi_remember_state
+ 155              		.cfi_def_cfa_offset 8
+ 156              		@ sp needed
+ 157 0024 10BD     		pop	{r4, pc}
+ 158              	.LVL19:
+ 159              	.L12:
+ 160              	.LCFI7:
+ 161              		.cfi_restore_state
+  41:Core/Src/vl53l1_platform.c ****     }
+ 162              		.loc 1 41 16 view .LVU29
+ 163 0026 6FF00C00 		mvn	r0, #12
+ 164 002a FAE7     		b	.L9
+ 165              	.L14:
+ 166              		.align	2
+ 167              	.L13:
+ 168 002c 00000000 		.word	hi2c1
+ 169              		.cfi_endproc
+ 170              	.LFE136:
+ 172              		.section	.text.VL53L1_WrByte,"ax",%progbits
+ 173              		.align	1
+ 174              		.global	VL53L1_WrByte
+ 175              		.syntax unified
+ 176              		.thumb
+ 177              		.thumb_func
+ 179              	VL53L1_WrByte:
+ 180              	.LVL20:
+ 181              	.LFB137:
+  46:Core/Src/vl53l1_platform.c **** 
+  47:Core/Src/vl53l1_platform.c **** VL53L1_Error VL53L1_WrByte(VL53L1_DEV Dev, uint16_t index, uint8_t data)
+  48:Core/Src/vl53l1_platform.c **** {
+ 182              		.loc 1 48 1 is_stmt 1 view -0
+ 183              		.cfi_startproc
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 5
+
+
+ 184              		@ args = 0, pretend = 0, frame = 8
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186              		.loc 1 48 1 is_stmt 0 view .LVU31
+ 187 0000 00B5     		push	{lr}
+ 188              	.LCFI8:
+ 189              		.cfi_def_cfa_offset 4
+ 190              		.cfi_offset 14, -4
+ 191 0002 83B0     		sub	sp, sp, #12
+ 192              	.LCFI9:
+ 193              		.cfi_def_cfa_offset 16
+ 194 0004 8DF80720 		strb	r2, [sp, #7]
+  49:Core/Src/vl53l1_platform.c ****     return VL53L1_WriteMulti(Dev, index, &data, 1);
+ 195              		.loc 1 49 5 is_stmt 1 view .LVU32
+ 196              		.loc 1 49 12 is_stmt 0 view .LVU33
+ 197 0008 0123     		movs	r3, #1
+ 198 000a 0DF10702 		add	r2, sp, #7
+ 199              	.LVL21:
+ 200              		.loc 1 49 12 view .LVU34
+ 201 000e FFF7FEFF 		bl	VL53L1_WriteMulti
+ 202              	.LVL22:
+  50:Core/Src/vl53l1_platform.c **** }
+ 203              		.loc 1 50 1 view .LVU35
+ 204 0012 03B0     		add	sp, sp, #12
+ 205              	.LCFI10:
+ 206              		.cfi_def_cfa_offset 4
+ 207              		@ sp needed
+ 208 0014 5DF804FB 		ldr	pc, [sp], #4
+ 209              		.cfi_endproc
+ 210              	.LFE137:
+ 212              		.section	.text.VL53L1_WrWord,"ax",%progbits
+ 213              		.align	1
+ 214              		.global	VL53L1_WrWord
+ 215              		.syntax unified
+ 216              		.thumb
+ 217              		.thumb_func
+ 219              	VL53L1_WrWord:
+ 220              	.LVL23:
+ 221              	.LFB138:
+  51:Core/Src/vl53l1_platform.c **** 
+  52:Core/Src/vl53l1_platform.c **** VL53L1_Error VL53L1_WrWord(VL53L1_DEV Dev, uint16_t index, uint16_t data)
+  53:Core/Src/vl53l1_platform.c **** {
+ 222              		.loc 1 53 1 is_stmt 1 view -0
+ 223              		.cfi_startproc
+ 224              		@ args = 0, pretend = 0, frame = 8
+ 225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226              		.loc 1 53 1 is_stmt 0 view .LVU37
+ 227 0000 00B5     		push	{lr}
+ 228              	.LCFI11:
+ 229              		.cfi_def_cfa_offset 4
+ 230              		.cfi_offset 14, -4
+ 231 0002 83B0     		sub	sp, sp, #12
+ 232              	.LCFI12:
+ 233              		.cfi_def_cfa_offset 16
+  54:Core/Src/vl53l1_platform.c ****     uint8_t buffer[2];
+ 234              		.loc 1 54 5 is_stmt 1 view .LVU38
+  55:Core/Src/vl53l1_platform.c ****     buffer[0] = (uint8_t)(data >> 8);
+ 235              		.loc 1 55 5 view .LVU39
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 6
+
+
+ 236              		.loc 1 55 17 is_stmt 0 view .LVU40
+ 237 0004 130A     		lsrs	r3, r2, #8
+ 238              		.loc 1 55 15 view .LVU41
+ 239 0006 8DF80430 		strb	r3, [sp, #4]
+  56:Core/Src/vl53l1_platform.c ****     buffer[1] = (uint8_t)(data & 0xFF);
+ 240              		.loc 1 56 5 is_stmt 1 view .LVU42
+ 241              		.loc 1 56 15 is_stmt 0 view .LVU43
+ 242 000a 8DF80520 		strb	r2, [sp, #5]
+  57:Core/Src/vl53l1_platform.c ****     return VL53L1_WriteMulti(Dev, index, buffer, 2);
+ 243              		.loc 1 57 5 is_stmt 1 view .LVU44
+ 244              		.loc 1 57 12 is_stmt 0 view .LVU45
+ 245 000e 0223     		movs	r3, #2
+ 246 0010 01AA     		add	r2, sp, #4
+ 247              	.LVL24:
+ 248              		.loc 1 57 12 view .LVU46
+ 249 0012 FFF7FEFF 		bl	VL53L1_WriteMulti
+ 250              	.LVL25:
+  58:Core/Src/vl53l1_platform.c **** }
+ 251              		.loc 1 58 1 view .LVU47
+ 252 0016 03B0     		add	sp, sp, #12
+ 253              	.LCFI13:
+ 254              		.cfi_def_cfa_offset 4
+ 255              		@ sp needed
+ 256 0018 5DF804FB 		ldr	pc, [sp], #4
+ 257              		.cfi_endproc
+ 258              	.LFE138:
+ 260              		.section	.text.VL53L1_WrDWord,"ax",%progbits
+ 261              		.align	1
+ 262              		.global	VL53L1_WrDWord
+ 263              		.syntax unified
+ 264              		.thumb
+ 265              		.thumb_func
+ 267              	VL53L1_WrDWord:
+ 268              	.LVL26:
+ 269              	.LFB139:
+  59:Core/Src/vl53l1_platform.c **** 
+  60:Core/Src/vl53l1_platform.c **** VL53L1_Error VL53L1_WrDWord(VL53L1_DEV Dev, uint16_t index, uint32_t data)
+  61:Core/Src/vl53l1_platform.c **** {
+ 270              		.loc 1 61 1 is_stmt 1 view -0
+ 271              		.cfi_startproc
+ 272              		@ args = 0, pretend = 0, frame = 8
+ 273              		@ frame_needed = 0, uses_anonymous_args = 0
+ 274              		.loc 1 61 1 is_stmt 0 view .LVU49
+ 275 0000 00B5     		push	{lr}
+ 276              	.LCFI14:
+ 277              		.cfi_def_cfa_offset 4
+ 278              		.cfi_offset 14, -4
+ 279 0002 83B0     		sub	sp, sp, #12
+ 280              	.LCFI15:
+ 281              		.cfi_def_cfa_offset 16
+  62:Core/Src/vl53l1_platform.c ****     uint8_t buffer[4];
+ 282              		.loc 1 62 5 is_stmt 1 view .LVU50
+  63:Core/Src/vl53l1_platform.c ****     buffer[0] = (uint8_t)(data >> 24);
+ 283              		.loc 1 63 5 view .LVU51
+ 284              		.loc 1 63 17 is_stmt 0 view .LVU52
+ 285 0004 130E     		lsrs	r3, r2, #24
+ 286              		.loc 1 63 15 view .LVU53
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 7
+
+
+ 287 0006 8DF80430 		strb	r3, [sp, #4]
+  64:Core/Src/vl53l1_platform.c ****     buffer[1] = (uint8_t)(data >> 16);
+ 288              		.loc 1 64 5 is_stmt 1 view .LVU54
+ 289              		.loc 1 64 17 is_stmt 0 view .LVU55
+ 290 000a C2F30743 		ubfx	r3, r2, #16, #8
+ 291              		.loc 1 64 15 view .LVU56
+ 292 000e 8DF80530 		strb	r3, [sp, #5]
+  65:Core/Src/vl53l1_platform.c ****     buffer[2] = (uint8_t)(data >> 8);
+ 293              		.loc 1 65 5 is_stmt 1 view .LVU57
+ 294              		.loc 1 65 17 is_stmt 0 view .LVU58
+ 295 0012 C2F30723 		ubfx	r3, r2, #8, #8
+ 296              		.loc 1 65 15 view .LVU59
+ 297 0016 8DF80630 		strb	r3, [sp, #6]
+  66:Core/Src/vl53l1_platform.c ****     buffer[3] = (uint8_t)(data & 0xFF);
+ 298              		.loc 1 66 5 is_stmt 1 view .LVU60
+ 299              		.loc 1 66 15 is_stmt 0 view .LVU61
+ 300 001a 8DF80720 		strb	r2, [sp, #7]
+  67:Core/Src/vl53l1_platform.c ****     return VL53L1_WriteMulti(Dev, index, buffer, 4);
+ 301              		.loc 1 67 5 is_stmt 1 view .LVU62
+ 302              		.loc 1 67 12 is_stmt 0 view .LVU63
+ 303 001e 0423     		movs	r3, #4
+ 304 0020 0DEB0302 		add	r2, sp, r3
+ 305              	.LVL27:
+ 306              		.loc 1 67 12 view .LVU64
+ 307 0024 FFF7FEFF 		bl	VL53L1_WriteMulti
+ 308              	.LVL28:
+  68:Core/Src/vl53l1_platform.c **** }
+ 309              		.loc 1 68 1 view .LVU65
+ 310 0028 03B0     		add	sp, sp, #12
+ 311              	.LCFI16:
+ 312              		.cfi_def_cfa_offset 4
+ 313              		@ sp needed
+ 314 002a 5DF804FB 		ldr	pc, [sp], #4
+ 315              		.cfi_endproc
+ 316              	.LFE139:
+ 318              		.section	.text.VL53L1_RdByte,"ax",%progbits
+ 319              		.align	1
+ 320              		.global	VL53L1_RdByte
+ 321              		.syntax unified
+ 322              		.thumb
+ 323              		.thumb_func
+ 325              	VL53L1_RdByte:
+ 326              	.LVL29:
+ 327              	.LFB140:
+  69:Core/Src/vl53l1_platform.c **** 
+  70:Core/Src/vl53l1_platform.c **** VL53L1_Error VL53L1_RdByte(VL53L1_DEV Dev, uint16_t index, uint8_t *data)
+  71:Core/Src/vl53l1_platform.c **** {
+ 328              		.loc 1 71 1 is_stmt 1 view -0
+ 329              		.cfi_startproc
+ 330              		@ args = 0, pretend = 0, frame = 0
+ 331              		@ frame_needed = 0, uses_anonymous_args = 0
+ 332              		.loc 1 71 1 is_stmt 0 view .LVU67
+ 333 0000 08B5     		push	{r3, lr}
+ 334              	.LCFI17:
+ 335              		.cfi_def_cfa_offset 8
+ 336              		.cfi_offset 3, -8
+ 337              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 8
+
+
+  72:Core/Src/vl53l1_platform.c ****     return VL53L1_ReadMulti(Dev, index, data, 1);
+ 338              		.loc 1 72 5 is_stmt 1 view .LVU68
+ 339              		.loc 1 72 12 is_stmt 0 view .LVU69
+ 340 0002 0123     		movs	r3, #1
+ 341 0004 FFF7FEFF 		bl	VL53L1_ReadMulti
+ 342              	.LVL30:
+  73:Core/Src/vl53l1_platform.c **** }
+ 343              		.loc 1 73 1 view .LVU70
+ 344 0008 08BD     		pop	{r3, pc}
+ 345              		.cfi_endproc
+ 346              	.LFE140:
+ 348              		.section	.text.VL53L1_RdWord,"ax",%progbits
+ 349              		.align	1
+ 350              		.global	VL53L1_RdWord
+ 351              		.syntax unified
+ 352              		.thumb
+ 353              		.thumb_func
+ 355              	VL53L1_RdWord:
+ 356              	.LVL31:
+ 357              	.LFB141:
+  74:Core/Src/vl53l1_platform.c **** 
+  75:Core/Src/vl53l1_platform.c **** VL53L1_Error VL53L1_RdWord(VL53L1_DEV Dev, uint16_t index, uint16_t *data)
+  76:Core/Src/vl53l1_platform.c **** {
+ 358              		.loc 1 76 1 is_stmt 1 view -0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 8
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362              		.loc 1 76 1 is_stmt 0 view .LVU72
+ 363 0000 10B5     		push	{r4, lr}
+ 364              	.LCFI18:
+ 365              		.cfi_def_cfa_offset 8
+ 366              		.cfi_offset 4, -8
+ 367              		.cfi_offset 14, -4
+ 368 0002 82B0     		sub	sp, sp, #8
+ 369              	.LCFI19:
+ 370              		.cfi_def_cfa_offset 16
+ 371 0004 1446     		mov	r4, r2
+  77:Core/Src/vl53l1_platform.c ****     uint8_t buffer[2];
+ 372              		.loc 1 77 5 is_stmt 1 view .LVU73
+  78:Core/Src/vl53l1_platform.c ****     VL53L1_Error Status = VL53L1_ReadMulti(Dev, index, buffer, 2);
+ 373              		.loc 1 78 5 view .LVU74
+ 374              		.loc 1 78 27 is_stmt 0 view .LVU75
+ 375 0006 0223     		movs	r3, #2
+ 376 0008 01AA     		add	r2, sp, #4
+ 377              	.LVL32:
+ 378              		.loc 1 78 27 view .LVU76
+ 379 000a FFF7FEFF 		bl	VL53L1_ReadMulti
+ 380              	.LVL33:
+  79:Core/Src/vl53l1_platform.c ****     if (Status == VL53L1_ERROR_NONE) {
+ 381              		.loc 1 79 5 is_stmt 1 view .LVU77
+ 382              		.loc 1 79 8 is_stmt 0 view .LVU78
+ 383 000e 30B9     		cbnz	r0, .L24
+  80:Core/Src/vl53l1_platform.c ****         *data = ((uint16_t)buffer[0] << 8) | buffer[1];
+ 384              		.loc 1 80 9 is_stmt 1 view .LVU79
+ 385              		.loc 1 80 34 is_stmt 0 view .LVU80
+ 386 0010 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 387              		.loc 1 80 52 view .LVU81
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 9
+
+
+ 388 0014 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 389              		.loc 1 80 44 view .LVU82
+ 390 0018 43EA0223 		orr	r3, r3, r2, lsl #8
+ 391              		.loc 1 80 15 view .LVU83
+ 392 001c 2380     		strh	r3, [r4]	@ movhi
+ 393              	.L24:
+  81:Core/Src/vl53l1_platform.c ****     }
+  82:Core/Src/vl53l1_platform.c ****     return Status;
+ 394              		.loc 1 82 5 is_stmt 1 view .LVU84
+  83:Core/Src/vl53l1_platform.c **** }
+ 395              		.loc 1 83 1 is_stmt 0 view .LVU85
+ 396 001e 02B0     		add	sp, sp, #8
+ 397              	.LCFI20:
+ 398              		.cfi_def_cfa_offset 8
+ 399              		@ sp needed
+ 400 0020 10BD     		pop	{r4, pc}
+ 401              		.loc 1 83 1 view .LVU86
+ 402              		.cfi_endproc
+ 403              	.LFE141:
+ 405              		.section	.text.VL53L1_RdDWord,"ax",%progbits
+ 406              		.align	1
+ 407              		.global	VL53L1_RdDWord
+ 408              		.syntax unified
+ 409              		.thumb
+ 410              		.thumb_func
+ 412              	VL53L1_RdDWord:
+ 413              	.LVL34:
+ 414              	.LFB142:
+  84:Core/Src/vl53l1_platform.c **** 
+  85:Core/Src/vl53l1_platform.c **** VL53L1_Error VL53L1_RdDWord(VL53L1_DEV Dev, uint16_t index, uint32_t *data)
+  86:Core/Src/vl53l1_platform.c **** {
+ 415              		.loc 1 86 1 is_stmt 1 view -0
+ 416              		.cfi_startproc
+ 417              		@ args = 0, pretend = 0, frame = 8
+ 418              		@ frame_needed = 0, uses_anonymous_args = 0
+ 419              		.loc 1 86 1 is_stmt 0 view .LVU88
+ 420 0000 10B5     		push	{r4, lr}
+ 421              	.LCFI21:
+ 422              		.cfi_def_cfa_offset 8
+ 423              		.cfi_offset 4, -8
+ 424              		.cfi_offset 14, -4
+ 425 0002 82B0     		sub	sp, sp, #8
+ 426              	.LCFI22:
+ 427              		.cfi_def_cfa_offset 16
+ 428 0004 1446     		mov	r4, r2
+  87:Core/Src/vl53l1_platform.c ****     uint8_t buffer[4];
+ 429              		.loc 1 87 5 is_stmt 1 view .LVU89
+  88:Core/Src/vl53l1_platform.c ****     VL53L1_Error Status = VL53L1_ReadMulti(Dev, index, buffer, 4);
+ 430              		.loc 1 88 5 view .LVU90
+ 431              		.loc 1 88 27 is_stmt 0 view .LVU91
+ 432 0006 0423     		movs	r3, #4
+ 433 0008 0DEB0302 		add	r2, sp, r3
+ 434              	.LVL35:
+ 435              		.loc 1 88 27 view .LVU92
+ 436 000c FFF7FEFF 		bl	VL53L1_ReadMulti
+ 437              	.LVL36:
+  89:Core/Src/vl53l1_platform.c ****     if (Status == VL53L1_ERROR_NONE) {
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 10
+
+
+ 438              		.loc 1 89 5 is_stmt 1 view .LVU93
+ 439              		.loc 1 89 8 is_stmt 0 view .LVU94
+ 440 0010 70B9     		cbnz	r0, .L27
+  90:Core/Src/vl53l1_platform.c ****         *data = ((uint32_t)buffer[0] << 24) |
+ 441              		.loc 1 90 9 is_stmt 1 view .LVU95
+ 442              		.loc 1 90 34 is_stmt 0 view .LVU96
+ 443 0012 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+  91:Core/Src/vl53l1_platform.c ****                 ((uint32_t)buffer[1] << 16) |
+ 444              		.loc 1 91 34 view .LVU97
+ 445 0016 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 446              		.loc 1 91 38 view .LVU98
+ 447 001a 1B04     		lsls	r3, r3, #16
+  90:Core/Src/vl53l1_platform.c ****         *data = ((uint32_t)buffer[0] << 24) |
+ 448              		.loc 1 90 45 view .LVU99
+ 449 001c 43EA0263 		orr	r3, r3, r2, lsl #24
+  92:Core/Src/vl53l1_platform.c ****                 ((uint32_t)buffer[2] << 8)  |
+ 450              		.loc 1 92 34 view .LVU100
+ 451 0020 9DF80620 		ldrb	r2, [sp, #6]	@ zero_extendqisi2
+  91:Core/Src/vl53l1_platform.c ****                 ((uint32_t)buffer[1] << 16) |
+ 452              		.loc 1 91 45 view .LVU101
+ 453 0024 43EA0223 		orr	r3, r3, r2, lsl #8
+  93:Core/Src/vl53l1_platform.c ****                 ((uint32_t)buffer[3]);
+ 454              		.loc 1 93 34 view .LVU102
+ 455 0028 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+  92:Core/Src/vl53l1_platform.c ****                 ((uint32_t)buffer[2] << 8)  |
+ 456              		.loc 1 92 45 view .LVU103
+ 457 002c 1343     		orrs	r3, r3, r2
+  90:Core/Src/vl53l1_platform.c ****                 ((uint32_t)buffer[1] << 16) |
+ 458              		.loc 1 90 15 view .LVU104
+ 459 002e 2360     		str	r3, [r4]
+ 460              	.L27:
+  94:Core/Src/vl53l1_platform.c ****     }
+  95:Core/Src/vl53l1_platform.c ****     return Status;
+ 461              		.loc 1 95 5 is_stmt 1 view .LVU105
+  96:Core/Src/vl53l1_platform.c **** }
+ 462              		.loc 1 96 1 is_stmt 0 view .LVU106
+ 463 0030 02B0     		add	sp, sp, #8
+ 464              	.LCFI23:
+ 465              		.cfi_def_cfa_offset 8
+ 466              		@ sp needed
+ 467 0032 10BD     		pop	{r4, pc}
+ 468              		.loc 1 96 1 view .LVU107
+ 469              		.cfi_endproc
+ 470              	.LFE142:
+ 472              		.text
+ 473              	.Letext0:
+ 474              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 475              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 476              		.file 4 "Core/Inc/vl53l1_types.h"
+ 477              		.file 5 "Core/Inc/vl53l1_ll_device.h"
+ 478              		.file 6 "Core/Inc/vl53l1_error_codes.h"
+ 479              		.file 7 "Core/Inc/vl53l1_register_structs.h"
+ 480              		.file 8 "Core/Inc/vl53l1_ll_def.h"
+ 481              		.file 9 "Core/Inc/vl53l1_def.h"
+ 482              		.file 10 "Core/Inc/vl53l1_platform_user_data.h"
+ 483              		.file 11 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l432xx.h"
+ 484              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 11
+
+
+ 485              		.file 13 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 486              		.file 14 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h"
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_platform.c
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:20     .text.VL53L1_WriteMulti:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:26     .text.VL53L1_WriteMulti:00000000 VL53L1_WriteMulti
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:92     .text.VL53L1_WriteMulti:0000002c $d
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:97     .text.VL53L1_ReadMulti:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:103    .text.VL53L1_ReadMulti:00000000 VL53L1_ReadMulti
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:168    .text.VL53L1_ReadMulti:0000002c $d
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:173    .text.VL53L1_WrByte:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:179    .text.VL53L1_WrByte:00000000 VL53L1_WrByte
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:213    .text.VL53L1_WrWord:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:219    .text.VL53L1_WrWord:00000000 VL53L1_WrWord
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:261    .text.VL53L1_WrDWord:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:267    .text.VL53L1_WrDWord:00000000 VL53L1_WrDWord
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:319    .text.VL53L1_RdByte:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:325    .text.VL53L1_RdByte:00000000 VL53L1_RdByte
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:349    .text.VL53L1_RdWord:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:355    .text.VL53L1_RdWord:00000000 VL53L1_RdWord
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:406    .text.VL53L1_RdDWord:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccq8ydSE.s:412    .text.VL53L1_RdDWord:00000000 VL53L1_RdDWord
+
+UNDEFINED SYMBOLS
+HAL_I2C_Mem_Write
+hi2c1
+HAL_I2C_Mem_Read

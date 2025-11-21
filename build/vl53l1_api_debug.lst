@@ -1,0 +1,231 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccpIVY4j.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_api_debug.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.VL53L1_get_additional_data,"ax",%progbits
+  20              		.align	1
+  21              		.global	VL53L1_get_additional_data
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	VL53L1_get_additional_data:
+  27              	.LVL0:
+  28              	.LFB3:
+  29              		.file 1 "Core/Src/vl53l1_api_debug.c"
+   1:Core/Src/vl53l1_api_debug.c **** /*
+   2:Core/Src/vl53l1_api_debug.c **** * Copyright (c) 2017, STMicroelectronics - All Rights Reserved
+   3:Core/Src/vl53l1_api_debug.c **** *
+   4:Core/Src/vl53l1_api_debug.c **** * This file is part of VL53L1 Core and is dual licensed,
+   5:Core/Src/vl53l1_api_debug.c **** * either 'STMicroelectronics
+   6:Core/Src/vl53l1_api_debug.c **** * Proprietary license'
+   7:Core/Src/vl53l1_api_debug.c **** * or 'BSD 3-clause "New" or "Revised" License' , at your option.
+   8:Core/Src/vl53l1_api_debug.c **** *
+   9:Core/Src/vl53l1_api_debug.c **** ********************************************************************************
+  10:Core/Src/vl53l1_api_debug.c **** *
+  11:Core/Src/vl53l1_api_debug.c **** * 'STMicroelectronics Proprietary license'
+  12:Core/Src/vl53l1_api_debug.c **** *
+  13:Core/Src/vl53l1_api_debug.c **** ********************************************************************************
+  14:Core/Src/vl53l1_api_debug.c **** *
+  15:Core/Src/vl53l1_api_debug.c **** * License terms: STMicroelectronics Proprietary in accordance with licensing
+  16:Core/Src/vl53l1_api_debug.c **** * terms at www.st.com/sla0081
+  17:Core/Src/vl53l1_api_debug.c **** *
+  18:Core/Src/vl53l1_api_debug.c **** * STMicroelectronics confidential
+  19:Core/Src/vl53l1_api_debug.c **** * Reproduction and Communication of this document is strictly prohibited unless
+  20:Core/Src/vl53l1_api_debug.c **** * specifically authorized in writing by STMicroelectronics.
+  21:Core/Src/vl53l1_api_debug.c **** *
+  22:Core/Src/vl53l1_api_debug.c **** *
+  23:Core/Src/vl53l1_api_debug.c **** ********************************************************************************
+  24:Core/Src/vl53l1_api_debug.c **** *
+  25:Core/Src/vl53l1_api_debug.c **** * Alternatively, VL53L1 Core may be distributed under the terms of
+  26:Core/Src/vl53l1_api_debug.c **** * 'BSD 3-clause "New" or "Revised" License', in which case the following
+  27:Core/Src/vl53l1_api_debug.c **** * provisions apply instead of the ones mentioned above :
+  28:Core/Src/vl53l1_api_debug.c **** *
+  29:Core/Src/vl53l1_api_debug.c **** ********************************************************************************
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccpIVY4j.s 			page 2
+
+
+  30:Core/Src/vl53l1_api_debug.c **** *
+  31:Core/Src/vl53l1_api_debug.c **** * License terms: BSD 3-clause "New" or "Revised" License.
+  32:Core/Src/vl53l1_api_debug.c **** *
+  33:Core/Src/vl53l1_api_debug.c **** * Redistribution and use in source and binary forms, with or without
+  34:Core/Src/vl53l1_api_debug.c **** * modification, are permitted provided that the following conditions are met:
+  35:Core/Src/vl53l1_api_debug.c **** *
+  36:Core/Src/vl53l1_api_debug.c **** * 1. Redistributions of source code must retain the above copyright notice, this
+  37:Core/Src/vl53l1_api_debug.c **** * list of conditions and the following disclaimer.
+  38:Core/Src/vl53l1_api_debug.c **** *
+  39:Core/Src/vl53l1_api_debug.c **** * 2. Redistributions in binary form must reproduce the above copyright notice,
+  40:Core/Src/vl53l1_api_debug.c **** * this list of conditions and the following disclaimer in the documentation
+  41:Core/Src/vl53l1_api_debug.c **** * and/or other materials provided with the distribution.
+  42:Core/Src/vl53l1_api_debug.c **** *
+  43:Core/Src/vl53l1_api_debug.c **** * 3. Neither the name of the copyright holder nor the names of its contributors
+  44:Core/Src/vl53l1_api_debug.c **** * may be used to endorse or promote products derived from this software
+  45:Core/Src/vl53l1_api_debug.c **** * without specific prior written permission.
+  46:Core/Src/vl53l1_api_debug.c **** *
+  47:Core/Src/vl53l1_api_debug.c **** * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  48:Core/Src/vl53l1_api_debug.c **** * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  49:Core/Src/vl53l1_api_debug.c **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  50:Core/Src/vl53l1_api_debug.c **** * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  51:Core/Src/vl53l1_api_debug.c **** * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  52:Core/Src/vl53l1_api_debug.c **** * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  53:Core/Src/vl53l1_api_debug.c **** * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  54:Core/Src/vl53l1_api_debug.c **** * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  55:Core/Src/vl53l1_api_debug.c **** * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  56:Core/Src/vl53l1_api_debug.c **** * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  57:Core/Src/vl53l1_api_debug.c **** *
+  58:Core/Src/vl53l1_api_debug.c **** *
+  59:Core/Src/vl53l1_api_debug.c **** ********************************************************************************
+  60:Core/Src/vl53l1_api_debug.c **** *
+  61:Core/Src/vl53l1_api_debug.c **** */
+  62:Core/Src/vl53l1_api_debug.c **** 
+  63:Core/Src/vl53l1_api_debug.c **** /**
+  64:Core/Src/vl53l1_api_debug.c ****  * @file  vl53l1_api_debug.c
+  65:Core/Src/vl53l1_api_debug.c ****  * @brief EwokPlus25 low level Driver debug function definition
+  66:Core/Src/vl53l1_api_debug.c ****  */
+  67:Core/Src/vl53l1_api_debug.c **** 
+  68:Core/Src/vl53l1_api_debug.c **** #include "vl53l1_ll_def.h"
+  69:Core/Src/vl53l1_api_debug.c **** #include "vl53l1_ll_device.h"
+  70:Core/Src/vl53l1_api_debug.c **** #include "vl53l1_register_structs.h"
+  71:Core/Src/vl53l1_api_debug.c **** #include "vl53l1_core.h"
+  72:Core/Src/vl53l1_api_debug.c **** #include "vl53l1_api_debug.h"
+  73:Core/Src/vl53l1_api_debug.c **** 
+  74:Core/Src/vl53l1_api_debug.c **** #define LOG_FUNCTION_START(fmt, ...) \
+  75:Core/Src/vl53l1_api_debug.c **** 	_LOG_FUNCTION_START(VL53L1_TRACE_MODULE_CORE, fmt, ##__VA_ARGS__)
+  76:Core/Src/vl53l1_api_debug.c **** #define LOG_FUNCTION_END(status, ...) \
+  77:Core/Src/vl53l1_api_debug.c **** 	_LOG_FUNCTION_END(VL53L1_TRACE_MODULE_CORE, status, ##__VA_ARGS__)
+  78:Core/Src/vl53l1_api_debug.c **** #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+  79:Core/Src/vl53l1_api_debug.c **** 	_LOG_FUNCTION_END_FMT(VL53L1_TRACE_MODULE_CORE, status, \
+  80:Core/Src/vl53l1_api_debug.c **** 	fmt, ##__VA_ARGS__)
+  81:Core/Src/vl53l1_api_debug.c **** 
+  82:Core/Src/vl53l1_api_debug.c **** #define trace_print(level, ...) \
+  83:Core/Src/vl53l1_api_debug.c **** 	_LOG_TRACE_PRINT(trace_flags, \
+  84:Core/Src/vl53l1_api_debug.c **** 	level, VL53L1_TRACE_FUNCTION_NONE, ##__VA_ARGS__)
+  85:Core/Src/vl53l1_api_debug.c **** 
+  86:Core/Src/vl53l1_api_debug.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccpIVY4j.s 			page 3
+
+
+  87:Core/Src/vl53l1_api_debug.c **** /* Start Patch_AdditionalDebugData_11823 */
+  88:Core/Src/vl53l1_api_debug.c **** 
+  89:Core/Src/vl53l1_api_debug.c **** VL53L1_Error VL53L1_get_additional_data(
+  90:Core/Src/vl53l1_api_debug.c **** 	VL53L1_DEV                       Dev,
+  91:Core/Src/vl53l1_api_debug.c **** 	VL53L1_additional_data_t        *pdata)
+  92:Core/Src/vl53l1_api_debug.c **** {
+  30              		.loc 1 92 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  93:Core/Src/vl53l1_api_debug.c **** 	/*
+  94:Core/Src/vl53l1_api_debug.c **** 	 * Gets the addition debug data
+  95:Core/Src/vl53l1_api_debug.c **** 	 */
+  96:Core/Src/vl53l1_api_debug.c **** 
+  97:Core/Src/vl53l1_api_debug.c **** 	VL53L1_Error  status = VL53L1_ERROR_NONE;
+  35              		.loc 1 97 2 view .LVU1
+  98:Core/Src/vl53l1_api_debug.c **** 
+  99:Core/Src/vl53l1_api_debug.c **** 	VL53L1_LLDriverData_t *pdev = VL53L1DevStructGetLLDriverHandle(Dev);
+  36              		.loc 1 99 2 view .LVU2
+ 100:Core/Src/vl53l1_api_debug.c **** 
+ 101:Core/Src/vl53l1_api_debug.c **** 	LOG_FUNCTION_START("");
+  37              		.loc 1 101 24 view .LVU3
+ 102:Core/Src/vl53l1_api_debug.c **** 
+ 103:Core/Src/vl53l1_api_debug.c **** 	/* get LL Driver configuration parameters */
+ 104:Core/Src/vl53l1_api_debug.c **** 
+ 105:Core/Src/vl53l1_api_debug.c **** 	pdata->preset_mode             = pdev->preset_mode;
+  38              		.loc 1 105 2 view .LVU4
+  39              		.loc 1 105 39 is_stmt 0 view .LVU5
+  40 0000 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
+  41              		.loc 1 105 33 view .LVU6
+  42 0002 0B70     		strb	r3, [r1]
+ 106:Core/Src/vl53l1_api_debug.c **** 	pdata->measurement_mode        = pdev->measurement_mode;
+  43              		.loc 1 106 2 is_stmt 1 view .LVU7
+  44              		.loc 1 106 39 is_stmt 0 view .LVU8
+  45 0004 8378     		ldrb	r3, [r0, #2]	@ zero_extendqisi2
+  46              		.loc 1 106 33 view .LVU9
+  47 0006 4B70     		strb	r3, [r1, #1]
+ 107:Core/Src/vl53l1_api_debug.c **** 
+ 108:Core/Src/vl53l1_api_debug.c **** 	pdata->phasecal_config_timeout_us  = pdev->phasecal_config_timeout_us;
+  48              		.loc 1 108 2 is_stmt 1 view .LVU10
+  49              		.loc 1 108 43 is_stmt 0 view .LVU11
+  50 0008 8368     		ldr	r3, [r0, #8]
+  51              		.loc 1 108 37 view .LVU12
+  52 000a 4B60     		str	r3, [r1, #4]
+ 109:Core/Src/vl53l1_api_debug.c **** 	pdata->mm_config_timeout_us        = pdev->mm_config_timeout_us;
+  53              		.loc 1 109 2 is_stmt 1 view .LVU13
+  54              		.loc 1 109 43 is_stmt 0 view .LVU14
+  55 000c C368     		ldr	r3, [r0, #12]
+  56              		.loc 1 109 37 view .LVU15
+  57 000e 8B60     		str	r3, [r1, #8]
+ 110:Core/Src/vl53l1_api_debug.c **** 	pdata->range_config_timeout_us     = pdev->range_config_timeout_us;
+  58              		.loc 1 110 2 is_stmt 1 view .LVU16
+  59              		.loc 1 110 43 is_stmt 0 view .LVU17
+  60 0010 0369     		ldr	r3, [r0, #16]
+  61              		.loc 1 110 37 view .LVU18
+  62 0012 CB60     		str	r3, [r1, #12]
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccpIVY4j.s 			page 4
+
+
+ 111:Core/Src/vl53l1_api_debug.c **** 	pdata->inter_measurement_period_ms = pdev->inter_measurement_period_ms;
+  63              		.loc 1 111 2 is_stmt 1 view .LVU19
+  64              		.loc 1 111 43 is_stmt 0 view .LVU20
+  65 0014 4369     		ldr	r3, [r0, #20]
+  66              		.loc 1 111 37 view .LVU21
+  67 0016 0B61     		str	r3, [r1, #16]
+ 112:Core/Src/vl53l1_api_debug.c **** 	pdata->dss_config__target_total_rate_mcps =
+  68              		.loc 1 112 2 is_stmt 1 view .LVU22
+ 113:Core/Src/vl53l1_api_debug.c **** 			pdev->dss_config__target_total_rate_mcps;
+  69              		.loc 1 113 8 is_stmt 0 view .LVU23
+  70 0018 038B     		ldrh	r3, [r0, #24]
+ 112:Core/Src/vl53l1_api_debug.c **** 	pdata->dss_config__target_total_rate_mcps =
+  71              		.loc 1 112 44 view .LVU24
+  72 001a 8B82     		strh	r3, [r1, #20]	@ movhi
+ 114:Core/Src/vl53l1_api_debug.c **** 
+ 115:Core/Src/vl53l1_api_debug.c **** 	LOG_FUNCTION_END(status);
+  73              		.loc 1 115 26 is_stmt 1 view .LVU25
+ 116:Core/Src/vl53l1_api_debug.c **** 
+ 117:Core/Src/vl53l1_api_debug.c **** 	return status;
+  74              		.loc 1 117 2 view .LVU26
+ 118:Core/Src/vl53l1_api_debug.c **** }
+  75              		.loc 1 118 1 is_stmt 0 view .LVU27
+  76 001c 0020     		movs	r0, #0
+  77              	.LVL1:
+  78              		.loc 1 118 1 view .LVU28
+  79 001e 7047     		bx	lr
+  80              		.cfi_endproc
+  81              	.LFE3:
+  83              		.text
+  84              	.Letext0:
+  85              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+  86              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+  87              		.file 4 "Core/Inc/vl53l1_types.h"
+  88              		.file 5 "Core/Inc/vl53l1_ll_device.h"
+  89              		.file 6 "Core/Inc/vl53l1_error_codes.h"
+  90              		.file 7 "Core/Inc/vl53l1_register_structs.h"
+  91              		.file 8 "Core/Inc/vl53l1_ll_def.h"
+  92              		.file 9 "Core/Inc/vl53l1_def.h"
+  93              		.file 10 "Core/Inc/vl53l1_platform_user_data.h"
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccpIVY4j.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_api_debug.c
+C:\Users\Lenovo\AppData\Local\Temp\ccpIVY4j.s:20     .text.VL53L1_get_additional_data:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccpIVY4j.s:26     .text.VL53L1_get_additional_data:00000000 VL53L1_get_additional_data
+
+NO UNDEFINED SYMBOLS

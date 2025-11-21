@@ -1,0 +1,634 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_core_support.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.VL53L1_calc_pll_period_us,"ax",%progbits
+  20              		.align	1
+  21              		.global	VL53L1_calc_pll_period_us
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	VL53L1_calc_pll_period_us:
+  27              	.LVL0:
+  28              	.LFB3:
+  29              		.file 1 "Core/Src/vl53l1_core_support.c"
+   1:Core/Src/vl53l1_core_support.c **** /*
+   2:Core/Src/vl53l1_core_support.c **** * Copyright (c) 2017, STMicroelectronics - All Rights Reserved
+   3:Core/Src/vl53l1_core_support.c **** *
+   4:Core/Src/vl53l1_core_support.c **** * This file is part of VL53L1 Core and is dual licensed,
+   5:Core/Src/vl53l1_core_support.c **** * either 'STMicroelectronics
+   6:Core/Src/vl53l1_core_support.c **** * Proprietary license'
+   7:Core/Src/vl53l1_core_support.c **** * or 'BSD 3-clause "New" or "Revised" License' , at your option.
+   8:Core/Src/vl53l1_core_support.c **** *
+   9:Core/Src/vl53l1_core_support.c **** ********************************************************************************
+  10:Core/Src/vl53l1_core_support.c **** *
+  11:Core/Src/vl53l1_core_support.c **** * 'STMicroelectronics Proprietary license'
+  12:Core/Src/vl53l1_core_support.c **** *
+  13:Core/Src/vl53l1_core_support.c **** ********************************************************************************
+  14:Core/Src/vl53l1_core_support.c **** *
+  15:Core/Src/vl53l1_core_support.c **** * License terms: STMicroelectronics Proprietary in accordance with licensing
+  16:Core/Src/vl53l1_core_support.c **** * terms at www.st.com/sla0081
+  17:Core/Src/vl53l1_core_support.c **** *
+  18:Core/Src/vl53l1_core_support.c **** * STMicroelectronics confidential
+  19:Core/Src/vl53l1_core_support.c **** * Reproduction and Communication of this document is strictly prohibited unless
+  20:Core/Src/vl53l1_core_support.c **** * specifically authorized in writing by STMicroelectronics.
+  21:Core/Src/vl53l1_core_support.c **** *
+  22:Core/Src/vl53l1_core_support.c **** *
+  23:Core/Src/vl53l1_core_support.c **** ********************************************************************************
+  24:Core/Src/vl53l1_core_support.c **** *
+  25:Core/Src/vl53l1_core_support.c **** * Alternatively, VL53L1 Core may be distributed under the terms of
+  26:Core/Src/vl53l1_core_support.c **** * 'BSD 3-clause "New" or "Revised" License', in which case the following
+  27:Core/Src/vl53l1_core_support.c **** * provisions apply instead of the ones mentioned above :
+  28:Core/Src/vl53l1_core_support.c **** *
+  29:Core/Src/vl53l1_core_support.c **** ********************************************************************************
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 2
+
+
+  30:Core/Src/vl53l1_core_support.c **** *
+  31:Core/Src/vl53l1_core_support.c **** * License terms: BSD 3-clause "New" or "Revised" License.
+  32:Core/Src/vl53l1_core_support.c **** *
+  33:Core/Src/vl53l1_core_support.c **** * Redistribution and use in source and binary forms, with or without
+  34:Core/Src/vl53l1_core_support.c **** * modification, are permitted provided that the following conditions are met:
+  35:Core/Src/vl53l1_core_support.c **** *
+  36:Core/Src/vl53l1_core_support.c **** * 1. Redistributions of source code must retain the above copyright notice, this
+  37:Core/Src/vl53l1_core_support.c **** * list of conditions and the following disclaimer.
+  38:Core/Src/vl53l1_core_support.c **** *
+  39:Core/Src/vl53l1_core_support.c **** * 2. Redistributions in binary form must reproduce the above copyright notice,
+  40:Core/Src/vl53l1_core_support.c **** * this list of conditions and the following disclaimer in the documentation
+  41:Core/Src/vl53l1_core_support.c **** * and/or other materials provided with the distribution.
+  42:Core/Src/vl53l1_core_support.c **** *
+  43:Core/Src/vl53l1_core_support.c **** * 3. Neither the name of the copyright holder nor the names of its contributors
+  44:Core/Src/vl53l1_core_support.c **** * may be used to endorse or promote products derived from this software
+  45:Core/Src/vl53l1_core_support.c **** * without specific prior written permission.
+  46:Core/Src/vl53l1_core_support.c **** *
+  47:Core/Src/vl53l1_core_support.c **** * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  48:Core/Src/vl53l1_core_support.c **** * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  49:Core/Src/vl53l1_core_support.c **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  50:Core/Src/vl53l1_core_support.c **** * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  51:Core/Src/vl53l1_core_support.c **** * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  52:Core/Src/vl53l1_core_support.c **** * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  53:Core/Src/vl53l1_core_support.c **** * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  54:Core/Src/vl53l1_core_support.c **** * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  55:Core/Src/vl53l1_core_support.c **** * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  56:Core/Src/vl53l1_core_support.c **** * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  57:Core/Src/vl53l1_core_support.c **** *
+  58:Core/Src/vl53l1_core_support.c **** *
+  59:Core/Src/vl53l1_core_support.c **** ********************************************************************************
+  60:Core/Src/vl53l1_core_support.c **** *
+  61:Core/Src/vl53l1_core_support.c **** */
+  62:Core/Src/vl53l1_core_support.c **** 
+  63:Core/Src/vl53l1_core_support.c **** /**
+  64:Core/Src/vl53l1_core_support.c ****  * @file  vl53l1_core_support.c
+  65:Core/Src/vl53l1_core_support.c ****  *
+  66:Core/Src/vl53l1_core_support.c ****  * @brief EwokPlus25 core function definition
+  67:Core/Src/vl53l1_core_support.c ****  */
+  68:Core/Src/vl53l1_core_support.c **** 
+  69:Core/Src/vl53l1_core_support.c **** #include "vl53l1_ll_def.h"
+  70:Core/Src/vl53l1_core_support.c **** #include "vl53l1_ll_device.h"
+  71:Core/Src/vl53l1_core_support.c **** #include "vl53l1_platform_log.h"
+  72:Core/Src/vl53l1_core_support.c **** #include "vl53l1_core_support.h"
+  73:Core/Src/vl53l1_core_support.c **** #include "vl53l1_platform_user_data.h"
+  74:Core/Src/vl53l1_core_support.c **** #include "vl53l1_platform_user_defines.h"
+  75:Core/Src/vl53l1_core_support.c **** 
+  76:Core/Src/vl53l1_core_support.c **** #ifdef VL53L1_LOGGING
+  77:Core/Src/vl53l1_core_support.c **** #include "vl53l1_debug.h"
+  78:Core/Src/vl53l1_core_support.c **** #include "vl53l1_register_debug.h"
+  79:Core/Src/vl53l1_core_support.c **** #endif
+  80:Core/Src/vl53l1_core_support.c **** 
+  81:Core/Src/vl53l1_core_support.c **** #define LOG_FUNCTION_START(fmt, ...) \
+  82:Core/Src/vl53l1_core_support.c **** 	_LOG_FUNCTION_START(VL53L1_TRACE_MODULE_CORE, fmt, ##__VA_ARGS__)
+  83:Core/Src/vl53l1_core_support.c **** #define LOG_FUNCTION_END(status, ...) \
+  84:Core/Src/vl53l1_core_support.c **** 	_LOG_FUNCTION_END(VL53L1_TRACE_MODULE_CORE, status, ##__VA_ARGS__)
+  85:Core/Src/vl53l1_core_support.c **** #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+  86:Core/Src/vl53l1_core_support.c **** 	_LOG_FUNCTION_END_FMT(VL53L1_TRACE_MODULE_CORE, \
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 3
+
+
+  87:Core/Src/vl53l1_core_support.c **** 		status, fmt, ##__VA_ARGS__)
+  88:Core/Src/vl53l1_core_support.c **** 
+  89:Core/Src/vl53l1_core_support.c **** #define trace_print(level, ...) \
+  90:Core/Src/vl53l1_core_support.c **** 	_LOG_TRACE_PRINT(VL53L1_TRACE_MODULE_CORE, \
+  91:Core/Src/vl53l1_core_support.c **** 	level, VL53L1_TRACE_FUNCTION_NONE, ##__VA_ARGS__)
+  92:Core/Src/vl53l1_core_support.c **** 
+  93:Core/Src/vl53l1_core_support.c **** 
+  94:Core/Src/vl53l1_core_support.c **** uint32_t VL53L1_calc_pll_period_us(
+  95:Core/Src/vl53l1_core_support.c **** 	uint16_t  fast_osc_frequency)
+  96:Core/Src/vl53l1_core_support.c **** {
+  30              		.loc 1 96 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  97:Core/Src/vl53l1_core_support.c **** 	/*  Calculates PLL frequency using NVM fast_osc_frequency
+  98:Core/Src/vl53l1_core_support.c **** 	 *  Fast osc frequency fixed point format = unsigned 4.12
+  99:Core/Src/vl53l1_core_support.c **** 	 *
+ 100:Core/Src/vl53l1_core_support.c **** 	 *  PLL period fixed point format = unsigned 0.24
+ 101:Core/Src/vl53l1_core_support.c **** 	 *  Min input fast osc frequency  = 1 MHz
+ 102:Core/Src/vl53l1_core_support.c **** 	 *  PLL Multiplier = 64 (fixed)
+ 103:Core/Src/vl53l1_core_support.c **** 	 *  Min PLL freq = 64.0MHz
+ 104:Core/Src/vl53l1_core_support.c **** 	 *  -> max PLL period = 1/ 64
+ 105:Core/Src/vl53l1_core_support.c **** 	 *  ->  only the 18 LS bits are used
+ 106:Core/Src/vl53l1_core_support.c **** 	 *
+ 107:Core/Src/vl53l1_core_support.c **** 	 *  2^30 = (2^24) (1.0us) * 4096 (2^12) / 64 (PLL Multiplier)
+ 108:Core/Src/vl53l1_core_support.c **** 	 */
+ 109:Core/Src/vl53l1_core_support.c **** 
+ 110:Core/Src/vl53l1_core_support.c **** 	uint32_t  pll_period_us        = 0;
+  35              		.loc 1 110 2 view .LVU1
+ 111:Core/Src/vl53l1_core_support.c **** 
+ 112:Core/Src/vl53l1_core_support.c **** 	LOG_FUNCTION_START("");
+  36              		.loc 1 112 24 view .LVU2
+ 113:Core/Src/vl53l1_core_support.c **** 
+ 114:Core/Src/vl53l1_core_support.c **** 	pll_period_us = (0x01 << 30) / fast_osc_frequency;
+  37              		.loc 1 114 2 view .LVU3
+ 115:Core/Src/vl53l1_core_support.c **** 
+ 116:Core/Src/vl53l1_core_support.c **** #ifdef VL53L1_LOGGING
+ 117:Core/Src/vl53l1_core_support.c **** 	trace_print(VL53L1_TRACE_LEVEL_DEBUG,
+ 118:Core/Src/vl53l1_core_support.c **** 			"    %-48s : %10u\n", "pll_period_us",
+ 119:Core/Src/vl53l1_core_support.c **** 			pll_period_us);
+ 120:Core/Src/vl53l1_core_support.c **** #endif
+ 121:Core/Src/vl53l1_core_support.c **** 
+ 122:Core/Src/vl53l1_core_support.c **** 	LOG_FUNCTION_END(0);
+  38              		.loc 1 122 21 view .LVU4
+ 123:Core/Src/vl53l1_core_support.c **** 
+ 124:Core/Src/vl53l1_core_support.c **** 	return pll_period_us;
+  39              		.loc 1 124 2 view .LVU5
+ 125:Core/Src/vl53l1_core_support.c **** }
+  40              		.loc 1 125 1 is_stmt 0 view .LVU6
+  41 0000 4FF08043 		mov	r3, #1073741824
+  42 0004 93FBF0F0 		sdiv	r0, r3, r0
+  43              	.LVL1:
+  44              		.loc 1 125 1 view .LVU7
+  45 0008 7047     		bx	lr
+  46              		.cfi_endproc
+  47              	.LFE3:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 4
+
+
+  49              		.section	.text.VL53L1_decode_vcsel_period,"ax",%progbits
+  50              		.align	1
+  51              		.global	VL53L1_decode_vcsel_period
+  52              		.syntax unified
+  53              		.thumb
+  54              		.thumb_func
+  56              	VL53L1_decode_vcsel_period:
+  57              	.LVL2:
+  58              	.LFB4:
+ 126:Core/Src/vl53l1_core_support.c **** 
+ 127:Core/Src/vl53l1_core_support.c **** 
+ 128:Core/Src/vl53l1_core_support.c **** #ifdef PAL_EXTENDED
+ 129:Core/Src/vl53l1_core_support.c **** uint32_t  VL53L1_duration_maths(
+ 130:Core/Src/vl53l1_core_support.c **** 	uint32_t  pll_period_us,
+ 131:Core/Src/vl53l1_core_support.c **** 	uint32_t  vcsel_parm_pclks,
+ 132:Core/Src/vl53l1_core_support.c **** 	uint32_t  window_vclks,
+ 133:Core/Src/vl53l1_core_support.c **** 	uint32_t  elapsed_mclks)
+ 134:Core/Src/vl53l1_core_support.c **** {
+ 135:Core/Src/vl53l1_core_support.c **** 	/*
+ 136:Core/Src/vl53l1_core_support.c **** 	 * Generates the ranging duration in us
+ 137:Core/Src/vl53l1_core_support.c **** 	 *
+ 138:Core/Src/vl53l1_core_support.c **** 	 * duration_us = elapsed_mclks * vcsel_perm_pclks *
+ 139:Core/Src/vl53l1_core_support.c **** 	 *                        window_vclks * pll_period_us
+ 140:Core/Src/vl53l1_core_support.c **** 	 *
+ 141:Core/Src/vl53l1_core_support.c **** 	 * returned value in [us] with no fraction bits
+ 142:Core/Src/vl53l1_core_support.c **** 	 */
+ 143:Core/Src/vl53l1_core_support.c **** 
+ 144:Core/Src/vl53l1_core_support.c **** 	uint64_t  tmp_long_int = 0;
+ 145:Core/Src/vl53l1_core_support.c **** 	uint32_t  duration_us  = 0;
+ 146:Core/Src/vl53l1_core_support.c **** 
+ 147:Core/Src/vl53l1_core_support.c **** 	/* PLL period us =  0.24  18 LS bits used
+ 148:Core/Src/vl53l1_core_support.c **** 	 * window_vclks  =  12.0  (2304 max)
+ 149:Core/Src/vl53l1_core_support.c **** 	 * output 30b (6.24)
+ 150:Core/Src/vl53l1_core_support.c **** 	 */
+ 151:Core/Src/vl53l1_core_support.c **** 	duration_us = window_vclks * pll_period_us;
+ 152:Core/Src/vl53l1_core_support.c **** 
+ 153:Core/Src/vl53l1_core_support.c **** 	/* down shift by 12
+ 154:Core/Src/vl53l1_core_support.c **** 	 * output 18b (6.12)
+ 155:Core/Src/vl53l1_core_support.c **** 	 */
+ 156:Core/Src/vl53l1_core_support.c **** 	duration_us = duration_us >> 12;
+ 157:Core/Src/vl53l1_core_support.c **** 
+ 158:Core/Src/vl53l1_core_support.c **** 	/* Save first part of the calc (#1) */
+ 159:Core/Src/vl53l1_core_support.c **** 	tmp_long_int = (uint64_t)duration_us;
+ 160:Core/Src/vl53l1_core_support.c **** 
+ 161:Core/Src/vl53l1_core_support.c **** 	/* Multiply elapsed macro periods (22-bit)
+ 162:Core/Src/vl53l1_core_support.c **** 	 *      by VCSEL parameter 6.4  (max 63.9999)
+ 163:Core/Src/vl53l1_core_support.c **** 	 * output 32b (28.4)
+ 164:Core/Src/vl53l1_core_support.c **** 	 */
+ 165:Core/Src/vl53l1_core_support.c **** 	duration_us = elapsed_mclks * vcsel_parm_pclks;
+ 166:Core/Src/vl53l1_core_support.c **** 
+ 167:Core/Src/vl53l1_core_support.c **** 	/* down shift by 4 to remove fractional bits (#2)
+ 168:Core/Src/vl53l1_core_support.c **** 	 * output 28b (28.0)
+ 169:Core/Src/vl53l1_core_support.c **** 	 */
+ 170:Core/Src/vl53l1_core_support.c **** 	duration_us = duration_us >> 4;
+ 171:Core/Src/vl53l1_core_support.c **** 
+ 172:Core/Src/vl53l1_core_support.c **** 	/* Multiply #1 18b (6.12) by #2  28b (28.0)
+ 173:Core/Src/vl53l1_core_support.c **** 	 * output 46b (34.12)
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 5
+
+
+ 174:Core/Src/vl53l1_core_support.c **** 	 */
+ 175:Core/Src/vl53l1_core_support.c **** 	tmp_long_int = tmp_long_int * (uint64_t)duration_us;
+ 176:Core/Src/vl53l1_core_support.c **** 
+ 177:Core/Src/vl53l1_core_support.c **** 	/* Remove fractional part
+ 178:Core/Src/vl53l1_core_support.c **** 	 * output 34b (34.0)
+ 179:Core/Src/vl53l1_core_support.c **** 	 */
+ 180:Core/Src/vl53l1_core_support.c **** 	tmp_long_int = tmp_long_int >> 12;
+ 181:Core/Src/vl53l1_core_support.c **** 
+ 182:Core/Src/vl53l1_core_support.c **** 	/* Clip to 32-bits */
+ 183:Core/Src/vl53l1_core_support.c **** 	if (tmp_long_int > 0xFFFFFFFF) {
+ 184:Core/Src/vl53l1_core_support.c **** 		tmp_long_int = 0xFFFFFFFF;
+ 185:Core/Src/vl53l1_core_support.c **** 	}
+ 186:Core/Src/vl53l1_core_support.c **** 
+ 187:Core/Src/vl53l1_core_support.c **** 	duration_us  = (uint32_t)tmp_long_int;
+ 188:Core/Src/vl53l1_core_support.c **** 
+ 189:Core/Src/vl53l1_core_support.c **** 	return duration_us;
+ 190:Core/Src/vl53l1_core_support.c **** }
+ 191:Core/Src/vl53l1_core_support.c **** 
+ 192:Core/Src/vl53l1_core_support.c **** 
+ 193:Core/Src/vl53l1_core_support.c **** uint32_t VL53L1_isqrt(uint32_t num)
+ 194:Core/Src/vl53l1_core_support.c **** {
+ 195:Core/Src/vl53l1_core_support.c **** 
+ 196:Core/Src/vl53l1_core_support.c **** 	/*
+ 197:Core/Src/vl53l1_core_support.c **** 	 * Implements an integer square root
+ 198:Core/Src/vl53l1_core_support.c **** 	 *
+ 199:Core/Src/vl53l1_core_support.c **** 	 * From: http://en.wikipedia.org/wiki/Methods_of_computing_square_roots
+ 200:Core/Src/vl53l1_core_support.c **** 	 */
+ 201:Core/Src/vl53l1_core_support.c **** 
+ 202:Core/Src/vl53l1_core_support.c **** 	uint32_t  res = 0;
+ 203:Core/Src/vl53l1_core_support.c **** 	uint32_t  bit = 1 << 30; /* The second-to-top bit is set: 1 << 14 for 16-bits, 1 << 30 for 32 bits
+ 204:Core/Src/vl53l1_core_support.c **** 
+ 205:Core/Src/vl53l1_core_support.c **** 	/* "bit" starts at the highest power of four <= the argument. */
+ 206:Core/Src/vl53l1_core_support.c **** 	while (bit > num) {
+ 207:Core/Src/vl53l1_core_support.c **** 		bit >>= 2;
+ 208:Core/Src/vl53l1_core_support.c **** 	}
+ 209:Core/Src/vl53l1_core_support.c **** 
+ 210:Core/Src/vl53l1_core_support.c **** 	while (bit != 0) {
+ 211:Core/Src/vl53l1_core_support.c **** 		if (num >= res + bit)  {
+ 212:Core/Src/vl53l1_core_support.c **** 			num -= res + bit;
+ 213:Core/Src/vl53l1_core_support.c **** 			res = (res >> 1) + bit;
+ 214:Core/Src/vl53l1_core_support.c **** 		} else {
+ 215:Core/Src/vl53l1_core_support.c **** 			res >>= 1;
+ 216:Core/Src/vl53l1_core_support.c **** 		}
+ 217:Core/Src/vl53l1_core_support.c **** 		bit >>= 2;
+ 218:Core/Src/vl53l1_core_support.c **** 	}
+ 219:Core/Src/vl53l1_core_support.c **** 
+ 220:Core/Src/vl53l1_core_support.c **** 	return res;
+ 221:Core/Src/vl53l1_core_support.c **** }
+ 222:Core/Src/vl53l1_core_support.c **** 
+ 223:Core/Src/vl53l1_core_support.c **** 
+ 224:Core/Src/vl53l1_core_support.c **** uint16_t VL53L1_rate_maths(
+ 225:Core/Src/vl53l1_core_support.c **** 	int32_t   events,
+ 226:Core/Src/vl53l1_core_support.c **** 	uint32_t  time_us)
+ 227:Core/Src/vl53l1_core_support.c **** {
+ 228:Core/Src/vl53l1_core_support.c **** 	/*
+ 229:Core/Src/vl53l1_core_support.c **** 	 * Converts events into count rate
+ 230:Core/Src/vl53l1_core_support.c **** 	 *
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 6
+
+
+ 231:Core/Src/vl53l1_core_support.c **** 	 * Max events = 512 Mcps * 1sec
+ 232:Core/Src/vl53l1_core_support.c **** 	 *            = 512,000,000 events
+ 233:Core/Src/vl53l1_core_support.c **** 	 *            = 29b
+ 234:Core/Src/vl53l1_core_support.c **** 	 *
+ 235:Core/Src/vl53l1_core_support.c **** 	 * If events >  2^24 use  3-bit fractional bits is used internally
+ 236:Core/Src/vl53l1_core_support.c **** 	 * otherwise  7-bit fractional bits are used
+ 237:Core/Src/vl53l1_core_support.c **** 	 */
+ 238:Core/Src/vl53l1_core_support.c **** 
+ 239:Core/Src/vl53l1_core_support.c **** 	uint32_t  tmp_int   = 0;
+ 240:Core/Src/vl53l1_core_support.c **** 	uint32_t  frac_bits = 7;
+ 241:Core/Src/vl53l1_core_support.c **** 	uint16_t  rate_mcps = 0; /* 9.7 format */
+ 242:Core/Src/vl53l1_core_support.c **** 
+ 243:Core/Src/vl53l1_core_support.c **** 	/*
+ 244:Core/Src/vl53l1_core_support.c **** 	 *  Clip input event range
+ 245:Core/Src/vl53l1_core_support.c **** 	 */
+ 246:Core/Src/vl53l1_core_support.c **** 
+ 247:Core/Src/vl53l1_core_support.c **** 	if (events > VL53L1_SPAD_TOTAL_COUNT_MAX) {
+ 248:Core/Src/vl53l1_core_support.c **** 		tmp_int = VL53L1_SPAD_TOTAL_COUNT_MAX;
+ 249:Core/Src/vl53l1_core_support.c **** 	} else if (events > 0) {
+ 250:Core/Src/vl53l1_core_support.c **** 		tmp_int = (uint32_t)events;
+ 251:Core/Src/vl53l1_core_support.c **** 	}
+ 252:Core/Src/vl53l1_core_support.c **** 
+ 253:Core/Src/vl53l1_core_support.c **** 	/*
+ 254:Core/Src/vl53l1_core_support.c **** 	 * if events > VL53L1_SPAD_TOTAL_COUNT_RES_THRES use 3 rather
+ 255:Core/Src/vl53l1_core_support.c **** 	 *  than 7 fractional bits internal to function
+ 256:Core/Src/vl53l1_core_support.c **** 	 */
+ 257:Core/Src/vl53l1_core_support.c **** 
+ 258:Core/Src/vl53l1_core_support.c **** 	if (events > VL53L1_SPAD_TOTAL_COUNT_RES_THRES) {
+ 259:Core/Src/vl53l1_core_support.c **** 		frac_bits = 3;
+ 260:Core/Src/vl53l1_core_support.c **** 	} else {
+ 261:Core/Src/vl53l1_core_support.c **** 		frac_bits = 7;
+ 262:Core/Src/vl53l1_core_support.c **** 	}
+ 263:Core/Src/vl53l1_core_support.c **** 
+ 264:Core/Src/vl53l1_core_support.c **** 	/*
+ 265:Core/Src/vl53l1_core_support.c **** 	 * Create 3 or 7 fractional bits
+ 266:Core/Src/vl53l1_core_support.c **** 	 * output 32b (29.3 or 25.7)
+ 267:Core/Src/vl53l1_core_support.c **** 	 * Divide by range duration in [us] - no fractional bits
+ 268:Core/Src/vl53l1_core_support.c **** 	 */
+ 269:Core/Src/vl53l1_core_support.c **** 	if (time_us > 0) {
+ 270:Core/Src/vl53l1_core_support.c **** 		tmp_int = ((tmp_int << frac_bits) + (time_us / 2)) / time_us;
+ 271:Core/Src/vl53l1_core_support.c **** 	}
+ 272:Core/Src/vl53l1_core_support.c **** 
+ 273:Core/Src/vl53l1_core_support.c **** 	/*
+ 274:Core/Src/vl53l1_core_support.c **** 	 * Re align if reduced resolution
+ 275:Core/Src/vl53l1_core_support.c **** 	 */
+ 276:Core/Src/vl53l1_core_support.c **** 	if (events > VL53L1_SPAD_TOTAL_COUNT_RES_THRES) {
+ 277:Core/Src/vl53l1_core_support.c **** 		tmp_int = tmp_int << 4;
+ 278:Core/Src/vl53l1_core_support.c **** 	}
+ 279:Core/Src/vl53l1_core_support.c **** 
+ 280:Core/Src/vl53l1_core_support.c **** 	/*
+ 281:Core/Src/vl53l1_core_support.c **** 	 * Firmware internal count is 17.7 (24b) but it this
+ 282:Core/Src/vl53l1_core_support.c **** 	 * case clip to 16-bit value for reporting
+ 283:Core/Src/vl53l1_core_support.c **** 	 */
+ 284:Core/Src/vl53l1_core_support.c **** 
+ 285:Core/Src/vl53l1_core_support.c **** 	if (tmp_int > 0xFFFF) {
+ 286:Core/Src/vl53l1_core_support.c **** 		tmp_int = 0xFFFF;
+ 287:Core/Src/vl53l1_core_support.c **** 	}
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 7
+
+
+ 288:Core/Src/vl53l1_core_support.c **** 
+ 289:Core/Src/vl53l1_core_support.c **** 	rate_mcps =  (uint16_t)tmp_int;
+ 290:Core/Src/vl53l1_core_support.c **** 
+ 291:Core/Src/vl53l1_core_support.c **** 	return rate_mcps;
+ 292:Core/Src/vl53l1_core_support.c **** }
+ 293:Core/Src/vl53l1_core_support.c **** 
+ 294:Core/Src/vl53l1_core_support.c **** uint16_t VL53L1_rate_per_spad_maths(
+ 295:Core/Src/vl53l1_core_support.c **** 	uint32_t  frac_bits,
+ 296:Core/Src/vl53l1_core_support.c **** 	uint32_t  peak_count_rate,
+ 297:Core/Src/vl53l1_core_support.c **** 	uint16_t  num_spads,
+ 298:Core/Src/vl53l1_core_support.c **** 	uint32_t  max_output_value)
+ 299:Core/Src/vl53l1_core_support.c **** {
+ 300:Core/Src/vl53l1_core_support.c **** 
+ 301:Core/Src/vl53l1_core_support.c **** 	uint32_t  tmp_int   = 0;
+ 302:Core/Src/vl53l1_core_support.c **** 
+ 303:Core/Src/vl53l1_core_support.c **** 	/* rate_per_spad Format varies with prog frac_bits */
+ 304:Core/Src/vl53l1_core_support.c **** 	uint16_t  rate_per_spad = 0;
+ 305:Core/Src/vl53l1_core_support.c **** 
+ 306:Core/Src/vl53l1_core_support.c **** 	/* Calculate rate per spad with variable fractional bits */
+ 307:Core/Src/vl53l1_core_support.c **** 
+ 308:Core/Src/vl53l1_core_support.c **** 	/* Frac_bits should be programmed as final frac_bits - 7 as
+ 309:Core/Src/vl53l1_core_support.c **** 	 * the pk_rate contains an inherent 7 bit resolution
+ 310:Core/Src/vl53l1_core_support.c **** 	 */
+ 311:Core/Src/vl53l1_core_support.c **** 
+ 312:Core/Src/vl53l1_core_support.c **** 	if (num_spads > 0) {
+ 313:Core/Src/vl53l1_core_support.c **** 		tmp_int = (peak_count_rate << 8) << frac_bits;
+ 314:Core/Src/vl53l1_core_support.c **** 		tmp_int = (tmp_int + ((uint32_t)num_spads / 2)) / (uint32_t)num_spads;
+ 315:Core/Src/vl53l1_core_support.c **** 	} else {
+ 316:Core/Src/vl53l1_core_support.c **** 		tmp_int = ((peak_count_rate) << frac_bits);
+ 317:Core/Src/vl53l1_core_support.c **** 	}
+ 318:Core/Src/vl53l1_core_support.c **** 
+ 319:Core/Src/vl53l1_core_support.c **** 	/* Clip in case of overwrap - special code */
+ 320:Core/Src/vl53l1_core_support.c **** 
+ 321:Core/Src/vl53l1_core_support.c **** 	if (tmp_int > max_output_value) {
+ 322:Core/Src/vl53l1_core_support.c **** 		tmp_int = max_output_value;
+ 323:Core/Src/vl53l1_core_support.c **** 	}
+ 324:Core/Src/vl53l1_core_support.c **** 
+ 325:Core/Src/vl53l1_core_support.c **** 	rate_per_spad = (uint16_t)tmp_int;
+ 326:Core/Src/vl53l1_core_support.c **** 
+ 327:Core/Src/vl53l1_core_support.c **** 	return rate_per_spad;
+ 328:Core/Src/vl53l1_core_support.c **** }
+ 329:Core/Src/vl53l1_core_support.c **** 
+ 330:Core/Src/vl53l1_core_support.c **** int32_t VL53L1_range_maths(
+ 331:Core/Src/vl53l1_core_support.c **** 	uint16_t  fast_osc_frequency,
+ 332:Core/Src/vl53l1_core_support.c **** 	uint16_t  phase,
+ 333:Core/Src/vl53l1_core_support.c **** 	uint16_t  zero_distance_phase,
+ 334:Core/Src/vl53l1_core_support.c **** 	uint8_t   fractional_bits,
+ 335:Core/Src/vl53l1_core_support.c **** 	int32_t   gain_factor,
+ 336:Core/Src/vl53l1_core_support.c **** 	int32_t   range_offset_mm)
+ 337:Core/Src/vl53l1_core_support.c **** {
+ 338:Core/Src/vl53l1_core_support.c **** 	/*
+ 339:Core/Src/vl53l1_core_support.c **** 	 * Converts phase information into distance in [mm]
+ 340:Core/Src/vl53l1_core_support.c **** 	 */
+ 341:Core/Src/vl53l1_core_support.c **** 
+ 342:Core/Src/vl53l1_core_support.c **** 	uint32_t    pll_period_us = 0; /* 0.24 format */
+ 343:Core/Src/vl53l1_core_support.c **** 	int64_t     tmp_long_int  = 0;
+ 344:Core/Src/vl53l1_core_support.c **** 	int32_t     range_mm      = 0;
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 8
+
+
+ 345:Core/Src/vl53l1_core_support.c **** 
+ 346:Core/Src/vl53l1_core_support.c **** 	/* Calculate PLL period in [ps] */
+ 347:Core/Src/vl53l1_core_support.c **** 
+ 348:Core/Src/vl53l1_core_support.c **** 	pll_period_us  = VL53L1_calc_pll_period_us(fast_osc_frequency);
+ 349:Core/Src/vl53l1_core_support.c **** 
+ 350:Core/Src/vl53l1_core_support.c **** 	/* Raw range in [mm]
+ 351:Core/Src/vl53l1_core_support.c **** 	 *
+ 352:Core/Src/vl53l1_core_support.c **** 	 * calculate the phase difference between return and reference phases
+ 353:Core/Src/vl53l1_core_support.c **** 	 *
+ 354:Core/Src/vl53l1_core_support.c **** 	 * phases 16b (5.11)
+ 355:Core/Src/vl53l1_core_support.c **** 	 * output 17b including sign bit
+ 356:Core/Src/vl53l1_core_support.c **** 	 */
+ 357:Core/Src/vl53l1_core_support.c **** 
+ 358:Core/Src/vl53l1_core_support.c **** 	tmp_long_int = (int64_t)phase - (int64_t)zero_distance_phase;
+ 359:Core/Src/vl53l1_core_support.c **** 
+ 360:Core/Src/vl53l1_core_support.c **** 	/*
+ 361:Core/Src/vl53l1_core_support.c **** 	 * multiply by the PLL period
+ 362:Core/Src/vl53l1_core_support.c **** 	 *
+ 363:Core/Src/vl53l1_core_support.c **** 	 * PLL period 24bit (0.24) but only 18 LS bits used
+ 364:Core/Src/vl53l1_core_support.c **** 	 *
+ 365:Core/Src/vl53l1_core_support.c **** 	 * Output  35b (0.35) (17b + 18b)
+ 366:Core/Src/vl53l1_core_support.c **** 	 */
+ 367:Core/Src/vl53l1_core_support.c **** 
+ 368:Core/Src/vl53l1_core_support.c **** 	tmp_long_int =  tmp_long_int * (int64_t)pll_period_us;
+ 369:Core/Src/vl53l1_core_support.c **** 
+ 370:Core/Src/vl53l1_core_support.c **** 	/*
+ 371:Core/Src/vl53l1_core_support.c **** 	 * Down shift by 9 - Output 26b (0.26)
+ 372:Core/Src/vl53l1_core_support.c **** 	 */
+ 373:Core/Src/vl53l1_core_support.c **** 
+ 374:Core/Src/vl53l1_core_support.c **** 	tmp_long_int =  tmp_long_int / (0x01 << 9);
+ 375:Core/Src/vl53l1_core_support.c **** 
+ 376:Core/Src/vl53l1_core_support.c **** 	/*
+ 377:Core/Src/vl53l1_core_support.c **** 	 *  multiply by speed of light in air divided by 8
+ 378:Core/Src/vl53l1_core_support.c **** 	 *  Factor of 8 includes 2 for the round trip and 4 scaling
+ 379:Core/Src/vl53l1_core_support.c **** 	 *
+ 380:Core/Src/vl53l1_core_support.c **** 	 *  VL53L1_SPEED_OF_LIGHT_IN_AIR_DIV_8 = 16b (16.2)
+ 381:Core/Src/vl53l1_core_support.c **** 	 *
+ 382:Core/Src/vl53l1_core_support.c **** 	 *  Output 42b (18.24) (16b + 26b)
+ 383:Core/Src/vl53l1_core_support.c **** 	 */
+ 384:Core/Src/vl53l1_core_support.c **** 
+ 385:Core/Src/vl53l1_core_support.c **** 	tmp_long_int =  tmp_long_int * VL53L1_SPEED_OF_LIGHT_IN_AIR_DIV_8;
+ 386:Core/Src/vl53l1_core_support.c **** 
+ 387:Core/Src/vl53l1_core_support.c **** 	/*
+ 388:Core/Src/vl53l1_core_support.c **** 	 * Down shift by 22 - Output 20b (18.2)
+ 389:Core/Src/vl53l1_core_support.c **** 	 */
+ 390:Core/Src/vl53l1_core_support.c **** 
+ 391:Core/Src/vl53l1_core_support.c **** 	tmp_long_int =  tmp_long_int / (0x01 << 22);
+ 392:Core/Src/vl53l1_core_support.c **** 
+ 393:Core/Src/vl53l1_core_support.c **** 	/* Add range offset */
+ 394:Core/Src/vl53l1_core_support.c **** 	range_mm  = (int32_t)tmp_long_int + range_offset_mm;
+ 395:Core/Src/vl53l1_core_support.c **** 
+ 396:Core/Src/vl53l1_core_support.c **** 	/* apply correction gain */
+ 397:Core/Src/vl53l1_core_support.c **** 	range_mm *= gain_factor;
+ 398:Core/Src/vl53l1_core_support.c **** 	range_mm += 0x0400;
+ 399:Core/Src/vl53l1_core_support.c **** 	range_mm /= 0x0800;
+ 400:Core/Src/vl53l1_core_support.c **** 
+ 401:Core/Src/vl53l1_core_support.c **** 	/* Remove fractional bits */
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 9
+
+
+ 402:Core/Src/vl53l1_core_support.c **** 	if (fractional_bits == 0)
+ 403:Core/Src/vl53l1_core_support.c **** 		range_mm = range_mm / (0x01 << 2);
+ 404:Core/Src/vl53l1_core_support.c **** 	else if (fractional_bits == 1)
+ 405:Core/Src/vl53l1_core_support.c **** 		range_mm = range_mm / (0x01 << 1);
+ 406:Core/Src/vl53l1_core_support.c **** 
+ 407:Core/Src/vl53l1_core_support.c **** 	return range_mm;
+ 408:Core/Src/vl53l1_core_support.c **** }
+ 409:Core/Src/vl53l1_core_support.c **** #endif
+ 410:Core/Src/vl53l1_core_support.c **** 
+ 411:Core/Src/vl53l1_core_support.c **** uint8_t VL53L1_decode_vcsel_period(uint8_t vcsel_period_reg)
+ 412:Core/Src/vl53l1_core_support.c **** {
+  59              		.loc 1 412 1 is_stmt 1 view -0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63              		@ link register save eliminated.
+ 413:Core/Src/vl53l1_core_support.c **** 	/*
+ 414:Core/Src/vl53l1_core_support.c **** 	 * Converts the encoded VCSEL period register value into
+ 415:Core/Src/vl53l1_core_support.c **** 	 * the real period in PLL clocks
+ 416:Core/Src/vl53l1_core_support.c **** 	 */
+ 417:Core/Src/vl53l1_core_support.c **** 
+ 418:Core/Src/vl53l1_core_support.c **** 	uint8_t vcsel_period_pclks = 0;
+  64              		.loc 1 418 2 view .LVU9
+ 419:Core/Src/vl53l1_core_support.c **** 
+ 420:Core/Src/vl53l1_core_support.c **** 	vcsel_period_pclks = (vcsel_period_reg + 1) << 1;
+  65              		.loc 1 420 2 view .LVU10
+  66              		.loc 1 420 41 is_stmt 0 view .LVU11
+  67 0000 0130     		adds	r0, r0, #1
+  68              	.LVL3:
+  69              		.loc 1 420 41 view .LVU12
+  70 0002 C0B2     		uxtb	r0, r0
+  71              		.loc 1 420 21 view .LVU13
+  72 0004 4000     		lsls	r0, r0, #1
+  73              	.LVL4:
+ 421:Core/Src/vl53l1_core_support.c **** 
+ 422:Core/Src/vl53l1_core_support.c **** 	return vcsel_period_pclks;
+  74              		.loc 1 422 2 is_stmt 1 view .LVU14
+ 423:Core/Src/vl53l1_core_support.c **** }
+  75              		.loc 1 423 1 is_stmt 0 view .LVU15
+  76 0006 00F0FE00 		and	r0, r0, #254
+  77              	.LVL5:
+  78              		.loc 1 423 1 view .LVU16
+  79 000a 7047     		bx	lr
+  80              		.cfi_endproc
+  81              	.LFE4:
+  83              		.section	.text.VL53L1_decode_row_col,"ax",%progbits
+  84              		.align	1
+  85              		.global	VL53L1_decode_row_col
+  86              		.syntax unified
+  87              		.thumb
+  88              		.thumb_func
+  90              	VL53L1_decode_row_col:
+  91              	.LVL6:
+  92              	.LFB5:
+ 424:Core/Src/vl53l1_core_support.c **** 
+ 425:Core/Src/vl53l1_core_support.c **** 
+ 426:Core/Src/vl53l1_core_support.c **** void VL53L1_decode_row_col(
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 10
+
+
+ 427:Core/Src/vl53l1_core_support.c **** 	uint8_t  spad_number,
+ 428:Core/Src/vl53l1_core_support.c **** 	uint8_t  *prow,
+ 429:Core/Src/vl53l1_core_support.c **** 	uint8_t  *pcol)
+ 430:Core/Src/vl53l1_core_support.c **** {
+  93              		.loc 1 430 1 is_stmt 1 view -0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97              		@ link register save eliminated.
+ 431:Core/Src/vl53l1_core_support.c **** 
+ 432:Core/Src/vl53l1_core_support.c **** 	/**
+ 433:Core/Src/vl53l1_core_support.c **** 	 *  Decodes the array (row,col) location from
+ 434:Core/Src/vl53l1_core_support.c **** 	 *  the input SPAD number
+ 435:Core/Src/vl53l1_core_support.c **** 	 */
+ 436:Core/Src/vl53l1_core_support.c **** 
+ 437:Core/Src/vl53l1_core_support.c **** 	if (spad_number > 127) {
+  98              		.loc 1 437 2 view .LVU18
+  99              		.loc 1 437 5 is_stmt 0 view .LVU19
+ 100 0000 10F0800F 		tst	r0, #128
+ 101 0004 07D1     		bne	.L6
+ 438:Core/Src/vl53l1_core_support.c **** 		*prow = 8 + ((255-spad_number) & 0x07);
+ 439:Core/Src/vl53l1_core_support.c **** 		*pcol = (spad_number-128) >> 3;
+ 440:Core/Src/vl53l1_core_support.c **** 	} else {
+ 441:Core/Src/vl53l1_core_support.c **** 		*prow = spad_number & 0x07;
+ 102              		.loc 1 441 3 is_stmt 1 view .LVU20
+ 103              		.loc 1 441 23 is_stmt 0 view .LVU21
+ 104 0006 00F00703 		and	r3, r0, #7
+ 105              		.loc 1 441 9 view .LVU22
+ 106 000a 0B70     		strb	r3, [r1]
+ 442:Core/Src/vl53l1_core_support.c **** 		*pcol = (127-spad_number) >> 3;
+ 107              		.loc 1 442 3 is_stmt 1 view .LVU23
+ 108              		.loc 1 442 15 is_stmt 0 view .LVU24
+ 109 000c C0F17F00 		rsb	r0, r0, #127
+ 110              	.LVL7:
+ 111              		.loc 1 442 29 view .LVU25
+ 112 0010 C010     		asrs	r0, r0, #3
+ 113              		.loc 1 442 9 view .LVU26
+ 114 0012 1070     		strb	r0, [r2]
+ 443:Core/Src/vl53l1_core_support.c **** 	}
+ 444:Core/Src/vl53l1_core_support.c **** }
+ 115              		.loc 1 444 1 view .LVU27
+ 116 0014 7047     		bx	lr
+ 117              	.LVL8:
+ 118              	.L6:
+ 438:Core/Src/vl53l1_core_support.c **** 		*pcol = (spad_number-128) >> 3;
+ 119              		.loc 1 438 3 is_stmt 1 view .LVU28
+ 438:Core/Src/vl53l1_core_support.c **** 		*pcol = (spad_number-128) >> 3;
+ 120              		.loc 1 438 34 is_stmt 0 view .LVU29
+ 121 0016 C343     		mvns	r3, r0
+ 122 0018 03F00703 		and	r3, r3, #7
+ 438:Core/Src/vl53l1_core_support.c **** 		*pcol = (spad_number-128) >> 3;
+ 123              		.loc 1 438 13 view .LVU30
+ 124 001c 0833     		adds	r3, r3, #8
+ 438:Core/Src/vl53l1_core_support.c **** 		*pcol = (spad_number-128) >> 3;
+ 125              		.loc 1 438 9 view .LVU31
+ 126 001e 0B70     		strb	r3, [r1]
+ 439:Core/Src/vl53l1_core_support.c **** 	} else {
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 11
+
+
+ 127              		.loc 1 439 3 is_stmt 1 view .LVU32
+ 439:Core/Src/vl53l1_core_support.c **** 	} else {
+ 128              		.loc 1 439 23 is_stmt 0 view .LVU33
+ 129 0020 8038     		subs	r0, r0, #128
+ 130              	.LVL9:
+ 439:Core/Src/vl53l1_core_support.c **** 	} else {
+ 131              		.loc 1 439 29 view .LVU34
+ 132 0022 C010     		asrs	r0, r0, #3
+ 439:Core/Src/vl53l1_core_support.c **** 	} else {
+ 133              		.loc 1 439 9 view .LVU35
+ 134 0024 1070     		strb	r0, [r2]
+ 135 0026 7047     		bx	lr
+ 136              		.cfi_endproc
+ 137              	.LFE5:
+ 139              		.text
+ 140              	.Letext0:
+ 141              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 142              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_core_support.c
+C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s:20     .text.VL53L1_calc_pll_period_us:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s:26     .text.VL53L1_calc_pll_period_us:00000000 VL53L1_calc_pll_period_us
+C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s:50     .text.VL53L1_decode_vcsel_period:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s:56     .text.VL53L1_decode_vcsel_period:00000000 VL53L1_decode_vcsel_period
+C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s:84     .text.VL53L1_decode_row_col:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccN38dOa.s:90     .text.VL53L1_decode_row_col:00000000 VL53L1_decode_row_col
+
+NO UNDEFINED SYMBOLS

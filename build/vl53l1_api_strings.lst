@@ -1,0 +1,1055 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_api_strings.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.rodata.VL53L1_get_range_status_string.str1.4,"aMS",%progbits,1
+  20              		.align	2
+  21              	.LC0:
+  22 0000 52616E67 		.ascii	"Range Valid\000"
+  22      65205661 
+  22      6C696400 
+  23              		.align	2
+  24              	.LC1:
+  25 000c 5369676D 		.ascii	"Sigma Fail\000"
+  25      61204661 
+  25      696C00
+  26 0017 00       		.align	2
+  27              	.LC2:
+  28 0018 5369676E 		.ascii	"Signal Fail\000"
+  28      616C2046 
+  28      61696C00 
+  29              		.align	2
+  30              	.LC3:
+  31 0024 4D696E20 		.ascii	"Min Range Fail\000"
+  31      52616E67 
+  31      65204661 
+  31      696C00
+  32 0033 00       		.align	2
+  33              	.LC4:
+  34 0034 50686173 		.ascii	"Phase Fail\000"
+  34      65204661 
+  34      696C00
+  35 003f 00       		.align	2
+  36              	.LC5:
+  37 0040 48617264 		.ascii	"Hardware Fail\000"
+  37      77617265 
+  37      20466169 
+  37      6C00
+  38 004e 0000     		.align	2
+  39              	.LC6:
+  40 0050 4E6F2055 		.ascii	"No Update\000"
+  40      70646174 
+  40      6500
+  41              		.section	.text.VL53L1_get_range_status_string,"ax",%progbits
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 2
+
+
+  42              		.align	1
+  43              		.global	VL53L1_get_range_status_string
+  44              		.syntax unified
+  45              		.thumb
+  46              		.thumb_func
+  48              	VL53L1_get_range_status_string:
+  49              	.LVL0:
+  50              	.LFB3:
+  51              		.file 1 "Core/Src/vl53l1_api_strings.c"
+   1:Core/Src/vl53l1_api_strings.c **** 
+   2:Core/Src/vl53l1_api_strings.c **** // SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
+   3:Core/Src/vl53l1_api_strings.c **** /******************************************************************************
+   4:Core/Src/vl53l1_api_strings.c ****  * Copyright (c) 2020, STMicroelectronics - All Rights Reserved
+   5:Core/Src/vl53l1_api_strings.c **** 
+   6:Core/Src/vl53l1_api_strings.c ****  This file is part of VL53L1 and is dual licensed,
+   7:Core/Src/vl53l1_api_strings.c ****  either GPL-2.0+
+   8:Core/Src/vl53l1_api_strings.c ****  or 'BSD 3-clause "New" or "Revised" License' , at your option.
+   9:Core/Src/vl53l1_api_strings.c ****  ******************************************************************************
+  10:Core/Src/vl53l1_api_strings.c ****  */
+  11:Core/Src/vl53l1_api_strings.c **** 
+  12:Core/Src/vl53l1_api_strings.c **** /**
+  13:Core/Src/vl53l1_api_strings.c ****  * @file   vl53l1_api_strings.c
+  14:Core/Src/vl53l1_api_strings.c ****  * @brief  VL53L1 API functions for decoding error codes to a text string
+  15:Core/Src/vl53l1_api_strings.c ****  */
+  16:Core/Src/vl53l1_api_strings.c **** 
+  17:Core/Src/vl53l1_api_strings.c **** #include "vl53l1_api_core.h"
+  18:Core/Src/vl53l1_api_strings.c **** #include "vl53l1_api_strings.h"
+  19:Core/Src/vl53l1_api_strings.c **** #include "vl53l1_error_codes.h"
+  20:Core/Src/vl53l1_api_strings.c **** #include "vl53l1_error_strings.h"
+  21:Core/Src/vl53l1_api_strings.c **** 
+  22:Core/Src/vl53l1_api_strings.c **** #define LOG_FUNCTION_START(fmt, ...) \
+  23:Core/Src/vl53l1_api_strings.c **** 	_LOG_FUNCTION_START(VL53L1_TRACE_MODULE_API, fmt, ##__VA_ARGS__)
+  24:Core/Src/vl53l1_api_strings.c **** #define LOG_FUNCTION_END(status, ...) \
+  25:Core/Src/vl53l1_api_strings.c **** 	_LOG_FUNCTION_END(VL53L1_TRACE_MODULE_API, status, ##__VA_ARGS__)
+  26:Core/Src/vl53l1_api_strings.c **** #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+  27:Core/Src/vl53l1_api_strings.c **** 	_LOG_FUNCTION_END_FMT(VL53L1_TRACE_MODULE_API, status, fmt, \
+  28:Core/Src/vl53l1_api_strings.c **** 			##__VA_ARGS__)
+  29:Core/Src/vl53l1_api_strings.c **** 
+  30:Core/Src/vl53l1_api_strings.c **** 
+  31:Core/Src/vl53l1_api_strings.c **** VL53L1_Error VL53L1_get_range_status_string(
+  32:Core/Src/vl53l1_api_strings.c **** 	uint8_t   RangeStatus,
+  33:Core/Src/vl53l1_api_strings.c **** 	char    *pRangeStatusString)
+  34:Core/Src/vl53l1_api_strings.c **** {
+  52              		.loc 1 34 1 view -0
+  53              		.cfi_startproc
+  54              		@ args = 0, pretend = 0, frame = 0
+  55              		@ frame_needed = 0, uses_anonymous_args = 0
+  56              		.loc 1 34 1 is_stmt 0 view .LVU1
+  57 0000 08B5     		push	{r3, lr}
+  58              	.LCFI0:
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 3, -8
+  61              		.cfi_offset 14, -4
+  62 0002 0B46     		mov	r3, r1
+  35:Core/Src/vl53l1_api_strings.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+  63              		.loc 1 35 2 is_stmt 1 view .LVU2
+  64              	.LVL1:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 3
+
+
+  36:Core/Src/vl53l1_api_strings.c **** 
+  37:Core/Src/vl53l1_api_strings.c **** 	LOG_FUNCTION_START("");
+  65              		.loc 1 37 24 view .LVU3
+  38:Core/Src/vl53l1_api_strings.c **** 
+  39:Core/Src/vl53l1_api_strings.c **** #ifdef VL53L1_USE_EMPTY_STRING
+  40:Core/Src/vl53l1_api_strings.c **** 	SUPPRESS_UNUSED_WARNING(RangeStatus);
+  41:Core/Src/vl53l1_api_strings.c **** 	VL53L1_COPYSTRING(pRangeStatusString, "");
+  42:Core/Src/vl53l1_api_strings.c **** #else
+  43:Core/Src/vl53l1_api_strings.c **** 	switch (RangeStatus) {
+  66              		.loc 1 43 2 view .LVU4
+  67 0004 0528     		cmp	r0, #5
+  68 0006 2FD8     		bhi	.L2
+  69 0008 DFE800F0 		tbb	[pc, r0]
+  70              	.L4:
+  71 000c 03       		.byte	(.L9-.L4)/2
+  72 000d 0B       		.byte	(.L8-.L4)/2
+  73 000e 12       		.byte	(.L7-.L4)/2
+  74 000f 19       		.byte	(.L6-.L4)/2
+  75 0010 20       		.byte	(.L5-.L4)/2
+  76 0011 27       		.byte	(.L3-.L4)/2
+  77              		.p2align 1
+  78              	.L9:
+  44:Core/Src/vl53l1_api_strings.c **** 	case 0:
+  45:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pRangeStatusString,
+  79              		.loc 1 45 3 view .LVU5
+  80 0012 40F2FF12 		movw	r2, #511
+  81 0016 1849     		ldr	r1, .L12
+  82              	.LVL2:
+  83              		.loc 1 45 3 is_stmt 0 view .LVU6
+  84 0018 1846     		mov	r0, r3
+  85              	.LVL3:
+  86              		.loc 1 45 3 view .LVU7
+  87 001a FFF7FEFF 		bl	strncpy
+  88              	.LVL4:
+  46:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_RANGEVALID);
+  47:Core/Src/vl53l1_api_strings.c **** 	break;
+  89              		.loc 1 47 2 is_stmt 1 view .LVU8
+  90              	.L10:
+  48:Core/Src/vl53l1_api_strings.c **** 	case 1:
+  49:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pRangeStatusString,
+  50:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_SIGMA);
+  51:Core/Src/vl53l1_api_strings.c **** 	break;
+  52:Core/Src/vl53l1_api_strings.c **** 	case 2:
+  53:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pRangeStatusString,
+  54:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_SIGNAL);
+  55:Core/Src/vl53l1_api_strings.c **** 	break;
+  56:Core/Src/vl53l1_api_strings.c **** 	case 3:
+  57:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pRangeStatusString,
+  58:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_MINRANGE);
+  59:Core/Src/vl53l1_api_strings.c **** 	break;
+  60:Core/Src/vl53l1_api_strings.c **** 	case 4:
+  61:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pRangeStatusString,
+  62:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_PHASE);
+  63:Core/Src/vl53l1_api_strings.c **** 	break;
+  64:Core/Src/vl53l1_api_strings.c **** 	case 5:
+  65:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pRangeStatusString,
+  66:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_HW);
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 4
+
+
+  67:Core/Src/vl53l1_api_strings.c **** 	break;
+  68:Core/Src/vl53l1_api_strings.c **** 
+  69:Core/Src/vl53l1_api_strings.c **** 	default: /**/
+  70:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pRangeStatusString,
+  71:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_NONE);
+  72:Core/Src/vl53l1_api_strings.c **** 	}
+  73:Core/Src/vl53l1_api_strings.c **** #endif
+  74:Core/Src/vl53l1_api_strings.c **** 
+  75:Core/Src/vl53l1_api_strings.c **** 	LOG_FUNCTION_END(status);
+  91              		.loc 1 75 26 view .LVU9
+  76:Core/Src/vl53l1_api_strings.c **** 	return status;
+  92              		.loc 1 76 2 view .LVU10
+  77:Core/Src/vl53l1_api_strings.c **** }
+  93              		.loc 1 77 1 is_stmt 0 view .LVU11
+  94 001e 0020     		movs	r0, #0
+  95 0020 08BD     		pop	{r3, pc}
+  96              	.LVL5:
+  97              	.L8:
+  49:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_SIGMA);
+  98              		.loc 1 49 3 is_stmt 1 view .LVU12
+  99 0022 40F2FF12 		movw	r2, #511
+ 100 0026 1549     		ldr	r1, .L12+4
+ 101              	.LVL6:
+  49:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_SIGMA);
+ 102              		.loc 1 49 3 is_stmt 0 view .LVU13
+ 103 0028 1846     		mov	r0, r3
+ 104              	.LVL7:
+  49:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_SIGMA);
+ 105              		.loc 1 49 3 view .LVU14
+ 106 002a FFF7FEFF 		bl	strncpy
+ 107              	.LVL8:
+  51:Core/Src/vl53l1_api_strings.c **** 	case 2:
+ 108              		.loc 1 51 2 is_stmt 1 view .LVU15
+ 109 002e F6E7     		b	.L10
+ 110              	.LVL9:
+ 111              	.L7:
+  53:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_SIGNAL);
+ 112              		.loc 1 53 3 view .LVU16
+ 113 0030 40F2FF12 		movw	r2, #511
+ 114 0034 1249     		ldr	r1, .L12+8
+ 115              	.LVL10:
+  53:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_SIGNAL);
+ 116              		.loc 1 53 3 is_stmt 0 view .LVU17
+ 117 0036 1846     		mov	r0, r3
+ 118              	.LVL11:
+  53:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_SIGNAL);
+ 119              		.loc 1 53 3 view .LVU18
+ 120 0038 FFF7FEFF 		bl	strncpy
+ 121              	.LVL12:
+  55:Core/Src/vl53l1_api_strings.c **** 	case 3:
+ 122              		.loc 1 55 2 is_stmt 1 view .LVU19
+ 123 003c EFE7     		b	.L10
+ 124              	.LVL13:
+ 125              	.L6:
+  57:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_MINRANGE);
+ 126              		.loc 1 57 3 view .LVU20
+ 127 003e 40F2FF12 		movw	r2, #511
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 5
+
+
+ 128 0042 1049     		ldr	r1, .L12+12
+ 129              	.LVL14:
+  57:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_MINRANGE);
+ 130              		.loc 1 57 3 is_stmt 0 view .LVU21
+ 131 0044 1846     		mov	r0, r3
+ 132              	.LVL15:
+  57:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_MINRANGE);
+ 133              		.loc 1 57 3 view .LVU22
+ 134 0046 FFF7FEFF 		bl	strncpy
+ 135              	.LVL16:
+  59:Core/Src/vl53l1_api_strings.c **** 	case 4:
+ 136              		.loc 1 59 2 is_stmt 1 view .LVU23
+ 137 004a E8E7     		b	.L10
+ 138              	.LVL17:
+ 139              	.L5:
+  61:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_PHASE);
+ 140              		.loc 1 61 3 view .LVU24
+ 141 004c 40F2FF12 		movw	r2, #511
+ 142 0050 0D49     		ldr	r1, .L12+16
+ 143              	.LVL18:
+  61:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_PHASE);
+ 144              		.loc 1 61 3 is_stmt 0 view .LVU25
+ 145 0052 1846     		mov	r0, r3
+ 146              	.LVL19:
+  61:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_PHASE);
+ 147              		.loc 1 61 3 view .LVU26
+ 148 0054 FFF7FEFF 		bl	strncpy
+ 149              	.LVL20:
+  63:Core/Src/vl53l1_api_strings.c **** 	case 5:
+ 150              		.loc 1 63 2 is_stmt 1 view .LVU27
+ 151 0058 E1E7     		b	.L10
+ 152              	.LVL21:
+ 153              	.L3:
+  65:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_HW);
+ 154              		.loc 1 65 3 view .LVU28
+ 155 005a 40F2FF12 		movw	r2, #511
+ 156 005e 0B49     		ldr	r1, .L12+20
+ 157              	.LVL22:
+  65:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_HW);
+ 158              		.loc 1 65 3 is_stmt 0 view .LVU29
+ 159 0060 1846     		mov	r0, r3
+ 160              	.LVL23:
+  65:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_HW);
+ 161              		.loc 1 65 3 view .LVU30
+ 162 0062 FFF7FEFF 		bl	strncpy
+ 163              	.LVL24:
+  67:Core/Src/vl53l1_api_strings.c **** 
+ 164              		.loc 1 67 2 is_stmt 1 view .LVU31
+ 165 0066 DAE7     		b	.L10
+ 166              	.LVL25:
+ 167              	.L2:
+  70:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_NONE);
+ 168              		.loc 1 70 3 view .LVU32
+ 169 0068 40F2FF12 		movw	r2, #511
+ 170 006c 0849     		ldr	r1, .L12+24
+ 171              	.LVL26:
+  70:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_NONE);
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 6
+
+
+ 172              		.loc 1 70 3 is_stmt 0 view .LVU33
+ 173 006e 1846     		mov	r0, r3
+ 174              	.LVL27:
+  70:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_NONE);
+ 175              		.loc 1 70 3 view .LVU34
+ 176 0070 FFF7FEFF 		bl	strncpy
+ 177              	.LVL28:
+  70:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_RANGESTATUS_NONE);
+ 178              		.loc 1 70 3 view .LVU35
+ 179 0074 D3E7     		b	.L10
+ 180              	.L13:
+ 181 0076 00BF     		.align	2
+ 182              	.L12:
+ 183 0078 00000000 		.word	.LC0
+ 184 007c 0C000000 		.word	.LC1
+ 185 0080 18000000 		.word	.LC2
+ 186 0084 24000000 		.word	.LC3
+ 187 0088 34000000 		.word	.LC4
+ 188 008c 40000000 		.word	.LC5
+ 189 0090 50000000 		.word	.LC6
+ 190              		.cfi_endproc
+ 191              	.LFE3:
+ 193              		.section	.rodata.VL53L1_get_pal_state_string.str1.4,"aMS",%progbits,1
+ 194              		.align	2
+ 195              	.LC7:
+ 196 0000 504F5745 		.ascii	"POWERDOWN State\000"
+ 196      52444F57 
+ 196      4E205374 
+ 196      61746500 
+ 197              		.align	2
+ 198              	.LC8:
+ 199 0010 57616974 		.ascii	"Wait for staticinit State\000"
+ 199      20666F72 
+ 199      20737461 
+ 199      74696369 
+ 199      6E697420 
+ 200 002a 0000     		.align	2
+ 201              	.LC9:
+ 202 002c 5354414E 		.ascii	"STANDBY State\000"
+ 202      44425920 
+ 202      53746174 
+ 202      6500
+ 203 003a 0000     		.align	2
+ 204              	.LC10:
+ 205 003c 49444C45 		.ascii	"IDLE State\000"
+ 205      20537461 
+ 205      746500
+ 206 0047 00       		.align	2
+ 207              	.LC11:
+ 208 0048 52554E4E 		.ascii	"RUNNING State\000"
+ 208      494E4720 
+ 208      53746174 
+ 208      6500
+ 209 0056 0000     		.align	2
+ 210              	.LC12:
+ 211 0058 52455345 		.ascii	"RESET State\000"
+ 211      54205374 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 7
+
+
+ 211      61746500 
+ 212              		.align	2
+ 213              	.LC13:
+ 214 0064 554E4B4E 		.ascii	"UNKNOWN State\000"
+ 214      4F574E20 
+ 214      53746174 
+ 214      6500
+ 215 0072 0000     		.align	2
+ 216              	.LC14:
+ 217 0074 4552524F 		.ascii	"ERROR State\000"
+ 217      52205374 
+ 217      61746500 
+ 218              		.section	.text.VL53L1_get_pal_state_string,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	VL53L1_get_pal_state_string
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 225              	VL53L1_get_pal_state_string:
+ 226              	.LVL29:
+ 227              	.LFB4:
+  78:Core/Src/vl53l1_api_strings.c **** 
+  79:Core/Src/vl53l1_api_strings.c **** 
+  80:Core/Src/vl53l1_api_strings.c **** VL53L1_Error VL53L1_get_pal_state_string(
+  81:Core/Src/vl53l1_api_strings.c **** 	VL53L1_State PalStateCode,
+  82:Core/Src/vl53l1_api_strings.c **** 	char *pPalStateString)
+  83:Core/Src/vl53l1_api_strings.c **** {
+ 228              		.loc 1 83 1 is_stmt 1 view -0
+ 229              		.cfi_startproc
+ 230              		@ args = 0, pretend = 0, frame = 0
+ 231              		@ frame_needed = 0, uses_anonymous_args = 0
+ 232              		.loc 1 83 1 is_stmt 0 view .LVU37
+ 233 0000 08B5     		push	{r3, lr}
+ 234              	.LCFI1:
+ 235              		.cfi_def_cfa_offset 8
+ 236              		.cfi_offset 3, -8
+ 237              		.cfi_offset 14, -4
+ 238 0002 0346     		mov	r3, r0
+ 239 0004 0846     		mov	r0, r1
+ 240              	.LVL30:
+  84:Core/Src/vl53l1_api_strings.c **** 	VL53L1_Error status = VL53L1_ERROR_NONE;
+ 241              		.loc 1 84 2 is_stmt 1 view .LVU38
+  85:Core/Src/vl53l1_api_strings.c **** 
+  86:Core/Src/vl53l1_api_strings.c **** 	LOG_FUNCTION_START("");
+ 242              		.loc 1 86 24 view .LVU39
+  87:Core/Src/vl53l1_api_strings.c **** 
+  88:Core/Src/vl53l1_api_strings.c **** #ifdef VL53L1_USE_EMPTY_STRING
+  89:Core/Src/vl53l1_api_strings.c **** 	SUPPRESS_UNUSED_WARNING(PalStateCode);
+  90:Core/Src/vl53l1_api_strings.c **** 	VL53L1_COPYSTRING(pPalStateString, "");
+  91:Core/Src/vl53l1_api_strings.c **** #else
+  92:Core/Src/vl53l1_api_strings.c **** 	switch (PalStateCode) {
+ 243              		.loc 1 92 2 view .LVU40
+ 244 0006 052B     		cmp	r3, #5
+ 245 0008 06D8     		bhi	.L15
+ 246 000a 052B     		cmp	r3, #5
+ 247 000c 39D8     		bhi	.L16
+ 248 000e DFE803F0 		tbb	[pc, r3]
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 8
+
+
+ 249              	.L18:
+ 250 0012 0D       		.byte	(.L23-.L18)/2
+ 251 0013 14       		.byte	(.L22-.L18)/2
+ 252 0014 1A       		.byte	(.L21-.L18)/2
+ 253 0015 20       		.byte	(.L20-.L18)/2
+ 254 0016 26       		.byte	(.L19-.L18)/2
+ 255 0017 2C       		.byte	(.L17-.L18)/2
+ 256              		.p2align 1
+ 257              	.L15:
+ 258 0018 622B     		cmp	r3, #98
+ 259 001a 2CD0     		beq	.L24
+ 260 001c 632B     		cmp	r3, #99
+ 261 001e 30D1     		bne	.L16
+  93:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_POWERDOWN:
+  94:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+  95:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_POWERDOWN);
+  96:Core/Src/vl53l1_api_strings.c **** 	break;
+  97:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_WAIT_STATICINIT:
+  98:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+  99:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_WAIT_STATICINIT);
+ 100:Core/Src/vl53l1_api_strings.c **** 	break;
+ 101:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_STANDBY:
+ 102:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+ 103:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_STANDBY);
+ 104:Core/Src/vl53l1_api_strings.c **** 	break;
+ 105:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_IDLE:
+ 106:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+ 107:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_IDLE);
+ 108:Core/Src/vl53l1_api_strings.c **** 	break;
+ 109:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_RUNNING:
+ 110:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+ 111:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_RUNNING);
+ 112:Core/Src/vl53l1_api_strings.c **** 	break;
+ 113:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_RESET:
+ 114:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+ 115:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_RESET);
+ 116:Core/Src/vl53l1_api_strings.c **** 	break;
+ 117:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_UNKNOWN:
+ 118:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+ 119:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_UNKNOWN);
+ 120:Core/Src/vl53l1_api_strings.c **** 	break;
+ 121:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_ERROR:
+ 122:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+ 262              		.loc 1 122 3 view .LVU41
+ 263 0020 40F2FF12 		movw	r2, #511
+ 264 0024 1A49     		ldr	r1, .L28
+ 265              	.LVL31:
+ 266              		.loc 1 122 3 is_stmt 0 view .LVU42
+ 267 0026 FFF7FEFF 		bl	strncpy
+ 268              	.LVL32:
+ 123:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_ERROR);
+ 124:Core/Src/vl53l1_api_strings.c **** 	break;
+ 269              		.loc 1 124 2 is_stmt 1 view .LVU43
+ 270 002a 04E0     		b	.L26
+ 271              	.LVL33:
+ 272              	.L23:
+  94:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_POWERDOWN);
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 9
+
+
+ 273              		.loc 1 94 3 view .LVU44
+ 274 002c 40F2FF12 		movw	r2, #511
+ 275 0030 1849     		ldr	r1, .L28+4
+ 276 0032 FFF7FEFF 		bl	strncpy
+ 277              	.LVL34:
+  96:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_WAIT_STATICINIT:
+ 278              		.loc 1 96 2 view .LVU45
+ 279              	.L26:
+ 125:Core/Src/vl53l1_api_strings.c **** 
+ 126:Core/Src/vl53l1_api_strings.c **** 	default:
+ 127:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pPalStateString,
+ 128:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_UNKNOWN);
+ 129:Core/Src/vl53l1_api_strings.c **** 	}
+ 130:Core/Src/vl53l1_api_strings.c **** #endif
+ 131:Core/Src/vl53l1_api_strings.c **** 
+ 132:Core/Src/vl53l1_api_strings.c **** 	LOG_FUNCTION_END(status);
+ 280              		.loc 1 132 26 view .LVU46
+ 133:Core/Src/vl53l1_api_strings.c **** 	return status;
+ 281              		.loc 1 133 2 view .LVU47
+ 134:Core/Src/vl53l1_api_strings.c **** }
+ 282              		.loc 1 134 1 is_stmt 0 view .LVU48
+ 283 0036 0020     		movs	r0, #0
+ 284 0038 08BD     		pop	{r3, pc}
+ 285              	.LVL35:
+ 286              	.L22:
+  98:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_WAIT_STATICINIT);
+ 287              		.loc 1 98 3 is_stmt 1 view .LVU49
+ 288 003a 40F2FF12 		movw	r2, #511
+ 289 003e 1649     		ldr	r1, .L28+8
+ 290 0040 FFF7FEFF 		bl	strncpy
+ 291              	.LVL36:
+ 100:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_STANDBY:
+ 292              		.loc 1 100 2 view .LVU50
+ 293 0044 F7E7     		b	.L26
+ 294              	.LVL37:
+ 295              	.L21:
+ 102:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_STANDBY);
+ 296              		.loc 1 102 3 view .LVU51
+ 297 0046 40F2FF12 		movw	r2, #511
+ 298 004a 1449     		ldr	r1, .L28+12
+ 299 004c FFF7FEFF 		bl	strncpy
+ 300              	.LVL38:
+ 104:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_IDLE:
+ 301              		.loc 1 104 2 view .LVU52
+ 302 0050 F1E7     		b	.L26
+ 303              	.LVL39:
+ 304              	.L20:
+ 106:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_IDLE);
+ 305              		.loc 1 106 3 view .LVU53
+ 306 0052 40F2FF12 		movw	r2, #511
+ 307 0056 1249     		ldr	r1, .L28+16
+ 308 0058 FFF7FEFF 		bl	strncpy
+ 309              	.LVL40:
+ 108:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_RUNNING:
+ 310              		.loc 1 108 2 view .LVU54
+ 311 005c EBE7     		b	.L26
+ 312              	.LVL41:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 10
+
+
+ 313              	.L19:
+ 110:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_RUNNING);
+ 314              		.loc 1 110 3 view .LVU55
+ 315 005e 40F2FF12 		movw	r2, #511
+ 316 0062 1049     		ldr	r1, .L28+20
+ 317 0064 FFF7FEFF 		bl	strncpy
+ 318              	.LVL42:
+ 112:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_RESET:
+ 319              		.loc 1 112 2 view .LVU56
+ 320 0068 E5E7     		b	.L26
+ 321              	.LVL43:
+ 322              	.L17:
+ 114:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_RESET);
+ 323              		.loc 1 114 3 view .LVU57
+ 324 006a 40F2FF12 		movw	r2, #511
+ 325 006e 0E49     		ldr	r1, .L28+24
+ 326 0070 FFF7FEFF 		bl	strncpy
+ 327              	.LVL44:
+ 116:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_UNKNOWN:
+ 328              		.loc 1 116 2 view .LVU58
+ 329 0074 DFE7     		b	.L26
+ 330              	.LVL45:
+ 331              	.L24:
+ 118:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_UNKNOWN);
+ 332              		.loc 1 118 3 view .LVU59
+ 333 0076 40F2FF12 		movw	r2, #511
+ 334 007a 0C49     		ldr	r1, .L28+28
+ 335 007c FFF7FEFF 		bl	strncpy
+ 336              	.LVL46:
+ 120:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_STATE_ERROR:
+ 337              		.loc 1 120 2 view .LVU60
+ 338 0080 D9E7     		b	.L26
+ 339              	.LVL47:
+ 340              	.L16:
+ 127:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_UNKNOWN);
+ 341              		.loc 1 127 3 view .LVU61
+ 342 0082 40F2FF12 		movw	r2, #511
+ 343 0086 0949     		ldr	r1, .L28+28
+ 344 0088 FFF7FEFF 		bl	strncpy
+ 345              	.LVL48:
+ 127:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_STATE_UNKNOWN);
+ 346              		.loc 1 127 3 is_stmt 0 view .LVU62
+ 347 008c D3E7     		b	.L26
+ 348              	.L29:
+ 349 008e 00BF     		.align	2
+ 350              	.L28:
+ 351 0090 74000000 		.word	.LC14
+ 352 0094 00000000 		.word	.LC7
+ 353 0098 10000000 		.word	.LC8
+ 354 009c 2C000000 		.word	.LC9
+ 355 00a0 3C000000 		.word	.LC10
+ 356 00a4 48000000 		.word	.LC11
+ 357 00a8 58000000 		.word	.LC12
+ 358 00ac 64000000 		.word	.LC13
+ 359              		.cfi_endproc
+ 360              	.LFE4:
+ 362              		.section	.rodata.VL53L1_get_sequence_steps_info.str1.4,"aMS",%progbits,1
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 11
+
+
+ 363              		.align	2
+ 364              	.LC15:
+ 365 0000 56485600 		.ascii	"VHV\000"
+ 366              		.align	2
+ 367              	.LC16:
+ 368 0004 50484153 		.ascii	"PHASE CAL\000"
+ 368      45204341 
+ 368      4C00
+ 369 000e 0000     		.align	2
+ 370              	.LC17:
+ 371 0010 44535331 		.ascii	"DSS1\000"
+ 371      00
+ 372 0015 000000   		.align	2
+ 373              	.LC18:
+ 374 0018 44535332 		.ascii	"DSS2\000"
+ 374      00
+ 375 001d 000000   		.align	2
+ 376              	.LC19:
+ 377 0020 4D4D3100 		.ascii	"MM1\000"
+ 378              		.align	2
+ 379              	.LC20:
+ 380 0024 4D4D3200 		.ascii	"MM2\000"
+ 381              		.align	2
+ 382              	.LC21:
+ 383 0028 52414E47 		.ascii	"RANGE\000"
+ 383      4500
+ 384              		.section	.text.VL53L1_get_sequence_steps_info,"ax",%progbits
+ 385              		.align	1
+ 386              		.global	VL53L1_get_sequence_steps_info
+ 387              		.syntax unified
+ 388              		.thumb
+ 389              		.thumb_func
+ 391              	VL53L1_get_sequence_steps_info:
+ 392              	.LVL49:
+ 393              	.LFB5:
+ 135:Core/Src/vl53l1_api_strings.c **** 
+ 136:Core/Src/vl53l1_api_strings.c **** VL53L1_Error VL53L1_get_sequence_steps_info(
+ 137:Core/Src/vl53l1_api_strings.c **** 		VL53L1_SequenceStepId SequenceStepId,
+ 138:Core/Src/vl53l1_api_strings.c **** 		char *pSequenceStepsString)
+ 139:Core/Src/vl53l1_api_strings.c **** {
+ 394              		.loc 1 139 1 is_stmt 1 view -0
+ 395              		.cfi_startproc
+ 396              		@ args = 0, pretend = 0, frame = 0
+ 397              		@ frame_needed = 0, uses_anonymous_args = 0
+ 398              		.loc 1 139 1 is_stmt 0 view .LVU64
+ 399 0000 08B5     		push	{r3, lr}
+ 400              	.LCFI2:
+ 401              		.cfi_def_cfa_offset 8
+ 402              		.cfi_offset 3, -8
+ 403              		.cfi_offset 14, -4
+ 404 0002 0346     		mov	r3, r0
+ 405 0004 0846     		mov	r0, r1
+ 406              	.LVL50:
+ 140:Core/Src/vl53l1_api_strings.c **** 	VL53L1_Error Status = VL53L1_ERROR_NONE;
+ 407              		.loc 1 140 2 is_stmt 1 view .LVU65
+ 141:Core/Src/vl53l1_api_strings.c **** 
+ 142:Core/Src/vl53l1_api_strings.c **** 	LOG_FUNCTION_START("");
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 12
+
+
+ 408              		.loc 1 142 24 view .LVU66
+ 143:Core/Src/vl53l1_api_strings.c **** 
+ 144:Core/Src/vl53l1_api_strings.c **** #ifdef VL53L1_USE_EMPTY_STRING
+ 145:Core/Src/vl53l1_api_strings.c **** 	SUPPRESS_UNUSED_WARNING(SequenceStepId);
+ 146:Core/Src/vl53l1_api_strings.c **** 	VL53L1_COPYSTRING(pSequenceStepsString, "");
+ 147:Core/Src/vl53l1_api_strings.c **** #else
+ 148:Core/Src/vl53l1_api_strings.c **** 	switch (SequenceStepId) {
+ 409              		.loc 1 148 2 view .LVU67
+ 410 0006 072B     		cmp	r3, #7
+ 411 0008 3DD8     		bhi	.L41
+ 412 000a DFE803F0 		tbb	[pc, r3]
+ 413              	.L33:
+ 414 000e 04       		.byte	(.L40-.L33)/2
+ 415 000f 0B       		.byte	(.L39-.L33)/2
+ 416 0010 12       		.byte	(.L38-.L33)/2
+ 417 0011 19       		.byte	(.L37-.L33)/2
+ 418 0012 20       		.byte	(.L36-.L33)/2
+ 419 0013 27       		.byte	(.L35-.L33)/2
+ 420 0014 2E       		.byte	(.L34-.L33)/2
+ 421 0015 35       		.byte	(.L32-.L33)/2
+ 422              		.p2align 1
+ 423              	.L40:
+ 149:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_VHV:
+ 150:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pSequenceStepsString,
+ 424              		.loc 1 150 3 view .LVU68
+ 425 0016 40F2FF12 		movw	r2, #511
+ 426 001a 1C49     		ldr	r1, .L43
+ 427              	.LVL51:
+ 428              		.loc 1 150 3 is_stmt 0 view .LVU69
+ 429 001c FFF7FEFF 		bl	strncpy
+ 430              	.LVL52:
+ 151:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_VHV);
+ 152:Core/Src/vl53l1_api_strings.c **** 	break;
+ 431              		.loc 1 152 2 is_stmt 1 view .LVU70
+ 140:Core/Src/vl53l1_api_strings.c **** 
+ 432              		.loc 1 140 15 is_stmt 0 view .LVU71
+ 433 0020 0020     		movs	r0, #0
+ 434              	.L31:
+ 435              	.LVL53:
+ 153:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_PHASECAL:
+ 154:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pSequenceStepsString,
+ 155:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_PHASECAL);
+ 156:Core/Src/vl53l1_api_strings.c **** 	break;
+ 157:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_REFPHASE:
+ 158:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pSequenceStepsString,
+ 159:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_DSS1);
+ 160:Core/Src/vl53l1_api_strings.c **** 	break;
+ 161:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_DSS1:
+ 162:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pSequenceStepsString,
+ 163:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_DSS1);
+ 164:Core/Src/vl53l1_api_strings.c **** 	break;
+ 165:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_DSS2:
+ 166:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pSequenceStepsString,
+ 167:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_DSS2);
+ 168:Core/Src/vl53l1_api_strings.c **** 	break;
+ 169:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_MM1:
+ 170:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pSequenceStepsString,
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 13
+
+
+ 171:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_MM1);
+ 172:Core/Src/vl53l1_api_strings.c **** 	break;
+ 173:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_MM2:
+ 174:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pSequenceStepsString,
+ 175:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_MM2);
+ 176:Core/Src/vl53l1_api_strings.c **** 	break;
+ 177:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_RANGE:
+ 178:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pSequenceStepsString,
+ 179:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_RANGE);
+ 180:Core/Src/vl53l1_api_strings.c **** 	break;
+ 181:Core/Src/vl53l1_api_strings.c **** 	default:
+ 182:Core/Src/vl53l1_api_strings.c **** 		Status = VL53L1_ERROR_INVALID_PARAMS;
+ 183:Core/Src/vl53l1_api_strings.c **** 	}
+ 184:Core/Src/vl53l1_api_strings.c **** #endif
+ 185:Core/Src/vl53l1_api_strings.c **** 
+ 186:Core/Src/vl53l1_api_strings.c **** 	LOG_FUNCTION_END(Status);
+ 436              		.loc 1 186 26 is_stmt 1 view .LVU72
+ 187:Core/Src/vl53l1_api_strings.c **** 
+ 188:Core/Src/vl53l1_api_strings.c **** 	return Status;
+ 437              		.loc 1 188 2 view .LVU73
+ 189:Core/Src/vl53l1_api_strings.c **** }
+ 438              		.loc 1 189 1 is_stmt 0 view .LVU74
+ 439 0022 08BD     		pop	{r3, pc}
+ 440              	.LVL54:
+ 441              	.L39:
+ 154:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_PHASECAL);
+ 442              		.loc 1 154 3 is_stmt 1 view .LVU75
+ 443 0024 40F2FF12 		movw	r2, #511
+ 444 0028 1949     		ldr	r1, .L43+4
+ 445 002a FFF7FEFF 		bl	strncpy
+ 446              	.LVL55:
+ 156:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_REFPHASE:
+ 447              		.loc 1 156 2 view .LVU76
+ 140:Core/Src/vl53l1_api_strings.c **** 
+ 448              		.loc 1 140 15 is_stmt 0 view .LVU77
+ 449 002e 0020     		movs	r0, #0
+ 156:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_REFPHASE:
+ 450              		.loc 1 156 2 view .LVU78
+ 451 0030 F7E7     		b	.L31
+ 452              	.LVL56:
+ 453              	.L38:
+ 158:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_DSS1);
+ 454              		.loc 1 158 3 is_stmt 1 view .LVU79
+ 455 0032 40F2FF12 		movw	r2, #511
+ 456 0036 1749     		ldr	r1, .L43+8
+ 457 0038 FFF7FEFF 		bl	strncpy
+ 458              	.LVL57:
+ 160:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_DSS1:
+ 459              		.loc 1 160 2 view .LVU80
+ 140:Core/Src/vl53l1_api_strings.c **** 
+ 460              		.loc 1 140 15 is_stmt 0 view .LVU81
+ 461 003c 0020     		movs	r0, #0
+ 160:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_DSS1:
+ 462              		.loc 1 160 2 view .LVU82
+ 463 003e F0E7     		b	.L31
+ 464              	.LVL58:
+ 465              	.L37:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 14
+
+
+ 162:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_DSS1);
+ 466              		.loc 1 162 3 is_stmt 1 view .LVU83
+ 467 0040 40F2FF12 		movw	r2, #511
+ 468 0044 1349     		ldr	r1, .L43+8
+ 469 0046 FFF7FEFF 		bl	strncpy
+ 470              	.LVL59:
+ 164:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_DSS2:
+ 471              		.loc 1 164 2 view .LVU84
+ 140:Core/Src/vl53l1_api_strings.c **** 
+ 472              		.loc 1 140 15 is_stmt 0 view .LVU85
+ 473 004a 0020     		movs	r0, #0
+ 164:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_DSS2:
+ 474              		.loc 1 164 2 view .LVU86
+ 475 004c E9E7     		b	.L31
+ 476              	.LVL60:
+ 477              	.L36:
+ 166:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_DSS2);
+ 478              		.loc 1 166 3 is_stmt 1 view .LVU87
+ 479 004e 40F2FF12 		movw	r2, #511
+ 480 0052 1149     		ldr	r1, .L43+12
+ 481 0054 FFF7FEFF 		bl	strncpy
+ 482              	.LVL61:
+ 168:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_MM1:
+ 483              		.loc 1 168 2 view .LVU88
+ 140:Core/Src/vl53l1_api_strings.c **** 
+ 484              		.loc 1 140 15 is_stmt 0 view .LVU89
+ 485 0058 0020     		movs	r0, #0
+ 168:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_MM1:
+ 486              		.loc 1 168 2 view .LVU90
+ 487 005a E2E7     		b	.L31
+ 488              	.LVL62:
+ 489              	.L35:
+ 170:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_MM1);
+ 490              		.loc 1 170 3 is_stmt 1 view .LVU91
+ 491 005c 40F2FF12 		movw	r2, #511
+ 492 0060 0E49     		ldr	r1, .L43+16
+ 493 0062 FFF7FEFF 		bl	strncpy
+ 494              	.LVL63:
+ 172:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_MM2:
+ 495              		.loc 1 172 2 view .LVU92
+ 140:Core/Src/vl53l1_api_strings.c **** 
+ 496              		.loc 1 140 15 is_stmt 0 view .LVU93
+ 497 0066 0020     		movs	r0, #0
+ 172:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_MM2:
+ 498              		.loc 1 172 2 view .LVU94
+ 499 0068 DBE7     		b	.L31
+ 500              	.LVL64:
+ 501              	.L34:
+ 174:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_MM2);
+ 502              		.loc 1 174 3 is_stmt 1 view .LVU95
+ 503 006a 40F2FF12 		movw	r2, #511
+ 504 006e 0C49     		ldr	r1, .L43+20
+ 505 0070 FFF7FEFF 		bl	strncpy
+ 506              	.LVL65:
+ 176:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_RANGE:
+ 507              		.loc 1 176 2 view .LVU96
+ 140:Core/Src/vl53l1_api_strings.c **** 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 15
+
+
+ 508              		.loc 1 140 15 is_stmt 0 view .LVU97
+ 509 0074 0020     		movs	r0, #0
+ 176:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_RANGE:
+ 510              		.loc 1 176 2 view .LVU98
+ 511 0076 D4E7     		b	.L31
+ 512              	.LVL66:
+ 513              	.L32:
+ 178:Core/Src/vl53l1_api_strings.c **** 				VL53L1_STRING_SEQUENCESTEP_RANGE);
+ 514              		.loc 1 178 3 is_stmt 1 view .LVU99
+ 515 0078 40F2FF12 		movw	r2, #511
+ 516 007c 0949     		ldr	r1, .L43+24
+ 517 007e FFF7FEFF 		bl	strncpy
+ 518              	.LVL67:
+ 180:Core/Src/vl53l1_api_strings.c **** 	default:
+ 519              		.loc 1 180 2 view .LVU100
+ 140:Core/Src/vl53l1_api_strings.c **** 
+ 520              		.loc 1 140 15 is_stmt 0 view .LVU101
+ 521 0082 0020     		movs	r0, #0
+ 180:Core/Src/vl53l1_api_strings.c **** 	default:
+ 522              		.loc 1 180 2 view .LVU102
+ 523 0084 CDE7     		b	.L31
+ 524              	.LVL68:
+ 525              	.L41:
+ 148:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_VHV:
+ 526              		.loc 1 148 2 view .LVU103
+ 527 0086 6FF00300 		mvn	r0, #3
+ 528              	.LVL69:
+ 148:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_SEQUENCESTEP_VHV:
+ 529              		.loc 1 148 2 view .LVU104
+ 530 008a CAE7     		b	.L31
+ 531              	.L44:
+ 532              		.align	2
+ 533              	.L43:
+ 534 008c 00000000 		.word	.LC15
+ 535 0090 04000000 		.word	.LC16
+ 536 0094 10000000 		.word	.LC17
+ 537 0098 18000000 		.word	.LC18
+ 538 009c 20000000 		.word	.LC19
+ 539 00a0 24000000 		.word	.LC20
+ 540 00a4 28000000 		.word	.LC21
+ 541              		.cfi_endproc
+ 542              	.LFE5:
+ 544              		.section	.rodata.VL53L1_get_limit_check_info.str1.4,"aMS",%progbits,1
+ 545              		.align	2
+ 546              	.LC22:
+ 547 0000 5349474D 		.ascii	"SIGMA FINAL RANGE\000"
+ 547      41204649 
+ 547      4E414C20 
+ 547      52414E47 
+ 547      4500
+ 548 0012 0000     		.align	2
+ 549              	.LC23:
+ 550 0014 5349474E 		.ascii	"SIGNAL RATE FINAL RANGE\000"
+ 550      414C2052 
+ 550      41544520 
+ 550      46494E41 
+ 550      4C205241 
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 16
+
+
+ 551              		.align	2
+ 552              	.LC24:
+ 553 002c 556E6B6E 		.ascii	"Unknown Error Code\000"
+ 553      6F776E20 
+ 553      4572726F 
+ 553      7220436F 
+ 553      646500
+ 554              		.section	.text.VL53L1_get_limit_check_info,"ax",%progbits
+ 555              		.align	1
+ 556              		.global	VL53L1_get_limit_check_info
+ 557              		.syntax unified
+ 558              		.thumb
+ 559              		.thumb_func
+ 561              	VL53L1_get_limit_check_info:
+ 562              	.LVL70:
+ 563              	.LFB6:
+ 190:Core/Src/vl53l1_api_strings.c **** 
+ 191:Core/Src/vl53l1_api_strings.c **** VL53L1_Error VL53L1_get_limit_check_info(uint16_t LimitCheckId,
+ 192:Core/Src/vl53l1_api_strings.c **** 	char *pLimitCheckString)
+ 193:Core/Src/vl53l1_api_strings.c **** {
+ 564              		.loc 1 193 1 is_stmt 1 view -0
+ 565              		.cfi_startproc
+ 566              		@ args = 0, pretend = 0, frame = 0
+ 567              		@ frame_needed = 0, uses_anonymous_args = 0
+ 568              		.loc 1 193 1 is_stmt 0 view .LVU106
+ 569 0000 08B5     		push	{r3, lr}
+ 570              	.LCFI3:
+ 571              		.cfi_def_cfa_offset 8
+ 572              		.cfi_offset 3, -8
+ 573              		.cfi_offset 14, -4
+ 574 0002 0346     		mov	r3, r0
+ 575 0004 0846     		mov	r0, r1
+ 576              	.LVL71:
+ 194:Core/Src/vl53l1_api_strings.c **** 	VL53L1_Error Status = VL53L1_ERROR_NONE;
+ 577              		.loc 1 194 2 is_stmt 1 view .LVU107
+ 195:Core/Src/vl53l1_api_strings.c **** 
+ 196:Core/Src/vl53l1_api_strings.c **** 	LOG_FUNCTION_START("");
+ 578              		.loc 1 196 24 view .LVU108
+ 197:Core/Src/vl53l1_api_strings.c **** 
+ 198:Core/Src/vl53l1_api_strings.c **** #ifdef VL53L1_USE_EMPTY_STRING
+ 199:Core/Src/vl53l1_api_strings.c **** 	SUPPRESS_UNUSED_WARNING(LimitCheckId);
+ 200:Core/Src/vl53l1_api_strings.c **** 	VL53L1_COPYSTRING(pLimitCheckString, "");
+ 201:Core/Src/vl53l1_api_strings.c **** #else
+ 202:Core/Src/vl53l1_api_strings.c **** 	switch (LimitCheckId) {
+ 579              		.loc 1 202 2 view .LVU109
+ 580 0006 3BB1     		cbz	r3, .L46
+ 581 0008 012B     		cmp	r3, #1
+ 582 000a 0CD0     		beq	.L47
+ 203:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_CHECKENABLE_SIGMA_FINAL_RANGE:
+ 204:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pLimitCheckString,
+ 205:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_CHECKENABLE_SIGMA_FINAL_RANGE);
+ 206:Core/Src/vl53l1_api_strings.c **** 	break;
+ 207:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE:
+ 208:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pLimitCheckString,
+ 209:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE);
+ 210:Core/Src/vl53l1_api_strings.c **** 	break;
+ 211:Core/Src/vl53l1_api_strings.c **** 	default:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 17
+
+
+ 212:Core/Src/vl53l1_api_strings.c **** 		VL53L1_COPYSTRING(pLimitCheckString,
+ 583              		.loc 1 212 3 view .LVU110
+ 584 000c 40F2FF12 		movw	r2, #511
+ 585 0010 0849     		ldr	r1, .L52
+ 586              	.LVL72:
+ 587              		.loc 1 212 3 is_stmt 0 view .LVU111
+ 588 0012 FFF7FEFF 		bl	strncpy
+ 589              	.LVL73:
+ 590              		.loc 1 212 3 view .LVU112
+ 591 0016 04E0     		b	.L49
+ 592              	.LVL74:
+ 593              	.L46:
+ 204:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_CHECKENABLE_SIGMA_FINAL_RANGE);
+ 594              		.loc 1 204 3 is_stmt 1 view .LVU113
+ 595 0018 40F2FF12 		movw	r2, #511
+ 596 001c 0649     		ldr	r1, .L52+4
+ 597 001e FFF7FEFF 		bl	strncpy
+ 598              	.LVL75:
+ 206:Core/Src/vl53l1_api_strings.c **** 	case VL53L1_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE:
+ 599              		.loc 1 206 2 view .LVU114
+ 600              	.L49:
+ 213:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_UNKNOW_ERROR_CODE);
+ 214:Core/Src/vl53l1_api_strings.c **** 	}
+ 215:Core/Src/vl53l1_api_strings.c **** #endif
+ 216:Core/Src/vl53l1_api_strings.c **** 
+ 217:Core/Src/vl53l1_api_strings.c **** 	LOG_FUNCTION_END(Status);
+ 601              		.loc 1 217 26 view .LVU115
+ 218:Core/Src/vl53l1_api_strings.c **** 	return Status;
+ 602              		.loc 1 218 2 view .LVU116
+ 219:Core/Src/vl53l1_api_strings.c **** }
+ 603              		.loc 1 219 1 is_stmt 0 view .LVU117
+ 604 0022 0020     		movs	r0, #0
+ 605 0024 08BD     		pop	{r3, pc}
+ 606              	.LVL76:
+ 607              	.L47:
+ 208:Core/Src/vl53l1_api_strings.c **** 			VL53L1_STRING_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE);
+ 608              		.loc 1 208 3 is_stmt 1 view .LVU118
+ 609 0026 40F2FF12 		movw	r2, #511
+ 610 002a 0449     		ldr	r1, .L52+8
+ 611 002c FFF7FEFF 		bl	strncpy
+ 612              	.LVL77:
+ 210:Core/Src/vl53l1_api_strings.c **** 	default:
+ 613              		.loc 1 210 2 view .LVU119
+ 614 0030 F7E7     		b	.L49
+ 615              	.L53:
+ 616 0032 00BF     		.align	2
+ 617              	.L52:
+ 618 0034 2C000000 		.word	.LC24
+ 619 0038 00000000 		.word	.LC22
+ 620 003c 14000000 		.word	.LC23
+ 621              		.cfi_endproc
+ 622              	.LFE6:
+ 624              		.text
+ 625              	.Letext0:
+ 626              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 627              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 628              		.file 4 "Core/Inc/vl53l1_error_codes.h"
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 18
+
+
+ 629              		.file 5 "Core/Inc/vl53l1_def.h"
+ 630              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_api_strings.c
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:20     .rodata.VL53L1_get_range_status_string.str1.4:00000000 $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:42     .text.VL53L1_get_range_status_string:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:48     .text.VL53L1_get_range_status_string:00000000 VL53L1_get_range_status_string
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:71     .text.VL53L1_get_range_status_string:0000000c $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:77     .text.VL53L1_get_range_status_string:00000012 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:183    .text.VL53L1_get_range_status_string:00000078 $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:194    .rodata.VL53L1_get_pal_state_string.str1.4:00000000 $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:219    .text.VL53L1_get_pal_state_string:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:225    .text.VL53L1_get_pal_state_string:00000000 VL53L1_get_pal_state_string
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:250    .text.VL53L1_get_pal_state_string:00000012 $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:256    .text.VL53L1_get_pal_state_string:00000018 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:351    .text.VL53L1_get_pal_state_string:00000090 $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:363    .rodata.VL53L1_get_sequence_steps_info.str1.4:00000000 $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:385    .text.VL53L1_get_sequence_steps_info:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:391    .text.VL53L1_get_sequence_steps_info:00000000 VL53L1_get_sequence_steps_info
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:414    .text.VL53L1_get_sequence_steps_info:0000000e $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:422    .text.VL53L1_get_sequence_steps_info:00000016 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:534    .text.VL53L1_get_sequence_steps_info:0000008c $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:545    .rodata.VL53L1_get_limit_check_info.str1.4:00000000 $d
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:555    .text.VL53L1_get_limit_check_info:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:561    .text.VL53L1_get_limit_check_info:00000000 VL53L1_get_limit_check_info
+C:\Users\Lenovo\AppData\Local\Temp\ccsfzMnU.s:618    .text.VL53L1_get_limit_check_info:00000034 $d
+
+UNDEFINED SYMBOLS
+strncpy

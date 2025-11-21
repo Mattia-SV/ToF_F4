@@ -1,0 +1,408 @@
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"vl53l1_error_strings.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.rodata.VL53L1_get_pal_error_string.str1.4,"aMS",%progbits,1
+  20              		.align	2
+  21              	.LC0:
+  22 0000 00       		.ascii	"\000"
+  23              		.section	.text.VL53L1_get_pal_error_string,"ax",%progbits
+  24              		.align	1
+  25              		.global	VL53L1_get_pal_error_string
+  26              		.syntax unified
+  27              		.thumb
+  28              		.thumb_func
+  30              	VL53L1_get_pal_error_string:
+  31              	.LVL0:
+  32              	.LFB3:
+  33              		.file 1 "Core/Src/vl53l1_error_strings.c"
+   1:Core/Src/vl53l1_error_strings.c **** /*
+   2:Core/Src/vl53l1_error_strings.c **** * Copyright (c) 2017, STMicroelectronics - All Rights Reserved
+   3:Core/Src/vl53l1_error_strings.c **** *
+   4:Core/Src/vl53l1_error_strings.c **** * This file is part of VL53L1 Core and is dual licensed,
+   5:Core/Src/vl53l1_error_strings.c **** * either 'STMicroelectronics
+   6:Core/Src/vl53l1_error_strings.c **** * Proprietary license'
+   7:Core/Src/vl53l1_error_strings.c **** * or 'BSD 3-clause "New" or "Revised" License' , at your option.
+   8:Core/Src/vl53l1_error_strings.c **** *
+   9:Core/Src/vl53l1_error_strings.c **** ********************************************************************************
+  10:Core/Src/vl53l1_error_strings.c **** *
+  11:Core/Src/vl53l1_error_strings.c **** * 'STMicroelectronics Proprietary license'
+  12:Core/Src/vl53l1_error_strings.c **** *
+  13:Core/Src/vl53l1_error_strings.c **** ********************************************************************************
+  14:Core/Src/vl53l1_error_strings.c **** *
+  15:Core/Src/vl53l1_error_strings.c **** * License terms: STMicroelectronics Proprietary in accordance with licensing
+  16:Core/Src/vl53l1_error_strings.c **** * terms at www.st.com/sla0081
+  17:Core/Src/vl53l1_error_strings.c **** *
+  18:Core/Src/vl53l1_error_strings.c **** * STMicroelectronics confidential
+  19:Core/Src/vl53l1_error_strings.c **** * Reproduction and Communication of this document is strictly prohibited unless
+  20:Core/Src/vl53l1_error_strings.c **** * specifically authorized in writing by STMicroelectronics.
+  21:Core/Src/vl53l1_error_strings.c **** *
+  22:Core/Src/vl53l1_error_strings.c **** *
+  23:Core/Src/vl53l1_error_strings.c **** ********************************************************************************
+  24:Core/Src/vl53l1_error_strings.c **** *
+  25:Core/Src/vl53l1_error_strings.c **** * Alternatively, VL53L1 Core may be distributed under the terms of
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s 			page 2
+
+
+  26:Core/Src/vl53l1_error_strings.c **** * 'BSD 3-clause "New" or "Revised" License', in which case the following
+  27:Core/Src/vl53l1_error_strings.c **** * provisions apply instead of the ones mentioned above :
+  28:Core/Src/vl53l1_error_strings.c **** *
+  29:Core/Src/vl53l1_error_strings.c **** ********************************************************************************
+  30:Core/Src/vl53l1_error_strings.c **** *
+  31:Core/Src/vl53l1_error_strings.c **** * License terms: BSD 3-clause "New" or "Revised" License.
+  32:Core/Src/vl53l1_error_strings.c **** *
+  33:Core/Src/vl53l1_error_strings.c **** * Redistribution and use in source and binary forms, with or without
+  34:Core/Src/vl53l1_error_strings.c **** * modification, are permitted provided that the following conditions are met:
+  35:Core/Src/vl53l1_error_strings.c **** *
+  36:Core/Src/vl53l1_error_strings.c **** * 1. Redistributions of source code must retain the above copyright notice, this
+  37:Core/Src/vl53l1_error_strings.c **** * list of conditions and the following disclaimer.
+  38:Core/Src/vl53l1_error_strings.c **** *
+  39:Core/Src/vl53l1_error_strings.c **** * 2. Redistributions in binary form must reproduce the above copyright notice,
+  40:Core/Src/vl53l1_error_strings.c **** * this list of conditions and the following disclaimer in the documentation
+  41:Core/Src/vl53l1_error_strings.c **** * and/or other materials provided with the distribution.
+  42:Core/Src/vl53l1_error_strings.c **** *
+  43:Core/Src/vl53l1_error_strings.c **** * 3. Neither the name of the copyright holder nor the names of its contributors
+  44:Core/Src/vl53l1_error_strings.c **** * may be used to endorse or promote products derived from this software
+  45:Core/Src/vl53l1_error_strings.c **** * without specific prior written permission.
+  46:Core/Src/vl53l1_error_strings.c **** *
+  47:Core/Src/vl53l1_error_strings.c **** * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  48:Core/Src/vl53l1_error_strings.c **** * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  49:Core/Src/vl53l1_error_strings.c **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  50:Core/Src/vl53l1_error_strings.c **** * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  51:Core/Src/vl53l1_error_strings.c **** * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  52:Core/Src/vl53l1_error_strings.c **** * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  53:Core/Src/vl53l1_error_strings.c **** * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  54:Core/Src/vl53l1_error_strings.c **** * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  55:Core/Src/vl53l1_error_strings.c **** * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  56:Core/Src/vl53l1_error_strings.c **** * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  57:Core/Src/vl53l1_error_strings.c **** *
+  58:Core/Src/vl53l1_error_strings.c **** *
+  59:Core/Src/vl53l1_error_strings.c **** ********************************************************************************
+  60:Core/Src/vl53l1_error_strings.c **** *
+  61:Core/Src/vl53l1_error_strings.c **** */
+  62:Core/Src/vl53l1_error_strings.c **** 
+  63:Core/Src/vl53l1_error_strings.c **** /**
+  64:Core/Src/vl53l1_error_strings.c ****  * @file   vl53l1_error_strings.c
+  65:Core/Src/vl53l1_error_strings.c ****  * @brief  VL53L1 API functions for decoding error codes to a text string
+  66:Core/Src/vl53l1_error_strings.c ****  */
+  67:Core/Src/vl53l1_error_strings.c **** 
+  68:Core/Src/vl53l1_error_strings.c **** #include "vl53l1_error_codes.h"
+  69:Core/Src/vl53l1_error_strings.c **** #include "vl53l1_error_strings.h"
+  70:Core/Src/vl53l1_error_strings.c **** #include "vl53l1_platform_log.h"
+  71:Core/Src/vl53l1_error_strings.c **** #include "vl53l1_ll_def.h"
+  72:Core/Src/vl53l1_error_strings.c **** 
+  73:Core/Src/vl53l1_error_strings.c **** #define LOG_FUNCTION_START(fmt, ...) \
+  74:Core/Src/vl53l1_error_strings.c **** 	_LOG_FUNCTION_START(VL53L1_TRACE_MODULE_API, fmt, ##__VA_ARGS__)
+  75:Core/Src/vl53l1_error_strings.c **** #define LOG_FUNCTION_END(status, ...) \
+  76:Core/Src/vl53l1_error_strings.c **** 	_LOG_FUNCTION_END(VL53L1_TRACE_MODULE_API, status, ##__VA_ARGS__)
+  77:Core/Src/vl53l1_error_strings.c **** #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+  78:Core/Src/vl53l1_error_strings.c **** 	_LOG_FUNCTION_END_FMT(VL53L1_TRACE_MODULE_API, \
+  79:Core/Src/vl53l1_error_strings.c **** 		status, fmt, ##__VA_ARGS__)
+  80:Core/Src/vl53l1_error_strings.c **** 
+  81:Core/Src/vl53l1_error_strings.c **** 
+  82:Core/Src/vl53l1_error_strings.c **** #ifndef VL53L1_DEBUG
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s 			page 3
+
+
+  83:Core/Src/vl53l1_error_strings.c **** 	#define VL53L1_USE_EMPTY_STRING
+  84:Core/Src/vl53l1_error_strings.c **** #endif
+  85:Core/Src/vl53l1_error_strings.c **** 
+  86:Core/Src/vl53l1_error_strings.c **** VL53L1_Error VL53L1_get_pal_error_string(
+  87:Core/Src/vl53l1_error_strings.c **** 	VL53L1_Error   PalErrorCode,
+  88:Core/Src/vl53l1_error_strings.c **** 	char          *pPalErrorString)
+  89:Core/Src/vl53l1_error_strings.c **** {
+  34              		.loc 1 89 1 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38              		.loc 1 89 1 is_stmt 0 view .LVU1
+  39 0000 08B5     		push	{r3, lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 8
+  42              		.cfi_offset 3, -8
+  43              		.cfi_offset 14, -4
+  44 0002 0846     		mov	r0, r1
+  45              	.LVL1:
+  90:Core/Src/vl53l1_error_strings.c **** 	VL53L1_Error Status = VL53L1_ERROR_NONE;
+  46              		.loc 1 90 2 is_stmt 1 view .LVU2
+  91:Core/Src/vl53l1_error_strings.c **** 
+  92:Core/Src/vl53l1_error_strings.c **** #ifdef VL53L1_USE_EMPTY_STRING
+  93:Core/Src/vl53l1_error_strings.c **** 	SUPPRESS_UNUSED_WARNING(PalErrorCode);
+  47              		.loc 1 93 2 view .LVU3
+  94:Core/Src/vl53l1_error_strings.c **** #endif
+  95:Core/Src/vl53l1_error_strings.c **** 
+  96:Core/Src/vl53l1_error_strings.c **** 	LOG_FUNCTION_START("");
+  48              		.loc 1 96 24 view .LVU4
+  97:Core/Src/vl53l1_error_strings.c **** 
+  98:Core/Src/vl53l1_error_strings.c **** #ifdef VL53L1_USE_EMPTY_STRING
+  99:Core/Src/vl53l1_error_strings.c **** 	VL53L1_COPYSTRING(pPalErrorString, "");
+  49              		.loc 1 99 2 view .LVU5
+  50 0004 40F2FF12 		movw	r2, #511
+  51 0008 0249     		ldr	r1, .L3
+  52              	.LVL2:
+  53              		.loc 1 99 2 is_stmt 0 view .LVU6
+  54 000a FFF7FEFF 		bl	strncpy
+  55              	.LVL3:
+ 100:Core/Src/vl53l1_error_strings.c **** #else
+ 101:Core/Src/vl53l1_error_strings.c **** 
+ 102:Core/Src/vl53l1_error_strings.c **** 	switch (PalErrorCode) {
+ 103:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_NONE:
+ 104:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 105:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_NONE);
+ 106:Core/Src/vl53l1_error_strings.c **** 		break;
+ 107:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_CALIBRATION_WARNING:
+ 108:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 109:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_CALIBRATION_WARNING);
+ 110:Core/Src/vl53l1_error_strings.c **** 		break;
+ 111:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_MIN_CLIPPED:
+ 112:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 113:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_MIN_CLIPPED);
+ 114:Core/Src/vl53l1_error_strings.c **** 		break;
+ 115:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_UNDEFINED:
+ 116:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 117:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_UNDEFINED);
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s 			page 4
+
+
+ 118:Core/Src/vl53l1_error_strings.c **** 		break;
+ 119:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_INVALID_PARAMS:
+ 120:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 121:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_INVALID_PARAMS);
+ 122:Core/Src/vl53l1_error_strings.c **** 		break;
+ 123:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_NOT_SUPPORTED:
+ 124:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 125:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_NOT_SUPPORTED);
+ 126:Core/Src/vl53l1_error_strings.c **** 		break;
+ 127:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_RANGE_ERROR:
+ 128:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 129:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_RANGE_ERROR);
+ 130:Core/Src/vl53l1_error_strings.c **** 		break;
+ 131:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_TIME_OUT:
+ 132:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 133:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_TIME_OUT);
+ 134:Core/Src/vl53l1_error_strings.c **** 		break;
+ 135:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_MODE_NOT_SUPPORTED:
+ 136:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 137:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_MODE_NOT_SUPPORTED);
+ 138:Core/Src/vl53l1_error_strings.c **** 		break;
+ 139:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_BUFFER_TOO_SMALL:
+ 140:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 141:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_BUFFER_TOO_SMALL);
+ 142:Core/Src/vl53l1_error_strings.c **** 		break;
+ 143:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_COMMS_BUFFER_TOO_SMALL:
+ 144:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 145:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_COMMS_BUFFER_TOO_SMALL);
+ 146:Core/Src/vl53l1_error_strings.c **** 		break;
+ 147:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_GPIO_NOT_EXISTING:
+ 148:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 149:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_GPIO_NOT_EXISTING);
+ 150:Core/Src/vl53l1_error_strings.c **** 		break;
+ 151:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_GPIO_FUNCTIONALITY_NOT_SUPPORTED:
+ 152:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 153:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_GPIO_FUNCTIONALITY_NOT_SUPPORTED);
+ 154:Core/Src/vl53l1_error_strings.c **** 		break;
+ 155:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_CONTROL_INTERFACE:
+ 156:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 157:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_CONTROL_INTERFACE);
+ 158:Core/Src/vl53l1_error_strings.c **** 		break;
+ 159:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_INVALID_COMMAND:
+ 160:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 161:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_INVALID_COMMAND);
+ 162:Core/Src/vl53l1_error_strings.c **** 		break;
+ 163:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_DIVISION_BY_ZERO:
+ 164:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 165:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_DIVISION_BY_ZERO);
+ 166:Core/Src/vl53l1_error_strings.c **** 		break;
+ 167:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_REF_SPAD_INIT:
+ 168:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 169:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_REF_SPAD_INIT);
+ 170:Core/Src/vl53l1_error_strings.c **** 		break;
+ 171:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_GPH_SYNC_CHECK_FAIL:
+ 172:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 173:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_GPH_SYNC_CHECK_FAIL);
+ 174:Core/Src/vl53l1_error_strings.c **** 		break;
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s 			page 5
+
+
+ 175:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_STREAM_COUNT_CHECK_FAIL:
+ 176:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 177:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_STREAM_COUNT_CHECK_FAIL);
+ 178:Core/Src/vl53l1_error_strings.c **** 		break;
+ 179:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_GPH_ID_CHECK_FAIL:
+ 180:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 181:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_GPH_ID_CHECK_FAIL);
+ 182:Core/Src/vl53l1_error_strings.c **** 		break;
+ 183:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_ZONE_STREAM_COUNT_CHECK_FAIL:
+ 184:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 185:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_ZONE_STREAM_COUNT_CHECK_FAIL);
+ 186:Core/Src/vl53l1_error_strings.c **** 		break;
+ 187:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_ZONE_GPH_ID_CHECK_FAIL:
+ 188:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 189:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_ZONE_GPH_ID_CHECK_FAIL);
+ 190:Core/Src/vl53l1_error_strings.c **** 		break;
+ 191:Core/Src/vl53l1_error_strings.c **** 
+ 192:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_XTALK_EXTRACTION_NO_SAMPLE_FAIL:
+ 193:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 194:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_XTALK_EXTRACTION_NO_SAMPLES_FAIL);
+ 195:Core/Src/vl53l1_error_strings.c **** 		break;
+ 196:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_XTALK_EXTRACTION_SIGMA_LIMIT_FAIL:
+ 197:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 198:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_XTALK_EXTRACTION_SIGMA_LIMIT_FAIL);
+ 199:Core/Src/vl53l1_error_strings.c **** 		break;
+ 200:Core/Src/vl53l1_error_strings.c **** 
+ 201:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_OFFSET_CAL_NO_SAMPLE_FAIL:
+ 202:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 203:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_OFFSET_CAL_NO_SAMPLE_FAIL);
+ 204:Core/Src/vl53l1_error_strings.c **** 		break;
+ 205:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_OFFSET_CAL_NO_SPADS_ENABLED_FAIL:
+ 206:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 207:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_OFFSET_CAL_NO_SPADS_ENABLED_FAIL);
+ 208:Core/Src/vl53l1_error_strings.c **** 		break;
+ 209:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_ZONE_CAL_NO_SAMPLE_FAIL:
+ 210:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 211:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_ZONE_CAL_NO_SAMPLE_FAIL);
+ 212:Core/Src/vl53l1_error_strings.c **** 		break;
+ 213:Core/Src/vl53l1_error_strings.c **** 
+ 214:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES:
+ 215:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 216:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_OFFSET_CAL_MISSING_SAMPLES);
+ 217:Core/Src/vl53l1_error_strings.c **** 		break;
+ 218:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_OFFSET_CAL_SIGMA_TOO_HIGH:
+ 219:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 220:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_OFFSET_CAL_SIGMA_TOO_HIGH);
+ 221:Core/Src/vl53l1_error_strings.c **** 		break;
+ 222:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_OFFSET_CAL_RATE_TOO_HIGH:
+ 223:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 224:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_OFFSET_CAL_RATE_TOO_HIGH);
+ 225:Core/Src/vl53l1_error_strings.c **** 		break;
+ 226:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_OFFSET_CAL_SPAD_COUNT_TOO_LOW:
+ 227:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 228:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_OFFSET_CAL_SPAD_COUNT_TOO_LOW);
+ 229:Core/Src/vl53l1_error_strings.c **** 		break;
+ 230:Core/Src/vl53l1_error_strings.c **** 
+ 231:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_ZONE_CAL_MISSING_SAMPLES:
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s 			page 6
+
+
+ 232:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 233:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_ZONE_CAL_MISSING_SAMPLES);
+ 234:Core/Src/vl53l1_error_strings.c **** 		break;
+ 235:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_ZONE_CAL_SIGMA_TOO_HIGH:
+ 236:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 237:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_ZONE_CAL_SIGMA_TOO_HIGH);
+ 238:Core/Src/vl53l1_error_strings.c **** 		break;
+ 239:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_ZONE_CAL_RATE_TOO_HIGH:
+ 240:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 241:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_ZONE_CAL_RATE_TOO_HIGH);
+ 242:Core/Src/vl53l1_error_strings.c **** 		break;
+ 243:Core/Src/vl53l1_error_strings.c **** 
+ 244:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_REF_SPAD_CHAR_NOT_ENOUGH_SPADS:
+ 245:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 246:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_REF_SPAD_CHAR_NOT_ENOUGH_SPADS);
+ 247:Core/Src/vl53l1_error_strings.c **** 		break;
+ 248:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_HIGH:
+ 249:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 250:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_REF_SPAD_CHAR_RATE_TOO_HIGH);
+ 251:Core/Src/vl53l1_error_strings.c **** 		break;
+ 252:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_LOW:
+ 253:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 254:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_WARNING_REF_SPAD_CHAR_RATE_TOO_LOW);
+ 255:Core/Src/vl53l1_error_strings.c **** 		break;
+ 256:Core/Src/vl53l1_error_strings.c **** 
+ 257:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_XTALK_MISSING_SAMPLES:
+ 258:Core/Src/vl53l1_error_strings.c **** 			VL53L1_COPYSTRING(pPalErrorString,
+ 259:Core/Src/vl53l1_error_strings.c **** 				VL53L1_STRING_WARNING_XTALK_MISSING_SAMPLES);
+ 260:Core/Src/vl53l1_error_strings.c **** 			break;
+ 261:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_XTALK_NO_SAMPLES_FOR_GRADIENT:
+ 262:Core/Src/vl53l1_error_strings.c **** 			VL53L1_COPYSTRING(pPalErrorString,
+ 263:Core/Src/vl53l1_error_strings.c **** 				VL53L1_STRING_WARNING_XTALK_NO_SAMPLES_FOR_GRADIENT);
+ 264:Core/Src/vl53l1_error_strings.c **** 			break;
+ 265:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_WARNING_XTALK_SIGMA_LIMIT_FOR_GRADIENT:
+ 266:Core/Src/vl53l1_error_strings.c **** 			VL53L1_COPYSTRING(pPalErrorString,
+ 267:Core/Src/vl53l1_error_strings.c **** 				VL53L1_STRING_WARNING_XTALK_SIGMA_LIMIT_FOR_GRADIENT);
+ 268:Core/Src/vl53l1_error_strings.c **** 			break;
+ 269:Core/Src/vl53l1_error_strings.c **** 
+ 270:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_DEVICE_FIRMWARE_TOO_OLD:
+ 271:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 272:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_DEVICE_FIRMWARE_TOO_OLD);
+ 273:Core/Src/vl53l1_error_strings.c **** 		break;
+ 274:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_DEVICE_FIRMWARE_TOO_NEW:
+ 275:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 276:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_DEVICE_FIRMWARE_TOO_NEW);
+ 277:Core/Src/vl53l1_error_strings.c **** 		break;
+ 278:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_UNIT_TEST_FAIL:
+ 279:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 280:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_UNIT_TEST_FAIL);
+ 281:Core/Src/vl53l1_error_strings.c **** 		break;
+ 282:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_FILE_READ_FAIL:
+ 283:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 284:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_FILE_READ_FAIL);
+ 285:Core/Src/vl53l1_error_strings.c **** 		break;
+ 286:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_FILE_WRITE_FAIL:
+ 287:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 288:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_FILE_WRITE_FAIL);
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s 			page 7
+
+
+ 289:Core/Src/vl53l1_error_strings.c **** 		break;
+ 290:Core/Src/vl53l1_error_strings.c **** 	case VL53L1_ERROR_NOT_IMPLEMENTED:
+ 291:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 292:Core/Src/vl53l1_error_strings.c **** 			VL53L1_STRING_ERROR_NOT_IMPLEMENTED);
+ 293:Core/Src/vl53l1_error_strings.c **** 		break;
+ 294:Core/Src/vl53l1_error_strings.c **** 	default:
+ 295:Core/Src/vl53l1_error_strings.c **** 		VL53L1_COPYSTRING(pPalErrorString,
+ 296:Core/Src/vl53l1_error_strings.c **** 				VL53L1_STRING_UNKNOW_ERROR_CODE);
+ 297:Core/Src/vl53l1_error_strings.c **** 	}
+ 298:Core/Src/vl53l1_error_strings.c **** 
+ 299:Core/Src/vl53l1_error_strings.c **** #endif
+ 300:Core/Src/vl53l1_error_strings.c **** 
+ 301:Core/Src/vl53l1_error_strings.c **** 	LOG_FUNCTION_END(Status);
+  56              		.loc 1 301 26 is_stmt 1 view .LVU7
+ 302:Core/Src/vl53l1_error_strings.c **** 
+ 303:Core/Src/vl53l1_error_strings.c **** 	return Status;
+  57              		.loc 1 303 2 view .LVU8
+ 304:Core/Src/vl53l1_error_strings.c **** }
+  58              		.loc 1 304 1 is_stmt 0 view .LVU9
+  59 000e 0020     		movs	r0, #0
+  60 0010 08BD     		pop	{r3, pc}
+  61              	.L4:
+  62 0012 00BF     		.align	2
+  63              	.L3:
+  64 0014 00000000 		.word	.LC0
+  65              		.cfi_endproc
+  66              	.LFE3:
+  68              		.text
+  69              	.Letext0:
+  70              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+  71              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+  72              		.file 4 "Core/Inc/vl53l1_error_codes.h"
+  73              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ARM GAS  C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 vl53l1_error_strings.c
+C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s:20     .rodata.VL53L1_get_pal_error_string.str1.4:00000000 $d
+C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s:24     .text.VL53L1_get_pal_error_string:00000000 $t
+C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s:30     .text.VL53L1_get_pal_error_string:00000000 VL53L1_get_pal_error_string
+C:\Users\Lenovo\AppData\Local\Temp\cc779sHk.s:64     .text.VL53L1_get_pal_error_string:00000014 $d
+
+UNDEFINED SYMBOLS
+strncpy
