@@ -15,6 +15,22 @@
   *
   ******************************************************************************
   */
+
+
+/*
+  ******************************************************************************
+  * VL53L1X Code
+  * STM32L432KC
+  * PIN Configuration:
+  * I2C1_SCL -> PB10
+  * I2C1_SDA -> PB9
+  * USART2 Asynchronous
+  ******************************************************************************
+*/
+
+
+
+
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -22,6 +38,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "vl53l1_platform.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -116,6 +133,7 @@ status = VL53L1_SetDistanceMode(Dev, VL53L1_DISTANCEMODE_SHORT);
 status = VL53L1_SetMeasurementTimingBudgetMicroSeconds(Dev, 33000);
 status = VL53L1_SetInterMeasurementPeriodMilliSeconds(Dev, 100);
 status = VL53L1_StartMeasurement(Dev);
+
 char Payload[50];
   /* USER CODE END 2 */
 

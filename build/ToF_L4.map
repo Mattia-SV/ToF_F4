@@ -2680,52 +2680,52 @@ LOAD c:/program files (x86)/gnu arm embedded toolchain/10 2021.10/bin/../lib/gcc
  .debug_line    0x00018b3f      0x1e0 build/sysmem.o
  .debug_line    0x00018d1f       0x76 build/startup_stm32l432xx.o
 
-.debug_str      0x00000000     0x9729
- .debug_str     0x00000000     0x3885 build/main.o
-                               0x3d16 (size before relaxing)
- .debug_str     0x00003885       0xb4 build/stm32l4xx_it.o
+.debug_str      0x00000000     0x978d
+ .debug_str     0x00000000     0x388b build/main.o
+                               0x3d1c (size before relaxing)
+ .debug_str     0x0000388b      0x112 build/stm32l4xx_it.o
                                 0x247 (size before relaxing)
- .debug_str     0x00003939      0x2b8 build/stm32l4xx_hal_msp.o
+ .debug_str     0x0000399d      0x2b8 build/stm32l4xx_hal_msp.o
                                 0xcbf (size before relaxing)
- .debug_str     0x00003bf1      0x904 build/stm32l4xx_hal_i2c.o
+ .debug_str     0x00003c55      0x904 build/stm32l4xx_hal_i2c.o
                                 0xff1 (size before relaxing)
- .debug_str     0x000044f5       0xe8 build/stm32l4xx_hal_i2c_ex.o
+ .debug_str     0x00004559       0xe8 build/stm32l4xx_hal_i2c_ex.o
                                 0x901 (size before relaxing)
- .debug_str     0x000045dd      0x762 build/stm32l4xx_hal.o
+ .debug_str     0x00004641      0x762 build/stm32l4xx_hal.o
                                 0xb1d (size before relaxing)
- .debug_str     0x00004d3f      0x2c5 build/stm32l4xx_hal_rcc.o
+ .debug_str     0x00004da3      0x2c5 build/stm32l4xx_hal_rcc.o
                                 0x871 (size before relaxing)
- .debug_str     0x00005004      0x4aa build/stm32l4xx_hal_rcc_ex.o
+ .debug_str     0x00005068      0x4aa build/stm32l4xx_hal_rcc_ex.o
                                 0xb77 (size before relaxing)
- .debug_str     0x000054ae      0x103 build/stm32l4xx_hal_gpio.o
+ .debug_str     0x00005512      0x103 build/stm32l4xx_hal_gpio.o
                                 0x556 (size before relaxing)
- .debug_str     0x000055b1      0x48b build/stm32l4xx_hal_pwr_ex.o
+ .debug_str     0x00005615      0x48b build/stm32l4xx_hal_pwr_ex.o
                                 0x7b7 (size before relaxing)
- .debug_str     0x00005a3c      0x479 build/stm32l4xx_hal_cortex.o
+ .debug_str     0x00005aa0      0x479 build/stm32l4xx_hal_cortex.o
                                 0xb54 (size before relaxing)
- .debug_str     0x00005eb5      0x7a9 build/stm32l4xx_hal_uart.o
+ .debug_str     0x00005f19      0x7a9 build/stm32l4xx_hal_uart.o
                                0x102f (size before relaxing)
- .debug_str     0x0000665e       0x3d build/system_stm32l4xx.o
+ .debug_str     0x000066c2       0x3d build/system_stm32l4xx.o
                                 0x3f4 (size before relaxing)
- .debug_str     0x0000669b     0x12e7 build/vl53l1_api_core.o
+ .debug_str     0x000066ff     0x12e7 build/vl53l1_api_core.o
                                0x449f (size before relaxing)
- .debug_str     0x00007982       0x75 build/vl53l1_api_preset_modes.o
+ .debug_str     0x000079e6       0x75 build/vl53l1_api_preset_modes.o
                                0x19dc (size before relaxing)
- .debug_str     0x000079f7     0x11cb build/vl53l1_api.o
+ .debug_str     0x00007a5b     0x11cb build/vl53l1_api.o
                                0x4acd (size before relaxing)
- .debug_str     0x00008bc2       0x82 build/vl53l1_core_support.o
+ .debug_str     0x00008c26       0x82 build/vl53l1_core_support.o
                                 0x297 (size before relaxing)
- .debug_str     0x00008c44      0x71c build/vl53l1_core.o
+ .debug_str     0x00008ca8      0x71c build/vl53l1_core.o
                                0x3cf8 (size before relaxing)
- .debug_str     0x00009360       0x47 build/vl53l1_platform.o
+ .debug_str     0x000093c4       0x47 build/vl53l1_platform.o
                                0x35c5 (size before relaxing)
- .debug_str     0x000093a7      0x15c build/vl53l1_register_funcs.o
+ .debug_str     0x0000940b      0x15c build/vl53l1_register_funcs.o
                                0x347d (size before relaxing)
- .debug_str     0x00009503      0x188 build/vl53l1_wait.o
+ .debug_str     0x00009567      0x188 build/vl53l1_wait.o
                                0x32b0 (size before relaxing)
- .debug_str     0x0000968b       0x7a build/sysmem.o
+ .debug_str     0x000096ef       0x7a build/sysmem.o
                                 0x23d (size before relaxing)
- .debug_str     0x00009705       0x24 build/startup_stm32l432xx.o
+ .debug_str     0x00009769       0x24 build/startup_stm32l432xx.o
                                  0x82 (size before relaxing)
 
 .debug_frame    0x00000000     0x3acc
